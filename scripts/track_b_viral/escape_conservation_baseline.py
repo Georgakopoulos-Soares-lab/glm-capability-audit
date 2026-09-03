@@ -19,7 +19,7 @@ import paths as P
 from scipy.stats import spearmanr
 from sklearn.metrics import roc_auc_score
 import warnings; warnings.filterwarnings("ignore")
-Z = os.environ.get("VB_PGYM_ZS", "/data/nvidia/proteingym/zeroshot")
+Z = P.PROTEINGYM_ZEROSHOT
 OUT = P.sub("escape_conservation")
 CONS = ["Site_Independent","EVmutation","DeepSequence_ensemble","EVE_ensemble","MSA_Transformer_ensemble"]
 PLM  = ["ESM1b","ESM1v_ensemble","ESM2_650M","ESM2_3B","ESM2_15B"]

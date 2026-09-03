@@ -11,14 +11,28 @@ Margins are declared HERE, before any CI is computed, per the project guardrail.
 import sys, os, json, glob, time
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "track_b_viral"))
 import numpy as np, pandas as pd
+import paths
 from sklearn.linear_model import LogisticRegression
 from sklearn.preprocessing import StandardScaler
 from sklearn.metrics import f1_score
 import virobench_baselines as VBB
 import warnings; warnings.filterwarnings("ignore")
 
+def equivalence_verdict(ci_lo, ci_hi, margin):
+    """True when the paired delta is statistically equivalent to zero at `margin`.
+
+    Two one-sided tests: the whole CI must sit inside (-margin, +margin). A wide
+    CI therefore returns False -- "not shown to differ" is not the same claim as
+    "shown to be equivalent", and conflating them is the standard way a negative
+    result gets overstated.
+
+    Margins must be declared before the CI is computed (see DELTAS).
+    """
+    return bool(ci_hi < margin and ci_lo > -margin)
+
+
 DELTAS = [0.01, 0.02, 0.03, 0.05]        # pre-declared, not chosen after seeing CIs
-OUT = "/data/nvidia/genomic-capability-unlearning/scratchpad/multimodel/virobench_frozen"
+OUT = os.path.join(os.environ.get("VB_MULTIMODEL", paths.sub("multimodel")), "virobench_frozen")
 LEVEL = sys.argv[1] if len(sys.argv) > 1 else "family"
 NBOOT = 2000
 
@@ -65,7 +79,7 @@ for f in sorted(glob.glob(f"{OUT}/*ALL_times_{LEVEL}__W*__preds.npz")):
                  - f1_score(yt[i], kp[i], average="macro", zero_division=0))
     lo, hi = np.percentile(bs, [2.5, 97.5])
     name = os.path.basename(f).replace("__preds.npz", "")
-    eq = {f"delta_{dd}": bool(hi < dd and lo > -dd) for dd in DELTAS}
+    eq = {f"delta_{dd}": equivalence_verdict(lo, hi, dd) for dd in DELTAS}
     rows.append(dict(run=name, n=n, fm=round(fm_f1,4), kmer=round(km_f1,4),
                      delta=round(fm_f1-km_f1,4), ci_lo=round(lo,4), ci_hi=round(hi,4),
                      favors_fm_p=round(float((bs>0).mean()),4), **eq))

@@ -42,7 +42,7 @@ from scripts.hvue_lora_finetune import (
     HVUEDataset, collate_pad, ClassificationHead, find_norm, forward_with_hook,
     LORA_RANK, LORA_ALPHA, LORA_TARGETS)
 
-GENEB = os.environ.get("VB_GENEB_DIR", "/data/nvidia/geneb_data/tasks")
+GENEB = P.GENEB_DIR
 OUT = P.sub("geneb_evo")
 
 

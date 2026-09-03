@@ -1,0 +1,25 @@
+# Runtime for the benchmark audit. Verified on Python 3.10.
+#
+#   pip install -r requirements.txt
+#
+# One non-Python dependency is required and is NOT installable from PyPI:
+#
+#   mmseqs2   every homology audit uses `mmseqs easy-search` / `easy-cluster`.
+#             conda install -c bioconda mmseqs2   (or a release binary)
+#             then: export VB_MMSEQS=$(which mmseqs)
+#
+# Optional, only for scripts/track_b_viral/{hvue,geneb}_evo_lora.py: the
+# `glm-locking` project on $PYTHONPATH, pointed at by $VB_LOCK_ROOT. Every other
+# script runs without it.
+
+numpy>=1.24
+pandas>=2.0
+scikit-learn>=1.3
+scipy>=1.10
+torch>=2.1                # CUDA build must match your driver for the GPU runs
+transformers>=4.40        # DNABERT-2 needs <4.48; see reports/STATE_OF_EVIDENCE.md
+peft>=0.10                # LoRA adaptation regime
+huggingface_hub>=0.20     # corpus + checkpoint download
+pyarrow>=14.0             # HVUE ships as parquet
+
+pytest>=7.4

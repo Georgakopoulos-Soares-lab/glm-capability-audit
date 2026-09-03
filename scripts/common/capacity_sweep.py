@@ -28,7 +28,7 @@ from sklearn.metrics import matthews_corrcoef, f1_score, accuracy_score, roc_auc
 import warnings; warnings.filterwarnings("ignore")
 
 OUT = P.sub("capacity_sweep")
-NT_DIR = os.environ.get("VB_NT_DIR", "/data/nvidia/data/ntv3")
+NT_DIR = paths.NT_DIR
 MAPI = np.full(256, 4, np.int64)
 for i, c in enumerate("ACGT"):
     MAPI[ord(c)] = i; MAPI[ord(c.lower())] = i
@@ -152,7 +152,7 @@ def load(ds, task, level, seqcap, min_count=1):
         # Dev carve is a stratified 15% of train at seed 42 -- identical to
         # scripts/geneb/fair_kmer_sentinel.py and scripts/track_a_benchmarks/geneb_finetune.py,
         # so the CNN ladder, the fair k-mer and the FT arm all select on the same rows.
-        G = os.environ.get("VB_GENEB_DIR", "/data/nvidia/geneb_data/tasks")
+        G = paths.GENEB_DIR
         tr_all = pd.read_csv(f"{G}/{task}/train.csv").rename(columns={"text": "sequence"})
         te = pd.read_csv(f"{G}/{task}/test.csv").rename(columns={"text": "sequence"})
         from sklearn.model_selection import train_test_split

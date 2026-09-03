@@ -42,7 +42,7 @@ sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))) +
 import paths as P
 
 RESULT_DIR = f"{P.OUT}/gue_baselines"
-COMPETITOR_MD = "/scratch/10906/arisk/sweep_ft/competitor_comparison_TEST.md"
+COMPETITOR_MD = os.environ.get("PC_COMPETITOR_MD", os.path.join(P.REPORTS, "competitor_comparison_TEST.md"))
 
 # our_task_name -> (competitor table section, competitor row label)
 NTV3_MAP = {

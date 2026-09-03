@@ -28,7 +28,7 @@ transformers.logging.set_verbosity_error()
 import warnings; warnings.filterwarnings("ignore")
 
 OUT = P.sub("geneb_finetune")
-GENEB = os.environ.get("VB_GENEB_DIR", "/data/nvidia/geneb_data/tasks")
+GENEB = P.GENEB_DIR
 MODELS = {
  "nt_v2_500m": ("InstaDeepAI/nucleotide-transformer-v2-500m-multi-species", 1024, 6),
  "gena_lm":    ("AIRI-Institute/gena-lm-bert-base-t2t", 512, 6),

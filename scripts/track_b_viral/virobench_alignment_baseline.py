@@ -18,9 +18,10 @@ import numpy as np, pandas as pd
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "track_b_viral"))
 import virobench_baselines as VBB
 from sklearn.metrics import f1_score, accuracy_score
-MMSEQS = os.environ.get("VB_MMSEQS", "/home/nvidia/tools/mmseqs/bin/mmseqs")
-M = "/data/nvidia/genomic-capability-unlearning/scratchpad/multimodel"
-SCRATCH = "/data/nvidia/tmp_mmseqs"; os.makedirs(SCRATCH, exist_ok=True)
+import paths as P
+MMSEQS = P.MMSEQS
+M = os.environ.get("VB_MULTIMODEL", P.sub("multimodel"))
+SCRATCH = P.MMSEQS_SCRATCH; os.makedirs(SCRATCH, exist_ok=True)
 LEVEL = sys.argv[1] if len(sys.argv) > 1 else "family"
 
 tr, dv, te = (VBB.load("ALL", "times", x) for x in ("train", "val", "test"))

@@ -31,7 +31,7 @@ try:
     import transformers; transformers.logging.set_verbosity_error()
 except Exception: pass
 
-NT_DIR = os.environ.get("VB_NT_DIR", "/data/nvidia/data/ntv3")
+NT_DIR = P.NT_DIR
 OUT = P.sub("splice_positive_control")
 MODELS = {
  "nt_v2_500m": ("InstaDeepAI/nucleotide-transformer-v2-500m-multi-species", "AutoModelForMaskedLM", 1024, 6),

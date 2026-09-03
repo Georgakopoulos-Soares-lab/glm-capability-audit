@@ -11,8 +11,9 @@ Until now every non-viral positive in the programme was k-mer-anchored.
 """
 import json, glob, os, sys
 import numpy as np, pandas as pd
-M = os.environ.get("VB_OUT", "/data/nvidia/genomic-capability-unlearning/scratchpad/multimodel")
-R = "/data/nvidia/genomic-capability-unlearning/reports"
+import paths as P
+M = os.environ.get("VB_MULTIMODEL", P.sub("multimodel"))
+R = P.REPORTS
 MODELS = ("nt_v2_500m", "gena_lm", "hyenadna")
 TIE = 0.005
 

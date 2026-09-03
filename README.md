@@ -1,24 +1,100 @@
-# Genomic foundation model capability — benchmark audit + viral negative result
+# Genomic foundation-model capability: a benchmark audit and a scoped viral negative result
 
-Branch: `viral-benchmark-continuation`.
+Do published genomic language model (gLM) benchmark tables support the capability
+claims made from them? We find that on viral tasks they do not — and we show that
+with the same harness, models, and protocols that *do* detect capability on
+non-viral tasks.
 
-A positive-and-negative-controls study of genomic foundation model capability. **Read
-[reports/PAPER_DESIGN.md](reports/PAPER_DESIGN.md) first** — it holds the validity grid the whole
-design rests on, the current contents of each quadrant, and the ordered action items.
+The negative result is **scoped and positively controlled**. This is not "gLMs
+don't work". It is: *gLMs work, and here is a domain where the evidence that they
+work does not survive contact with the baselines and the splits.*
 
-The design populates a grid and picks every task to land in a **known** quadrant, because a viral
-null is only informative if the harness is shown to detect capability elsewhere on comparably
-honest ground:
+Working title, thesis, and section plan: **[reports/PAPER_OUTLINE.md](reports/PAPER_OUTLINE.md)**.
 
-**{capability present / absent} × {split honest / leaky} × {baseline honest / under-powered}**
+---
 
-The third axis is ours. A "capability present" verdict can be manufactured three ways and we have a
-measured instance of each — a leaky split (HVUE Pathogenecity, 96 of 5,194 test rows survive
-filtering), an under-powered baseline (splice CNN receptive field, **+0.62 MCC**), and a wrong
-comparator class (ViroBench without alignment, **+0.115**).
+## The result in one table
 
-Operationally this runs as two tracks sharing one harness — see
-[reports/RESEARCH_PLAN.md](reports/RESEARCH_PLAN.md).
+The choice of *model* is the smallest lever we measured. Evaluation-method choices
+dominate it by one to two orders of magnitude.
+
+| lever | measured spread | where |
+|:--|--:|:--|
+| split / subset choice | **0.37** macro-F1 | k-mer3-6 on ViroBench family: 0.9252 → 0.5566 |
+| baseline architecture | **0.66** MCC | 13-cell CNN ladder on splice: 0.2909 → 0.9538 |
+| adaptation regime | **0.60** MCC | NT-v2 splice: frozen probe 0.3636 → full FT 0.9674 |
+| homology-audit tool | **0.80 → 0.02** | HVUE Path. "leak-free" by `easy-cluster`, 80.5% leaked by `easy-search` |
+| comparator class | **0.115** macro-F1 | ViroBench family: best gLM 0.6148 vs alignment nearest-hit 0.7383 |
+| model, everything else fixed | **0.32** macro-F1 | ViroBench family: NT-v2 0.611 → LucaVirus 0.295 |
+| **best model vs best baseline** | **+0.01 to +0.015** MCC | splice: NT-v2 0.9674 vs CNN ladder 0.9528 |
+
+The last two rows are the point: the entire four-model spread on a fixed split is
+smaller than the spread from changing the split, and the margin by which the best
+model beats the best baseline is **40–60× smaller than the artifacts we found in
+the evaluation method**.
+
+### Three independent failure modes, each with a measured instance
+
+1. **Homology saturation.** 96–99% of HVUE Pathogenecity and Transmissibility test
+   sequences share ≥70% identity over ≥30% of their length with training data.
+   Strict refiltering leaves Pathogenecity at 96 of 5,194 test rows and
+   Transmissibility at 60 of 4,956. Two of three HVUE tasks cannot support a
+   homology-clean evaluation at all. ViroBench, by contrast, is 2.1% overlapping
+   and temporally disjoint — and there **no model beats a k-mer baseline
+   significantly at any of five taxonomic levels**.
+2. **Under-powered baselines.** A ResNet with 9.44M parameters and an 89 bp
+   receptive field scores 0.336 on a 600 bp splice task; a 0.26M U-Net that spans
+   the input scores 0.951. Published FM-vs-CNN gaps of +0.31–0.60 shrink to
+   +0.02–0.03 once the baseline can see the sequence. The receptive-field
+   arithmetic behind this is unit-tested
+   ([tests/test_capacity_sweep.py](tests/test_capacity_sweep.py)).
+3. **Wrong comparator class.** On ViroBench family assignment, alignment
+   nearest-hit beats the best gLM by 0.115 macro-F1. Comparing a gLM only to a
+   k-mer model, on a taxonomic task, omits the method that actually solves it.
+
+### The positive controls that make the null informative
+
+Same harness, same protocols, non-viral tasks: GENA-LM wins 11 of 13 GENEB
+categories and NT-v2 10 of 13; splice fine-tuning reproduces published numbers at
+0.968 MCC. A harness that detects nothing anywhere would prove nothing.
+
+On the 22-task GENEB comparison with three seeds per arm, a properly tuned CNN —
+not a k-mer — is the binding baseline on 21 of 22 tasks, and only 5 tasks show a
+significant model excess ([reports/ERASABLE_EXCESS.md](reports/ERASABLE_EXCESS.md)).
+
+---
+
+## Read in this order
+
+| # | document | what it gives you |
+|--:|:--|:--|
+| 1 | [reports/PAPER_OUTLINE.md](reports/PAPER_OUTLINE.md) | the thesis, why this framing survives review, section-by-section plan |
+| 2 | [reports/STATE_OF_EVIDENCE.md](reports/STATE_OF_EVIDENCE.md) | **every number, with provenance.** Own runs vs `C2` (Vista cluster) vs published. Start here for any table |
+| 3 | [reports/PAPER_DESIGN.md](reports/PAPER_DESIGN.md) | the validity grid the design rests on, and what populates each quadrant |
+| 4 | [reports/PROTOCOL.md](reports/PROTOCOL.md) | 27 binding rules; each exists because violating it changed a conclusion here |
+| 5 | [reports/TESTED_MATRIX.md](reports/TESTED_MATRIX.md) | benchmark × method × regime, marked done / partial / **not run** / invalid |
+| 6 | [reports/ERASABLE_EXCESS.md](reports/ERASABLE_EXCESS.md) | the finalised 22-task excess table, 3 seeds per arm |
+| 7 | [reports/BASELINE_CAPACITY_CEILING.md](reports/BASELINE_CAPACITY_CEILING.md) | the CNN ladder result in full |
+| 8 | [reports/SPLIT_DESIGN_EXPLAINED.md](reports/SPLIT_DESIGN_EXPLAINED.md) | composition-disjoint vs homology holdout, and which is correct for what |
+| 9 | [reports/VALIDITY_GATES.md](reports/VALIDITY_GATES.md) | the gate order a capability claim must pass |
+
+Supporting: [MEASUREMENT_PROTOCOL.md](reports/MEASUREMENT_PROTOCOL.md),
+[FULL_FT_DESIGN.md](reports/FULL_FT_DESIGN.md),
+[CROSS_CLUSTER_SYNTHESIS.md](reports/CROSS_CLUSTER_SYNTHESIS.md),
+[RESEARCH_PLAN.md](reports/RESEARCH_PLAN.md),
+[PRIOR_WORK_DASHA_COMPARISON.md](reports/PRIOR_WORK_DASHA_COMPARISON.md),
+[OUTCOME_FOR_UNLEARNING.md](reports/OUTCOME_FOR_UNLEARNING.md) — what this means
+for the sister unlearning project.
+
+`reports/archive/` holds superseded working documents. **Do not cite them**; cite
+`STATE_OF_EVIDENCE.md` and the artifacts under `results/`.
+
+---
+
+## The two tracks
+
+Both share one harness, because a viral null is only informative if the harness is
+shown to detect capability elsewhere on comparably honest ground.
 
 | | **Track A — benchmark & method audit** | **Track B — viral capability** |
 |:--|:--|:--|
@@ -26,110 +102,115 @@ Operationally this runs as two tracks sharing one harness — see
 | benchmarks | GENEB, GUE, NT, EPI, DART-Eval | HVUE, ViroBench, GUE viral, ProteinGym viral, escape |
 | comparators | k-mer, CNN ladder | + alignment nearest-hit, Kraken2, MSA |
 | contribution | published gaps are largely baseline artifacts | scoped negative result, positively controlled by Track A |
+| code | `scripts/track_a_benchmarks/`, `scripts/geneb/` | `scripts/track_b_viral/` |
 
-Track B's negative result is only credible because Track A shows the same harness detects real
-capability elsewhere. Track A's headline was discovered *because* Track B forced a proper comparator.
+Track A's headline was discovered *because* Track B forced a proper comparator.
 
-## Documents
-
-| doc | what it is |
-|:--|:--|
-| **[reports/PAPER_DESIGN.md](reports/PAPER_DESIGN.md)** | the validity grid, quadrant contents, action items, and the three anchors that moved |
-| **[reports/FULL_FT_DESIGN.md](reports/FULL_FT_DESIGN.md)** | full-FT task selection (probing results are an input, not re-run), the disjoint-set framing, and prior work |
-| **[reports/RESEARCH_PLAN.md](reports/RESEARCH_PLAN.md)** | the two operational tracks, status, and what each still needs |
-| **[reports/PROTOCOL.md](reports/PROTOCOL.md)** | 27 binding rules; each one exists because violating it changed a conclusion here |
-| **[reports/TESTED_MATRIX.md](reports/TESTED_MATRIX.md)** | benchmark × method × regime, what is done / partial / invalid, and claims withdrawn |
-| [reports/BASELINE_CAPACITY_CEILING.md](reports/BASELINE_CAPACITY_CEILING.md) | the receptive-field finding |
-| [reports/CROSS_CLUSTER_SYNTHESIS.md](reports/CROSS_CLUSTER_SYNTHESIS.md) | both clusters reconciled |
-| [reports/PAPER_OUTLINE.md](reports/PAPER_OUTLINE.md) | thesis, sections, figures, defensible-vs-gated claims |
-| [ANALYTICAL_RESULTS.md](ANALYTICAL_RESULTS.md) | full per-task tables |
-
-## The four findings that shape everything else
-
-1. **Baseline receptive field, not capacity, binds on positionally-structured tasks.** On 600bp
-   splice, ResNet at 9.44M params (RF 89bp) scores 0.336 MCC; a U-Net at 0.26M (global RF) scores
-   0.951 — 36× fewer parameters, +0.62 MCC. Published FM-vs-CNN splice gaps of +0.31–0.60 shrink to
-   **+0.02–0.03**. Always run `capacity_sweep.py` before quoting a baseline.
-2. **Homology audits need `easy-search`, not `easy-cluster`.** `-c 0.9` requires 90% *bidirectional*
-   coverage and is blind to a test sequence sharing half its length at high identity. HVUE
-   Pathogenecity is **80.5%** leaked by that measure and retains **96 of 5,194** homology-clean test
-   rows; Transmissibility 60 of 4,956. Those two tasks cannot support a clean evaluation for anyone.
-3. **On taxonomy, an alignment baseline is mandatory.** Alignment nearest-hit gets macro-F1 0.7383
-   on ViroBench family vs 0.6148 for the best gLM — and 0.9915 accuracy on the 85% it can align,
-   over only 10–13% of query length. Viral family taxonomy is determined by short conserved regions.
-4. **Match the effective context in bp, per method, per cell.** The ViroBench frozen probe saw
-   38.8% of test bp (`max_win 16 × 2048`) against an unbounded k-mer. Fixing that reversed an
-   apparent +0.037 FM win to −0.012.
-
-## Layout
-
-```
-scripts/common/              shared harness — use these for BOTH tracks
-  paths.py                   env-var path resolution (VB_*); all other dirs shim to this
-  capacity_sweep.py          architecture x capacity ladder (dilated/U-Net/ResNet, 0.04M-9.4M)
-  partial_overlap_audit.py   easy-search partial-overlap leakage audit
-  build_strict_splits.py     drop test rows with a train hit above threshold
-  paired_bootstrap.py        paired bootstrap + pre-declared equivalence margins
-  audit_splits.py            split-integrity + dedup checks
-  download_data.py           GUE viral + ViroBench fetch
-scripts/track_a_benchmarks/
-  splice_positive_control.py frozen-probe arm
-  splice_finetune.py         full-FT arm; LR sweep, warmup, fresh-weight guard
-  gue_baselines.py           k-mer + CNN on GUE  (--test_csv to override the test set)
-  gue_glm.py                 gLMs on GUE
-  aggregate_splice.py        three-regime table, regimes kept separate
-scripts/track_b_viral/
-  hvue_cnn.py hvue_glm.py hvue_evo_lora.py
-  virobench_baselines.py     k-mer + CNN  (--kmer_cap / --cnn_len -> DECLARE CONTEXT)
-  virobench_frozen_probe.py  ViroBench protocol  (--layer -> SWEEP ON DEV)
-  virobench_alignment_baseline.py   mmseqs nearest-hit label transfer
-  virobench_glm.py build_identity_splits.py
-```
-
-Data, weights, logs and run outputs are gitignored.
+---
 
 ## Quickstart
 
 ```bash
-pip install -r scripts/common/requirements.txt
-export VB_ROOT=/scratch/$USER/viral-bench VB_OUT=$VB_ROOT/results
-export VB_HVUE_DIR=$VB_ROOT/data/hvue VB_MMSEQS=$(which mmseqs) HF_HOME=$VB_ROOT/hf_cache
+conda env create -f environment.yml && conda activate glm-audit   # includes mmseqs2
+# or: pip install -r requirements.txt  +  conda install -c bioconda mmseqs2
 
-cd scripts/common && python download_data.py --what both
-python capacity_sweep.py --dataset splice --task splice_sites_all --seeds 42 43   # baseline ceiling
-python partial_overlap_audit.py                                                  # leakage, before any claim
+pytest                        # 41 passed, ~0.2s, CPU only
+python scripts/common/paths.py   # print resolved config; "(missing)" = corpus not fetched yet
 ```
 
-`paths.py` resolves everything from `VB_*` env vars; no absolute paths are hard-coded.
-`VB_SPLIT_DIR` / `VB_SPLIT_SUFFIX` point `capacity_sweep.py` at an alternative HVUE split.
+**Configuration.** Every input path resolves through
+[scripts/common/paths.py](scripts/common/paths.py) with an environment override
+and a repository-relative default — nothing is hardcoded to a particular machine.
+On a new host set at minimum:
 
-## Supported models
+```bash
+export VB_DATA=/scratch/$USER/glm-audit/data    # where benchmark corpora live
+export VB_MMSEQS=$(which mmseqs)                # required by every homology audit
+export HF_HOME=/scratch/$USER/glm-audit/hf_cache
+```
 
-`nt_v2_500m`, `gena_lm`, `hyenadna`, `lucavirus` (ViroBench only), `evo` (LoRA). DNABERT-2 is
-excluded — `config_class` conflict with transformers 4.48.
+Then `python scripts/common/download_data.py`, or point the per-corpus variables
+(`VB_HVUE_DIR`, `VB_GENEB_DIR`, `VB_NT_DIR`, `VB_VIRO_DIR`, `VB_GUE_DIR`,
+`VB_PROTEINGYM_DMS`, `VB_ESCAPE_CSV`, …) at copies you already have.
+`python scripts/common/paths.py` prints what resolved and what is missing.
 
-**Two loading traps:** `AutoModelForSequenceClassification` on GENA-LM silently discards all 48
-pretrained LayerNorms (pre-LN checkpoint vs post-LN HF class) and the model collapses to the
-majority class at every LR — use `AutoModel` + your own head, and keep
-`assert_no_fresh_encoder_weights()`. And LucaVirus's tokenizer returns `token_type_ids` of the
-wrong length under padding.
+**mmseqs2 is not optional.** Every homology claim in the paper uses
+`easy-search` (local alignment) rather than `easy-cluster`, and that distinction
+is itself a finding — see failure mode 1.
 
-## Three anchors moved — do not reuse older numbers
+**GPU.** Only the gLM runs need one. The k-mer baselines, the CNN ladder, and the
+homology audits are CPU work.
 
-1. **The splice positive control is +0.015, not +0.30–0.64.** The old gap was measured against a CNN
-   whose receptive field could not span a 600bp input. The control still passes (NT-v2 FT 0.9674 ±
-   0.0025 vs published 0.971–0.984) but the margin is small, and 2 of 3 gLMs *lose* to the CNN.
-2. **LucaVirus's +0.079 is gone** — −0.279 to −0.294 across layers −1/−2/−3/−5, all significant. The
-   viral modality has no live exception.
-3. **HVUE identity-disjoint does not carry the safety claim.** Pathogenecity and Transmissibility
-   retain 96/5,194 and 60/4,956 homology-clean rows. Only Host_Tropism survives, and there NT-v2
-   *wins* by +0.0059.
+---
 
-## The single most important open gap
+## Layout
 
-**No CNN baseline exists for any GENEB task.** The entire non-viral positive control is
-k-mer-anchored, and the k-mer is demonstrably the weaker of the two baselines on positional tasks.
-On the one overlapping task, our CNN ladder scores **0.9527** where GENEB's fair k-mer scores 0.387
-and its best-of-40 published submission scores 0.685. Until `capacity_sweep.py` is run on the
-GENEB sentinel, we do not know whether those wins survive — and Track B's credibility depends on
-them. See [reports/RESEARCH_PLAN.md](reports/RESEARCH_PLAN.md) §Track A.
+```text
+scripts/
+  common/            paths resolver, capacity sweep (CNN ladder), paired bootstrap,
+                     homology audits (partial_overlap_audit, build_strict_splits),
+                     split auditing, corpus download
+  track_a_benchmarks/  GENEB and splice: k-mer + CNN + frozen probe + full FT, aggregation
+  track_b_viral/       HVUE, ViroBench, escape, ProteinGym: baselines, alignment
+                     comparator, gLM probes, LoRA, viral likelihood
+  geneb/             GENEB fair-k-mer sentinel and feature extractors
+  positive_control/  GUE / NT / EPI split preparation and leakage checks
+reports/             the paper-facing documents, plus small result tables
+  archive/           superseded working documents — not for citation
+results/             482 committed run artifacts (~2.3 MB): JSON summaries and
+                     per-example .npz predictions
+tests/               41 CPU-only tests
+```
+
+Every script resolves inputs through `paths.py`; the per-directory `paths.py`
+files are shims re-exporting `scripts/common/paths.py`.
+
+---
+
+## Reproducing a number
+
+Result artifacts are committed, so a table can be rebuilt without a GPU:
+
+```bash
+python scripts/track_a_benchmarks/aggregate_geneb.py    # four-way GENEB comparison
+python scripts/track_a_benchmarks/aggregate_splice.py   # splice ladder + FT
+python scripts/common/paired_bootstrap.py family        # ViroBench paired CI + equivalence
+```
+
+`results/` holds `capacity_sweep/` (21 CNN ladders, per-arch params and receptive
+field), `geneb_finetune/` (454 files: per model × LR × seed, with `.npz`
+predictions so the paired bootstrap can be re-run), and `geneb_evo/` (7 Evo-1 LoRA
+runs).
+
+**Equivalence, not absence of evidence.** `paired_bootstrap.py` declares its
+margins (`DELTAS = [0.01, 0.02, 0.03, 0.05]`) *before* computing any CI, and
+`equivalence_verdict()` requires the whole interval inside ±margin. A wide
+interval returns `False` — "we failed to show a difference" is not "we showed
+equivalence", and the tests enforce that
+([tests/test_paired_bootstrap.py](tests/test_paired_bootstrap.py)).
+
+---
+
+## Known gaps
+
+Taken from [reports/TESTED_MATRIX.md](reports/TESTED_MATRIX.md); these are what a
+referee will ask about.
+
+- **GENEB CNN ladder** is marked a critical gap on the 13 sentinel tasks: the
+  frozen-probe wins there are k-mer-anchored, and a tuned CNN is the binding
+  baseline everywhere it has been run.
+- **GENEB remainder**: 87 of 100 tasks untouched.
+- **Never run**: ESM-2 / ESM-1v (pLMs), DNABERT-2 (blocked by a `config_class`
+  conflict with transformers ≥4.48), Caduceus, Evo-2, GenoJEPA; protein one-hot +
+  biochemical baselines.
+- **Frozen-probe layer sweep** was done only on ViroBench family; elsewhere the
+  read-out layer is `L−1`, worth 0.02–0.04 macro-F1.
+- **CNN ladder coverage** is 9 task-cells, not all of them.
+- **Evo-1** has LoRA-only coverage on HVUE and no ViroBench runs.
+- **Test coverage** is 41 tests over the pure logic — path resolution, the
+  receptive-field arithmetic, the equivalence verdict. The training and
+  extraction paths are exercised by running them, not by unit tests.
+
+---
+
+MIT — see [LICENSE](LICENSE).

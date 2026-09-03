@@ -4,7 +4,7 @@ import os, sys, json
 sys.path.insert(0,'/data/nvidia/genomic-capability-unlearning/scripts/viral_benchmark')
 import numpy as np, pandas as pd
 import paths as P
-OUT="/data/nvidia/genomic-capability-unlearning/reports"
+OUT=paths.REPORTS
 rows=[]
 print("="*100); print("PHASE 5  ViroBench split integrity -- every level, both splits, both modalities"); print("="*100)
 for mod in ["DNA","ALL"]:

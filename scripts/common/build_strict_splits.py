@@ -10,10 +10,11 @@ then evaluated on the identical surviving rows, so the comparison stays paired.
 """
 import os, subprocess, tempfile, shutil, json, sys
 import pandas as pd, numpy as np
-MMSEQS = os.environ.get("VB_MMSEQS", "/home/nvidia/tools/mmseqs/bin/mmseqs")
-M = "/data/nvidia/genomic-capability-unlearning/scratchpad/multimodel"
+import paths
+MMSEQS = paths.MMSEQS
+M = os.environ.get("VB_MULTIMODEL", paths.sub("multimodel"))
 OUT = f"{M}/splits_strict"; os.makedirs(OUT, exist_ok=True)
-SCRATCH = "/data/nvidia/tmp_mmseqs"; os.makedirs(SCRATCH, exist_ok=True)
+SCRATCH = paths.MMSEQS_SCRATCH; os.makedirs(SCRATCH, exist_ok=True)
 ID_T, COV_T = 0.70, 0.30      # strict: drop test rows sharing >=30% of their length at >=70% id
 
 rep = {}

@@ -23,8 +23,8 @@ from sklearn.metrics import roc_auc_score
 from scipy.stats import spearmanr
 import warnings; warnings.filterwarnings("ignore")
 OUT = P.sub("escape_conservation")
-A2M = "/data/nvidia/escape_data/DMS_msa_files/SPIKE_SARS2_theta0.99_full_11-26-2021_b01.a2m"
-ESC = "/data/nvidia/escape_data/escape_data.csv"
+A2M = P.ESCAPE_MSA
+ESC = P.ESCAPE_CSV
 AAS = "ACDEFGHIKLMNPQRSTVWY"
 
 def read_a2m(path, max_seqs=None):

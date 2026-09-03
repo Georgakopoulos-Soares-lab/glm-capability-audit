@@ -33,8 +33,8 @@ from sklearn.model_selection import train_test_split
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))) + "/viral_benchmark")
 import paths as P
 
-NTV3_SRC = os.environ.get("PC_NTV3_DIR", "/scratch/10906/arisk/biojepa_data/ntv3")
-GUE_SRC = os.environ.get("PC_GUE_SRC_DIR", "/scratch/10906/arisk/biojepa_data/gue/GUE")
+NTV3_SRC = P.NT_DIR
+GUE_SRC = P.GUE_DIR
 OUT_DIR = P.GUE_DIR
 SEED = 42
 

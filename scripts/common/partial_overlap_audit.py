@@ -11,9 +11,10 @@ rather than assumed.
 """
 import os, subprocess, sys, json, tempfile, shutil
 import pandas as pd, numpy as np
-MMSEQS = os.environ.get("VB_MMSEQS", "/home/nvidia/tools/mmseqs/bin/mmseqs")
-M = "/data/nvidia/genomic-capability-unlearning/scratchpad/multimodel"
-SCRATCH = "/data/nvidia/tmp_mmseqs"; os.makedirs(SCRATCH, exist_ok=True)
+import paths
+MMSEQS = paths.MMSEQS
+M = os.environ.get("VB_MULTIMODEL", paths.sub("multimodel"))
+SCRATCH = paths.MMSEQS_SCRATCH; os.makedirs(SCRATCH, exist_ok=True)
 IDENTS = [0.90, 0.70, 0.50]
 COVFRACS = [0.50, 0.30]
 
