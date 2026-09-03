@@ -1,0 +1,37 @@
+{
+  "task": "splice_sites_acceptors",
+  "model": "nt_v2_500m",
+  "regime": "full_finetune",
+  "n_classes": 2,
+  "max_len": 1024,
+  "n_train": 25500,
+  "n_test": 3000,
+  "lr": 3e-05,
+  "warmup": "linear 10%",
+  "load_path": "auto",
+  "runs": [
+    {
+      "seed": 42,
+      "dev": 0.9765,
+      "test": 0.9647,
+      "best_epoch": 8,
+      "trainable_params": 494135763
+    },
+    {
+      "seed": 43,
+      "dev": 0.9752,
+      "test": 0.9674,
+      "best_epoch": 6,
+      "trainable_params": 494135763
+    },
+    {
+      "seed": 44,
+      "dev": 0.9773,
+      "test": 0.966,
+      "best_epoch": 4,
+      "trainable_params": 494135763
+    }
+  ],
+  "collapsed_to_majority_class": false,
+  "test_mean": 0.966
+}

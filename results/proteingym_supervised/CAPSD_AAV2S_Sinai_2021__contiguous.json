@@ -1,0 +1,11 @@
+{
+  "assay": "CAPSD_AAV2S_Sinai_2021",
+  "scheme": "contiguous",
+  "n": 42328,
+  "n_train": 34572,
+  "n_test": 7756,
+  "n_positions": 28,
+  "onehot": 0.5732,
+  "biochem": 0.3123,
+  "esm2": 0.6569
+}

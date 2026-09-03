@@ -1,0 +1,29 @@
+{
+  "task": "leannmlindsey_GUE_human_tf_0",
+  "model": "gena_lm",
+  "regime": "full_finetune",
+  "lr": 1e-05,
+  "load_path": "automodel",
+  "n_classes": 2,
+  "max_len_tok": 20,
+  "n_train": 27521,
+  "n_dev": 4857,
+  "n_test": 1000,
+  "cap_train": 0,
+  "warmup": "linear 10%",
+  "dev_carve": "stratified 15% seed 42",
+  "collapsed_to_majority_class": false,
+  "runs": [
+    {
+      "seed": 42,
+      "dev_mcc": 0.5966,
+      "best_epoch": 5,
+      "test_mcc": 0.6625,
+      "test_acc": 0.828,
+      "test_macro_f1": 0.8272,
+      "n_pred_classes": 2
+    }
+  ],
+  "test_mcc_mean": 0.6625,
+  "test_mcc_sd": null
+}

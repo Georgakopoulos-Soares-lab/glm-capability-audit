@@ -1,0 +1,52 @@
+{
+  "task": "virus_species_40",
+  "n_classes": 25,
+  "n_train": 4000,
+  "n_test": 500,
+  "kmer3-5": {
+    "macro_f1": 0.4236,
+    "accuracy": 0.414,
+    "mcc": 0.39,
+    "C": 0.1,
+    "dev_macro_f1": 0.4661,
+    "runtime_s": 71
+  },
+  "kmer3-6": {
+    "macro_f1": 0.4407,
+    "accuracy": 0.43,
+    "mcc": 0.4068,
+    "C": 0.01,
+    "dev_macro_f1": 0.4533,
+    "runtime_s": 152
+  },
+  "cnn": {
+    "runs": [
+      {
+        "macro_f1": 0.3905,
+        "accuracy": 0.426,
+        "mcc": 0.4107,
+        "seed": 42,
+        "best_epoch": 21,
+        "dev_macro_f1": 0.3698
+      },
+      {
+        "macro_f1": 0.4069,
+        "accuracy": 0.432,
+        "mcc": 0.4165,
+        "seed": 43,
+        "best_epoch": 23,
+        "dev_macro_f1": 0.413
+      },
+      {
+        "macro_f1": 0.393,
+        "accuracy": 0.456,
+        "mcc": 0.4471,
+        "seed": 44,
+        "best_epoch": 20,
+        "dev_macro_f1": 0.3966
+      }
+    ],
+    "n_params": 682473,
+    "mean_macro_f1": 0.3968
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "model": "duttaprat/HViLM-Patho",
+  "which": "patho",
+  "split": "Host_Tropism__identity_disjoint_hsd0.parquet",
+  "n_test": 8390,
+  "pos_rate": 0.4791,
+  "auroc": 0.6909,
+  "auroc_raw": 0.6909,
+  "label_polarity_flipped": false,
+  "mcc": 0.2578,
+  "acc": 0.6139
+}

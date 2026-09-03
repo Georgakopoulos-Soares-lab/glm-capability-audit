@@ -1,0 +1,123 @@
+{
+  "model": "gena_lm",
+  "regime": "full",
+  "task": "virus_species_40",
+  "seed": 44,
+  "lr": 1e-05,
+  "n_classes": 25,
+  "n_params": 110887705,
+  "n_trainable": 110887705,
+  "trainable_frac": 1.0,
+  "maxlen": 512,
+  "best_epoch": 15,
+  "epochs_run": 20,
+  "dev_macro_f1": 0.383,
+  "test_macro_f1": 0.3749,
+  "test_accuracy": 0.398,
+  "test_mcc": 0.3792,
+  "test_f1_oracle": 0.3881,
+  "test_f1_range": 0.3725,
+  "n_train": 4000,
+  "trajectory": [
+    {
+      "epoch": 1,
+      "dev_f1": 0.0154,
+      "test_f1": 0.0156
+    },
+    {
+      "epoch": 2,
+      "dev_f1": 0.1136,
+      "test_f1": 0.1031
+    },
+    {
+      "epoch": 3,
+      "dev_f1": 0.2047,
+      "test_f1": 0.2276
+    },
+    {
+      "epoch": 4,
+      "dev_f1": 0.2617,
+      "test_f1": 0.257
+    },
+    {
+      "epoch": 5,
+      "dev_f1": 0.2796,
+      "test_f1": 0.3197
+    },
+    {
+      "epoch": 6,
+      "dev_f1": 0.2965,
+      "test_f1": 0.3097
+    },
+    {
+      "epoch": 7,
+      "dev_f1": 0.3138,
+      "test_f1": 0.3428
+    },
+    {
+      "epoch": 8,
+      "dev_f1": 0.3236,
+      "test_f1": 0.3565
+    },
+    {
+      "epoch": 9,
+      "dev_f1": 0.3366,
+      "test_f1": 0.3534
+    },
+    {
+      "epoch": 10,
+      "dev_f1": 0.36,
+      "test_f1": 0.3542
+    },
+    {
+      "epoch": 11,
+      "dev_f1": 0.3475,
+      "test_f1": 0.3713
+    },
+    {
+      "epoch": 12,
+      "dev_f1": 0.3404,
+      "test_f1": 0.3727
+    },
+    {
+      "epoch": 13,
+      "dev_f1": 0.3552,
+      "test_f1": 0.3553
+    },
+    {
+      "epoch": 14,
+      "dev_f1": 0.3701,
+      "test_f1": 0.3785
+    },
+    {
+      "epoch": 15,
+      "dev_f1": 0.383,
+      "test_f1": 0.3749
+    },
+    {
+      "epoch": 16,
+      "dev_f1": 0.3677,
+      "test_f1": 0.3881
+    },
+    {
+      "epoch": 17,
+      "dev_f1": 0.3611,
+      "test_f1": 0.3752
+    },
+    {
+      "epoch": 18,
+      "dev_f1": 0.3629,
+      "test_f1": 0.3703
+    },
+    {
+      "epoch": 19,
+      "dev_f1": 0.3711,
+      "test_f1": 0.366
+    },
+    {
+      "epoch": 20,
+      "dev_f1": 0.3724,
+      "test_f1": 0.3816
+    }
+  ]
+}

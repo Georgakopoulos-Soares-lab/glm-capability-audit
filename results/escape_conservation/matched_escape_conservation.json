@@ -1,0 +1,13 @@
+{
+  "n_variants": 2321,
+  "n_msa": 8000,
+  "agg": "mean",
+  "spearman": -0.0649,
+  "aurocs": {
+    "top20pct": 0.5057,
+    "top15pct": 0.5086,
+    "top10pct": 0.5005,
+    "top5pct": 0.5043
+  },
+  "max_auroc": 0.5086
+}

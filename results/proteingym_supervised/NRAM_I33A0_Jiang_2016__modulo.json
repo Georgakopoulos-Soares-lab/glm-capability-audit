@@ -1,0 +1,11 @@
+{
+  "assay": "NRAM_I33A0_Jiang_2016",
+  "scheme": "modulo",
+  "n": 298,
+  "n_train": 237,
+  "n_test": 61,
+  "n_positions": 50,
+  "onehot": -0.0517,
+  "biochem": 0.1565,
+  "esm2": 0.515
+}

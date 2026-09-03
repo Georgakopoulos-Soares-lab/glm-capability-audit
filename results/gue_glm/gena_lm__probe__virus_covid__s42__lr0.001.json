@@ -1,0 +1,98 @@
+{
+  "model": "gena_lm",
+  "regime": "probe",
+  "task": "virus_covid",
+  "seed": 42,
+  "lr": 0.001,
+  "n_classes": 9,
+  "n_params": 110883593,
+  "n_trainable": 200713,
+  "trainable_frac": 0.00181,
+  "maxlen": 256,
+  "best_epoch": 13,
+  "epochs_run": 15,
+  "dev_macro_f1": 0.4865,
+  "test_macro_f1": 0.4808,
+  "test_accuracy": 0.4791,
+  "test_mcc": 0.4172,
+  "test_f1_oracle": 0.4835,
+  "test_f1_range": 0.4299,
+  "n_train": 40000,
+  "trajectory": [
+    {
+      "epoch": 1,
+      "dev_f1": 0.0546,
+      "test_f1": 0.0536
+    },
+    {
+      "epoch": 2,
+      "dev_f1": 0.1476,
+      "test_f1": 0.1405
+    },
+    {
+      "epoch": 3,
+      "dev_f1": 0.2439,
+      "test_f1": 0.244
+    },
+    {
+      "epoch": 4,
+      "dev_f1": 0.2906,
+      "test_f1": 0.286
+    },
+    {
+      "epoch": 5,
+      "dev_f1": 0.3542,
+      "test_f1": 0.3443
+    },
+    {
+      "epoch": 6,
+      "dev_f1": 0.3771,
+      "test_f1": 0.3732
+    },
+    {
+      "epoch": 7,
+      "dev_f1": 0.4074,
+      "test_f1": 0.406
+    },
+    {
+      "epoch": 8,
+      "dev_f1": 0.4198,
+      "test_f1": 0.4136
+    },
+    {
+      "epoch": 9,
+      "dev_f1": 0.451,
+      "test_f1": 0.4385
+    },
+    {
+      "epoch": 10,
+      "dev_f1": 0.4517,
+      "test_f1": 0.4459
+    },
+    {
+      "epoch": 11,
+      "dev_f1": 0.4731,
+      "test_f1": 0.4704
+    },
+    {
+      "epoch": 12,
+      "dev_f1": 0.4691,
+      "test_f1": 0.4641
+    },
+    {
+      "epoch": 13,
+      "dev_f1": 0.4865,
+      "test_f1": 0.4808
+    },
+    {
+      "epoch": 14,
+      "dev_f1": 0.4863,
+      "test_f1": 0.4832
+    },
+    {
+      "epoch": 15,
+      "dev_f1": 0.4864,
+      "test_f1": 0.4835
+    }
+  ]
+}

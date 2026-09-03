@@ -1,0 +1,109 @@
+{
+  "model": "gena_lm",
+  "pretrained": true,
+  "regime": "full",
+  "n_trainable": 110782977,
+  "trainable_frac": 1.0,
+  "hf_id": "AIRI-Institute/gena-lm-bert-base-t2t",
+  "n_params": 110782977,
+  "task": "Host_Tropism",
+  "split": "strict_id70_cov30",
+  "seed": 44,
+  "lr": 1e-05,
+  "best_epoch": 10,
+  "epochs_run": 16,
+  "iv_auroc": 0.9412,
+  "ev_auroc": 0.8751,
+  "ev_mcc": 0.4083,
+  "kmer_auroc": 0.8411,
+  "excess": 0.034,
+  "ev_auroc_oracle": 0.8751,
+  "excess_oracle": 0.034,
+  "ev_traj_min": 0.7535,
+  "ev_traj_range": 0.1216,
+  "n_train": 16641,
+  "n_iv": 2935,
+  "n_ev": 3391,
+  "trajectory": [
+    {
+      "epoch": 1,
+      "iv_auroc": 0.8422,
+      "ev_auroc": 0.7535
+    },
+    {
+      "epoch": 2,
+      "iv_auroc": 0.9004,
+      "ev_auroc": 0.8216
+    },
+    {
+      "epoch": 3,
+      "iv_auroc": 0.9257,
+      "ev_auroc": 0.8549
+    },
+    {
+      "epoch": 4,
+      "iv_auroc": 0.9325,
+      "ev_auroc": 0.863
+    },
+    {
+      "epoch": 5,
+      "iv_auroc": 0.935,
+      "ev_auroc": 0.8643
+    },
+    {
+      "epoch": 6,
+      "iv_auroc": 0.933,
+      "ev_auroc": 0.8623
+    },
+    {
+      "epoch": 7,
+      "iv_auroc": 0.9353,
+      "ev_auroc": 0.8708
+    },
+    {
+      "epoch": 8,
+      "iv_auroc": 0.9222,
+      "ev_auroc": 0.8584
+    },
+    {
+      "epoch": 9,
+      "iv_auroc": 0.9195,
+      "ev_auroc": 0.8541
+    },
+    {
+      "epoch": 10,
+      "iv_auroc": 0.9412,
+      "ev_auroc": 0.8751
+    },
+    {
+      "epoch": 11,
+      "iv_auroc": 0.9282,
+      "ev_auroc": 0.8645
+    },
+    {
+      "epoch": 12,
+      "iv_auroc": 0.9246,
+      "ev_auroc": 0.8547
+    },
+    {
+      "epoch": 13,
+      "iv_auroc": 0.9403,
+      "ev_auroc": 0.8697
+    },
+    {
+      "epoch": 14,
+      "iv_auroc": 0.9353,
+      "ev_auroc": 0.8671
+    },
+    {
+      "epoch": 15,
+      "iv_auroc": 0.9403,
+      "ev_auroc": 0.8741
+    },
+    {
+      "epoch": 16,
+      "iv_auroc": 0.9364,
+      "ev_auroc": 0.8699
+    }
+  ]
+}

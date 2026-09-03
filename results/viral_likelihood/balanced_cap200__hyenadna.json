@@ -1,0 +1,23 @@
+{
+  "cap_family": 200,
+  "maxlen": 2000,
+  "na_type": null,
+  "n_fit": 5871,
+  "n_families_fit": 232,
+  "n_indist": 200,
+  "n_ood": 200,
+  "indist": {
+    "markov_order3": 1.9754,
+    "markov_order5": 1.9723,
+    "markov_order7": 1.956,
+    "hyenadna": 1.986
+  },
+  "ood": {
+    "markov_order3": 1.99,
+    "markov_order5": 1.988,
+    "markov_order7": 1.9917,
+    "hyenadna": 2.0012
+  },
+  "hyenadna_vs_markov_indist": 0.03,
+  "hyenadna_vs_markov_ood": 0.0132
+}

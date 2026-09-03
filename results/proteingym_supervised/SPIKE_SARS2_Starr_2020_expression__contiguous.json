@@ -1,0 +1,11 @@
+{
+  "assay": "SPIKE_SARS2_Starr_2020_expression",
+  "scheme": "contiguous",
+  "n": 3798,
+  "n_train": 3053,
+  "n_test": 745,
+  "n_positions": 201,
+  "onehot": 0.2877,
+  "biochem": 0.2625,
+  "esm2": 0.2095
+}

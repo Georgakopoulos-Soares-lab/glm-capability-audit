@@ -1,0 +1,47 @@
+{
+  "task": "katarinagresova_Genomic_Benchmarks_demo_human_or_worm",
+  "model": "gena_lm",
+  "regime": "full_finetune",
+  "lr": 3e-05,
+  "load_path": "automodel",
+  "n_classes": 2,
+  "max_len_tok": 37,
+  "n_train": 63750,
+  "n_dev": 11250,
+  "n_test": 25000,
+  "cap_train": 0,
+  "warmup": "linear 10%",
+  "dev_carve": "stratified 15% seed 42",
+  "collapsed_to_majority_class": false,
+  "runs": [
+    {
+      "seed": 42,
+      "dev_mcc": 0.9444,
+      "best_epoch": 3,
+      "test_mcc": 0.9448,
+      "test_acc": 0.9724,
+      "test_macro_f1": 0.9724,
+      "n_pred_classes": 2
+    },
+    {
+      "seed": 43,
+      "dev_mcc": 0.9449,
+      "best_epoch": 2,
+      "test_mcc": 0.9449,
+      "test_acc": 0.9724,
+      "test_macro_f1": 0.9724,
+      "n_pred_classes": 2
+    },
+    {
+      "seed": 44,
+      "dev_mcc": 0.9464,
+      "best_epoch": 3,
+      "test_mcc": 0.9464,
+      "test_acc": 0.9731,
+      "test_macro_f1": 0.9731,
+      "n_pred_classes": 2
+    }
+  ],
+  "test_mcc_mean": 0.9454,
+  "test_mcc_sd": 0.0009
+}

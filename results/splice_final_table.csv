@@ -1,0 +1,10 @@
+task,model,baseline_incumbent,baseline_dev_selected,baseline_arch,frozen_probe,full_ft,ft_lr,ft_minus_baseline,frozen_minus_baseline
+all,nt_v2_500m,0.3537,0.9528,dilated 9.335M,0.3636,0.9685,0.0001,0.0157,-0.5892
+all,gena_lm,0.3537,0.9528,dilated 9.335M,0.3305,0.5867,0.001,-0.3661,-0.6223
+all,hyenadna,0.3537,0.9528,dilated 9.335M,0.322,0.8387,0.0001,-0.1141,-0.6308
+acceptors,nt_v2_500m,0.6131,0.9527,dilated 9.334M,0.4735,0.966,3e-05,0.0133,-0.4792
+acceptors,gena_lm,0.6131,0.9527,dilated 9.334M,0.5388,0.795,0.0001,-0.1577,-0.4139
+acceptors,hyenadna,0.6131,0.9527,dilated 9.334M,0.4634,0.8263,3e-05,-0.1264,-0.4893
+donors,nt_v2_500m,0.6689,0.9637,unet 7.054M,0.5208,0.9736,3e-05,0.0099,-0.4429
+donors,gena_lm,0.6689,0.9637,unet 7.054M,0.5886,0.8158,0.0001,-0.1479,-0.3751
+donors,hyenadna,0.6689,0.9637,unet 7.054M,0.4722,0.9009,3e-05,-0.0628,-0.4915

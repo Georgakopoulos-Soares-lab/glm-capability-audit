@@ -1,0 +1,32 @@
+{
+  "n_train": 46651,
+  "n_test": 200,
+  "maxlen": 4000,
+  "markov": {
+    "order3": 2.0287,
+    "order5": 2.1102,
+    "order7": 2.4239,
+    "interpolated": 2.1572,
+    "interp_weights": [
+      0.0001,
+      0.0018,
+      0.0092,
+      0.0292,
+      0.0712,
+      0.1477,
+      0.2737,
+      0.4669
+    ]
+  },
+  "glm": {
+    "hyenadna": 1.9914
+  },
+  "dev_reference": {
+    "markov_order3": 1.9379,
+    "markov_order5": 1.8612,
+    "markov_order7": 1.4035,
+    "hyenadna": 1.9687
+  },
+  "best_markov": 2.0287,
+  "hyenadna_vs_markov": -0.0373
+}

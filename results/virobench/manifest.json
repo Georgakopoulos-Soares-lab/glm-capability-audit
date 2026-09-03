@@ -1,0 +1,74 @@
+{
+  "ALL_taxon_genus": {
+    "cols": [
+      "taxid",
+      "chosen_db",
+      "collate_dir",
+      "host",
+      "first_release_date",
+      "scientific_name"
+    ],
+    "n_train": 46651,
+    "n_test": 5832
+  },
+  "ALL_taxon_times": {
+    "cols": [
+      "taxid",
+      "chosen_db",
+      "collate_dir",
+      "host",
+      "first_release_date",
+      "scientific_name"
+    ],
+    "n_train": 46651,
+    "n_test": 5832
+  },
+  "DNA_taxon_genus": {
+    "cols": [
+      "taxid",
+      "chosen_db",
+      "collate_dir",
+      "host",
+      "first_release_date",
+      "scientific_name"
+    ],
+    "n_train": 7600,
+    "n_test": 950
+  },
+  "DNA_taxon_times": {
+    "cols": [
+      "taxid",
+      "chosen_db",
+      "collate_dir",
+      "host",
+      "first_release_date",
+      "scientific_name"
+    ],
+    "n_train": 7600,
+    "n_test": 950
+  },
+  "RNA_taxon_genus": {
+    "cols": [
+      "taxid",
+      "chosen_db",
+      "collate_dir",
+      "host",
+      "first_release_date",
+      "scientific_name"
+    ],
+    "n_train": 38681,
+    "n_test": 4835
+  },
+  "RNA_taxon_times": {
+    "cols": [
+      "taxid",
+      "chosen_db",
+      "collate_dir",
+      "host",
+      "first_release_date",
+      "scientific_name"
+    ],
+    "n_train": 38681,
+    "n_test": 4835
+  }
+}

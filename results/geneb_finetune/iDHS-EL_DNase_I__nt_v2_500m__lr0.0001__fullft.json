@@ -1,0 +1,47 @@
+{
+  "task": "iDHS-EL_DNase_I",
+  "model": "nt_v2_500m",
+  "regime": "full_finetune",
+  "lr": 0.0001,
+  "load_path": "seqcls",
+  "n_classes": 2,
+  "max_len_tok": 49,
+  "n_train": 604,
+  "n_dev": 107,
+  "n_test": 306,
+  "cap_train": 0,
+  "warmup": "linear 10%",
+  "dev_carve": "stratified 15% seed 42",
+  "collapsed_to_majority_class": false,
+  "runs": [
+    {
+      "seed": 42,
+      "dev_mcc": 0.6245,
+      "best_epoch": 1,
+      "test_mcc": 0.6896,
+      "test_acc": 0.8791,
+      "test_macro_f1": 0.8441,
+      "n_pred_classes": 2
+    },
+    {
+      "seed": 43,
+      "dev_mcc": 0.6299,
+      "best_epoch": 3,
+      "test_mcc": 0.6513,
+      "test_acc": 0.8595,
+      "test_macro_f1": 0.8255,
+      "n_pred_classes": 2
+    },
+    {
+      "seed": 44,
+      "dev_mcc": 0.6785,
+      "best_epoch": 4,
+      "test_mcc": 0.6506,
+      "test_acc": 0.8627,
+      "test_macro_f1": 0.8251,
+      "n_pred_classes": 2
+    }
+  ],
+  "test_mcc_mean": 0.6638,
+  "test_mcc_sd": 0.0223
+}

@@ -1,0 +1,88 @@
+{
+  "model": "nt_v2_500m",
+  "regime": "full",
+  "task": "virus_species_40",
+  "seed": 44,
+  "lr": 1e-05,
+  "n_classes": 25,
+  "n_params": 498616309,
+  "n_trainable": 498616309,
+  "trainable_frac": 1.0,
+  "maxlen": 860,
+  "best_epoch": 8,
+  "epochs_run": 13,
+  "dev_macro_f1": 0.4968,
+  "test_macro_f1": 0.4498,
+  "test_accuracy": 0.476,
+  "test_mcc": 0.465,
+  "test_f1_oracle": 0.4659,
+  "test_f1_range": 0.2095,
+  "n_train": 4000,
+  "trajectory": [
+    {
+      "epoch": 1,
+      "dev_f1": 0.2678,
+      "test_f1": 0.2564
+    },
+    {
+      "epoch": 2,
+      "dev_f1": 0.3301,
+      "test_f1": 0.3395
+    },
+    {
+      "epoch": 3,
+      "dev_f1": 0.3915,
+      "test_f1": 0.3747
+    },
+    {
+      "epoch": 4,
+      "dev_f1": 0.3995,
+      "test_f1": 0.4371
+    },
+    {
+      "epoch": 5,
+      "dev_f1": 0.4581,
+      "test_f1": 0.4356
+    },
+    {
+      "epoch": 6,
+      "dev_f1": 0.4352,
+      "test_f1": 0.4209
+    },
+    {
+      "epoch": 7,
+      "dev_f1": 0.46,
+      "test_f1": 0.4565
+    },
+    {
+      "epoch": 8,
+      "dev_f1": 0.4968,
+      "test_f1": 0.4498
+    },
+    {
+      "epoch": 9,
+      "dev_f1": 0.4439,
+      "test_f1": 0.4334
+    },
+    {
+      "epoch": 10,
+      "dev_f1": 0.4854,
+      "test_f1": 0.4513
+    },
+    {
+      "epoch": 11,
+      "dev_f1": 0.4812,
+      "test_f1": 0.4292
+    },
+    {
+      "epoch": 12,
+      "dev_f1": 0.467,
+      "test_f1": 0.4659
+    },
+    {
+      "epoch": 13,
+      "dev_f1": 0.4549,
+      "test_f1": 0.4492
+    }
+  ]
+}

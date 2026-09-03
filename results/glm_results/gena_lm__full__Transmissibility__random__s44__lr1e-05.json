@@ -1,0 +1,154 @@
+{
+  "model": "gena_lm",
+  "pretrained": true,
+  "regime": "full",
+  "n_trainable": 110782977,
+  "trainable_frac": 1.0,
+  "hf_id": "AIRI-Institute/gena-lm-bert-base-t2t",
+  "n_params": 110782977,
+  "task": "Transmissibility",
+  "split": "random",
+  "seed": 44,
+  "lr": 1e-05,
+  "best_epoch": 19,
+  "epochs_run": 25,
+  "iv_auroc": 0.9307,
+  "ev_auroc": 0.9257,
+  "ev_mcc": 0.7235,
+  "kmer_auroc": 0.9238,
+  "excess": 0.0019,
+  "ev_auroc_oracle": 0.9258,
+  "excess_oracle": 0.002,
+  "ev_traj_min": 0.772,
+  "ev_traj_range": 0.1538,
+  "n_train": 9830,
+  "n_iv": 1733,
+  "n_ev": 4954,
+  "trajectory": [
+    {
+      "epoch": 1,
+      "iv_auroc": 0.7808,
+      "ev_auroc": 0.772
+    },
+    {
+      "epoch": 2,
+      "iv_auroc": 0.8481,
+      "ev_auroc": 0.8515
+    },
+    {
+      "epoch": 3,
+      "iv_auroc": 0.8847,
+      "ev_auroc": 0.8806
+    },
+    {
+      "epoch": 4,
+      "iv_auroc": 0.8977,
+      "ev_auroc": 0.8952
+    },
+    {
+      "epoch": 5,
+      "iv_auroc": 0.8924,
+      "ev_auroc": 0.8922
+    },
+    {
+      "epoch": 6,
+      "iv_auroc": 0.9014,
+      "ev_auroc": 0.8989
+    },
+    {
+      "epoch": 7,
+      "iv_auroc": 0.9129,
+      "ev_auroc": 0.9088
+    },
+    {
+      "epoch": 8,
+      "iv_auroc": 0.9187,
+      "ev_auroc": 0.9146
+    },
+    {
+      "epoch": 9,
+      "iv_auroc": 0.9165,
+      "ev_auroc": 0.9121
+    },
+    {
+      "epoch": 10,
+      "iv_auroc": 0.924,
+      "ev_auroc": 0.9212
+    },
+    {
+      "epoch": 11,
+      "iv_auroc": 0.9289,
+      "ev_auroc": 0.9243
+    },
+    {
+      "epoch": 12,
+      "iv_auroc": 0.9269,
+      "ev_auroc": 0.9221
+    },
+    {
+      "epoch": 13,
+      "iv_auroc": 0.9289,
+      "ev_auroc": 0.9246
+    },
+    {
+      "epoch": 14,
+      "iv_auroc": 0.9267,
+      "ev_auroc": 0.9245
+    },
+    {
+      "epoch": 15,
+      "iv_auroc": 0.9295,
+      "ev_auroc": 0.9253
+    },
+    {
+      "epoch": 16,
+      "iv_auroc": 0.9276,
+      "ev_auroc": 0.9236
+    },
+    {
+      "epoch": 17,
+      "iv_auroc": 0.9294,
+      "ev_auroc": 0.9258
+    },
+    {
+      "epoch": 18,
+      "iv_auroc": 0.93,
+      "ev_auroc": 0.9252
+    },
+    {
+      "epoch": 19,
+      "iv_auroc": 0.9307,
+      "ev_auroc": 0.9257
+    },
+    {
+      "epoch": 20,
+      "iv_auroc": 0.9298,
+      "ev_auroc": 0.9253
+    },
+    {
+      "epoch": 21,
+      "iv_auroc": 0.9305,
+      "ev_auroc": 0.9246
+    },
+    {
+      "epoch": 22,
+      "iv_auroc": 0.9292,
+      "ev_auroc": 0.9241
+    },
+    {
+      "epoch": 23,
+      "iv_auroc": 0.9301,
+      "ev_auroc": 0.9248
+    },
+    {
+      "epoch": 24,
+      "iv_auroc": 0.9309,
+      "ev_auroc": 0.9249
+    },
+    {
+      "epoch": 25,
+      "iv_auroc": 0.9307,
+      "ev_auroc": 0.9249
+    }
+  ]
+}

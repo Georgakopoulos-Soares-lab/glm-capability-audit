@@ -1,0 +1,99 @@
+{
+  "model": "hyenadna",
+  "pretrained": true,
+  "regime": "full",
+  "n_trainable": 6584065,
+  "trainable_frac": 1.0,
+  "hf_id": "LongSafari/hyenadna-medium-160k-seqlen-hf",
+  "n_params": 6584065,
+  "task": "Host_Tropism",
+  "split": "strict_id70_cov30",
+  "seed": 44,
+  "lr": 1e-05,
+  "best_epoch": 8,
+  "epochs_run": 14,
+  "iv_auroc": 0.9466,
+  "ev_auroc": 0.889,
+  "ev_mcc": 0.4508,
+  "kmer_auroc": 0.8411,
+  "excess": 0.0479,
+  "ev_auroc_oracle": 0.889,
+  "excess_oracle": 0.0479,
+  "ev_traj_min": 0.7896,
+  "ev_traj_range": 0.0994,
+  "n_train": 16641,
+  "n_iv": 2935,
+  "n_ev": 3391,
+  "trajectory": [
+    {
+      "epoch": 1,
+      "iv_auroc": 0.8687,
+      "ev_auroc": 0.7896
+    },
+    {
+      "epoch": 2,
+      "iv_auroc": 0.9033,
+      "ev_auroc": 0.813
+    },
+    {
+      "epoch": 3,
+      "iv_auroc": 0.9113,
+      "ev_auroc": 0.8481
+    },
+    {
+      "epoch": 4,
+      "iv_auroc": 0.9246,
+      "ev_auroc": 0.8669
+    },
+    {
+      "epoch": 5,
+      "iv_auroc": 0.9356,
+      "ev_auroc": 0.8759
+    },
+    {
+      "epoch": 6,
+      "iv_auroc": 0.9432,
+      "ev_auroc": 0.8863
+    },
+    {
+      "epoch": 7,
+      "iv_auroc": 0.9326,
+      "ev_auroc": 0.8777
+    },
+    {
+      "epoch": 8,
+      "iv_auroc": 0.9466,
+      "ev_auroc": 0.889
+    },
+    {
+      "epoch": 9,
+      "iv_auroc": 0.9394,
+      "ev_auroc": 0.8822
+    },
+    {
+      "epoch": 10,
+      "iv_auroc": 0.9294,
+      "ev_auroc": 0.8675
+    },
+    {
+      "epoch": 11,
+      "iv_auroc": 0.9369,
+      "ev_auroc": 0.8835
+    },
+    {
+      "epoch": 12,
+      "iv_auroc": 0.9402,
+      "ev_auroc": 0.8879
+    },
+    {
+      "epoch": 13,
+      "iv_auroc": 0.9128,
+      "ev_auroc": 0.8641
+    },
+    {
+      "epoch": 14,
+      "iv_auroc": 0.9341,
+      "ev_auroc": 0.878
+    }
+  ]
+}

@@ -1,0 +1,327 @@
+{
+  "task": "InstaDeepAI_nucleotide_transformer_downstream_tasks_enhancers",
+  "n_classes": 2,
+  "seqlen": 200,
+  "n_test": 400,
+  "n_train_full": 14968,
+  "curve": [
+    {
+      "n_requested": 100,
+      "n_train": 85,
+      "kmer": 0.4586,
+      "cnn": 0.4206,
+      "runs": [
+        {
+          "seed": 0,
+          "n_train": 85,
+          "kmer": 0.48,
+          "cnn": 0.3802,
+          "nt_v2_500m": 0.3583,
+          "nt_v2_500m_probe": 0.4256,
+          "nt_v2_500m_ft": 0.3583,
+          "nt_v2_500m_regime": "ft",
+          "dnabert2": 0.4203,
+          "dnabert2_probe": 0.465,
+          "dnabert2_ft": 0.4203,
+          "dnabert2_regime": "ft"
+        },
+        {
+          "seed": 1,
+          "n_train": 85,
+          "kmer": 0.4371,
+          "cnn": 0.4611,
+          "nt_v2_500m": 0.3369,
+          "nt_v2_500m_probe": 0.4236,
+          "nt_v2_500m_ft": 0.3369,
+          "nt_v2_500m_regime": "ft",
+          "dnabert2": 0.4958,
+          "dnabert2_probe": 0.4308,
+          "dnabert2_ft": 0.4958,
+          "dnabert2_regime": "ft"
+        }
+      ],
+      "nt_v2_500m": 0.3476,
+      "nt_v2_500m_probe": 0.4246,
+      "nt_v2_500m_ft": 0.3476,
+      "nt_v2_500m_regime": [
+        "ft",
+        "ft"
+      ],
+      "dnabert2": 0.4581,
+      "dnabert2_probe": 0.4479,
+      "dnabert2_ft": 0.4581,
+      "dnabert2_regime": [
+        "ft",
+        "ft"
+      ],
+      "baseline": 0.4586,
+      "best_fm": 0.4581,
+      "excess": -0.0005
+    },
+    {
+      "n_requested": 300,
+      "n_train": 255,
+      "kmer": 0.4705,
+      "cnn": 0.3677,
+      "runs": [
+        {
+          "seed": 0,
+          "n_train": 255,
+          "kmer": 0.4801,
+          "cnn": 0.3951,
+          "nt_v2_500m": 0.486,
+          "nt_v2_500m_probe": 0.4113,
+          "nt_v2_500m_ft": 0.486,
+          "nt_v2_500m_regime": "ft",
+          "dnabert2": 0.4234,
+          "dnabert2_probe": 0.4457,
+          "dnabert2_ft": 0.4234,
+          "dnabert2_regime": "ft"
+        },
+        {
+          "seed": 1,
+          "n_train": 255,
+          "kmer": 0.4608,
+          "cnn": 0.3403,
+          "nt_v2_500m": 0.3784,
+          "nt_v2_500m_probe": 0.3784,
+          "nt_v2_500m_ft": 0.4156,
+          "nt_v2_500m_regime": "probe",
+          "dnabert2": 0.3928,
+          "dnabert2_probe": 0.3928,
+          "dnabert2_ft": 0.4183,
+          "dnabert2_regime": "probe"
+        }
+      ],
+      "nt_v2_500m": 0.4322,
+      "nt_v2_500m_probe": 0.3949,
+      "nt_v2_500m_ft": 0.4508,
+      "nt_v2_500m_regime": [
+        "ft",
+        "probe"
+      ],
+      "dnabert2": 0.4081,
+      "dnabert2_probe": 0.4193,
+      "dnabert2_ft": 0.4209,
+      "dnabert2_regime": [
+        "ft",
+        "probe"
+      ],
+      "baseline": 0.4705,
+      "best_fm": 0.4322,
+      "excess": -0.0383
+    },
+    {
+      "n_requested": 1000,
+      "n_train": 850,
+      "kmer": 0.4752,
+      "cnn": 0.4207,
+      "runs": [
+        {
+          "seed": 0,
+          "n_train": 850,
+          "kmer": 0.4804,
+          "cnn": 0.4888,
+          "nt_v2_500m": 0.4583,
+          "nt_v2_500m_probe": 0.4583,
+          "nt_v2_500m_ft": 0.4117,
+          "nt_v2_500m_regime": "probe",
+          "dnabert2": 0.455,
+          "dnabert2_probe": 0.475,
+          "dnabert2_ft": 0.455,
+          "dnabert2_regime": "ft"
+        },
+        {
+          "seed": 1,
+          "n_train": 850,
+          "kmer": 0.47,
+          "cnn": 0.3526,
+          "nt_v2_500m": 0.4364,
+          "nt_v2_500m_probe": 0.4364,
+          "nt_v2_500m_ft": 0.4551,
+          "nt_v2_500m_regime": "probe",
+          "dnabert2": 0.4693,
+          "dnabert2_probe": 0.4404,
+          "dnabert2_ft": 0.4693,
+          "dnabert2_regime": "ft"
+        }
+      ],
+      "nt_v2_500m": 0.4474,
+      "nt_v2_500m_probe": 0.4474,
+      "nt_v2_500m_ft": 0.4334,
+      "nt_v2_500m_regime": [
+        "probe",
+        "probe"
+      ],
+      "dnabert2": 0.4622,
+      "dnabert2_probe": 0.4577,
+      "dnabert2_ft": 0.4622,
+      "dnabert2_regime": [
+        "ft",
+        "ft"
+      ],
+      "baseline": 0.4752,
+      "best_fm": 0.4622,
+      "excess": -0.013
+    },
+    {
+      "n_requested": 3000,
+      "n_train": 2550,
+      "kmer": 0.4309,
+      "cnn": 0.3684,
+      "runs": [
+        {
+          "seed": 0,
+          "n_train": 2550,
+          "kmer": 0.4162,
+          "cnn": 0.3552,
+          "nt_v2_500m": 0.4052,
+          "nt_v2_500m_probe": 0.4052,
+          "nt_v2_500m_ft": 0.3262,
+          "nt_v2_500m_regime": "probe",
+          "dnabert2": 0.4751,
+          "dnabert2_probe": 0.4305,
+          "dnabert2_ft": 0.4751,
+          "dnabert2_regime": "ft"
+        },
+        {
+          "seed": 1,
+          "n_train": 2550,
+          "kmer": 0.4455,
+          "cnn": 0.3816,
+          "nt_v2_500m": 0.4087,
+          "nt_v2_500m_probe": 0.4087,
+          "nt_v2_500m_ft": 0.4864,
+          "nt_v2_500m_regime": "probe",
+          "dnabert2": 0.4809,
+          "dnabert2_probe": 0.4056,
+          "dnabert2_ft": 0.4809,
+          "dnabert2_regime": "ft"
+        }
+      ],
+      "nt_v2_500m": 0.407,
+      "nt_v2_500m_probe": 0.407,
+      "nt_v2_500m_ft": 0.4063,
+      "nt_v2_500m_regime": [
+        "probe",
+        "probe"
+      ],
+      "dnabert2": 0.478,
+      "dnabert2_probe": 0.4181,
+      "dnabert2_ft": 0.478,
+      "dnabert2_regime": [
+        "ft",
+        "ft"
+      ],
+      "baseline": 0.4309,
+      "best_fm": 0.478,
+      "excess": 0.0471
+    },
+    {
+      "n_requested": 10000,
+      "n_train": 8500,
+      "kmer": 0.4413,
+      "cnn": 0.4655,
+      "runs": [
+        {
+          "seed": 0,
+          "n_train": 8500,
+          "kmer": 0.4414,
+          "cnn": 0.4438,
+          "nt_v2_500m": 0.5439,
+          "nt_v2_500m_probe": 0.4138,
+          "nt_v2_500m_ft": 0.5439,
+          "nt_v2_500m_regime": "ft",
+          "dnabert2": 0.4857,
+          "dnabert2_probe": 0.4701,
+          "dnabert2_ft": 0.4857,
+          "dnabert2_regime": "ft"
+        },
+        {
+          "seed": 1,
+          "n_train": 8500,
+          "kmer": 0.4411,
+          "cnn": 0.4872,
+          "nt_v2_500m": 0.56,
+          "nt_v2_500m_probe": 0.3981,
+          "nt_v2_500m_ft": 0.56,
+          "nt_v2_500m_regime": "ft",
+          "dnabert2": 0.4852,
+          "dnabert2_probe": 0.4514,
+          "dnabert2_ft": 0.4852,
+          "dnabert2_regime": "ft"
+        }
+      ],
+      "nt_v2_500m": 0.552,
+      "nt_v2_500m_probe": 0.406,
+      "nt_v2_500m_ft": 0.552,
+      "nt_v2_500m_regime": [
+        "ft",
+        "ft"
+      ],
+      "dnabert2": 0.4855,
+      "dnabert2_probe": 0.4607,
+      "dnabert2_ft": 0.4855,
+      "dnabert2_regime": [
+        "ft",
+        "ft"
+      ],
+      "baseline": 0.4655,
+      "best_fm": 0.552,
+      "excess": 0.0865
+    },
+    {
+      "n_requested": 14968,
+      "n_train": 12722,
+      "kmer": 0.4362,
+      "cnn": 0.5835,
+      "runs": [
+        {
+          "seed": 0,
+          "n_train": 12722,
+          "kmer": 0.4362,
+          "cnn": 0.5835,
+          "nt_v2_500m": 0.5522,
+          "nt_v2_500m_probe": 0.3809,
+          "nt_v2_500m_ft": 0.5522,
+          "nt_v2_500m_regime": "ft",
+          "dnabert2": 0.5258,
+          "dnabert2_probe": 0.456,
+          "dnabert2_ft": 0.5258,
+          "dnabert2_regime": "ft"
+        },
+        {
+          "seed": 1,
+          "n_train": 12722,
+          "kmer": 0.4362,
+          "cnn": 0.5835,
+          "nt_v2_500m": 0.5522,
+          "nt_v2_500m_probe": 0.3809,
+          "nt_v2_500m_ft": 0.5522,
+          "nt_v2_500m_regime": "ft",
+          "dnabert2": 0.5258,
+          "dnabert2_probe": 0.456,
+          "dnabert2_ft": 0.5258,
+          "dnabert2_regime": "ft"
+        }
+      ],
+      "nt_v2_500m": 0.5522,
+      "nt_v2_500m_probe": 0.3809,
+      "nt_v2_500m_ft": 0.5522,
+      "nt_v2_500m_regime": [
+        "ft",
+        "ft"
+      ],
+      "dnabert2": 0.5258,
+      "dnabert2_probe": 0.456,
+      "dnabert2_ft": 0.5258,
+      "dnabert2_regime": [
+        "ft",
+        "ft"
+      ],
+      "baseline": 0.5835,
+      "best_fm": 0.5522,
+      "excess": -0.0313
+    }
+  ]
+}

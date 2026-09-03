@@ -1,0 +1,12 @@
+{
+  "model": "duttaprat/HViLM-Tropism",
+  "which": "tropism",
+  "split": "Host_Tropism__identity_disjoint_hsd0.parquet",
+  "n_test": 8390,
+  "pos_rate": 0.4791,
+  "auroc": 0.7925,
+  "auroc_raw": 0.7925,
+  "label_polarity_flipped": false,
+  "mcc": 0.5758,
+  "acc": 0.7605
+}

@@ -1,0 +1,29 @@
+{
+  "task": "katarinagresova_Genomic_Benchmarks_human_ensembl_regulatory",
+  "model": "nt_v2_500m",
+  "regime": "full_finetune",
+  "lr": 3e-05,
+  "load_path": "seqcls",
+  "n_classes": 3,
+  "max_len_tok": 137,
+  "n_train": 85000,
+  "n_dev": 15000,
+  "n_test": 57713,
+  "cap_train": 0,
+  "warmup": "linear 10%",
+  "dev_carve": "stratified 15% seed 42",
+  "collapsed_to_majority_class": false,
+  "runs": [
+    {
+      "seed": 42,
+      "dev_mcc": 0.9134,
+      "best_epoch": 2,
+      "test_mcc": 0.9081,
+      "test_acc": 0.9389,
+      "test_macro_f1": 0.9406,
+      "n_pred_classes": 3
+    }
+  ],
+  "test_mcc_mean": 0.9081,
+  "test_mcc_sd": null
+}

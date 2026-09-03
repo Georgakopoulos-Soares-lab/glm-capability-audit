@@ -1,0 +1,148 @@
+{
+  "model": "gena_lm",
+  "regime": "full",
+  "task": "virus_species_40",
+  "seed": 43,
+  "lr": 1e-05,
+  "n_classes": 25,
+  "n_params": 110887705,
+  "n_trainable": 110887705,
+  "trainable_frac": 1.0,
+  "maxlen": 512,
+  "best_epoch": 23,
+  "epochs_run": 25,
+  "dev_macro_f1": 0.3846,
+  "test_macro_f1": 0.3361,
+  "test_accuracy": 0.36,
+  "test_mcc": 0.3387,
+  "test_f1_oracle": 0.3464,
+  "test_f1_range": 0.2998,
+  "n_train": 4000,
+  "trajectory": [
+    {
+      "epoch": 1,
+      "dev_f1": 0.0428,
+      "test_f1": 0.0466
+    },
+    {
+      "epoch": 2,
+      "dev_f1": 0.1319,
+      "test_f1": 0.1213
+    },
+    {
+      "epoch": 3,
+      "dev_f1": 0.2296,
+      "test_f1": 0.2312
+    },
+    {
+      "epoch": 4,
+      "dev_f1": 0.2491,
+      "test_f1": 0.2838
+    },
+    {
+      "epoch": 5,
+      "dev_f1": 0.2815,
+      "test_f1": 0.3016
+    },
+    {
+      "epoch": 6,
+      "dev_f1": 0.2939,
+      "test_f1": 0.3235
+    },
+    {
+      "epoch": 7,
+      "dev_f1": 0.3002,
+      "test_f1": 0.325
+    },
+    {
+      "epoch": 8,
+      "dev_f1": 0.3005,
+      "test_f1": 0.2937
+    },
+    {
+      "epoch": 9,
+      "dev_f1": 0.2876,
+      "test_f1": 0.2788
+    },
+    {
+      "epoch": 10,
+      "dev_f1": 0.3337,
+      "test_f1": 0.3382
+    },
+    {
+      "epoch": 11,
+      "dev_f1": 0.3501,
+      "test_f1": 0.3364
+    },
+    {
+      "epoch": 12,
+      "dev_f1": 0.3522,
+      "test_f1": 0.3447
+    },
+    {
+      "epoch": 13,
+      "dev_f1": 0.3667,
+      "test_f1": 0.3464
+    },
+    {
+      "epoch": 14,
+      "dev_f1": 0.3637,
+      "test_f1": 0.3343
+    },
+    {
+      "epoch": 15,
+      "dev_f1": 0.371,
+      "test_f1": 0.3322
+    },
+    {
+      "epoch": 16,
+      "dev_f1": 0.3705,
+      "test_f1": 0.3171
+    },
+    {
+      "epoch": 17,
+      "dev_f1": 0.3496,
+      "test_f1": 0.3349
+    },
+    {
+      "epoch": 18,
+      "dev_f1": 0.3731,
+      "test_f1": 0.3344
+    },
+    {
+      "epoch": 19,
+      "dev_f1": 0.3715,
+      "test_f1": 0.342
+    },
+    {
+      "epoch": 20,
+      "dev_f1": 0.3475,
+      "test_f1": 0.3329
+    },
+    {
+      "epoch": 21,
+      "dev_f1": 0.3731,
+      "test_f1": 0.3327
+    },
+    {
+      "epoch": 22,
+      "dev_f1": 0.3739,
+      "test_f1": 0.3316
+    },
+    {
+      "epoch": 23,
+      "dev_f1": 0.3846,
+      "test_f1": 0.3361
+    },
+    {
+      "epoch": 24,
+      "dev_f1": 0.3851,
+      "test_f1": 0.3316
+    },
+    {
+      "epoch": 25,
+      "dev_f1": 0.3787,
+      "test_f1": 0.3254
+    }
+  ]
+}

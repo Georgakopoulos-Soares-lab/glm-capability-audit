@@ -1,0 +1,64 @@
+{
+  "model": "gena_lm",
+  "regime": "full",
+  "mod": "ALL",
+  "split": "times",
+  "level": "family",
+  "seed": 42,
+  "lr": 3e-05,
+  "n_classes": 173,
+  "n_params": 110925741,
+  "n_trainable": 110925741,
+  "trainable_frac": 1.0,
+  "maxlen_tok": 512,
+  "effective_context_bp": 3072,
+  "best_epoch": 7,
+  "epochs_run": 8,
+  "dev_macro_f1": 0.5078,
+  "macro_f1": 0.4037,
+  "accuracy": 0.6683,
+  "mcc": 0.6595,
+  "n_train": 46389,
+  "trajectory": [
+    {
+      "epoch": 1,
+      "dev_f1": 0.1295,
+      "test_f1": 0.0874
+    },
+    {
+      "epoch": 2,
+      "dev_f1": 0.2804,
+      "test_f1": 0.2126
+    },
+    {
+      "epoch": 3,
+      "dev_f1": 0.3598,
+      "test_f1": 0.2804
+    },
+    {
+      "epoch": 4,
+      "dev_f1": 0.4278,
+      "test_f1": 0.3239
+    },
+    {
+      "epoch": 5,
+      "dev_f1": 0.4607,
+      "test_f1": 0.3543
+    },
+    {
+      "epoch": 6,
+      "dev_f1": 0.4938,
+      "test_f1": 0.3934
+    },
+    {
+      "epoch": 7,
+      "dev_f1": 0.5078,
+      "test_f1": 0.4037
+    },
+    {
+      "epoch": 8,
+      "dev_f1": 0.5057,
+      "test_f1": 0.4046
+    }
+  ]
+}

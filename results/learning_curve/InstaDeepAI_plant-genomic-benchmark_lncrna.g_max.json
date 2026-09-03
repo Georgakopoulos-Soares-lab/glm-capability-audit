@@ -1,0 +1,274 @@
+{
+  "task": "InstaDeepAI_plant-genomic-benchmark_lncrna.g_max",
+  "n_classes": 2,
+  "seqlen": 1800,
+  "n_test": 490,
+  "n_train_full": 11430,
+  "curve": [
+    {
+      "n_requested": 100,
+      "n_train": 85,
+      "kmer": 0.0251,
+      "cnn": -0.0286,
+      "runs": [
+        {
+          "seed": 0,
+          "n_train": 85,
+          "kmer": -0.0203,
+          "cnn": 0.0202,
+          "nt_v2_500m": 0.0459,
+          "nt_v2_500m_probe": 0.033,
+          "nt_v2_500m_ft": 0.0459,
+          "nt_v2_500m_regime": "ft",
+          "dnabert2": 0.0693,
+          "dnabert2_probe": 0.0815,
+          "dnabert2_ft": 0.0693,
+          "dnabert2_regime": "ft"
+        },
+        {
+          "seed": 1,
+          "n_train": 85,
+          "kmer": 0.0706,
+          "cnn": -0.0774,
+          "nt_v2_500m": -0.0278,
+          "nt_v2_500m_probe": 0.0826,
+          "nt_v2_500m_ft": -0.0278,
+          "nt_v2_500m_regime": "ft",
+          "dnabert2": 0.1456,
+          "dnabert2_probe": 0.0775,
+          "dnabert2_ft": 0.1456,
+          "dnabert2_regime": "ft"
+        }
+      ],
+      "nt_v2_500m": 0.0091,
+      "nt_v2_500m_probe": 0.0578,
+      "nt_v2_500m_ft": 0.0091,
+      "nt_v2_500m_regime": [
+        "ft",
+        "ft"
+      ],
+      "dnabert2": 0.1075,
+      "dnabert2_probe": 0.0795,
+      "dnabert2_ft": 0.1075,
+      "dnabert2_regime": [
+        "ft",
+        "ft"
+      ],
+      "baseline": 0.0251,
+      "best_fm": 0.1075,
+      "excess": 0.0824
+    },
+    {
+      "n_requested": 300,
+      "n_train": 255,
+      "kmer": 0.0743,
+      "cnn": 0.056,
+      "runs": [
+        {
+          "seed": 0,
+          "n_train": 255,
+          "kmer": 0.0872,
+          "cnn": 0.0222,
+          "nt_v2_500m": 0.1244,
+          "nt_v2_500m_probe": 0.1268,
+          "nt_v2_500m_ft": 0.1244,
+          "nt_v2_500m_regime": "ft",
+          "dnabert2": 0.1517,
+          "dnabert2_probe": 0.1879,
+          "dnabert2_ft": 0.1517,
+          "dnabert2_regime": "ft"
+        },
+        {
+          "seed": 1,
+          "n_train": 255,
+          "kmer": 0.0615,
+          "cnn": 0.0898,
+          "nt_v2_500m": 0.0845,
+          "nt_v2_500m_probe": 0.0489,
+          "nt_v2_500m_ft": 0.0845,
+          "nt_v2_500m_regime": "ft",
+          "dnabert2": 0.1401,
+          "dnabert2_probe": 0.0977,
+          "dnabert2_ft": 0.1401,
+          "dnabert2_regime": "ft"
+        }
+      ],
+      "nt_v2_500m": 0.1045,
+      "nt_v2_500m_probe": 0.0878,
+      "nt_v2_500m_ft": 0.1045,
+      "nt_v2_500m_regime": [
+        "ft",
+        "ft"
+      ],
+      "dnabert2": 0.1459,
+      "dnabert2_probe": 0.1428,
+      "dnabert2_ft": 0.1459,
+      "dnabert2_regime": [
+        "ft",
+        "ft"
+      ],
+      "baseline": 0.0743,
+      "best_fm": 0.1459,
+      "excess": 0.0716
+    },
+    {
+      "n_requested": 1000,
+      "n_train": 850,
+      "kmer": 0.0798,
+      "cnn": 0.1689,
+      "runs": [
+        {
+          "seed": 0,
+          "n_train": 850,
+          "kmer": 0.0939,
+          "cnn": 0.1331,
+          "nt_v2_500m": 0.2042,
+          "nt_v2_500m_probe": 0.1677,
+          "nt_v2_500m_ft": 0.2042,
+          "nt_v2_500m_regime": "ft",
+          "dnabert2": 0.2332,
+          "dnabert2_probe": 0.1718,
+          "dnabert2_ft": 0.2332,
+          "dnabert2_regime": "ft"
+        },
+        {
+          "seed": 1,
+          "n_train": 850,
+          "kmer": 0.0656,
+          "cnn": 0.2046,
+          "nt_v2_500m": 0.1278,
+          "nt_v2_500m_probe": 0.0573,
+          "nt_v2_500m_ft": 0.1278,
+          "nt_v2_500m_regime": "ft",
+          "dnabert2": 0.2903,
+          "dnabert2_probe": 0.1347,
+          "dnabert2_ft": 0.2903,
+          "dnabert2_regime": "ft"
+        }
+      ],
+      "nt_v2_500m": 0.166,
+      "nt_v2_500m_probe": 0.1125,
+      "nt_v2_500m_ft": 0.166,
+      "nt_v2_500m_regime": [
+        "ft",
+        "ft"
+      ],
+      "dnabert2": 0.2617,
+      "dnabert2_probe": 0.1532,
+      "dnabert2_ft": 0.2617,
+      "dnabert2_regime": [
+        "ft",
+        "ft"
+      ],
+      "baseline": 0.1689,
+      "best_fm": 0.2617,
+      "excess": 0.0928
+    },
+    {
+      "n_requested": 3000,
+      "n_train": 2550,
+      "kmer": 0.1225,
+      "cnn": 0.2148,
+      "runs": [
+        {
+          "seed": 0,
+          "n_train": 2550,
+          "kmer": 0.0775,
+          "cnn": 0.1893,
+          "nt_v2_500m": 0.3514,
+          "nt_v2_500m_probe": 0.2329,
+          "nt_v2_500m_ft": 0.3514,
+          "nt_v2_500m_regime": "ft",
+          "dnabert2": 0.3511,
+          "dnabert2_probe": 0.1591,
+          "dnabert2_ft": 0.3511,
+          "dnabert2_regime": "ft"
+        },
+        {
+          "seed": 1,
+          "n_train": 2550,
+          "kmer": 0.1675,
+          "cnn": 0.2403,
+          "nt_v2_500m": 0.3814,
+          "nt_v2_500m_probe": 0.1882,
+          "nt_v2_500m_ft": 0.3814,
+          "nt_v2_500m_regime": "ft",
+          "dnabert2": 0.4519,
+          "dnabert2_probe": 0.1641,
+          "dnabert2_ft": 0.4519,
+          "dnabert2_regime": "ft"
+        }
+      ],
+      "nt_v2_500m": 0.3664,
+      "nt_v2_500m_probe": 0.2106,
+      "nt_v2_500m_ft": 0.3664,
+      "nt_v2_500m_regime": [
+        "ft",
+        "ft"
+      ],
+      "dnabert2": 0.4015,
+      "dnabert2_probe": 0.1616,
+      "dnabert2_ft": 0.4015,
+      "dnabert2_regime": [
+        "ft",
+        "ft"
+      ],
+      "baseline": 0.2148,
+      "best_fm": 0.4015,
+      "excess": 0.1867
+    },
+    {
+      "n_requested": 9700,
+      "n_train": 8245,
+      "kmer": 0.1573,
+      "cnn": 0.386,
+      "runs": [
+        {
+          "seed": 0,
+          "n_train": 8245,
+          "kmer": 0.1514,
+          "cnn": 0.369,
+          "nt_v2_500m": 0.5147,
+          "nt_v2_500m_probe": 0.2285,
+          "nt_v2_500m_ft": 0.5147,
+          "nt_v2_500m_regime": "ft",
+          "dnabert2": 0.3371,
+          "dnabert2_probe": 0.2166,
+          "dnabert2_ft": 0.3371,
+          "dnabert2_regime": "ft"
+        },
+        {
+          "seed": 1,
+          "n_train": 8245,
+          "kmer": 0.1632,
+          "cnn": 0.4029,
+          "nt_v2_500m": 0.4908,
+          "nt_v2_500m_probe": 0.2245,
+          "nt_v2_500m_ft": 0.4908,
+          "nt_v2_500m_regime": "ft",
+          "dnabert2": 0.4883,
+          "dnabert2_probe": 0.2492,
+          "dnabert2_ft": 0.4883,
+          "dnabert2_regime": "ft"
+        }
+      ],
+      "nt_v2_500m": 0.5028,
+      "nt_v2_500m_probe": 0.2265,
+      "nt_v2_500m_ft": 0.5028,
+      "nt_v2_500m_regime": [
+        "ft",
+        "ft"
+      ],
+      "dnabert2": 0.4127,
+      "dnabert2_probe": 0.2329,
+      "dnabert2_ft": 0.4127,
+      "dnabert2_regime": [
+        "ft",
+        "ft"
+      ],
+      "baseline": 0.386,
+      "best_fm": 0.5028,
+      "excess": 0.1168
+    }
+  ]
+}

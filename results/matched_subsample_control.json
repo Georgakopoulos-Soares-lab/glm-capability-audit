@@ -1,0 +1,13 @@
+{
+  "auc_full": 0.7925,
+  "auc_strict": 0.6467,
+  "n_strict": 3391,
+  "pos_strict": 0.0944,
+  "matched_mean": 0.7923,
+  "matched_ci": [
+    0.7682,
+    0.8168
+  ],
+  "frac_below": 0.0,
+  "verdict": "HOMOLOGY MATTERS \u2014 strict is BELOW the matched-random range by 0.1215"
+}

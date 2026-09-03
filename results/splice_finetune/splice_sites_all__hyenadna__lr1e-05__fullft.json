@@ -1,0 +1,22 @@
+{
+  "task": "splice_sites_all",
+  "model": "hyenadna",
+  "regime": "full_finetune",
+  "n_classes": 3,
+  "max_len": 1024,
+  "n_train": 25500,
+  "n_test": 3000,
+  "lr": 1e-05,
+  "warmup": "linear 10%",
+  "runs": [
+    {
+      "seed": 42,
+      "dev": 0.8171,
+      "test": 0.8127,
+      "best_epoch": 8,
+      "trainable_params": 6551296
+    }
+  ],
+  "collapsed_to_majority_class": false,
+  "test_mean": 0.8127
+}

@@ -1,0 +1,150 @@
+{
+  "model": "gena_lm",
+  "hf_id": "AIRI-Institute/gena-lm-bert-base-t2t",
+  "n_params": 110782977,
+  "task": "Host_Tropism",
+  "split": "random",
+  "seed": 44,
+  "lr": 5e-05,
+  "best_epoch": 19,
+  "epochs_run": 25,
+  "iv_auroc": 0.9578,
+  "ev_auroc": 0.952,
+  "ev_mcc": 0.7909,
+  "kmer_auroc": 0.9213,
+  "excess": 0.0307,
+  "ev_auroc_oracle": 0.9529,
+  "excess_oracle": 0.0316,
+  "ev_traj_min": 0.8875,
+  "ev_traj_range": 0.0654,
+  "n_train": 16641,
+  "n_iv": 2936,
+  "n_ev": 8388,
+  "trajectory": [
+    {
+      "epoch": 1,
+      "iv_auroc": 0.8996,
+      "ev_auroc": 0.8875
+    },
+    {
+      "epoch": 2,
+      "iv_auroc": 0.9308,
+      "ev_auroc": 0.9247
+    },
+    {
+      "epoch": 3,
+      "iv_auroc": 0.9395,
+      "ev_auroc": 0.9327
+    },
+    {
+      "epoch": 4,
+      "iv_auroc": 0.9508,
+      "ev_auroc": 0.9438
+    },
+    {
+      "epoch": 5,
+      "iv_auroc": 0.9487,
+      "ev_auroc": 0.9433
+    },
+    {
+      "epoch": 6,
+      "iv_auroc": 0.9475,
+      "ev_auroc": 0.937
+    },
+    {
+      "epoch": 7,
+      "iv_auroc": 0.9396,
+      "ev_auroc": 0.9362
+    },
+    {
+      "epoch": 8,
+      "iv_auroc": 0.9505,
+      "ev_auroc": 0.9406
+    },
+    {
+      "epoch": 9,
+      "iv_auroc": 0.9457,
+      "ev_auroc": 0.9405
+    },
+    {
+      "epoch": 10,
+      "iv_auroc": 0.9525,
+      "ev_auroc": 0.948
+    },
+    {
+      "epoch": 11,
+      "iv_auroc": 0.955,
+      "ev_auroc": 0.9476
+    },
+    {
+      "epoch": 12,
+      "iv_auroc": 0.9534,
+      "ev_auroc": 0.9453
+    },
+    {
+      "epoch": 13,
+      "iv_auroc": 0.9561,
+      "ev_auroc": 0.9469
+    },
+    {
+      "epoch": 14,
+      "iv_auroc": 0.9557,
+      "ev_auroc": 0.9465
+    },
+    {
+      "epoch": 15,
+      "iv_auroc": 0.9569,
+      "ev_auroc": 0.9504
+    },
+    {
+      "epoch": 16,
+      "iv_auroc": 0.9547,
+      "ev_auroc": 0.9452
+    },
+    {
+      "epoch": 17,
+      "iv_auroc": 0.9566,
+      "ev_auroc": 0.9505
+    },
+    {
+      "epoch": 18,
+      "iv_auroc": 0.9568,
+      "ev_auroc": 0.9518
+    },
+    {
+      "epoch": 19,
+      "iv_auroc": 0.9578,
+      "ev_auroc": 0.952
+    },
+    {
+      "epoch": 20,
+      "iv_auroc": 0.9579,
+      "ev_auroc": 0.9525
+    },
+    {
+      "epoch": 21,
+      "iv_auroc": 0.9583,
+      "ev_auroc": 0.9529
+    },
+    {
+      "epoch": 22,
+      "iv_auroc": 0.9578,
+      "ev_auroc": 0.951
+    },
+    {
+      "epoch": 23,
+      "iv_auroc": 0.9582,
+      "ev_auroc": 0.9524
+    },
+    {
+      "epoch": 24,
+      "iv_auroc": 0.9582,
+      "ev_auroc": 0.9519
+    },
+    {
+      "epoch": 25,
+      "iv_auroc": 0.9582,
+      "ev_auroc": 0.9517
+    }
+  ]
+}

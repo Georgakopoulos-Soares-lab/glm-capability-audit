@@ -1,0 +1,64 @@
+{
+  "model": "nt_v2_500m",
+  "regime": "full",
+  "mod": "ALL",
+  "split": "times",
+  "level": "family",
+  "seed": 43,
+  "lr": 3e-05,
+  "n_classes": 173,
+  "n_params": 498654345,
+  "n_trainable": 498654345,
+  "trainable_frac": 1.0,
+  "maxlen_tok": 1024,
+  "effective_context_bp": 6144,
+  "best_epoch": 7,
+  "epochs_run": 8,
+  "dev_macro_f1": 0.691,
+  "macro_f1": 0.6114,
+  "accuracy": 0.8127,
+  "mcc": 0.808,
+  "n_train": 46389,
+  "trajectory": [
+    {
+      "epoch": 1,
+      "dev_f1": 0.2364,
+      "test_f1": 0.1525
+    },
+    {
+      "epoch": 2,
+      "dev_f1": 0.3723,
+      "test_f1": 0.2849
+    },
+    {
+      "epoch": 3,
+      "dev_f1": 0.4739,
+      "test_f1": 0.3978
+    },
+    {
+      "epoch": 4,
+      "dev_f1": 0.5368,
+      "test_f1": 0.4664
+    },
+    {
+      "epoch": 5,
+      "dev_f1": 0.617,
+      "test_f1": 0.5405
+    },
+    {
+      "epoch": 6,
+      "dev_f1": 0.6613,
+      "test_f1": 0.5591
+    },
+    {
+      "epoch": 7,
+      "dev_f1": 0.691,
+      "test_f1": 0.6114
+    },
+    {
+      "epoch": 8,
+      "dev_f1": 0.6883,
+      "test_f1": 0.6075
+    }
+  ]
+}

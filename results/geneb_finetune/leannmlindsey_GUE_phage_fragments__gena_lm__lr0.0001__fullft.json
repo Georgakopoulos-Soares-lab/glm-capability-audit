@@ -1,0 +1,47 @@
+{
+  "task": "leannmlindsey_GUE_phage_fragments",
+  "model": "gena_lm",
+  "regime": "full_finetune",
+  "lr": 0.0001,
+  "load_path": "automodel",
+  "n_classes": 2,
+  "max_len_tok": 512,
+  "n_train": 31487,
+  "n_dev": 5557,
+  "n_test": 4630,
+  "cap_train": 0,
+  "warmup": "linear 10%",
+  "dev_carve": "stratified 15% seed 42",
+  "collapsed_to_majority_class": false,
+  "runs": [
+    {
+      "seed": 42,
+      "dev_mcc": 0.7384,
+      "best_epoch": 4,
+      "test_mcc": 0.7191,
+      "test_acc": 0.8594,
+      "test_macro_f1": 0.8594,
+      "n_pred_classes": 2
+    },
+    {
+      "seed": 43,
+      "dev_mcc": 0.7286,
+      "best_epoch": 5,
+      "test_mcc": 0.7059,
+      "test_acc": 0.8518,
+      "test_macro_f1": 0.8516,
+      "n_pred_classes": 2
+    },
+    {
+      "seed": 44,
+      "dev_mcc": 0.7414,
+      "best_epoch": 4,
+      "test_mcc": 0.7237,
+      "test_acc": 0.8611,
+      "test_macro_f1": 0.861,
+      "n_pred_classes": 2
+    }
+  ],
+  "test_mcc_mean": 0.7162,
+  "test_mcc_sd": 0.0092
+}

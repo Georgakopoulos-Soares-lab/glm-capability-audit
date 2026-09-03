@@ -1,0 +1,109 @@
+{
+  "model": "gena_lm",
+  "regime": "full",
+  "mod": "DNA",
+  "split": "times",
+  "level": "family",
+  "seed": 43,
+  "lr": 1e-05,
+  "n_classes": 44,
+  "n_params": 110892588,
+  "n_trainable": 110892588,
+  "trainable_frac": 1.0,
+  "maxlen_tok": 512,
+  "effective_context_bp": 3072,
+  "best_epoch": 12,
+  "epochs_run": 17,
+  "dev_macro_f1": 0.7692,
+  "macro_f1": 0.6398,
+  "accuracy": 0.7849,
+  "mcc": 0.7712,
+  "n_train": 6000,
+  "trajectory": [
+    {
+      "epoch": 1,
+      "dev_f1": 0.0562,
+      "test_f1": 0.0621
+    },
+    {
+      "epoch": 2,
+      "dev_f1": 0.2587,
+      "test_f1": 0.1992
+    },
+    {
+      "epoch": 3,
+      "dev_f1": 0.434,
+      "test_f1": 0.3969
+    },
+    {
+      "epoch": 4,
+      "dev_f1": 0.5455,
+      "test_f1": 0.5102
+    },
+    {
+      "epoch": 5,
+      "dev_f1": 0.5961,
+      "test_f1": 0.5592
+    },
+    {
+      "epoch": 6,
+      "dev_f1": 0.6346,
+      "test_f1": 0.5574
+    },
+    {
+      "epoch": 7,
+      "dev_f1": 0.6581,
+      "test_f1": 0.5784
+    },
+    {
+      "epoch": 8,
+      "dev_f1": 0.684,
+      "test_f1": 0.5941
+    },
+    {
+      "epoch": 9,
+      "dev_f1": 0.7028,
+      "test_f1": 0.6027
+    },
+    {
+      "epoch": 10,
+      "dev_f1": 0.7161,
+      "test_f1": 0.6302
+    },
+    {
+      "epoch": 11,
+      "dev_f1": 0.6795,
+      "test_f1": 0.6247
+    },
+    {
+      "epoch": 12,
+      "dev_f1": 0.7692,
+      "test_f1": 0.6398
+    },
+    {
+      "epoch": 13,
+      "dev_f1": 0.7553,
+      "test_f1": 0.6583
+    },
+    {
+      "epoch": 14,
+      "dev_f1": 0.754,
+      "test_f1": 0.6457
+    },
+    {
+      "epoch": 15,
+      "dev_f1": 0.7406,
+      "test_f1": 0.6369
+    },
+    {
+      "epoch": 16,
+      "dev_f1": 0.7634,
+      "test_f1": 0.6951
+    },
+    {
+      "epoch": 17,
+      "dev_f1": 0.7672,
+      "test_f1": 0.6845
+    }
+  ]
+}

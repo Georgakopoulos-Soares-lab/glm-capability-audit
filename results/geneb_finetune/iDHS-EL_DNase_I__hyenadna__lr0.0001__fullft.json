@@ -1,0 +1,47 @@
+{
+  "task": "iDHS-EL_DNase_I",
+  "model": "hyenadna",
+  "regime": "full_finetune",
+  "lr": 0.0001,
+  "load_path": "seqcls",
+  "n_classes": 2,
+  "max_len_tok": 279,
+  "n_train": 604,
+  "n_dev": 107,
+  "n_test": 306,
+  "cap_train": 0,
+  "warmup": "linear 10%",
+  "dev_carve": "stratified 15% seed 42",
+  "collapsed_to_majority_class": false,
+  "runs": [
+    {
+      "seed": 42,
+      "dev_mcc": 0.5742,
+      "best_epoch": 6,
+      "test_mcc": 0.6219,
+      "test_acc": 0.8464,
+      "test_macro_f1": 0.8106,
+      "n_pred_classes": 2
+    },
+    {
+      "seed": 43,
+      "dev_mcc": 0.6263,
+      "best_epoch": 5,
+      "test_mcc": 0.6199,
+      "test_acc": 0.8497,
+      "test_macro_f1": 0.8099,
+      "n_pred_classes": 2
+    },
+    {
+      "seed": 44,
+      "dev_mcc": 0.5829,
+      "best_epoch": 3,
+      "test_mcc": 0.5433,
+      "test_acc": 0.8301,
+      "test_macro_f1": 0.7616,
+      "n_pred_classes": 2
+    }
+  ],
+  "test_mcc_mean": 0.595,
+  "test_mcc_sd": 0.0448
+}

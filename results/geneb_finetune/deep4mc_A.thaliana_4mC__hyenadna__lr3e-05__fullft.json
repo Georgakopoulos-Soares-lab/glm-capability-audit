@@ -1,0 +1,47 @@
+{
+  "task": "deep4mc_A.thaliana_4mC",
+  "model": "hyenadna",
+  "regime": "full_finetune",
+  "lr": 3e-05,
+  "load_path": "seqcls",
+  "n_classes": 2,
+  "max_len_tok": 45,
+  "n_train": 85000,
+  "n_dev": 15000,
+  "n_test": 67157,
+  "cap_train": 0,
+  "warmup": "linear 10%",
+  "dev_carve": "stratified 15% seed 42",
+  "collapsed_to_majority_class": false,
+  "runs": [
+    {
+      "seed": 42,
+      "dev_mcc": 0.6443,
+      "best_epoch": 3,
+      "test_mcc": 0.6469,
+      "test_acc": 0.8234,
+      "test_macro_f1": 0.8234,
+      "n_pred_classes": 2
+    },
+    {
+      "seed": 43,
+      "dev_mcc": 0.6473,
+      "best_epoch": 3,
+      "test_mcc": 0.6491,
+      "test_acc": 0.8245,
+      "test_macro_f1": 0.8245,
+      "n_pred_classes": 2
+    },
+    {
+      "seed": 44,
+      "dev_mcc": 0.6507,
+      "best_epoch": 3,
+      "test_mcc": 0.6472,
+      "test_acc": 0.8235,
+      "test_macro_f1": 0.8234,
+      "n_pred_classes": 2
+    }
+  ],
+  "test_mcc_mean": 0.6477,
+  "test_mcc_sd": 0.0012
+}

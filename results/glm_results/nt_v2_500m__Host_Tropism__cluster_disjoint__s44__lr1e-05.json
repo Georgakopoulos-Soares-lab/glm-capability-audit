@@ -1,0 +1,105 @@
+{
+  "model": "nt_v2_500m",
+  "hf_id": "InstaDeepAI/nucleotide-transformer-v2-500m-multi-species",
+  "n_params": 498478813,
+  "task": "Host_Tropism",
+  "split": "cluster_disjoint",
+  "seed": 44,
+  "lr": 1e-05,
+  "best_epoch": 10,
+  "epochs_run": 16,
+  "iv_auroc": 0.9586,
+  "ev_auroc": 0.8792,
+  "ev_mcc": 0.5502,
+  "kmer_auroc": 0.8034,
+  "excess": 0.0758,
+  "ev_auroc_oracle": 0.8933,
+  "excess_oracle": 0.0899,
+  "ev_traj_min": 0.8092,
+  "ev_traj_range": 0.0841,
+  "n_train": 16003,
+  "n_iv": 2824,
+  "n_ev": 9138,
+  "trajectory": [
+    {
+      "epoch": 1,
+      "iv_auroc": 0.9361,
+      "ev_auroc": 0.8092
+    },
+    {
+      "epoch": 2,
+      "iv_auroc": 0.9474,
+      "ev_auroc": 0.8208
+    },
+    {
+      "epoch": 3,
+      "iv_auroc": 0.9551,
+      "ev_auroc": 0.8684
+    },
+    {
+      "epoch": 4,
+      "iv_auroc": 0.958,
+      "ev_auroc": 0.8815
+    },
+    {
+      "epoch": 5,
+      "iv_auroc": 0.9573,
+      "ev_auroc": 0.8933
+    },
+    {
+      "epoch": 6,
+      "iv_auroc": 0.958,
+      "ev_auroc": 0.8756
+    },
+    {
+      "epoch": 7,
+      "iv_auroc": 0.9543,
+      "ev_auroc": 0.8799
+    },
+    {
+      "epoch": 8,
+      "iv_auroc": 0.9525,
+      "ev_auroc": 0.8557
+    },
+    {
+      "epoch": 9,
+      "iv_auroc": 0.9509,
+      "ev_auroc": 0.8436
+    },
+    {
+      "epoch": 10,
+      "iv_auroc": 0.9586,
+      "ev_auroc": 0.8792
+    },
+    {
+      "epoch": 11,
+      "iv_auroc": 0.9545,
+      "ev_auroc": 0.8898
+    },
+    {
+      "epoch": 12,
+      "iv_auroc": 0.952,
+      "ev_auroc": 0.8677
+    },
+    {
+      "epoch": 13,
+      "iv_auroc": 0.9564,
+      "ev_auroc": 0.8817
+    },
+    {
+      "epoch": 14,
+      "iv_auroc": 0.9565,
+      "ev_auroc": 0.879
+    },
+    {
+      "epoch": 15,
+      "iv_auroc": 0.9546,
+      "ev_auroc": 0.8838
+    },
+    {
+      "epoch": 16,
+      "iv_auroc": 0.9549,
+      "ev_auroc": 0.883
+    }
+  ]
+}

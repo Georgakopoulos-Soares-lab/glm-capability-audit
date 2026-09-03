@@ -1,0 +1,38 @@
+{
+  "Host_Tropism__identity_disjoint_hsd0": [
+    0.9194,
+    0.6951
+  ],
+  "Host_Tropism__identity_disjoint_hsd1": [
+    0.9143,
+    0.6769
+  ],
+  "Host_Tropism__identity_disjoint_hsd2": [
+    0.9209,
+    0.7084
+  ],
+  "Pathogenecity__identity_disjoint_hsd0": [
+    0.9479,
+    0.7598
+  ],
+  "Pathogenecity__identity_disjoint_hsd1": [
+    0.9642,
+    0.7933
+  ],
+  "Pathogenecity__identity_disjoint_hsd2": [
+    0.952,
+    0.76
+  ],
+  "Transmissibility__identity_disjoint_hsd0": [
+    0.9085,
+    0.6562
+  ],
+  "Transmissibility__identity_disjoint_hsd1": [
+    0.9293,
+    0.7114
+  ],
+  "Transmissibility__identity_disjoint_hsd2": [
+    0.9147,
+    0.6907
+  ]
+}

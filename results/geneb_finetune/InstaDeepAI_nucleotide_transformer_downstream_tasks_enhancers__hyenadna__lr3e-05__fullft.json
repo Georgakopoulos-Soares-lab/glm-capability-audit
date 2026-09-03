@@ -1,0 +1,29 @@
+{
+  "task": "InstaDeepAI_nucleotide_transformer_downstream_tasks_enhancers",
+  "model": "hyenadna",
+  "regime": "full_finetune",
+  "lr": 3e-05,
+  "load_path": "seqcls",
+  "n_classes": 2,
+  "max_len_tok": 204,
+  "n_train": 12722,
+  "n_dev": 2246,
+  "n_test": 400,
+  "cap_train": 0,
+  "warmup": "linear 10%",
+  "dev_carve": "stratified 15% seed 42",
+  "collapsed_to_majority_class": false,
+  "runs": [
+    {
+      "seed": 42,
+      "dev_mcc": 0.8593,
+      "best_epoch": 8,
+      "test_mcc": 0.4553,
+      "test_acc": 0.7275,
+      "test_macro_f1": 0.7274,
+      "n_pred_classes": 2
+    }
+  ],
+  "test_mcc_mean": 0.4553,
+  "test_mcc_sd": null
+}

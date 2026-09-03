@@ -1,0 +1,10 @@
+{
+  "policy": "remove leaked TEST rows, preserve all training data",
+  "duplicate_definition": "exact full-sequence string match, case-sensitive",
+  "n_test_orig": 9168,
+  "n_test_dedup": 8050,
+  "n_removed": 1118,
+  "frac_removed": 0.1219,
+  "label_conflicts": 277,
+  "note": "near-duplicate (MMseqs2) leakage NOT yet removed -- exact match only"
+}

@@ -1,0 +1,101 @@
+{
+  "Host_Tropism": {
+    "n": 27966,
+    "n_clusters_90": 24583,
+    "splits": {
+      "hsd0": {
+        "kmer_auroc": 0.9194,
+        "kmer_mcc": 0.6951,
+        "bestC": 0.001,
+        "val_frac": 0.3,
+        "val_pos": 0.479,
+        "n_train": 19576,
+        "n_val": 8390
+      },
+      "hsd1": {
+        "kmer_auroc": 0.9143,
+        "kmer_mcc": 0.6769,
+        "bestC": 0.001,
+        "val_frac": 0.3,
+        "val_pos": 0.46,
+        "n_train": 19576,
+        "n_val": 8390
+      },
+      "hsd2": {
+        "kmer_auroc": 0.9209,
+        "kmer_mcc": 0.7084,
+        "bestC": 0.001,
+        "val_frac": 0.3,
+        "val_pos": 0.475,
+        "n_train": 19576,
+        "n_val": 8390
+      }
+    }
+  },
+  "Pathogenecity": {
+    "n": 17237,
+    "n_clusters_90": 6903,
+    "splits": {
+      "hsd0": {
+        "kmer_auroc": 0.9479,
+        "kmer_mcc": 0.7598,
+        "bestC": 0.001,
+        "val_frac": 0.301,
+        "val_pos": 0.389,
+        "n_train": 12043,
+        "n_val": 5194
+      },
+      "hsd1": {
+        "kmer_auroc": 0.9642,
+        "kmer_mcc": 0.7933,
+        "bestC": 0.001,
+        "val_frac": 0.3,
+        "val_pos": 0.429,
+        "n_train": 12065,
+        "n_val": 5172
+      },
+      "hsd2": {
+        "kmer_auroc": 0.952,
+        "kmer_mcc": 0.76,
+        "bestC": 0.001,
+        "val_frac": 0.301,
+        "val_pos": 0.393,
+        "n_train": 12054,
+        "n_val": 5183
+      }
+    }
+  },
+  "Transmissibility": {
+    "n": 16517,
+    "n_clusters_90": 4370,
+    "splits": {
+      "hsd0": {
+        "kmer_auroc": 0.9085,
+        "kmer_mcc": 0.6562,
+        "bestC": 0.001,
+        "val_frac": 0.3,
+        "val_pos": 0.412,
+        "n_train": 11561,
+        "n_val": 4956
+      },
+      "hsd1": {
+        "kmer_auroc": 0.9293,
+        "kmer_mcc": 0.7114,
+        "bestC": 0.001,
+        "val_frac": 0.3,
+        "val_pos": 0.419,
+        "n_train": 11561,
+        "n_val": 4956
+      },
+      "hsd2": {
+        "kmer_auroc": 0.9147,
+        "kmer_mcc": 0.6907,
+        "bestC": 0.001,
+        "val_frac": 0.3,
+        "val_pos": 0.382,
+        "n_train": 11561,
+        "n_val": 4956
+      }
+    }
+  }
+}

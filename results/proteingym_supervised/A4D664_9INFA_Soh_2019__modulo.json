@@ -1,0 +1,11 @@
+{
+  "assay": "A4D664_9INFA_Soh_2019",
+  "scheme": "modulo",
+  "n": 14421,
+  "n_train": 11533,
+  "n_test": 2888,
+  "n_positions": 759,
+  "onehot": 0.1589,
+  "biochem": 0.3254,
+  "esm2": 0.2167
+}

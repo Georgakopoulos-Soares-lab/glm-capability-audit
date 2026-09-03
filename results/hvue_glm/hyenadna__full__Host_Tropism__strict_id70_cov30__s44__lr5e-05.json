@@ -1,0 +1,139 @@
+{
+  "model": "hyenadna",
+  "pretrained": true,
+  "regime": "full",
+  "n_trainable": 6584065,
+  "trainable_frac": 1.0,
+  "hf_id": "LongSafari/hyenadna-medium-160k-seqlen-hf",
+  "n_params": 6584065,
+  "task": "Host_Tropism",
+  "split": "strict_id70_cov30",
+  "seed": 44,
+  "lr": 5e-05,
+  "best_epoch": 16,
+  "epochs_run": 22,
+  "iv_auroc": 0.9408,
+  "ev_auroc": 0.8786,
+  "ev_mcc": 0.4484,
+  "kmer_auroc": 0.8411,
+  "excess": 0.0375,
+  "ev_auroc_oracle": 0.8846,
+  "excess_oracle": 0.0435,
+  "ev_traj_min": 0.784,
+  "ev_traj_range": 0.1006,
+  "n_train": 16641,
+  "n_iv": 2935,
+  "n_ev": 3391,
+  "trajectory": [
+    {
+      "epoch": 1,
+      "iv_auroc": 0.8786,
+      "ev_auroc": 0.784
+    },
+    {
+      "epoch": 2,
+      "iv_auroc": 0.9025,
+      "ev_auroc": 0.8326
+    },
+    {
+      "epoch": 3,
+      "iv_auroc": 0.907,
+      "ev_auroc": 0.8565
+    },
+    {
+      "epoch": 4,
+      "iv_auroc": 0.9189,
+      "ev_auroc": 0.8517
+    },
+    {
+      "epoch": 5,
+      "iv_auroc": 0.9237,
+      "ev_auroc": 0.8638
+    },
+    {
+      "epoch": 6,
+      "iv_auroc": 0.9329,
+      "ev_auroc": 0.8702
+    },
+    {
+      "epoch": 7,
+      "iv_auroc": 0.9355,
+      "ev_auroc": 0.8714
+    },
+    {
+      "epoch": 8,
+      "iv_auroc": 0.9383,
+      "ev_auroc": 0.8786
+    },
+    {
+      "epoch": 9,
+      "iv_auroc": 0.9357,
+      "ev_auroc": 0.8797
+    },
+    {
+      "epoch": 10,
+      "iv_auroc": 0.9399,
+      "ev_auroc": 0.8777
+    },
+    {
+      "epoch": 11,
+      "iv_auroc": 0.9366,
+      "ev_auroc": 0.8846
+    },
+    {
+      "epoch": 12,
+      "iv_auroc": 0.9391,
+      "ev_auroc": 0.8733
+    },
+    {
+      "epoch": 13,
+      "iv_auroc": 0.9397,
+      "ev_auroc": 0.8716
+    },
+    {
+      "epoch": 14,
+      "iv_auroc": 0.9388,
+      "ev_auroc": 0.8707
+    },
+    {
+      "epoch": 15,
+      "iv_auroc": 0.9402,
+      "ev_auroc": 0.8762
+    },
+    {
+      "epoch": 16,
+      "iv_auroc": 0.9408,
+      "ev_auroc": 0.8786
+    },
+    {
+      "epoch": 17,
+      "iv_auroc": 0.9325,
+      "ev_auroc": 0.8712
+    },
+    {
+      "epoch": 18,
+      "iv_auroc": 0.9313,
+      "ev_auroc": 0.8744
+    },
+    {
+      "epoch": 19,
+      "iv_auroc": 0.9295,
+      "ev_auroc": 0.8667
+    },
+    {
+      "epoch": 20,
+      "iv_auroc": 0.9289,
+      "ev_auroc": 0.8661
+    },
+    {
+      "epoch": 21,
+      "iv_auroc": 0.9261,
+      "ev_auroc": 0.8511
+    },
+    {
+      "epoch": 22,
+      "iv_auroc": 0.9268,
+      "ev_auroc": 0.8515
+    }
+  ]
+}

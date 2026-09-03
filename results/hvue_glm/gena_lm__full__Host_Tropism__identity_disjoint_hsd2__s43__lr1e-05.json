@@ -1,0 +1,89 @@
+{
+  "model": "gena_lm",
+  "pretrained": true,
+  "regime": "full",
+  "n_trainable": 110782977,
+  "trainable_frac": 1.0,
+  "hf_id": "AIRI-Institute/gena-lm-bert-base-t2t",
+  "n_params": 110782977,
+  "task": "Host_Tropism",
+  "split": "identity_disjoint_hsd2",
+  "seed": 43,
+  "lr": 1e-05,
+  "best_epoch": 6,
+  "epochs_run": 12,
+  "iv_auroc": 0.9471,
+  "ev_auroc": 0.9357,
+  "ev_mcc": 0.7454,
+  "kmer_auroc": 0.9209,
+  "excess": 0.0148,
+  "ev_auroc_oracle": 0.9357,
+  "excess_oracle": 0.0148,
+  "ev_traj_min": 0.8274,
+  "ev_traj_range": 0.1083,
+  "n_train": 16641,
+  "n_iv": 2935,
+  "n_ev": 8390,
+  "trajectory": [
+    {
+      "epoch": 1,
+      "iv_auroc": 0.8406,
+      "ev_auroc": 0.8274
+    },
+    {
+      "epoch": 2,
+      "iv_auroc": 0.9059,
+      "ev_auroc": 0.8923
+    },
+    {
+      "epoch": 3,
+      "iv_auroc": 0.9275,
+      "ev_auroc": 0.9159
+    },
+    {
+      "epoch": 4,
+      "iv_auroc": 0.9325,
+      "ev_auroc": 0.9235
+    },
+    {
+      "epoch": 5,
+      "iv_auroc": 0.943,
+      "ev_auroc": 0.9332
+    },
+    {
+      "epoch": 6,
+      "iv_auroc": 0.9471,
+      "ev_auroc": 0.9357
+    },
+    {
+      "epoch": 7,
+      "iv_auroc": 0.9434,
+      "ev_auroc": 0.9336
+    },
+    {
+      "epoch": 8,
+      "iv_auroc": 0.9323,
+      "ev_auroc": 0.9215
+    },
+    {
+      "epoch": 9,
+      "iv_auroc": 0.9445,
+      "ev_auroc": 0.9346
+    },
+    {
+      "epoch": 10,
+      "iv_auroc": 0.9408,
+      "ev_auroc": 0.934
+    },
+    {
+      "epoch": 11,
+      "iv_auroc": 0.9267,
+      "ev_auroc": 0.9153
+    },
+    {
+      "epoch": 12,
+      "iv_auroc": 0.9374,
+      "ev_auroc": 0.9298
+    }
+  ]
+}

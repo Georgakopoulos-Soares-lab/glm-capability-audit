@@ -1,0 +1,29 @@
+{
+  "task": "deep4mc_A.thaliana_4mC",
+  "model": "gena_lm",
+  "regime": "full_finetune",
+  "lr": 3e-05,
+  "load_path": "automodel",
+  "n_classes": 2,
+  "max_len_tok": 16,
+  "n_train": 85000,
+  "n_dev": 15000,
+  "n_test": 67157,
+  "cap_train": 0,
+  "warmup": "linear 10%",
+  "dev_carve": "stratified 15% seed 42",
+  "collapsed_to_majority_class": false,
+  "runs": [
+    {
+      "seed": 42,
+      "dev_mcc": 0.3797,
+      "best_epoch": 3,
+      "test_mcc": 0.3955,
+      "test_acc": 0.6974,
+      "test_macro_f1": 0.6972,
+      "n_pred_classes": 2
+    }
+  ],
+  "test_mcc_mean": 0.3955,
+  "test_mcc_sd": null
+}

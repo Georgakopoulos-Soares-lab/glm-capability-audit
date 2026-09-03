@@ -1,0 +1,40 @@
+{
+  "window": 8000,
+  "cap_family": 200,
+  "n_fit": 3097,
+  "n_families": 155,
+  "indist": {
+    "markov_order3": 1.9818,
+    "markov_order5": 1.9782,
+    "markov_order7": 1.969,
+    "evo": 0.0,
+    "hyenadna": 1.9716
+  },
+  "ood": {
+    "markov_order3": 1.9838,
+    "markov_order5": 1.9799,
+    "markov_order7": 1.9729,
+    "evo": 0.0,
+    "hyenadna": 1.9731
+  },
+  "evo_bases_scored": [
+    0,
+    0
+  ],
+  "evo_skipped": [
+    100,
+    100
+  ],
+  "hyenadna_bases_scored": [
+    799832,
+    799896
+  ],
+  "hyenadna_skipped": [
+    0,
+    0
+  ],
+  "evo_vs_markov_indist": -1.969,
+  "evo_vs_markov_ood": -1.9729,
+  "hyenadna_vs_markov_indist": 0.0026,
+  "hyenadna_vs_markov_ood": 0.0002
+}

@@ -1,0 +1,42 @@
+{
+  "mod": "ALL",
+  "split": "times",
+  "level": "family",
+  "n_classes": 173,
+  "n_train": 46389,
+  "n_test": 5505,
+  "test_level_overlap": 173,
+  "test_genus_overlap": 510,
+  "test_genus_n": 907,
+  "median_seqlen": 2316,
+  "kmer3-5": {
+    "macro_f1": 0.6231,
+    "accuracy": 0.857,
+    "mcc": 0.8532,
+    "C": 0.1,
+    "dev_macro_f1": 0.6977,
+    "context": "32768bp"
+  },
+  "kmer3-6": {
+    "macro_f1": 0.5566,
+    "accuracy": 0.8163,
+    "mcc": 0.8115,
+    "C": 10.0,
+    "dev_macro_f1": 0.6504,
+    "context": "32768bp"
+  },
+  "cnn": {
+    "runs": [
+      {
+        "macro_f1": 0.1055,
+        "accuracy": 0.253,
+        "mcc": 0.2353,
+        "seed": 42,
+        "best_epoch": 10
+      }
+    ],
+    "context": "32768bp",
+    "mean_macro_f1": 0.1055,
+    "mean_mcc": 0.2353
+  }
+}

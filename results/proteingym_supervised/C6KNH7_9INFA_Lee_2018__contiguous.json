@@ -1,0 +1,11 @@
+{
+  "assay": "C6KNH7_9INFA_Lee_2018",
+  "scheme": "contiguous",
+  "n": 10754,
+  "n_train": 8607,
+  "n_test": 2147,
+  "n_positions": 566,
+  "onehot": 0.0867,
+  "biochem": 0.166,
+  "esm2": 0.3545
+}

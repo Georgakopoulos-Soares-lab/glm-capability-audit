@@ -1,0 +1,37 @@
+{
+  "task": "splice_sites_acceptors",
+  "model": "hyenadna",
+  "regime": "full_finetune",
+  "n_classes": 2,
+  "max_len": 1024,
+  "n_train": 25500,
+  "n_test": 3000,
+  "lr": 3e-05,
+  "warmup": "linear 10%",
+  "load_path": "auto",
+  "runs": [
+    {
+      "seed": 42,
+      "dev": 0.8131,
+      "test": 0.8191,
+      "best_epoch": 8,
+      "trainable_params": 6551040
+    },
+    {
+      "seed": 43,
+      "dev": 0.82,
+      "test": 0.8277,
+      "best_epoch": 8,
+      "trainable_params": 6551040
+    },
+    {
+      "seed": 44,
+      "dev": 0.8285,
+      "test": 0.8321,
+      "best_epoch": 8,
+      "trainable_params": 6551040
+    }
+  ],
+  "collapsed_to_majority_class": false,
+  "test_mean": 0.8263
+}

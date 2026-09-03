@@ -1,0 +1,31 @@
+{
+  "level": "kingdom",
+  "n_classes": 18,
+  "metric": "macro_f1",
+  "nboot": 2000,
+  "kmer_C": 10.0,
+  "kmer_dev": 0.7388513681984269,
+  "kmer_test": 0.5612,
+  "pre_declared_deltas": [
+    0.01,
+    0.02,
+    0.03,
+    0.05
+  ],
+  "comparisons": [
+    {
+      "run": "nt_v2_500m__frozen__ALL_times_kingdom__W2048",
+      "n": 5823,
+      "fm": 0.5778,
+      "kmer": 0.5612,
+      "delta": 0.0165,
+      "ci_lo": -0.0847,
+      "ci_hi": 0.1121,
+      "favors_fm_p": 0.5815,
+      "delta_0.01": false,
+      "delta_0.02": false,
+      "delta_0.03": false,
+      "delta_0.05": false
+    }
+  ]
+}

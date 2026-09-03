@@ -1,0 +1,56 @@
+{
+  "mod": "DNA",
+  "split": "times",
+  "level": "family",
+  "n_classes": 44,
+  "n_train": 6042,
+  "n_test": 902,
+  "test_level_overlap": 44,
+  "test_genus_overlap": 155,
+  "test_genus_n": 174,
+  "median_seqlen": 43552,
+  "kmer3-5": {
+    "macro_f1": 0.9454,
+    "accuracy": 0.9767,
+    "mcc": 0.9752,
+    "C": 0.1,
+    "dev_macro_f1": 0.9858,
+    "context": "whole_genome"
+  },
+  "kmer3-6": {
+    "macro_f1": 0.9527,
+    "accuracy": 0.9767,
+    "mcc": 0.9752,
+    "C": 0.01,
+    "dev_macro_f1": 0.9979,
+    "context": "whole_genome"
+  },
+  "cnn": {
+    "runs": [
+      {
+        "macro_f1": 0.6895,
+        "accuracy": 0.8381,
+        "mcc": 0.8297,
+        "seed": 42,
+        "best_epoch": 38
+      },
+      {
+        "macro_f1": 0.7103,
+        "accuracy": 0.8659,
+        "mcc": 0.857,
+        "seed": 43,
+        "best_epoch": 34
+      },
+      {
+        "macro_f1": 0.6325,
+        "accuracy": 0.8171,
+        "mcc": 0.8068,
+        "seed": 44,
+        "best_epoch": 34
+      }
+    ],
+    "context": "20000bp",
+    "mean_macro_f1": 0.6774,
+    "mean_mcc": 0.8312
+  }
+}

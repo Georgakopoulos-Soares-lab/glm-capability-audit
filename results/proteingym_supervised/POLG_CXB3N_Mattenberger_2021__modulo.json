@@ -1,0 +1,11 @@
+{
+  "assay": "POLG_CXB3N_Mattenberger_2021",
+  "scheme": "modulo",
+  "n": 15711,
+  "n_train": 12568,
+  "n_test": 3143,
+  "n_positions": 851,
+  "onehot": 0.1896,
+  "biochem": 0.1913,
+  "esm2": 0.3264
+}

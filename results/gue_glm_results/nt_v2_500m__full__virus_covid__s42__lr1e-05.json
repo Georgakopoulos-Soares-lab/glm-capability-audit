@@ -1,0 +1,118 @@
+{
+  "model": "nt_v2_500m",
+  "regime": "full",
+  "task": "virus_covid",
+  "seed": 42,
+  "lr": 1e-05,
+  "n_classes": 9,
+  "n_params": 498612197,
+  "n_trainable": 498612197,
+  "trainable_frac": 1.0,
+  "maxlen": 176,
+  "best_epoch": 14,
+  "epochs_run": 19,
+  "dev_macro_f1": 0.6891,
+  "test_macro_f1": 0.6846,
+  "test_accuracy": 0.6825,
+  "test_mcc": 0.6421,
+  "test_f1_oracle": 0.6846,
+  "test_f1_range": 0.5811,
+  "n_train": 40000,
+  "trajectory": [
+    {
+      "epoch": 1,
+      "dev_f1": 0.1024,
+      "test_f1": 0.1035
+    },
+    {
+      "epoch": 2,
+      "dev_f1": 0.3888,
+      "test_f1": 0.3845
+    },
+    {
+      "epoch": 3,
+      "dev_f1": 0.5927,
+      "test_f1": 0.5874
+    },
+    {
+      "epoch": 4,
+      "dev_f1": 0.642,
+      "test_f1": 0.6372
+    },
+    {
+      "epoch": 5,
+      "dev_f1": 0.6576,
+      "test_f1": 0.6586
+    },
+    {
+      "epoch": 6,
+      "dev_f1": 0.663,
+      "test_f1": 0.6634
+    },
+    {
+      "epoch": 7,
+      "dev_f1": 0.6727,
+      "test_f1": 0.6689
+    },
+    {
+      "epoch": 8,
+      "dev_f1": 0.6828,
+      "test_f1": 0.679
+    },
+    {
+      "epoch": 9,
+      "dev_f1": 0.6799,
+      "test_f1": 0.6803
+    },
+    {
+      "epoch": 10,
+      "dev_f1": 0.681,
+      "test_f1": 0.6771
+    },
+    {
+      "epoch": 11,
+      "dev_f1": 0.6817,
+      "test_f1": 0.6809
+    },
+    {
+      "epoch": 12,
+      "dev_f1": 0.6845,
+      "test_f1": 0.6796
+    },
+    {
+      "epoch": 13,
+      "dev_f1": 0.6856,
+      "test_f1": 0.6791
+    },
+    {
+      "epoch": 14,
+      "dev_f1": 0.6891,
+      "test_f1": 0.6846
+    },
+    {
+      "epoch": 15,
+      "dev_f1": 0.6878,
+      "test_f1": 0.6795
+    },
+    {
+      "epoch": 16,
+      "dev_f1": 0.6882,
+      "test_f1": 0.6805
+    },
+    {
+      "epoch": 17,
+      "dev_f1": 0.688,
+      "test_f1": 0.6789
+    },
+    {
+      "epoch": 18,
+      "dev_f1": 0.6872,
+      "test_f1": 0.6807
+    },
+    {
+      "epoch": 19,
+      "dev_f1": 0.6857,
+      "test_f1": 0.6792
+    }
+  ]
+}

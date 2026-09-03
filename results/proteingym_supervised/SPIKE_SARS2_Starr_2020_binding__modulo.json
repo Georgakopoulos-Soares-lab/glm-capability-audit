@@ -1,0 +1,11 @@
+{
+  "assay": "SPIKE_SARS2_Starr_2020_binding",
+  "scheme": "modulo",
+  "n": 3802,
+  "n_train": 3050,
+  "n_test": 752,
+  "n_positions": 201,
+  "onehot": 0.2089,
+  "biochem": 0.2143,
+  "esm2": 0.28
+}

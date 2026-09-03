@@ -1,0 +1,11 @@
+{
+  "assay": "A0A140D2T1_ZIKV_Sourisseau_2019",
+  "scheme": "contiguous",
+  "n": 9576,
+  "n_train": 7676,
+  "n_test": 1900,
+  "n_positions": 504,
+  "onehot": 0.0908,
+  "biochem": 0.2953,
+  "esm2": 0.0257
+}

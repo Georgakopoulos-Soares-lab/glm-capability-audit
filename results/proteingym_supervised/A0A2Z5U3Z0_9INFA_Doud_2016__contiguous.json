@@ -1,0 +1,11 @@
+{
+  "assay": "A0A2Z5U3Z0_9INFA_Doud_2016",
+  "scheme": "contiguous",
+  "n": 10715,
+  "n_train": 8587,
+  "n_test": 2128,
+  "n_positions": 564,
+  "onehot": 0.2009,
+  "biochem": 0.2648,
+  "esm2": 0.3819
+}

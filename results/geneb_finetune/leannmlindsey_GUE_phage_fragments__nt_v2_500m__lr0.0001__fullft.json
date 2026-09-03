@@ -1,0 +1,29 @@
+{
+  "task": "leannmlindsey_GUE_phage_fragments",
+  "model": "nt_v2_500m",
+  "regime": "full_finetune",
+  "lr": 0.0001,
+  "load_path": "seqcls",
+  "n_classes": 2,
+  "max_len_tok": 670,
+  "n_train": 31487,
+  "n_dev": 5557,
+  "n_test": 4630,
+  "cap_train": 0,
+  "warmup": "linear 10%",
+  "dev_carve": "stratified 15% seed 42",
+  "collapsed_to_majority_class": false,
+  "runs": [
+    {
+      "seed": 42,
+      "dev_mcc": 0.906,
+      "best_epoch": 4,
+      "test_mcc": 0.9096,
+      "test_acc": 0.9546,
+      "test_macro_f1": 0.9546,
+      "n_pred_classes": 2
+    }
+  ],
+  "test_mcc_mean": 0.9096,
+  "test_mcc_sd": null
+}

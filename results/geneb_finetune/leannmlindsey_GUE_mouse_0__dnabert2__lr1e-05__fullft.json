@@ -1,0 +1,29 @@
+{
+  "task": "leannmlindsey_GUE_mouse_0",
+  "model": "dnabert2",
+  "regime": "full_finetune",
+  "lr": 1e-05,
+  "load_path": "seqcls",
+  "n_classes": 2,
+  "max_len_tok": 24,
+  "n_train": 5506,
+  "n_dev": 972,
+  "n_test": 810,
+  "cap_train": 0,
+  "warmup": "linear 10%",
+  "dev_carve": "stratified 15% seed 42",
+  "collapsed_to_majority_class": false,
+  "runs": [
+    {
+      "seed": 42,
+      "dev_mcc": 0.6085,
+      "best_epoch": 5,
+      "test_mcc": 0.5581,
+      "test_acc": 0.7753,
+      "test_macro_f1": 0.7738,
+      "n_pred_classes": 2
+    }
+  ],
+  "test_mcc_mean": 0.5581,
+  "test_mcc_sd": null
+}

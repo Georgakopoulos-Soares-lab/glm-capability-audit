@@ -1,0 +1,64 @@
+{
+  "model": "hyenadna",
+  "regime": "full",
+  "mod": "ALL",
+  "split": "times",
+  "level": "family",
+  "seed": 44,
+  "lr": 0.0001,
+  "n_classes": 173,
+  "n_params": 6661293,
+  "n_trainable": 6661293,
+  "trainable_frac": 1.0,
+  "maxlen_tok": 20000,
+  "effective_context_bp": 20000,
+  "best_epoch": 8,
+  "epochs_run": 8,
+  "dev_macro_f1": 0.0723,
+  "macro_f1": 0.0471,
+  "accuracy": 0.3001,
+  "mcc": 0.2843,
+  "n_train": 6000,
+  "trajectory": [
+    {
+      "epoch": 1,
+      "dev_f1": 0.0094,
+      "test_f1": 0.0029
+    },
+    {
+      "epoch": 2,
+      "dev_f1": 0.014,
+      "test_f1": 0.006
+    },
+    {
+      "epoch": 3,
+      "dev_f1": 0.0176,
+      "test_f1": 0.0074
+    },
+    {
+      "epoch": 4,
+      "dev_f1": 0.0325,
+      "test_f1": 0.0181
+    },
+    {
+      "epoch": 5,
+      "dev_f1": 0.0512,
+      "test_f1": 0.0302
+    },
+    {
+      "epoch": 6,
+      "dev_f1": 0.0663,
+      "test_f1": 0.0447
+    },
+    {
+      "epoch": 7,
+      "dev_f1": 0.0713,
+      "test_f1": 0.0496
+    },
+    {
+      "epoch": 8,
+      "dev_f1": 0.0723,
+      "test_f1": 0.0471
+    }
+  ]
+}

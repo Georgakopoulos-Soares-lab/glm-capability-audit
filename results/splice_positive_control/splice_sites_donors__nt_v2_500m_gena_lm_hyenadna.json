@@ -1,0 +1,82 @@
+{
+  "task": "splice_sites_donors",
+  "n_classes": 2,
+  "n_train": 25500,
+  "n_dev": 4500,
+  "n_test": 3000,
+  "seqlen": 600,
+  "kmer3-5": {
+    "mcc": 0.4481,
+    "macro_f1": 0.7232,
+    "accuracy": 0.7233,
+    "C": 0.001,
+    "dev_mcc": 0.4385
+  },
+  "kmer3-6": {
+    "mcc": 0.4764,
+    "macro_f1": 0.7372,
+    "accuracy": 0.7373,
+    "C": 0.0001,
+    "dev_mcc": 0.45
+  },
+  "cnn": {
+    "runs": [
+      {
+        "mcc": 0.5989,
+        "macro_f1": 0.799,
+        "accuracy": 0.799,
+        "seed": 42,
+        "best_epoch": 12,
+        "dev_mcc": 0.5995
+      },
+      {
+        "mcc": 0.574,
+        "macro_f1": 0.7869,
+        "accuracy": 0.787,
+        "seed": 43,
+        "best_epoch": 17,
+        "dev_mcc": 0.5667
+      },
+      {
+        "mcc": 0.5891,
+        "macro_f1": 0.79,
+        "accuracy": 0.7917,
+        "seed": 44,
+        "best_epoch": 14,
+        "dev_mcc": 0.598
+      }
+    ],
+    "mean_mcc": 0.5873,
+    "sd_mcc": 0.0125
+  },
+  "nt_v2_500m": {
+    "mcc": 0.5208,
+    "macro_f1": 0.7596,
+    "accuracy": 0.7597,
+    "C": 0.1,
+    "dev_mcc": 0.5084,
+    "regime": "frozen_probe",
+    "effective_context_bp": 612,
+    "runtime_s": 110
+  },
+  "gena_lm": {
+    "mcc": 0.5886,
+    "macro_f1": 0.7942,
+    "accuracy": 0.7943,
+    "C": 0.01,
+    "dev_mcc": 0.5816,
+    "regime": "frozen_probe",
+    "effective_context_bp": 612,
+    "runtime_s": 50
+  },
+  "hyenadna": {
+    "mcc": 0.4722,
+    "macro_f1": 0.732,
+    "accuracy": 0.733,
+    "C": 10.0,
+    "dev_mcc": 0.4747,
+    "regime": "frozen_probe",
+    "effective_context_bp": 602,
+    "runtime_s": 63
+  }
+}

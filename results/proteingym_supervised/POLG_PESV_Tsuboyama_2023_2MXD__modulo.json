@@ -1,0 +1,11 @@
+{
+  "assay": "POLG_PESV_Tsuboyama_2023_2MXD",
+  "scheme": "modulo",
+  "n": 5130,
+  "n_train": 3976,
+  "n_test": 1154,
+  "n_positions": 53,
+  "onehot": 0.5478,
+  "biochem": 0.5623,
+  "esm2": 0.7621
+}

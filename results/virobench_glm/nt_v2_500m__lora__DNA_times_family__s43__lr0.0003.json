@@ -1,0 +1,99 @@
+{
+  "model": "nt_v2_500m",
+  "regime": "lora",
+  "mod": "DNA",
+  "split": "times",
+  "level": "family",
+  "seed": 43,
+  "lr": 0.0003,
+  "n_classes": 44,
+  "n_params": 509196488,
+  "n_trainable": 10851052,
+  "trainable_frac": 0.02131,
+  "maxlen_tok": 2048,
+  "effective_context_bp": 12288,
+  "best_epoch": 15,
+  "epochs_run": 15,
+  "dev_macro_f1": 0.9571,
+  "macro_f1": 0.9143,
+  "accuracy": 0.9667,
+  "mcc": 0.9644,
+  "n_train": 6000,
+  "trajectory": [
+    {
+      "epoch": 1,
+      "dev_f1": 0.7168,
+      "test_f1": 0.6162
+    },
+    {
+      "epoch": 2,
+      "dev_f1": 0.7628,
+      "test_f1": 0.7095
+    },
+    {
+      "epoch": 3,
+      "dev_f1": 0.8517,
+      "test_f1": 0.8077
+    },
+    {
+      "epoch": 4,
+      "dev_f1": 0.8346,
+      "test_f1": 0.8134
+    },
+    {
+      "epoch": 5,
+      "dev_f1": 0.8985,
+      "test_f1": 0.805
+    },
+    {
+      "epoch": 6,
+      "dev_f1": 0.9278,
+      "test_f1": 0.8263
+    },
+    {
+      "epoch": 7,
+      "dev_f1": 0.9342,
+      "test_f1": 0.8482
+    },
+    {
+      "epoch": 8,
+      "dev_f1": 0.9406,
+      "test_f1": 0.8848
+    },
+    {
+      "epoch": 9,
+      "dev_f1": 0.9431,
+      "test_f1": 0.871
+    },
+    {
+      "epoch": 10,
+      "dev_f1": 0.9539,
+      "test_f1": 0.894
+    },
+    {
+      "epoch": 11,
+      "dev_f1": 0.9501,
+      "test_f1": 0.9117
+    },
+    {
+      "epoch": 12,
+      "dev_f1": 0.9478,
+      "test_f1": 0.9163
+    },
+    {
+      "epoch": 13,
+      "dev_f1": 0.9494,
+      "test_f1": 0.9143
+    },
+    {
+      "epoch": 14,
+      "dev_f1": 0.9519,
+      "test_f1": 0.9143
+    },
+    {
+      "epoch": 15,
+      "dev_f1": 0.9571,
+      "test_f1": 0.9143
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "task": "splice_sites_all",
+  "model": "nt_v2_500m",
+  "regime": "full_finetune",
+  "n_classes": 3,
+  "max_len": 1024,
+  "n_train": 25500,
+  "n_test": 3000,
+  "lr": 1e-05,
+  "warmup": "linear 10%",
+  "runs": [
+    {
+      "seed": 42,
+      "dev": 0.9747,
+      "test": 0.9665,
+      "best_epoch": 6,
+      "trainable_params": 494136788
+    }
+  ],
+  "collapsed_to_majority_class": false,
+  "test_mean": 0.9665
+}

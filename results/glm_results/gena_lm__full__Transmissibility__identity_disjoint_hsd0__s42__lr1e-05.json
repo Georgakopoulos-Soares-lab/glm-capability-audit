@@ -1,0 +1,129 @@
+{
+  "model": "gena_lm",
+  "pretrained": true,
+  "regime": "full",
+  "n_trainable": 110782977,
+  "trainable_frac": 1.0,
+  "hf_id": "AIRI-Institute/gena-lm-bert-base-t2t",
+  "n_params": 110782977,
+  "task": "Transmissibility",
+  "split": "identity_disjoint_hsd0",
+  "seed": 42,
+  "lr": 1e-05,
+  "best_epoch": 14,
+  "epochs_run": 20,
+  "iv_auroc": 0.9237,
+  "ev_auroc": 0.903,
+  "ev_mcc": 0.6942,
+  "kmer_auroc": 0.9085,
+  "excess": -0.0055,
+  "ev_auroc_oracle": 0.9087,
+  "excess_oracle": 0.0002,
+  "ev_traj_min": 0.7822,
+  "ev_traj_range": 0.1265,
+  "n_train": 9828,
+  "n_iv": 1733,
+  "n_ev": 4956,
+  "trajectory": [
+    {
+      "epoch": 1,
+      "iv_auroc": 0.7647,
+      "ev_auroc": 0.7822
+    },
+    {
+      "epoch": 2,
+      "iv_auroc": 0.8672,
+      "ev_auroc": 0.8367
+    },
+    {
+      "epoch": 3,
+      "iv_auroc": 0.8926,
+      "ev_auroc": 0.8705
+    },
+    {
+      "epoch": 4,
+      "iv_auroc": 0.9014,
+      "ev_auroc": 0.8799
+    },
+    {
+      "epoch": 5,
+      "iv_auroc": 0.9052,
+      "ev_auroc": 0.8858
+    },
+    {
+      "epoch": 6,
+      "iv_auroc": 0.9114,
+      "ev_auroc": 0.8868
+    },
+    {
+      "epoch": 7,
+      "iv_auroc": 0.915,
+      "ev_auroc": 0.8965
+    },
+    {
+      "epoch": 8,
+      "iv_auroc": 0.9186,
+      "ev_auroc": 0.9035
+    },
+    {
+      "epoch": 9,
+      "iv_auroc": 0.9177,
+      "ev_auroc": 0.8982
+    },
+    {
+      "epoch": 10,
+      "iv_auroc": 0.9187,
+      "ev_auroc": 0.9037
+    },
+    {
+      "epoch": 11,
+      "iv_auroc": 0.9201,
+      "ev_auroc": 0.9059
+    },
+    {
+      "epoch": 12,
+      "iv_auroc": 0.9215,
+      "ev_auroc": 0.9052
+    },
+    {
+      "epoch": 13,
+      "iv_auroc": 0.9205,
+      "ev_auroc": 0.9045
+    },
+    {
+      "epoch": 14,
+      "iv_auroc": 0.9237,
+      "ev_auroc": 0.903
+    },
+    {
+      "epoch": 15,
+      "iv_auroc": 0.9217,
+      "ev_auroc": 0.9087
+    },
+    {
+      "epoch": 16,
+      "iv_auroc": 0.9217,
+      "ev_auroc": 0.9052
+    },
+    {
+      "epoch": 17,
+      "iv_auroc": 0.9197,
+      "ev_auroc": 0.9067
+    },
+    {
+      "epoch": 18,
+      "iv_auroc": 0.9205,
+      "ev_auroc": 0.907
+    },
+    {
+      "epoch": 19,
+      "iv_auroc": 0.9196,
+      "ev_auroc": 0.9076
+    },
+    {
+      "epoch": 20,
+      "iv_auroc": 0.9209,
+      "ev_auroc": 0.9077
+    }
+  ]
+}

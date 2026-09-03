@@ -1,0 +1,28 @@
+{
+  "window": 8000,
+  "cap_family": 200,
+  "n_fit": 3097,
+  "n_families": 155,
+  "indist": {
+    "markov_order3": 1.9818,
+    "markov_order5": 1.9782,
+    "markov_order7": 1.969,
+    "generator12": 1.8906
+  },
+  "ood": {
+    "markov_order3": 1.9838,
+    "markov_order5": 1.9799,
+    "markov_order7": 1.9729,
+    "generator12": 1.8867
+  },
+  "generator12_bases_scored": [
+    799932,
+    799996
+  ],
+  "generator12_skipped": [
+    0,
+    0
+  ],
+  "generator12_vs_markov_indist": -0.0784,
+  "generator12_vs_markov_ood": -0.0862
+}

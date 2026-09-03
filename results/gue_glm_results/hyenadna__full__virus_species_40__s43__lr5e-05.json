@@ -1,0 +1,98 @@
+{
+  "model": "hyenadna",
+  "regime": "full",
+  "task": "virus_species_40",
+  "seed": 43,
+  "lr": 5e-05,
+  "n_classes": 25,
+  "n_params": 6623257,
+  "n_trainable": 6623257,
+  "trainable_frac": 1.0,
+  "maxlen": 5120,
+  "best_epoch": 10,
+  "epochs_run": 15,
+  "dev_macro_f1": 0.4296,
+  "test_macro_f1": 0.4101,
+  "test_accuracy": 0.438,
+  "test_mcc": 0.4298,
+  "test_f1_oracle": 0.4173,
+  "test_f1_range": 0.2734,
+  "n_train": 4000,
+  "trajectory": [
+    {
+      "epoch": 1,
+      "dev_f1": 0.1612,
+      "test_f1": 0.1829
+    },
+    {
+      "epoch": 2,
+      "dev_f1": 0.1434,
+      "test_f1": 0.1439
+    },
+    {
+      "epoch": 3,
+      "dev_f1": 0.2184,
+      "test_f1": 0.2288
+    },
+    {
+      "epoch": 4,
+      "dev_f1": 0.2594,
+      "test_f1": 0.24
+    },
+    {
+      "epoch": 5,
+      "dev_f1": 0.3439,
+      "test_f1": 0.3277
+    },
+    {
+      "epoch": 6,
+      "dev_f1": 0.35,
+      "test_f1": 0.3476
+    },
+    {
+      "epoch": 7,
+      "dev_f1": 0.3331,
+      "test_f1": 0.3756
+    },
+    {
+      "epoch": 8,
+      "dev_f1": 0.3731,
+      "test_f1": 0.3472
+    },
+    {
+      "epoch": 9,
+      "dev_f1": 0.4029,
+      "test_f1": 0.4007
+    },
+    {
+      "epoch": 10,
+      "dev_f1": 0.4296,
+      "test_f1": 0.4101
+    },
+    {
+      "epoch": 11,
+      "dev_f1": 0.41,
+      "test_f1": 0.4173
+    },
+    {
+      "epoch": 12,
+      "dev_f1": 0.4133,
+      "test_f1": 0.4123
+    },
+    {
+      "epoch": 13,
+      "dev_f1": 0.4185,
+      "test_f1": 0.397
+    },
+    {
+      "epoch": 14,
+      "dev_f1": 0.4212,
+      "test_f1": 0.411
+    },
+    {
+      "epoch": 15,
+      "dev_f1": 0.3985,
+      "test_f1": 0.4169
+    }
+  ]
+}

@@ -1,0 +1,52 @@
+{
+  "task": "virus_covid",
+  "n_classes": 9,
+  "n_train": 40000,
+  "n_test": 9168,
+  "kmer3-5": {
+    "macro_f1": 0.6427,
+    "accuracy": 0.6406,
+    "mcc": 0.5944,
+    "C": 0.1,
+    "dev_macro_f1": 0.6445,
+    "runtime_s": 396
+  },
+  "kmer3-6": {
+    "macro_f1": 0.7282,
+    "accuracy": 0.7257,
+    "mcc": 0.6905,
+    "C": 0.1,
+    "dev_macro_f1": 0.7349,
+    "runtime_s": 1779
+  },
+  "cnn": {
+    "runs": [
+      {
+        "macro_f1": 0.6344,
+        "accuracy": 0.6229,
+        "mcc": 0.5809,
+        "seed": 42,
+        "best_epoch": 36,
+        "dev_macro_f1": 0.6356
+      },
+      {
+        "macro_f1": 0.6675,
+        "accuracy": 0.6604,
+        "mcc": 0.6195,
+        "seed": 43,
+        "best_epoch": 36,
+        "dev_macro_f1": 0.672
+      },
+      {
+        "macro_f1": 0.577,
+        "accuracy": 0.5495,
+        "mcc": 0.5012,
+        "seed": 44,
+        "best_epoch": 38,
+        "dev_macro_f1": 0.5691
+      }
+    ],
+    "n_params": 678361,
+    "mean_macro_f1": 0.6263
+  }
+}
