@@ -1,0 +1,29 @@
+{
+  "task": "InstaDeepAI_plant-genomic-benchmark_lncrna.t_aestivum",
+  "model": "dnabert2",
+  "regime": "full_finetune",
+  "lr": 0.0001,
+  "load_path": "seqcls",
+  "n_classes": 2,
+  "max_len_tok": 512,
+  "n_train": 9564,
+  "n_dev": 1688,
+  "n_test": 1810,
+  "cap_train": 0,
+  "warmup": "linear 10%",
+  "dev_carve": "stratified 15% seed 42",
+  "collapsed_to_majority_class": false,
+  "runs": [
+    {
+      "seed": 42,
+      "dev_mcc": 0.4244,
+      "best_epoch": 3,
+      "test_mcc": 0.4018,
+      "test_acc": 0.6856,
+      "test_macro_f1": 0.665,
+      "n_pred_classes": 2
+    }
+  ],
+  "test_mcc_mean": 0.4018,
+  "test_mcc_sd": null
+}

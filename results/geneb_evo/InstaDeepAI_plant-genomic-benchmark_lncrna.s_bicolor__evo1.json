@@ -1,0 +1,106 @@
+{
+  "probe": {
+    "search": [
+      {
+        "seed": 42,
+        "dev_mcc": 0.1263,
+        "best_epoch": 4,
+        "test_mcc": 0.0479,
+        "test_auroc": 0.524,
+        "lr": 0.0001
+      },
+      {
+        "seed": 42,
+        "dev_mcc": 0.1613,
+        "best_epoch": 2,
+        "test_mcc": 0.0742,
+        "test_auroc": 0.5212,
+        "lr": 0.0003
+      },
+      {
+        "seed": 42,
+        "dev_mcc": 0.1233,
+        "best_epoch": 3,
+        "test_mcc": 0.0491,
+        "test_auroc": 0.5815,
+        "lr": 0.001
+      }
+    ],
+    "selected_lr": 0.0003,
+    "runs": [
+      {
+        "seed": 42,
+        "dev_mcc": 0.1613,
+        "best_epoch": 2,
+        "test_mcc": 0.0742,
+        "test_auroc": 0.5212,
+        "lr": 0.0003
+      },
+      {
+        "seed": 43,
+        "dev_mcc": 0.0886,
+        "best_epoch": 1,
+        "test_mcc": 0.0347,
+        "test_auroc": 0.5226,
+        "lr": 0.0003
+      },
+      {
+        "seed": 44,
+        "dev_mcc": 0.1389,
+        "best_epoch": 5,
+        "test_mcc": 0.0357,
+        "test_auroc": 0.5342,
+        "lr": 0.0003
+      }
+    ],
+    "test_mcc_mean": 0.0482,
+    "test_mcc_sd": 0.0225,
+    "n_seeds": 3
+  },
+  "lora": {
+    "search": [
+      {
+        "seed": 42,
+        "dev_mcc": 0.5292,
+        "best_epoch": 3,
+        "test_mcc": 0.5226,
+        "test_auroc": 0.8545,
+        "lr": 0.0001
+      },
+      {
+        "seed": 42,
+        "dev_mcc": 0.3952,
+        "best_epoch": 1,
+        "test_mcc": 0.3716,
+        "test_auroc": 0.7632,
+        "lr": 0.0003
+      },
+      {
+        "seed": 42,
+        "dev_mcc": 0.0652,
+        "best_epoch": 2,
+        "test_mcc": 0.036,
+        "test_auroc": 0.6097,
+        "lr": 0.001
+      }
+    ],
+    "runs": [
+      {
+        "seed": 42,
+        "dev_mcc": 0.5292,
+        "best_epoch": 3,
+        "test_mcc": 0.5226,
+        "test_auroc": 0.8545,
+        "lr": 0.0001
+      },
+      {
+        "seed": 43,
+        "dev_mcc": 0.5075,
+        "best_epoch": 2,
+        "test_mcc": 0.4673,
+        "test_auroc": 0.8165,
+        "lr": 0.0001
+      }
+    ]
+  }
+}

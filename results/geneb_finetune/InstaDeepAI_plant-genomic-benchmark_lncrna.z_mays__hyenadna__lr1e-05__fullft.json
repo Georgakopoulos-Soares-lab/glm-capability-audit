@@ -1,0 +1,29 @@
+{
+  "task": "InstaDeepAI_plant-genomic-benchmark_lncrna.z_mays",
+  "model": "hyenadna",
+  "regime": "full_finetune",
+  "lr": 1e-05,
+  "load_path": "seqcls",
+  "n_classes": 2,
+  "max_len_tok": 2604,
+  "n_train": 7159,
+  "n_dev": 1264,
+  "n_test": 1629,
+  "cap_train": 0,
+  "warmup": "linear 10%",
+  "dev_carve": "stratified 15% seed 42",
+  "collapsed_to_majority_class": false,
+  "runs": [
+    {
+      "seed": 42,
+      "dev_mcc": 0.2446,
+      "best_epoch": 1,
+      "test_mcc": 0.2504,
+      "test_acc": 0.636,
+      "test_macro_f1": 0.6208,
+      "n_pred_classes": 2
+    }
+  ],
+  "test_mcc_mean": 0.2504,
+  "test_mcc_sd": null
+}

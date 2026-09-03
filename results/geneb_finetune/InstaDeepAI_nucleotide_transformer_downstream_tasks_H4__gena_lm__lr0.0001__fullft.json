@@ -1,0 +1,29 @@
+{
+  "task": "InstaDeepAI_nucleotide_transformer_downstream_tasks_H4",
+  "model": "gena_lm",
+  "regime": "full_finetune",
+  "lr": 0.0001,
+  "load_path": "automodel",
+  "n_classes": 2,
+  "max_len_tok": 87,
+  "n_train": 11169,
+  "n_dev": 1971,
+  "n_test": 1461,
+  "cap_train": 0,
+  "warmup": "linear 10%",
+  "dev_carve": "stratified 15% seed 42",
+  "collapsed_to_majority_class": false,
+  "runs": [
+    {
+      "seed": 42,
+      "dev_mcc": 0.7696,
+      "best_epoch": 2,
+      "test_mcc": 0.7667,
+      "test_acc": 0.8816,
+      "test_macro_f1": 0.8811,
+      "n_pred_classes": 2
+    }
+  ],
+  "test_mcc_mean": 0.7667,
+  "test_mcc_sd": null
+}

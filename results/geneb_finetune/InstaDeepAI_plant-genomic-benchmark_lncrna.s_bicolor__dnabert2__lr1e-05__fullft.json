@@ -1,0 +1,47 @@
+{
+  "task": "InstaDeepAI_plant-genomic-benchmark_lncrna.s_bicolor",
+  "model": "dnabert2",
+  "regime": "full_finetune",
+  "lr": 1e-05,
+  "load_path": "seqcls",
+  "n_classes": 2,
+  "max_len_tok": 512,
+  "n_train": 7355,
+  "n_dev": 1299,
+  "n_test": 734,
+  "cap_train": 0,
+  "warmup": "linear 10%",
+  "dev_carve": "stratified 15% seed 42",
+  "collapsed_to_majority_class": false,
+  "runs": [
+    {
+      "seed": 42,
+      "dev_mcc": 0.5242,
+      "best_epoch": 3,
+      "test_mcc": 0.469,
+      "test_acc": 0.7357,
+      "test_macro_f1": 0.7345,
+      "n_pred_classes": 2
+    },
+    {
+      "seed": 43,
+      "dev_mcc": 0.5224,
+      "best_epoch": 4,
+      "test_mcc": 0.4819,
+      "test_acc": 0.7425,
+      "test_macro_f1": 0.7402,
+      "n_pred_classes": 2
+    },
+    {
+      "seed": 44,
+      "dev_mcc": 0.5283,
+      "best_epoch": 4,
+      "test_mcc": 0.4958,
+      "test_acc": 0.7425,
+      "test_macro_f1": 0.7424,
+      "n_pred_classes": 2
+    }
+  ],
+  "test_mcc_mean": 0.4822,
+  "test_mcc_sd": 0.0134
+}

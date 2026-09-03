@@ -1,0 +1,678 @@
+{
+  "dataset": "geneb",
+  "task": "leannmlindsey_GUE_virus_species_40",
+  "metric": "mcc",
+  "n_classes": 25,
+  "seqlen": 5000,
+  "n_train": 3400,
+  "n_dev": 600,
+  "n_test": 500,
+  "seeds": [
+    42,
+    43
+  ],
+  "ladder": [
+    {
+      "arch": "dilated",
+      "ch": 32,
+      "blocks": 3,
+      "k": 9,
+      "dbase": 2,
+      "lr": 0.001,
+      "params": 46473,
+      "params_M": 0.046,
+      "rf_bp": 57,
+      "dev": 0.2948,
+      "test": 0.289,
+      "test_sd": null,
+      "runs": [
+        {
+          "seed": 42,
+          "dev": 0.2948,
+          "test": 0.289,
+          "best_epoch": 26
+        }
+      ]
+    },
+    {
+      "arch": "dilated",
+      "ch": 64,
+      "blocks": 4,
+      "k": 9,
+      "dbase": 2,
+      "lr": 0.001,
+      "params": 160105,
+      "params_M": 0.16,
+      "rf_bp": 121,
+      "dev": 0.3833,
+      "test": 0.3908,
+      "test_sd": null,
+      "runs": [
+        {
+          "seed": 42,
+          "dev": 0.3833,
+          "test": 0.3908,
+          "best_epoch": 23
+        }
+      ]
+    },
+    {
+      "arch": "dilated",
+      "ch": 128,
+      "blocks": 5,
+      "k": 9,
+      "dbase": 2,
+      "lr": 0.001,
+      "params": 682473,
+      "params_M": 0.682,
+      "rf_bp": 249,
+      "dev": 0.4113,
+      "test": 0.3931,
+      "test_sd": null,
+      "runs": [
+        {
+          "seed": 42,
+          "dev": 0.4113,
+          "test": 0.3931,
+          "best_epoch": 23
+        }
+      ]
+    },
+    {
+      "arch": "dilated",
+      "ch": 256,
+      "blocks": 5,
+      "k": 9,
+      "dbase": 2,
+      "lr": 0.001,
+      "params": 2537833,
+      "params_M": 2.538,
+      "rf_bp": 249,
+      "dev": 0.3972,
+      "test": 0.4094,
+      "test_sd": null,
+      "runs": [
+        {
+          "seed": 42,
+          "dev": 0.3972,
+          "test": 0.4094,
+          "best_epoch": 23
+        }
+      ]
+    },
+    {
+      "arch": "dilated",
+      "ch": 448,
+      "blocks": 6,
+      "k": 9,
+      "dbase": 2,
+      "lr": 0.001,
+      "params": 9340393,
+      "params_M": 9.34,
+      "rf_bp": 505,
+      "dev": 0.3899,
+      "test": 0.389,
+      "test_sd": null,
+      "runs": [
+        {
+          "seed": 42,
+          "dev": 0.3899,
+          "test": 0.389,
+          "best_epoch": 18
+        }
+      ]
+    },
+    {
+      "arch": "unet",
+      "ch": 24,
+      "blocks": 3,
+      "k": 9,
+      "dbase": 2,
+      "lr": 0.001,
+      "params": 262193,
+      "params_M": 0.262,
+      "rf_bp": null,
+      "dev": 0.3291,
+      "test": 0.3068,
+      "test_sd": null,
+      "runs": [
+        {
+          "seed": 42,
+          "dev": 0.3291,
+          "test": 0.3068,
+          "best_epoch": 13
+        }
+      ]
+    },
+    {
+      "arch": "unet",
+      "ch": 48,
+      "blocks": 3,
+      "k": 9,
+      "dbase": 2,
+      "lr": 0.001,
+      "params": 994553,
+      "params_M": 0.995,
+      "rf_bp": null,
+      "dev": 0.313,
+      "test": 0.3437,
+      "test_sd": null,
+      "runs": [
+        {
+          "seed": 42,
+          "dev": 0.313,
+          "test": 0.3437,
+          "best_epoch": 10
+        }
+      ]
+    },
+    {
+      "arch": "unet",
+      "ch": 112,
+      "blocks": 3,
+      "k": 9,
+      "dbase": 2,
+      "lr": 0.001,
+      "params": 5279161,
+      "params_M": 5.279,
+      "rf_bp": null,
+      "dev": 0.3556,
+      "test": 0.3552,
+      "test_sd": null,
+      "runs": [
+        {
+          "seed": 42,
+          "dev": 0.3556,
+          "test": 0.3552,
+          "best_epoch": 15
+        }
+      ]
+    },
+    {
+      "arch": "unet",
+      "ch": 64,
+      "blocks": 4,
+      "k": 9,
+      "dbase": 2,
+      "lr": 0.001,
+      "params": 7060009,
+      "params_M": 7.06,
+      "rf_bp": null,
+      "dev": 0.3062,
+      "test": 0.317,
+      "test_sd": null,
+      "runs": [
+        {
+          "seed": 42,
+          "dev": 0.3062,
+          "test": 0.317,
+          "best_epoch": 10
+        }
+      ]
+    },
+    {
+      "arch": "resnet",
+      "ch": 64,
+      "blocks": 3,
+      "k": 9,
+      "dbase": 1,
+      "lr": 0.001,
+      "params": 271273,
+      "params_M": 0.271,
+      "rf_bp": 57,
+      "dev": 0.3689,
+      "test": 0.349,
+      "test_sd": null,
+      "runs": [
+        {
+          "seed": 42,
+          "dev": 0.3689,
+          "test": 0.349,
+          "best_epoch": 21
+        }
+      ]
+    },
+    {
+      "arch": "resnet",
+      "ch": 128,
+      "blocks": 4,
+      "k": 9,
+      "dbase": 1,
+      "lr": 0.001,
+      "params": 1273833,
+      "params_M": 1.274,
+      "rf_bp": 73,
+      "dev": 0.4044,
+      "test": 0.3759,
+      "test_sd": null,
+      "runs": [
+        {
+          "seed": 42,
+          "dev": 0.4044,
+          "test": 0.3759,
+          "best_epoch": 25
+        }
+      ]
+    },
+    {
+      "arch": "resnet",
+      "ch": 256,
+      "blocks": 5,
+      "k": 9,
+      "dbase": 1,
+      "lr": 0.001,
+      "params": 6081385,
+      "params_M": 6.081,
+      "rf_bp": 89,
+      "dev": 0.3743,
+      "test": 0.4068,
+      "test_sd": null,
+      "runs": [
+        {
+          "seed": 42,
+          "dev": 0.3743,
+          "test": 0.4068,
+          "best_epoch": 28
+        }
+      ]
+    },
+    {
+      "arch": "resnet",
+      "ch": 320,
+      "blocks": 5,
+      "k": 9,
+      "dbase": 1,
+      "lr": 0.001,
+      "params": 9443241,
+      "params_M": 9.443,
+      "rf_bp": 89,
+      "dev": 0.3694,
+      "test": 0.3606,
+      "test_sd": null,
+      "runs": [
+        {
+          "seed": 42,
+          "dev": 0.3694,
+          "test": 0.3606,
+          "best_epoch": 19
+        }
+      ]
+    },
+    {
+      "arch": "dilated",
+      "ch": 128,
+      "blocks": 5,
+      "k": 9,
+      "dbase": 1,
+      "lr": 0.001,
+      "params": 682473,
+      "params_M": 0.682,
+      "rf_bp": 41,
+      "dev": 0.2887,
+      "test": 0.2932,
+      "test_sd": null,
+      "runs": [
+        {
+          "seed": 42,
+          "dev": 0.2887,
+          "test": 0.2932,
+          "best_epoch": 23
+        }
+      ]
+    },
+    {
+      "arch": "dilated",
+      "ch": 128,
+      "blocks": 5,
+      "k": 9,
+      "dbase": 4,
+      "lr": 0.001,
+      "params": 682473,
+      "params_M": 0.682,
+      "rf_bp": 2729,
+      "dev": 0.4115,
+      "test": 0.3913,
+      "test_sd": null,
+      "runs": [
+        {
+          "seed": 42,
+          "dev": 0.4115,
+          "test": 0.3913,
+          "best_epoch": 24
+        }
+      ]
+    },
+    {
+      "arch": "dilated",
+      "ch": 128,
+      "blocks": 5,
+      "k": 21,
+      "dbase": 1,
+      "lr": 0.001,
+      "params": 1493481,
+      "params_M": 1.493,
+      "rf_bp": 101,
+      "dev": 0.3617,
+      "test": 0.3684,
+      "test_sd": null,
+      "runs": [
+        {
+          "seed": 42,
+          "dev": 0.3617,
+          "test": 0.3684,
+          "best_epoch": 26
+        }
+      ]
+    },
+    {
+      "arch": "dilated",
+      "ch": 128,
+      "blocks": 5,
+      "k": 21,
+      "dbase": 4,
+      "lr": 0.001,
+      "params": 1493481,
+      "params_M": 1.493,
+      "rf_bp": 6821,
+      "dev": 0.409,
+      "test": 0.372,
+      "test_sd": null,
+      "runs": [
+        {
+          "seed": 42,
+          "dev": 0.409,
+          "test": 0.372,
+          "best_epoch": 24
+        }
+      ]
+    },
+    {
+      "arch": "resnet",
+      "ch": 128,
+      "blocks": 4,
+      "k": 9,
+      "dbase": 4,
+      "lr": 0.001,
+      "params": 1273833,
+      "params_M": 1.274,
+      "rf_bp": 1369,
+      "dev": 0.4473,
+      "test": 0.4205,
+      "test_sd": null,
+      "runs": [
+        {
+          "seed": 42,
+          "dev": 0.4473,
+          "test": 0.4205,
+          "best_epoch": 28
+        }
+      ]
+    },
+    {
+      "arch": "resnet",
+      "ch": 128,
+      "blocks": 4,
+      "k": 21,
+      "dbase": 1,
+      "lr": 0.001,
+      "params": 2871273,
+      "params_M": 2.871,
+      "rf_bp": 181,
+      "dev": 0.1521,
+      "test": 0.1752,
+      "test_sd": null,
+      "runs": [
+        {
+          "seed": 42,
+          "dev": 0.1521,
+          "test": 0.1752,
+          "best_epoch": 2
+        }
+      ]
+    },
+    {
+      "arch": "resnet",
+      "ch": 128,
+      "blocks": 4,
+      "k": 21,
+      "dbase": 4,
+      "lr": 0.001,
+      "params": 2871273,
+      "params_M": 2.871,
+      "rf_bp": 3421,
+      "dev": 0.317,
+      "test": 0.3421,
+      "test_sd": null,
+      "runs": [
+        {
+          "seed": 42,
+          "dev": 0.317,
+          "test": 0.3421,
+          "best_epoch": 10
+        }
+      ]
+    },
+    {
+      "arch": "resnet",
+      "ch": 128,
+      "blocks": 4,
+      "k": 9,
+      "dbase": 4,
+      "lr": 0.001,
+      "params": 1273833,
+      "params_M": 1.274,
+      "rf_bp": 1369,
+      "dev": 0.4429,
+      "test": 0.438,
+      "test_sd": 0.0248,
+      "runs": [
+        {
+          "seed": 42,
+          "dev": 0.4473,
+          "test": 0.4205,
+          "best_epoch": 28
+        },
+        {
+          "seed": 43,
+          "dev": 0.4385,
+          "test": 0.4556,
+          "best_epoch": 30
+        }
+      ]
+    },
+    {
+      "arch": "resnet",
+      "ch": 128,
+      "blocks": 4,
+      "k": 9,
+      "dbase": 4,
+      "lr": 0.0003,
+      "params": 1273833,
+      "params_M": 1.274,
+      "rf_bp": 1369,
+      "dev": 0.3584,
+      "test": 0.3751,
+      "test_sd": 0.0013,
+      "runs": [
+        {
+          "seed": 42,
+          "dev": 0.3537,
+          "test": 0.3742,
+          "best_epoch": 15
+        },
+        {
+          "seed": 43,
+          "dev": 0.363,
+          "test": 0.376,
+          "best_epoch": 13
+        }
+      ]
+    },
+    {
+      "arch": "resnet",
+      "ch": 128,
+      "blocks": 4,
+      "k": 9,
+      "dbase": 4,
+      "lr": 0.003,
+      "params": 1273833,
+      "params_M": 1.274,
+      "rf_bp": 1369,
+      "dev": 0.3402,
+      "test": 0.3379,
+      "test_sd": 0.1373,
+      "runs": [
+        {
+          "seed": 42,
+          "dev": 0.2622,
+          "test": 0.2408,
+          "best_epoch": 5
+        },
+        {
+          "seed": 43,
+          "dev": 0.4183,
+          "test": 0.435,
+          "best_epoch": 25
+        }
+      ]
+    },
+    {
+      "arch": "dilated",
+      "ch": 128,
+      "blocks": 5,
+      "k": 9,
+      "dbase": 4,
+      "lr": 0.001,
+      "params": 682473,
+      "params_M": 0.682,
+      "rf_bp": 2729,
+      "dev": 0.4035,
+      "test": 0.3856,
+      "test_sd": 0.0081,
+      "runs": [
+        {
+          "seed": 42,
+          "dev": 0.4115,
+          "test": 0.3913,
+          "best_epoch": 24
+        },
+        {
+          "seed": 43,
+          "dev": 0.3955,
+          "test": 0.3799,
+          "best_epoch": 18
+        }
+      ]
+    },
+    {
+      "arch": "dilated",
+      "ch": 128,
+      "blocks": 5,
+      "k": 9,
+      "dbase": 4,
+      "lr": 0.0003,
+      "params": 682473,
+      "params_M": 0.682,
+      "rf_bp": 2729,
+      "dev": 0.3301,
+      "test": 0.318,
+      "test_sd": 0.0064,
+      "runs": [
+        {
+          "seed": 42,
+          "dev": 0.3173,
+          "test": 0.3226,
+          "best_epoch": 17
+        },
+        {
+          "seed": 43,
+          "dev": 0.3428,
+          "test": 0.3135,
+          "best_epoch": 18
+        }
+      ]
+    },
+    {
+      "arch": "dilated",
+      "ch": 128,
+      "blocks": 5,
+      "k": 9,
+      "dbase": 4,
+      "lr": 0.003,
+      "params": 682473,
+      "params_M": 0.682,
+      "rf_bp": 2729,
+      "dev": 0.3548,
+      "test": 0.3354,
+      "test_sd": 0.0132,
+      "runs": [
+        {
+          "seed": 42,
+          "dev": 0.3405,
+          "test": 0.326,
+          "best_epoch": 10
+        },
+        {
+          "seed": 43,
+          "dev": 0.3692,
+          "test": 0.3447,
+          "best_epoch": 11
+        }
+      ]
+    },
+    {
+      "arch": "resnet",
+      "ch": 128,
+      "blocks": 4,
+      "k": 9,
+      "dbase": 4,
+      "lr": 0.001,
+      "params": 1273833,
+      "params_M": 1.274,
+      "rf_bp": 1369,
+      "dev": 0.3688,
+      "test": 0.3702,
+      "test_sd": 0.1188,
+      "runs": [
+        {
+          "seed": 42,
+          "dev": 0.4473,
+          "test": 0.4205,
+          "best_epoch": 28
+        },
+        {
+          "seed": 43,
+          "dev": 0.4385,
+          "test": 0.4556,
+          "best_epoch": 30
+        },
+        {
+          "seed": 44,
+          "dev": 0.2206,
+          "test": 0.2346,
+          "best_epoch": 2
+        }
+      ],
+      "refit_seeds": 3
+    }
+  ],
+  "dev_selected": {
+    "n_seeds": 3,
+    "test_sd": 0.1188,
+    "arch": "resnet",
+    "params_M": 1.274,
+    "lr": 0.001,
+    "k": 9,
+    "dbase": 4,
+    "rf_bp": 1369,
+    "dev": 0.3688,
+    "test": 0.3702
+  },
+  "oracle_best_test": 0.438,
+  "incumbent": {
+    "arch": "dilated",
+    "params_M": 0.682,
+    "dev": 0.4113,
+    "test": 0.3931
+  }
+}

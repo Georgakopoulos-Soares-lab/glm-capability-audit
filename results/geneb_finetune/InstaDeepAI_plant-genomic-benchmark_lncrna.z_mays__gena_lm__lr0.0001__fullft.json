@@ -1,0 +1,47 @@
+{
+  "task": "InstaDeepAI_plant-genomic-benchmark_lncrna.z_mays",
+  "model": "gena_lm",
+  "regime": "full_finetune",
+  "lr": 0.0001,
+  "load_path": "automodel",
+  "n_classes": 2,
+  "max_len_tok": 437,
+  "n_train": 7159,
+  "n_dev": 1264,
+  "n_test": 1629,
+  "cap_train": 0,
+  "warmup": "linear 10%",
+  "dev_carve": "stratified 15% seed 42",
+  "collapsed_to_majority_class": false,
+  "runs": [
+    {
+      "seed": 42,
+      "dev_mcc": 0.3817,
+      "best_epoch": 4,
+      "test_mcc": 0.408,
+      "test_acc": 0.6949,
+      "test_macro_f1": 0.6949,
+      "n_pred_classes": 2
+    },
+    {
+      "seed": 43,
+      "dev_mcc": 0.4082,
+      "best_epoch": 4,
+      "test_mcc": 0.4626,
+      "test_acc": 0.736,
+      "test_macro_f1": 0.7211,
+      "n_pred_classes": 2
+    },
+    {
+      "seed": 44,
+      "dev_mcc": 0.3033,
+      "best_epoch": 1,
+      "test_mcc": 0.3144,
+      "test_acc": 0.6446,
+      "test_macro_f1": 0.6444,
+      "n_pred_classes": 2
+    }
+  ],
+  "test_mcc_mean": 0.395,
+  "test_mcc_sd": 0.075
+}

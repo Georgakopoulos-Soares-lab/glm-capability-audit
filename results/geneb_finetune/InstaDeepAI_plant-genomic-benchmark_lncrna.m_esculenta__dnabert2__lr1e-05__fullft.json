@@ -1,0 +1,29 @@
+{
+  "task": "InstaDeepAI_plant-genomic-benchmark_lncrna.m_esculenta",
+  "model": "dnabert2",
+  "regime": "full_finetune",
+  "lr": 1e-05,
+  "load_path": "seqcls",
+  "n_classes": 2,
+  "max_len_tok": 510,
+  "n_train": 4193,
+  "n_dev": 741,
+  "n_test": 360,
+  "cap_train": 0,
+  "warmup": "linear 10%",
+  "dev_carve": "stratified 15% seed 42",
+  "collapsed_to_majority_class": false,
+  "runs": [
+    {
+      "seed": 42,
+      "dev_mcc": 0.3384,
+      "best_epoch": 3,
+      "test_mcc": 0.4008,
+      "test_acc": 0.6833,
+      "test_macro_f1": 0.6776,
+      "n_pred_classes": 2
+    }
+  ],
+  "test_mcc_mean": 0.4008,
+  "test_mcc_sd": null
+}

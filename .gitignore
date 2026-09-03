@@ -1,34 +1,22 @@
-# ---- data, model weights, and run outputs: never commit ----
+# ---- raw benchmark corpora and model weights: never commit ----
+# Fetch with scripts/common/download_data.py; point $VB_* at them (scripts/common/paths.py).
 /data/
-/evo-1-8k-base
-/configs/
-/outputs/
-/results/
-/results_viral_bench/
-/scratchpad/
+/hf_cache/
+hf_cache/
 /virobench/
 /gue_viral/
 /splits_ungated/
 /splits_idsweep/
-hf_cache/
 *.parquet
-*.npz
-*.npy
-*.pt
-*.safetensors
 *.fasta
 *.fa
-*.jsonl
+*.pt
+*.safetensors
 
-# ---- logs ----
-/logs/
+# ---- run scratch ----
+/scratch/
+/tmp/
 *.log
-*.screen.log
-
-# ---- figures / large artifacts ----
-/figures/
-*.png
-*.pdf
 
 # ---- python ----
 __pycache__/
@@ -44,3 +32,7 @@ env/
 node_modules/
 .env
 .env.*
+
+# NOTE: results/ is deliberately NOT ignored. The per-run JSON summaries and the
+# per-example .npz prediction arrays are the evidence behind every table in
+# reports/, they total ~1 MB, and the paired bootstrap needs the predictions.

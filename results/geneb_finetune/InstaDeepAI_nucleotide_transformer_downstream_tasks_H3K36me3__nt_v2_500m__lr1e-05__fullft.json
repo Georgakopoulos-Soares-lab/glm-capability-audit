@@ -1,0 +1,47 @@
+{
+  "task": "InstaDeepAI_nucleotide_transformer_downstream_tasks_H3K36me3",
+  "model": "nt_v2_500m",
+  "regime": "full_finetune",
+  "lr": 1e-05,
+  "load_path": "seqcls",
+  "n_classes": 2,
+  "max_len_tok": 87,
+  "n_train": 26683,
+  "n_dev": 4709,
+  "n_test": 3488,
+  "cap_train": 0,
+  "warmup": "linear 10%",
+  "dev_carve": "stratified 15% seed 42",
+  "collapsed_to_majority_class": false,
+  "runs": [
+    {
+      "seed": 42,
+      "dev_mcc": 0.6202,
+      "best_epoch": 2,
+      "test_mcc": 0.6181,
+      "test_acc": 0.8105,
+      "test_macro_f1": 0.809,
+      "n_pred_classes": 2
+    },
+    {
+      "seed": 43,
+      "dev_mcc": 0.6241,
+      "best_epoch": 1,
+      "test_mcc": 0.6158,
+      "test_acc": 0.8093,
+      "test_macro_f1": 0.8061,
+      "n_pred_classes": 2
+    },
+    {
+      "seed": 44,
+      "dev_mcc": 0.6342,
+      "best_epoch": 2,
+      "test_mcc": 0.6287,
+      "test_acc": 0.8157,
+      "test_macro_f1": 0.8125,
+      "n_pred_classes": 2
+    }
+  ],
+  "test_mcc_mean": 0.6209,
+  "test_mcc_sd": 0.0069
+}

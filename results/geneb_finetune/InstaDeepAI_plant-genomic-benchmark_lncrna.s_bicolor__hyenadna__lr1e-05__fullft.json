@@ -1,0 +1,47 @@
+{
+  "task": "InstaDeepAI_plant-genomic-benchmark_lncrna.s_bicolor",
+  "model": "hyenadna",
+  "regime": "full_finetune",
+  "lr": 1e-05,
+  "load_path": "seqcls",
+  "n_classes": 2,
+  "max_len_tok": 5975,
+  "n_train": 7355,
+  "n_dev": 1299,
+  "n_test": 734,
+  "cap_train": 0,
+  "warmup": "linear 10%",
+  "dev_carve": "stratified 15% seed 42",
+  "collapsed_to_majority_class": false,
+  "runs": [
+    {
+      "seed": 42,
+      "dev_mcc": 0.3589,
+      "best_epoch": 5,
+      "test_mcc": 0.3295,
+      "test_acc": 0.6621,
+      "test_macro_f1": 0.6621,
+      "n_pred_classes": 2
+    },
+    {
+      "seed": 43,
+      "dev_mcc": 0.3243,
+      "best_epoch": 5,
+      "test_mcc": 0.285,
+      "test_acc": 0.6417,
+      "test_macro_f1": 0.6415,
+      "n_pred_classes": 2
+    },
+    {
+      "seed": 44,
+      "dev_mcc": 0.346,
+      "best_epoch": 8,
+      "test_mcc": 0.3327,
+      "test_acc": 0.6662,
+      "test_macro_f1": 0.6658,
+      "n_pred_classes": 2
+    }
+  ],
+  "test_mcc_mean": 0.3157,
+  "test_mcc_sd": 0.0267
+}

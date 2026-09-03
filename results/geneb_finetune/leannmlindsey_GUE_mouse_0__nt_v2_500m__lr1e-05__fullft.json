@@ -1,0 +1,47 @@
+{
+  "task": "leannmlindsey_GUE_mouse_0",
+  "model": "nt_v2_500m",
+  "regime": "full_finetune",
+  "lr": 1e-05,
+  "load_path": "seqcls",
+  "n_classes": 2,
+  "max_len_tok": 20,
+  "n_train": 5506,
+  "n_dev": 972,
+  "n_test": 810,
+  "cap_train": 0,
+  "warmup": "linear 10%",
+  "dev_carve": "stratified 15% seed 42",
+  "collapsed_to_majority_class": false,
+  "runs": [
+    {
+      "seed": 42,
+      "dev_mcc": 0.6531,
+      "best_epoch": 3,
+      "test_mcc": 0.6199,
+      "test_acc": 0.8062,
+      "test_macro_f1": 0.805,
+      "n_pred_classes": 2
+    },
+    {
+      "seed": 43,
+      "dev_mcc": 0.6383,
+      "best_epoch": 3,
+      "test_mcc": 0.6265,
+      "test_acc": 0.8111,
+      "test_macro_f1": 0.8105,
+      "n_pred_classes": 2
+    },
+    {
+      "seed": 44,
+      "dev_mcc": 0.6607,
+      "best_epoch": 4,
+      "test_mcc": 0.6613,
+      "test_acc": 0.8296,
+      "test_macro_f1": 0.8294,
+      "n_pred_classes": 2
+    }
+  ],
+  "test_mcc_mean": 0.6359,
+  "test_mcc_sd": 0.0222
+}

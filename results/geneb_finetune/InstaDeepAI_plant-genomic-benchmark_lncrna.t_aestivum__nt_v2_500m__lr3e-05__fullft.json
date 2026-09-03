@@ -1,0 +1,47 @@
+{
+  "task": "InstaDeepAI_plant-genomic-benchmark_lncrna.t_aestivum",
+  "model": "nt_v2_500m",
+  "regime": "full_finetune",
+  "lr": 3e-05,
+  "load_path": "seqcls",
+  "n_classes": 2,
+  "max_len_tok": 817,
+  "n_train": 9564,
+  "n_dev": 1688,
+  "n_test": 1810,
+  "cap_train": 0,
+  "warmup": "linear 10%",
+  "dev_carve": "stratified 15% seed 42",
+  "collapsed_to_majority_class": false,
+  "runs": [
+    {
+      "seed": 42,
+      "dev_mcc": 0.4964,
+      "best_epoch": 3,
+      "test_mcc": 0.5132,
+      "test_acc": 0.732,
+      "test_macro_f1": 0.7126,
+      "n_pred_classes": 2
+    },
+    {
+      "seed": 43,
+      "dev_mcc": 0.4495,
+      "best_epoch": 1,
+      "test_mcc": 0.412,
+      "test_acc": 0.6801,
+      "test_macro_f1": 0.6495,
+      "n_pred_classes": 2
+    },
+    {
+      "seed": 44,
+      "dev_mcc": 0.4851,
+      "best_epoch": 2,
+      "test_mcc": 0.4542,
+      "test_acc": 0.7105,
+      "test_macro_f1": 0.6928,
+      "n_pred_classes": 2
+    }
+  ],
+  "test_mcc_mean": 0.4598,
+  "test_mcc_sd": 0.0508
+}
