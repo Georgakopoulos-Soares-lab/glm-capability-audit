@@ -32,6 +32,44 @@ most likely to survive review.
 
 ---
 
+---
+
+## HViLM — the specialised viral model, audited
+
+Added 2026-08-30 (`results/hvilm/`, `duttaprat/HViLM-Patho`). This supersedes any
+statement that the SOTA viral model was not tested.
+
+| head | split | n | AUROC | MCC |
+|:--|:--|--:|--:|--:|
+| patho | Pathogenecity, identity-disjoint | 5,194 | **0.9879** | 0.8739 |
+| patho | Host_Tropism, identity-disjoint | 8,390 | 0.6909 | 0.2578 |
+| patho | Host_Tropism, **strict id70/cov30** | 3,391 | **0.5582** | **0.0173** |
+| tropism | Host_Tropism, identity-disjoint | 8,390 | 0.7925 | 0.5758 |
+| tropism | Host_Tropism, **strict id70/cov30** | 3,391 | 0.6467 | 0.3621 |
+| tropism | Pathogenecity, identity-disjoint | 5,194 | 0.7531 | 0.5725 |
+
+The specialised model scores **0.988 AUROC on the split the benchmark calls
+identity-disjoint, and 0.558 — chance, MCC 0.017 — once homology is actually
+removed.** This is the benchmark-validity defect demonstrated on the field's own
+model with the benchmark's own labels, and it is the strongest single result in
+the project.
+
+Missing cell: no strict-split Pathogenecity run. See `OPEN_RUNS.md` R5.
+
+## Generative axis — the Evo number is an artifact, not a measurement
+
+`results/viral_likelihood/fullctx8000_cap200__evo_hyenadna.json` reports
+`"evo": 0.0` with `evo_bases_scored: [0, 0]` and `evo_skipped: [100, 100]`. Evo
+scored zero bases; the derived `evo_vs_markov_indist = -1.969` is an artifact of
+that zero. **No Evo likelihood result currently exists.**
+
+Separately, on this corpus every Markov order lands at 1.956–1.99 bits/base and
+HyenaDNA at 1.97–2.00, against a uniform-DNA floor of 2.0 — so nothing evaluated,
+Markov included, achieves a meaningful advantage over uniform composition. The
+only entry below the floor is `generator12` at 1.891 (in-distribution) / 1.887
+(OOD). Any claim ranking Markov against Evo is unsupported. See `OPEN_RUNS.md` R6.
+
+
 ## 2. What we have run
 
 ### 2.1 Models

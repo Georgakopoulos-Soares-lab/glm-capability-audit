@@ -15,8 +15,8 @@ Working title, thesis, and section plan: **[reports/PAPER_OUTLINE.md](reports/PA
 
 ## The result in one table
 
-The choice of *model* is the smallest lever we measured. Evaluation-method choices
-dominate it by one to two orders of magnitude.
+Evaluation-method choices move results far more than the margin by which the best
+model beats the best baseline.
 
 | lever | measured spread | where |
 |:--|--:|:--|
@@ -28,10 +28,18 @@ dominate it by one to two orders of magnitude.
 | model, everything else fixed | **0.32** macro-F1 | ViroBench family: NT-v2 0.611 → LucaVirus 0.295 |
 | **best model vs best baseline** | **+0.01 to +0.015** MCC | splice: NT-v2 0.9674 vs CNN ladder 0.9528 |
 
-The last two rows are the point: the entire four-model spread on a fixed split is
-smaller than the spread from changing the split, and the margin by which the best
-model beats the best baseline is **40–60× smaller than the artifacts we found in
-the evaluation method**.
+The last two rows are the point, and they are two different quantities — keep them
+apart:
+
+- **Model excess over the best baseline is +0.01–0.015.** Every method lever above
+  is **25–45× larger** than that. This is the strong claim.
+- **Model spread, everything else fixed, is 0.32.** Changing the split (0.37) moves
+  results only ~1.2× more than changing the model. So "method dominates model" is
+  true of the *excess*, not of the *spread*.
+
+Conflating the two — quoting a 5–15× multiplier against a 0.32 spread — is the
+first thing a referee will check. See
+[reports/FINDINGS.md](reports/FINDINGS.md) F1.
 
 ### Three independent failure modes, each with a measured instance
 
@@ -52,6 +60,14 @@ the evaluation method**.
    nearest-hit beats the best gLM by 0.115 macro-F1. Comparing a gLM only to a
    k-mer model, on a taxonomic task, omits the method that actually solves it.
 
+### The specialised viral model shows the defect on itself
+
+HViLM (`duttaprat/HViLM-Patho`) scores **0.9879 AUROC** on the HVUE Pathogenecity
+split the benchmark calls identity-disjoint, and **0.5582 — chance, MCC 0.017** —
+on Host_Tropism once homology is actually removed. The benchmark-validity defect,
+on the field's own specialised model, with the benchmark's own labels. Full table:
+[reports/STATE_OF_EVIDENCE.md](reports/STATE_OF_EVIDENCE.md).
+
 ### The positive controls that make the null informative
 
 Same harness, same protocols, non-viral tasks: GENA-LM wins 11 of 13 GENEB
@@ -68,6 +84,8 @@ significant model excess ([reports/ERASABLE_EXCESS.md](reports/ERASABLE_EXCESS.m
 
 | # | document | what it gives you |
 |--:|:--|:--|
+| 0 | [reports/FINDINGS.md](reports/FINDINGS.md) | **the claim ledger.** Eight findings, each marked SOLID or CONTINGENT, with its evidence path and the framing risk a referee will attack. Start here |
+| 0 | [reports/OPEN_RUNS.md](reports/OPEN_RUNS.md) | **the work queue.** Seven runs, ordered, each naming the findings it gates |
 | 1 | [reports/PAPER_OUTLINE.md](reports/PAPER_OUTLINE.md) | the thesis, why this framing survives review, section-by-section plan |
 | 2 | [reports/STATE_OF_EVIDENCE.md](reports/STATE_OF_EVIDENCE.md) | **every number, with provenance.** Own runs vs `C2` (Vista cluster) vs published. Start here for any table |
 | 3 | [reports/PAPER_DESIGN.md](reports/PAPER_DESIGN.md) | the validity grid the design rests on, and what populates each quadrant |
@@ -202,7 +220,9 @@ referee will ask about.
 - **GENEB remainder**: 87 of 100 tasks untouched.
 - **Never run**: ESM-2 / ESM-1v (pLMs), DNABERT-2 (blocked by a `config_class`
   conflict with transformers ≥4.48), Caduceus, Evo-2, GenoJEPA; protein one-hot +
-  biochemical baselines.
+  biochemical baselines. HViLM **has** been run — see above.
+- **The Evo likelihood run is broken** (0 bases scored, all sequences skipped), so
+  there is currently no Evo generative result. `reports/OPEN_RUNS.md` R6.
 - **Frozen-probe layer sweep** was done only on ViroBench family; elsewhere the
   read-out layer is `L−1`, worth 0.02–0.04 macro-F1.
 - **CNN ladder coverage** is 9 task-cells, not all of them.
