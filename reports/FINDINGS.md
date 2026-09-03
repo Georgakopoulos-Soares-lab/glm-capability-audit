@@ -32,11 +32,11 @@ Method-of-evaluation choices move results far more than model choice.
 
 | lever | spread | evidence |
 |:--|--:|:--|
-| baseline architecture | 0.66 MCC | `results/capacity_sweep/`, 13-cell ladder on splice |
+| baseline architecture | **0.69** MCC | `results/capacity_sweep/`, splice_all ladder 0.2771 → 0.9695 |
 | adaptation regime | 0.60 MCC | `results/splice_finetune/`, frozen 0.3636 → full FT 0.9674 |
 | split / subset choice | 0.37 macro-F1 | `results/virobench/`, k-mer3-6 0.9252 → 0.5566 |
 | homology-audit tool | 0.80 → 0.02 | `reports/mmseqs_leakage_check.csv` + partial-overlap audit |
-| comparator class | 0.115 macro-F1 | `results/virobench_frozen/`, alignment 0.7383 vs gLM 0.6148 |
+| comparator class | 0.17 macro-F1 | `results/aligner_reconcile.json`, mmseqs 0.7823 vs best gLM 0.6148 (hit-only 0.947) |
 | model, everything else fixed | **0.32** macro-F1 | `results/virobench_glm/`, NT-v2 0.611 → LucaVirus 0.295 |
 | best model vs best baseline | **+0.01–0.015** MCC | splice: NT-v2 0.9674 vs CNN 0.9528 |
 
@@ -60,7 +60,7 @@ magnitude, not a within-task decomposition.
 
 ---
 
-## F2 — The homology-audit tool defect · **SOLID pending threshold sensitivity**
+## F2 — The homology-audit tool defect · **SOLID — threshold gate closed**
 
 MMseqs2 `easy-cluster` at `-c 0.9` requires 90% bidirectional coverage and is
 therefore blind to partial homology. Splits it certifies as identity-disjoint
@@ -74,41 +74,99 @@ alignment) is required.
 - Propagates beyond this paper: PathoLM used the same tool. This is the cleanest
   methods contribution here and the field can adopt it immediately.
 
-**Gate:** the 70% identity / 30% coverage threshold is ours, not a field standard.
-Re-run the audit at 80–90% identity and report the range. If the leak figure
-survives at field-standard thresholds the finding is much harder to dismiss; if it
-does not, the claim must be scoped to the threshold. See OPEN_RUNS R4.
+**The threshold gate is closed, and the answer is the strong one.** From
+`results/hvue_official_leakage.json`, % of test rows with a training hit:
+
+| task | exact dup | id90/cov50 | id70/cov30 |
+|:--|--:|--:|--:|
+| Host_Tropism | 3.04 | 32.62 | 60.14 |
+| Pathogenecity / BVBRC_Calci | 0.00 | **99.76** | 99.99 |
+| Pathogenecity / BVBRC_CoV | 0.00 | **99.55** | 99.95 |
+| Pathogenecity / CINI | 0.00 | **91.01** | 96.51 |
+
+Pathogenecity is 91–99.8% leaked at **90% identity / 50% coverage** — the
+strictest setting anyone calls standard. The 70/30 threshold was never
+load-bearing, and the finding cannot be dismissed as threshold-shopping. Note
+Host_Tropism is far less leaked (32.6%), which is consistent with it being the one
+task retaining a candidate positive.
+
+`results/partial_overlap_audit.json` additionally shows the official
+*identity_disjoint* splits are themselves 42%+ leaked at id90/cov50 — the split
+label is wrong, not merely optimistic.
 
 ---
 
 ## F3 — Receptive field, not capacity, binds CNN baselines · **SOLID**
 
-A 0.26M-parameter U-Net with global receptive field beats a 9.44M-parameter ResNet
-with an 89 bp receptive field by **0.62 MCC** on a 600 bp splice task (0.951 vs
-0.336). Published FM-over-CNN gaps of +0.31–0.60 shrink to +0.02–0.03 once the
-baseline can see the input.
+A CNN's receptive field, not its parameter count, determines whether it is a fair
+baseline. Recomputed from `results/capacity_sweep/geneb__..._splice_sites_all.json`
+(**seqlen 400**, MCC, n_test 3000):
 
-- Evidence: `results/capacity_sweep/` (per-cell params and `rf_bp`),
-  `reports/BASELINE_CAPACITY_CEILING.md`.
-- The arithmetic is unit-tested: `tests/test_capacity_sweep.py` pins the 89 bp and
+| arch | params | RF (bp) | test MCC |
+|:--|--:|--:|--:|
+| unet | **0.149M** | global | **0.9685** |
+| unet | 0.257M | global | 0.9655 |
+| dilated | 9.335M | 505 | 0.9695 |
+| resnet | 6.076M | 89 | 0.3163 |
+| resnet | **9.438M** | **89** | **0.3073** |
+| dilated | 0.406M | 21 | 0.2771 |
+
+A **0.149M** U-Net beats a **9.438M** ResNet by **0.661 MCC** at 63× fewer
+parameters, purely because it spans the input. Ladder spread is **0.692**.
+Published FM-over-CNN gaps of +0.31–0.60 shrink to +0.02–0.03 once the baseline
+can see the sequence.
+
+- Evidence: `results/capacity_sweep/`, `reports/BASELINE_CAPACITY_CEILING.md`,
+  and the verified table in `results/README.md`.
+- Unit-tested: `tests/test_capacity_sweep.py` pins the 89 bp arithmetic and
   asserts the incumbent baseline (dilated/128/5, **249 bp**) cannot span 600 bp.
-- Mechanistic, generalisable, and it explains prior weak-baseline results rather
-  than merely reporting them. Strongest self-contained contribution.
+- Mechanistic and generalisable — it explains prior weak-baseline results rather
+  than merely reporting them.
+
+> **Number corrections required before submission.** `PAPER_OUTLINE.md` and
+> `STATE_OF_EVIDENCE.md` currently say "ResNet 9.44M (RF 89bp) = 0.336 vs U-Net
+> 0.26M (global) = 0.951 on **600bp** splice" and quote ladder endpoints
+> "0.2909 → 0.9538 (U-Net 5.3M)". Against the committed artifacts: the task is
+> `splice_sites_all` at **400 bp** (the 600 bp task is
+> `revised_splice_sites_acceptors`, where RF-89 ResNet scores **0.499**);
+> RF-89 ResNet on splice_all is **0.3073** and the 0.26M U-Net is **0.9655**; the
+> endpoints are **0.3095** and **0.963**. The `test` field is already
+> seed-aggregated with `test_sd`, so this is not a seed-averaging artifact.
+> The finding is unaffected and in fact stronger — but every quoted number must
+> match a committed file.
 
 ---
 
-## F4 — Alignment is the missing comparator on taxonomy · **CONTINGENT — BLOCKED**
+## F4 — Alignment is the missing comparator on taxonomy · **SOLID — reconciled 2026-09-03**
 
-A parameter-free nearest-hit aligner beats every model on ViroBench taxonomy
-(0.7383 vs best gLM 0.6148), winning on ~10–13% coverage of a conserved gene.
-Viral family taxonomy is an alignment problem, not a capability problem.
+A parameter-free nearest-hit aligner solves ViroBench family assignment far better
+than any model. Viral family taxonomy is an alignment problem, not a capability
+problem.
 
-- Evidence: `results/virobench_frozen/`,
-  `reports/virobench_full_spec_baselines.md`.
-- **Blocker: mmseqs nearest-hit 0.738 vs BLASTn 0.424 — a 0.31 discrepancy
-  between two implementations of the same comparator.** Until reconciled, the
-  number cannot be published: a referee will simply ask which is right. See
-  OPEN_RUNS R2.
+**The 0.738-vs-0.424 blocker is resolved** (`results/aligner_reconcile.json`): the
+gap was **hit rate, not accuracy**.
+
+| setting | hit rate | macro-F1 (all) | macro-F1 (hit-only) |
+|:--|--:|--:|--:|
+| BLASTn | 0.7671 | 0.5920 | **0.9364** |
+| mmseqs default | 0.8992 | **0.7823** | 0.9467 |
+| mmseqs permissive | 0.8501 | 0.7384 | **0.9637** |
+
+Where each tool aligns, the two agree to within 0.03 macro-F1. The old 0.7383 was
+the *permissive* setting; reconciled BLASTn is 0.592, not 0.424.
+
+**Frame it as coverage-limited alignment, which is stronger than the original
+claim:** alignment reaches **0.94–0.96 macro-F1 on the queries it can align**,
+against a best gLM of 0.6148. The task is solved by database lookup wherever a
+homolog exists; the only thing a model adds is coverage of the un-alignable
+remainder — and it does not add it well.
+
+Do **not** write "alignment beats every model by 0.115". On all queries BLASTn
+(0.592) is marginally *below* the best gLM (0.615); only mmseqs is above. The
+hit-only comparison is the one that holds for both tools.
+
+- Evidence: `results/aligner_reconcile.json`,
+  `results/virobench_alignment_family.json`, `results/virobench_frozen/`.
 
 ---
 
