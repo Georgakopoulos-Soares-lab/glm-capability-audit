@@ -41,6 +41,7 @@ OUT = P.sub("virobench_glm")
 # single GPU -- same cap virobench_baselines.py's CNN uses (--cnn_len 20000), so the
 # gLM and the CNN baseline see the same amount of sequence.
 MODELS = {
+ "dnabert2": ("zhihan1996/DNABERT-2-117M", "DNABERT2", 768, 5),   # needs dynamic-module load
     "hyenadna":   ("LongSafari/hyenadna-medium-160k-seqlen-hf", "AutoModel", 256, 20000),
     # LucaVirus: the model holding ViroBench's published taxonomy record. 944M params,
     # single-nucleotide tokenizer, max_position_embeddings=4096 -> effective context is
@@ -115,7 +116,12 @@ def main():
     tr, dv, te = (d[d[lv].isin(keep)].reset_index(drop=True) for d in (tr, dv, te))
     cls = sorted(keep); ix = {c: i for i, c in enumerate(cls)}
     for d in (tr, dv, te): d["y"] = d[lv].map(ix)
-    if len(tr) > a.cap: tr = tr.sample(a.cap, random_state=0).reset_index(drop=True)
+    # --cap 0 means NO CAP. Previously `len(tr) > a.cap` with cap=0 sampled 0 rows.
+    # The earlier ViroBench full-FT runs used the default cap=6000 against baselines
+    # trained on 46,389 rows -- a 7.7x deficit that voided them.
+    if a.cap and len(tr) > a.cap:
+        tr = tr.sample(a.cap, random_state=0).reset_index(drop=True)
+    print(f'  n_train={len(tr)} n_dev={len(dv)} n_test={len(te)} classes={len(cls)} cap={a.cap or "none"}', flush=True)
     ncls = len(cls)
 
     tok = AutoTokenizer.from_pretrained(mid, trust_remote_code=True)

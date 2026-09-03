@@ -33,8 +33,31 @@ MODELS = {
  "nt_v2_500m": ("InstaDeepAI/nucleotide-transformer-v2-500m-multi-species", 1024, 6),
  "gena_lm":    ("AIRI-Institute/gena-lm-bert-base-t2t", 512, 6),
  "hyenadna":   ("LongSafari/hyenadna-medium-160k-seqlen-hf", 8192, 1),
+ "dnabert2":   ("zhihan1996/DNABERT-2-117M", 512, 5),   # BPE, ~5 bp/token
 }
 HEAD_NAMES = ("classifier", "head", "score", "cls.")
+
+
+def load_dnabert2(ncls):
+    """DNABERT-2 needs a bespoke load path.
+
+    1. `AutoModel` raises `config_class` mismatch: AutoConfig returns the STOCK BertConfig
+       (model_type='bert') while the remote model expects its own remote BertConfig.
+       Fix: pull both classes from the dynamic module.
+    2. Its vendored `flash_attn_triton.py` calls `tl.dot(..., trans_b=True)`, removed in
+       triton 3.x -> AssertionError on CPU, compile error on GPU. `bert_layers.py` has a plain
+       PyTorch attention fallback gated on its module-global `flash_attn_qkvpacked_func`;
+       setting that to None takes the mathematically-equivalent path.
+    3. It does NOT return hidden_states, so DNABERT-2 cannot be layer-swept. Every other model
+       gets a dev-selected layer (worth +0.02-0.04); this is a handicap and must be reported.
+    """
+    import sys as _s
+    from transformers.dynamic_module_utils import get_class_from_dynamic_module
+    mid = MODELS["dnabert2"][0]
+    CfgCls = get_class_from_dynamic_module("configuration_bert.BertConfig", mid)
+    SeqCls = get_class_from_dynamic_module("bert_layers.BertForSequenceClassification", mid)
+    _s.modules[SeqCls.__module__].flash_attn_qkvpacked_func = None
+    return SeqCls.from_pretrained(mid, config=CfgCls.from_pretrained(mid, num_labels=ncls))
 
 
 class EncoderWithHead(nn.Module):
@@ -112,7 +135,7 @@ def main():
     tok = AutoTokenizer.from_pretrained(mid, trust_remote_code=True)
     def tk(seqs):
         e = tok(list(seqs), padding="longest", truncation=True, max_length=ml, return_tensors="pt")
-        return e["input_ids"], e.get("attention_mask")
+        return e["input_ids"], e.get("attention_mask")   # token_type_ids deliberately dropped
     Xtr, Mtr = tk(tr.text); Xdv, Mdv = tk(dv.text); Xte, Mte = tk(te.text)
     print(f"  tokenized to {Xtr.shape[1]} tokens", flush=True)
     ytr = torch.tensor(tr.label.values, dtype=torch.long)
@@ -121,10 +144,13 @@ def main():
     runs = []
     for si, seed in enumerate(a.seeds):
         torch.manual_seed(seed); np.random.seed(seed)
-        if si == 0: assert_no_fresh_encoder_weights(mid, path)
-        model = (EncoderWithHead(mid, ncls) if path == "automodel"
-                 else AutoModelForSequenceClassification.from_pretrained(
-                     mid, num_labels=ncls, trust_remote_code=True)).to(a.device)
+        if a.model == "dnabert2":
+            model = load_dnabert2(ncls).to(a.device)
+        else:
+            if si == 0: assert_no_fresh_encoder_weights(mid, path)
+            model = (EncoderWithHead(mid, ncls) if path == "automodel"
+                     else AutoModelForSequenceClassification.from_pretrained(
+                         mid, num_labels=ncls, trust_remote_code=True)).to(a.device)
         opt = torch.optim.AdamW(model.parameters(), lr=a.lr, weight_decay=0.01)
         spe = max(1, (len(Xtr) // a.bs) // a.accum); total = spe * a.epochs
         sch = get_linear_schedule_with_warmup(opt, int(0.1 * total), total)

@@ -35,10 +35,17 @@ for i, c in enumerate("ACGT"):
 
 # ---------------- architectures ----------------
 class Dilated(nn.Module):
-    def __init__(self, ncls, ch, nb, drop=0.2):
+    """Kernel size k and dilation base b are SWEPT, not fixed.
+
+    arXiv:2411.02796 finds that tuning kernel size and dilation rate is what lets a plain CNN
+    match genomic FMs; our own receptive-field result says the same thing mechanistically.
+    RF = 1 + sum_i (k-1) * b**min(i,8).
+    """
+    def __init__(self, ncls, ch, nb, drop=0.2, k=9, dbase=2):
         super().__init__(); self.emb = nn.Embedding(5, 16); L, cin = [], 16
         for i in range(nb):
-            L += [nn.Conv1d(cin, ch, 9, padding=2**min(i,8)*4, dilation=2**min(i,8)),
+            dil = dbase ** min(i, 8)
+            L += [nn.Conv1d(cin, ch, k, padding=dil * (k // 2), dilation=dil),
                   nn.BatchNorm1d(ch), nn.GELU(), nn.Dropout(drop)]; cin = ch
         self.conv = nn.Sequential(*L)
         self.head = nn.Sequential(nn.Linear(2*ch, 256), nn.GELU(), nn.Dropout(drop), nn.Linear(256, ncls))
@@ -49,18 +56,18 @@ class Dilated(nn.Module):
 class UNet(nn.Module):
     """Encoder/decoder with skip connections -- multi-scale receptive field without
     exponential dilation, the natural 'more capacity' alternative for long sequences."""
-    def __init__(self, ncls, ch, depth, drop=0.2):
+    def __init__(self, ncls, ch, depth, drop=0.2, k=9, dbase=2):
         super().__init__(); self.emb = nn.Embedding(5, 16)
         self.down, self.up = nn.ModuleList(), nn.ModuleList()
-        cin = 16
+        cin = 16; pad = k // 2
         chans = [ch * (2**min(i, 3)) for i in range(depth)]
         for c in chans:
-            self.down.append(nn.Sequential(nn.Conv1d(cin, c, 9, padding=4), nn.BatchNorm1d(c),
-                                           nn.GELU(), nn.Conv1d(c, c, 9, stride=4, padding=4),
+            self.down.append(nn.Sequential(nn.Conv1d(cin, c, k, padding=pad), nn.BatchNorm1d(c),
+                                           nn.GELU(), nn.Conv1d(c, c, k, stride=4, padding=pad),
                                            nn.BatchNorm1d(c), nn.GELU(), nn.Dropout(drop)))
             cin = c
         for i in range(depth - 1, 0, -1):
-            self.up.append(nn.Sequential(nn.Conv1d(chans[i] + chans[i-1], chans[i-1], 9, padding=4),
+            self.up.append(nn.Sequential(nn.Conv1d(chans[i] + chans[i-1], chans[i-1], k, padding=pad),
                                          nn.BatchNorm1d(chans[i-1]), nn.GELU(), nn.Dropout(drop)))
         self.head = nn.Sequential(nn.Linear(2*chans[0], 256), nn.GELU(), nn.Dropout(drop), nn.Linear(256, ncls))
     def forward(self, x):
@@ -74,24 +81,34 @@ class UNet(nn.Module):
         return self.head(torch.cat([h.max(-1).values, h.mean(-1)], -1))
 
 class ResBlk(nn.Module):
-    def __init__(self, c, drop):
-        super().__init__()
-        self.b = nn.Sequential(nn.Conv1d(c, c, 9, padding=4), nn.BatchNorm1d(c), nn.GELU(),
-                               nn.Dropout(drop), nn.Conv1d(c, c, 9, padding=4), nn.BatchNorm1d(c))
+    def __init__(self, c, drop, k=9, dil=1):
+        super().__init__(); pad = dil * (k // 2)
+        self.b = nn.Sequential(nn.Conv1d(c, c, k, padding=pad, dilation=dil), nn.BatchNorm1d(c),
+                               nn.GELU(), nn.Dropout(drop),
+                               nn.Conv1d(c, c, k, padding=pad, dilation=dil), nn.BatchNorm1d(c))
     def forward(self, x): return F.gelu(x + self.b(x))
 
 class ResNet(nn.Module):
-    def __init__(self, ncls, ch, nb, drop=0.2):
+    """dbase>1 makes this a DILATED residual net (SpliceAI/ChromBPNet-style); dbase=1 is plain."""
+    def __init__(self, ncls, ch, nb, drop=0.2, k=9, dbase=1):
         super().__init__(); self.emb = nn.Embedding(5, 16)
-        self.stem = nn.Sequential(nn.Conv1d(16, ch, 9, padding=4), nn.BatchNorm1d(ch), nn.GELU())
-        self.body = nn.Sequential(*[ResBlk(ch, drop) for _ in range(nb)])
+        self.stem = nn.Sequential(nn.Conv1d(16, ch, k, padding=k//2), nn.BatchNorm1d(ch), nn.GELU())
+        self.body = nn.Sequential(*[ResBlk(ch, drop, k, dbase ** min(i, 8)) for i in range(nb)])
         self.head = nn.Sequential(nn.Linear(2*ch, 256), nn.GELU(), nn.Dropout(drop), nn.Linear(256, ncls))
     def forward(self, x):
         h = self.body(self.stem(self.emb(x).transpose(1, 2)))
         return self.head(torch.cat([h.max(-1).values, h.mean(-1)], -1))
 
-def build(arch, ncls, ch, nb):
-    return {"dilated": Dilated, "unet": UNet, "resnet": ResNet}[arch](ncls, ch, nb)
+def build(arch, ncls, ch, nb, k=9, dbase=None):
+    if dbase is None: dbase = 1 if arch == "resnet" else 2
+    return {"dilated": Dilated, "unet": UNet, "resnet": ResNet}[arch](ncls, ch, nb, k=k, dbase=dbase)
+
+
+def receptive_field(arch, nb, k, dbase):
+    """RF in bp. U-Net downsamples 4x per level so it is effectively global."""
+    if arch == "unet": return None
+    if arch == "dilated": return 1 + sum((k - 1) * dbase ** min(i, 8) for i in range(nb))
+    return 1 + (k - 1) + sum(2 * (k - 1) * dbase ** min(i, 8) for i in range(nb))
 
 # capacity ladder: (arch, ch, blocks) chosen to span ~0.1M -> ~10M
 LADDER = [
@@ -145,6 +162,8 @@ def load(ds, task, level, seqcap, min_count=1):
                 tr_all.iloc[i_dv].reset_index(drop=True), te, "label", "mcc")
     if ds == "virobench":
         # identical construction to virobench_baselines.py so the ladder is directly comparable
+        # virobench_baselines lives in scripts/track_b_viral/, not scripts/common/
+        sys.path.insert(0, os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'track_b_viral'))
         import virobench_baselines as VBB
         tr, dv, te = (VBB.load("ALL", "times", x) for x in ("train", "val", "test"))
         # min_count MUST match virobench_frozen_probe.py (default 1) or the label space
@@ -169,8 +188,16 @@ def main():
     ap.add_argument("--epochs", type=int, default=30); ap.add_argument("--bs", type=int, default=64)
     ap.add_argument("--lrs", nargs="+", type=float, default=[1e-3, 3e-4, 3e-3],
                     help="LR grid; the FMs get one, so the baseline must too")
+    ap.add_argument("--refit_seeds", type=int, default=0, help="re-run the dev-selected cell at N seeds")
+    ap.add_argument("--force", action="store_true", help="redo even if the output json exists")
+    ap.add_argument("--kernels", nargs="+", type=int, default=[5, 9, 15, 21])
+    ap.add_argument("--dbases", nargs="+", type=int, default=[1, 2, 4])
+    ap.add_argument("--topk2", type=int, default=3, help="RF configs carried into the LR sweep")
     ap.add_argument("--topk", type=int, default=3, help="architectures carried into the LR sweep"); ap.add_argument("--device", default="cuda:0")
     a = ap.parse_args()
+    _tag = f"{a.dataset}__{a.task}" + (f"__{os.environ['VB_SPLIT_SUFFIX']}" if os.environ.get('VB_SPLIT_SUFFIX') else "") + (f"__{a.level}" if a.dataset == "virobench" else "")
+    if not a.force and os.path.exists(f"{OUT}/{_tag}.json"):
+        print(f"SKIP {_tag}.json already exists (use --force to redo)", flush=True); return
     tr, dv, te, ycol, metric = load(a.dataset, a.task, a.level, a.seqlen, a.min_count)
     L = a.seqlen or int(pd.concat([tr, dv, te]).sequence.str.len().max())
     ncls = int(pd.concat([tr,dv,te])[ycol].nunique())
@@ -183,12 +210,12 @@ def main():
         if metric == "auroc": return float(roc_auc_score(y, prob))
         if metric == "macro_f1": return float(f1_score(y, p, average="macro", zero_division=0))
         return float(matthews_corrcoef(y, p))
-    def run_cell(arch, ch, nb, lr, seeds):
+    def run_cell(arch, ch, nb, lr, seeds, k=9, dbase=None):
         """Train one (architecture, lr) cell over `seeds`; return per-seed dev/test."""
         per = []
         for seed in seeds:
             torch.manual_seed(seed); np.random.seed(seed)
-            m = build(arch, ncls, ch, nb).to(a.device)
+            m = build(arch, ncls, ch, nb, k=k, dbase=dbase).to(a.device)
             opt = torch.optim.AdamW(m.parameters(), lr=lr, weight_decay=1e-2)
             sch = torch.optim.lr_scheduler.CosineAnnealingLR(opt, a.epochs)
             def pred(I):
@@ -221,43 +248,79 @@ def main():
             del m; torch.cuda.empty_cache()
         return per
 
-    # ---- STAGE 1: architecture search at the base LR, 1 seed ----
-    stage1 = []
-    for arch, ch, nb in LADDER:
-        npar = sum(p.numel() for p in build(arch, ncls, ch, nb).parameters())
-        per = run_cell(arch, ch, nb, a.lrs[0], a.seeds[:1])
-        if per is None:
-            print(f"  [s1] {arch}-{ch}x{nb} ({npar/1e6:.2f}M): OOM", flush=True); continue
-        stage1.append(dict(arch=arch, ch=ch, blocks=nb, params=npar, params_M=round(npar/1e6,3),
-                           lr=a.lrs[0], dev=per[0]['dev'], test=per[0]['test'], runs=per))
-        print(f"  [s1] {arch:<8} ch={ch:<4} nb={nb} {npar/1e6:6.2f}M lr={a.lrs[0]:<7g} "
-              f"dev={per[0]['dev']:.4f} test={per[0]['test']:.4f}", flush=True)
-    topk = sorted(stage1, key=lambda r: -r['dev'])[:a.topk]
-    print(f"  [s1] top-{a.topk} by dev: {[(r['arch'], r['params_M']) for r in topk]}", flush=True)
+    def rec(arch, ch, nb, k, dbase, lr, per):
+        npar = sum(p.numel() for p in build(arch, ncls, ch, nb, k=k, dbase=dbase).parameters())
+        dv = float(np.mean([q['dev'] for q in per])); te = float(np.mean([q['test'] for q in per]))
+        return dict(arch=arch, ch=ch, blocks=nb, k=k, dbase=dbase, lr=lr,
+                    params=npar, params_M=round(npar/1e6, 3),
+                    rf_bp=receptive_field(arch, nb, k, dbase), dev=round(dv, 4), test=round(te, 4),
+                    test_sd=round(float(np.std([q['test'] for q in per], ddof=1)), 4) if len(per) > 1 else None,
+                    runs=per)
 
-    # ---- STAGE 2: LR grid on the top-K architectures, all seeds ----
-    # The FMs get an LR sweep; without this the CNN baseline is under-tuned by construction
-    # and any FM margin is confounded with baseline tuning effort.
-    rows = list(stage1)
-    for r0 in topk:
+    rows = []
+    # ---- STAGE 1: architecture x capacity, default kernel/dilation, base LR, 1 seed ----
+    s1 = []
+    for arch, ch, nb in LADDER:
+        db = 1 if arch == "resnet" else 2
+        per = run_cell(arch, ch, nb, a.lrs[0], a.seeds[:1], k=9, dbase=db)
+        if per is None:
+            print(f"  [s1] {arch}-{ch}x{nb}: OOM", flush=True); continue
+        r = rec(arch, ch, nb, 9, db, a.lrs[0], per); s1.append(r); rows.append(r)
+        print(f"  [s1] {arch:<8} ch={ch:<4} nb={nb} {r['params_M']:>6}M RF={str(r['rf_bp']):>6} "
+              f"dev={r['dev']:.4f} test={r['test']:.4f}", flush=True)
+    top1 = sorted(s1, key=lambda r: -r['dev'])[:a.topk]
+    print(f"  [s1] top-{a.topk}: {[(r['arch'], r['params_M']) for r in top1]}", flush=True)
+
+    # ---- STAGE 2: RECEPTIVE FIELD -- sweep kernel size x dilation base ----
+    # arXiv:2411.02796: tuning kernel size and dilation is what lets a CNN match genomic FMs.
+    # These change RF at ~no parameter cost (dilated 0.68M: RF 249 at dbase=2 vs 2729 at dbase=4).
+    s2 = list(top1)
+    for r0 in top1:
+        combos = ([(k, 1) for k in a.kernels] if r0['arch'] == "unet"      # unet has no dilation
+                  else [(k, db) for k in a.kernels for db in a.dbases])
+        for k, db in combos:
+            if k == 9 and db == (1 if r0['arch'] == "resnet" else 2): continue   # already in s1
+            per = run_cell(r0['arch'], r0['ch'], r0['blocks'], a.lrs[0], a.seeds[:1], k=k, dbase=db)
+            if per is None: continue
+            r = rec(r0['arch'], r0['ch'], r0['blocks'], k, db, a.lrs[0], per); s2.append(r); rows.append(r)
+            print(f"  [s2] {r0['arch']:<8} {r0['params_M']:>6}M k={k:<3} d={db} RF={str(r['rf_bp']):>6} "
+                  f"{r['params_M']:>6}M dev={r['dev']:.4f} test={r['test']:.4f}", flush=True)
+    top2 = sorted(s2, key=lambda r: -r['dev'])[:a.topk2]
+    print(f"  [s2] top-{a.topk2}: {[(r['arch'], r['k'], r['dbase'], r['rf_bp']) for r in top2]}", flush=True)
+
+    # ---- STAGE 3: LR grid on the best RF configs, all seeds ----
+    for r0 in top2:
         for lr in a.lrs:
-            seeds = a.seeds if lr != a.lrs[0] else a.seeds[1:]   # stage 1 already did (lr0, seed0)
+            seeds = a.seeds if lr != a.lrs[0] else a.seeds[1:]
             if not seeds: continue
-            per = run_cell(r0['arch'], r0['ch'], r0['blocks'], lr, seeds)
+            per = run_cell(r0['arch'], r0['ch'], r0['blocks'], lr, seeds, k=r0['k'], dbase=r0['dbase'])
             if per is None: continue
             if lr == a.lrs[0]: per = r0['runs'] + per
-            dv_m = float(np.mean([p['dev'] for p in per])); te_m = float(np.mean([p['test'] for p in per]))
-            rows.append(dict(arch=r0['arch'], ch=r0['ch'], blocks=r0['blocks'], params=r0['params'],
-                             params_M=r0['params_M'], lr=lr, dev=round(dv_m,4), test=round(te_m,4),
-                             test_sd=round(float(np.std([p['test'] for p in per], ddof=1)),4) if len(per)>1 else None,
-                             runs=per))
-            print(f"  [s2] {r0['arch']:<8} {r0['params_M']:>7}M lr={lr:<7g} "
-                  f"dev={dv_m:.4f} test={te_m:.4f}", flush=True)
+            r = rec(r0['arch'], r0['ch'], r0['blocks'], r0['k'], r0['dbase'], lr, per); rows.append(r)
+            print(f"  [s3] {r0['arch']:<8} k={r0['k']:<3} d={r0['dbase']} lr={lr:<7g} "
+                  f"dev={r['dev']:.4f} test={r['test']:.4f}", flush=True)
+
     best_by_dev = max(rows, key=lambda r: r['dev'])
+    if a.refit_seeds and len(best_by_dev.get('runs', [])) < a.refit_seeds:
+        need = list(range(42, 42 + a.refit_seeds))
+        print(f"  [refit] dev-selected cell at {a.refit_seeds} seeds "
+              f"({best_by_dev['arch']} k={best_by_dev.get('k')} d={best_by_dev.get('dbase')} lr={best_by_dev.get('lr')})",
+              flush=True)
+        per = run_cell(best_by_dev['arch'], best_by_dev['ch'], best_by_dev['blocks'],
+                       best_by_dev['lr'], need, k=best_by_dev.get('k', 9), dbase=best_by_dev.get('dbase'))
+        if per:
+            t = [q['test'] for q in per]
+            best_by_dev = dict(best_by_dev, runs=per, dev=round(float(np.mean([q['dev'] for q in per])), 4),
+                               test=round(float(np.mean(t)), 4),
+                               test_sd=round(float(np.std(t, ddof=1)), 4) if len(t) > 1 else None,
+                               refit_seeds=a.refit_seeds)
+            rows.append(best_by_dev)
+            print(f"  [refit] TEST={best_by_dev['test']:.4f} +/-{best_by_dev['test_sd']} over {len(t)} seeds", flush=True)
     res = dict(dataset=a.dataset, task=a.task, metric=metric, n_classes=ncls, seqlen=L,
                n_train=len(tr), n_dev=len(dv), n_test=len(te), seeds=a.seeds,
                ladder=rows,
-               dev_selected=dict(arch=best_by_dev['arch'], params_M=best_by_dev['params_M'], lr=best_by_dev.get('lr'),
+               dev_selected=dict(n_seeds=len(best_by_dev.get('runs',[])), test_sd=best_by_dev.get('test_sd'), arch=best_by_dev['arch'], params_M=best_by_dev['params_M'], lr=best_by_dev.get('lr'),
+                                 k=best_by_dev.get('k'), dbase=best_by_dev.get('dbase'), rf_bp=best_by_dev.get('rf_bp'),
                                  dev=best_by_dev['dev'], test=best_by_dev['test']),
                oracle_best_test=max(r['test'] for r in rows),
                incumbent=next(({k: r[k] for k in ('arch','params_M','dev','test')} for r in rows
@@ -265,7 +328,9 @@ def main():
     os.makedirs(OUT, exist_ok=True)
     tag = f"{a.dataset}__{a.task}" + (f"__{os.environ['VB_SPLIT_SUFFIX']}" if os.environ.get('VB_SPLIT_SUFFIX') else "") + (f"__{a.level}" if a.dataset == "virobench" else "")
     json.dump(res, open(f"{OUT}/{tag}.json","w"), indent=2)
-    print(f"\n  DEV-SELECTED: {best_by_dev['arch']} @ {best_by_dev['params_M']}M lr={best_by_dev.get('lr')} -> test {best_by_dev['test']:.4f}")
+    print(f"\n  DEV-SELECTED: {best_by_dev['arch']} @ {best_by_dev['params_M']}M k={best_by_dev.get('k')} "
+          f"dbase={best_by_dev.get('dbase')} RF={best_by_dev.get('rf_bp')} lr={best_by_dev.get('lr')} "
+          f"-> test {best_by_dev['test']:.4f}")
     print(f"  oracle best test across ladder: {res['oracle_best_test']:.4f} (report as oracle, not as the baseline)")
     print(f"  wrote {OUT}/{tag}.json", flush=True)
 

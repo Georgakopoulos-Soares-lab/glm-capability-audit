@@ -37,6 +37,7 @@ except Exception: pass
 
 OUT = P.sub("virobench_frozen")
 MODELS = {   # name: (hf_id, loader, hidden, bp_per_token)
+ "dnabert2": ("zhihan1996/DNABERT-2-117M", "DNABERT2", 768, 5),   # needs dynamic-module load
  "lucavirus":  ("LucaGroup/LucaVirus-default-step3.8M", "AutoModel", 2560, 1),
  "hyenadna":   ("LongSafari/hyenadna-medium-160k-seqlen-hf", "AutoModel", 256, 1),
  "gena_lm":    ("AIRI-Institute/gena-lm-bert-base-t2t", "AutoModel", 768, 6),
