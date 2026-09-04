@@ -91,6 +91,8 @@ significant model excess ([reports/ERASABLE_EXCESS.md](reports/ERASABLE_EXCESS.m
 
 | # | document | what it gives you |
 |--:|:--|:--|
+| 0 | [reports/PUBLISHING.md](reports/PUBLISHING.md) | **how to publish this.** Venue, strengths ranked by what carries the paper, writing order, limitations, pre-submission checklist |
+| 0 | [reports/README.md](reports/README.md) | index of every document, grouped by role |
 | 0 | [reports/FINDINGS.md](reports/FINDINGS.md) | **the claim ledger.** Eight findings, each marked SOLID or CONTINGENT, with its evidence path and the framing risk a referee will attack. Start here |
 | 0 | [reports/OPEN_RUNS.md](reports/OPEN_RUNS.md) | **the work queue.** What is closed, what remains, each item naming the findings it gates |
 | 0 | [results/README.md](results/README.md) | **the evidence map.** Every artifact → what it shows → which finding → which script. Cite from here |
@@ -109,7 +111,7 @@ Supporting: [MEASUREMENT_PROTOCOL.md](reports/MEASUREMENT_PROTOCOL.md),
 [CROSS_CLUSTER_SYNTHESIS.md](reports/CROSS_CLUSTER_SYNTHESIS.md),
 [RESEARCH_PLAN.md](reports/RESEARCH_PLAN.md),
 [PRIOR_WORK_DASHA_COMPARISON.md](reports/PRIOR_WORK_DASHA_COMPARISON.md),
-[OUTCOME_FOR_UNLEARNING.md](reports/OUTCOME_FOR_UNLEARNING.md) — what this means
+[OUTCOME_FOR_UNLEARNING.md](reports/unlearning/OUTCOME_FOR_UNLEARNING.md) — what this means
 for the sister unlearning project.
 
 `reports/archive/` holds superseded working documents. **Do not cite them**; cite
@@ -181,7 +183,10 @@ scripts/
                      comparator, gLM probes, LoRA, viral likelihood
   geneb/             GENEB fair-k-mer sentinel and feature extractors
   positive_control/  GUE / NT / EPI split preparation and leakage checks
-reports/             the paper-facing documents, plus small result tables
+reports/             manuscript-facing documents (16 files, flat)
+  experiments/       per-experiment notes
+  tables/            small CSV/JSON summary tables
+  unlearning/        the sister unlearning project — not part of this paper
   archive/           superseded working documents — not for citation
 results/             482 committed run artifacts (~2.3 MB): JSON summaries and
                      per-example .npz predictions
