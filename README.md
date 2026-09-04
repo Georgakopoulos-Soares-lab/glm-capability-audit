@@ -248,7 +248,6 @@ referee will ask about.
   receptive-field arithmetic, the equivalence verdict. The training and
   extraction paths are exercised by running them, not by unit tests.
 
-
 ---
 
 MIT — see [LICENSE](LICENSE).
