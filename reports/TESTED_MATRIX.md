@@ -4,28 +4,45 @@ Legend: **D** done and trusted · **P** partial · **X** not run · **!** run bu
 
 ## Track A — benchmark & method audit
 
+**Derived from `../results/` on 2026-09-03, not from memory.** Counts are committed
+artifacts. The previous version of this table predated most of the runs and marked
+several completed cells as gaps; see `../results/README.md` for the artifact map.
+
 | benchmark | tasks | k-mer | CNN ladder | frozen probe | LoRA | full FT |
 |:--|--:|:--|:--|:--|:--|:--|
-| NT splice | 3 | **D** | **D** (13-cell) | **D** (3 models) | X | **D** (3 models × 3 LR × 3 seeds) |
-| GENEB sentinel | 13 | **D** (fair refit) | **X ← critical gap** | **D** (3 models, layer NOT swept) | X | X |
-| GENEB remainder | 87 | X | X | X | X | X |
-| GUE non-viral | 12 | **D** | **P** (1 arch) | X | X | vs published only |
+| NT splice | 3 | **D** | **D** — 3 tasks, 56-cell ladder (`capacity_sweep/splice__*`) | **D** (3 models) | X | **D** — `splice_finetune/` (17) |
+| GENEB | 27 scored / 34 laddered | **D** (fair refit) | **D** — 34 tasks × 56 cells × {dilated, unet, resnet} | **D** (3 models, layer NOT swept) | **P** — Evo-1 only (`geneb_evo/`, 7) | **D** — 27 tasks × 4 models × 3 LR × 3 seeds = 321 summaries |
+| GENEB remainder | ~66 of 100 | X | X | X | X | X |
+| GUE non-viral | 12 | **D** | **P** (1 arch) | **D** — `gue_glm*/` (37) | X | vs published only |
 | NT benchmark | 18 | **D** | **P** (1 arch) | X | X | vs published only |
 | EPI | 6 | **D** | **D** | X | X | X |
 | DART-Eval task 1 | 1 | **D** | **D** | X | X | X |
+| learning curves | 13 | — | — | — | — | **D** — `learning_curve/` |
+
+Models with full-FT GENEB coverage: **NT-v2-500M, DNABERT-2, GENA-LM, HyenaDNA**
+(~81 summaries each). Seeds: LR swept on seed 42, then seeds 43/44 at the
+dev-selected LR — the correct pattern. `ERASABLE_EXCESS.md` finalises 22 tasks with
+3 seeds on both arms; **21 of 22 rows have n=3**, the single exception being
+NT:H4 / DNABERT-2 at n=1.
+
+**DNABERT-2 is fully covered.** Earlier notes calling it "blocked by a
+`config_class` conflict" or "never run" are stale: pinning `transformers<4.48`
+fixed it, and it is the best gLM on 10 of the 22 `ERASABLE_EXCESS` tasks. It also
+serves as a harness check — our full-FT run beats the *published* DNABERT-2 number
+on the identical checkpoint by +0.0482.
 
 ## Track B — viral capability
 
 | benchmark | tasks | k-mer | CNN ladder | alignment | frozen probe | LoRA | full FT |
 |:--|--:|:--|:--|:--|:--|:--|:--|
-| ViroBench ALL/times | 5 levels | **D** (matched ctx at family; **P** elsewhere) | **D** | **D** family only | **D** (layer swept at family) | X | X |
+| ViroBench ALL/times | 5 levels | **D** (matched ctx at family; **P** elsewhere) | **D** — ladder at all 5 levels | **D** family, **reconciled** (`aligner_reconcile.json`) | **D** (layer swept at family) | X | X |
 | ViroBench ALL/genus | 5 levels | X | X | X | **X ← harder split, no gLM data** | X | X |
 | ViroBench DNA/RNA subsets | — | **P** | X | X | **P** | X | X |
-| HVUE Host_Tropism (strict) | 1 | **D** | **D** | X | **D** (3 models × 3 seeds) | X | X |
-| HVUE Path./Trans. | 2 | ! | ! | X | ! | ! | ! |
+| HVUE Host_Tropism (strict) | 1 | **D** | **D** — `capacity_sweep/hvue__Host_Tropism__strict*` | X | **D** (3 models × 3 seeds) | X | X |
+| HVUE Path./Trans. | 2 | ! | **D** ladder exists (`capacity_sweep/hvue__{Pathogenecity,Transmissibility}`) but ! on the split | X | ! | ! | ! |
 | HVUE composition-gated splits | 3 | ! | ! | X | ! | ! | ! |
 | GUE viral (deduped) | 2 | **D** | **D** | X | X | X | **D** (3 models × 3 seeds) |
-| ProteinGym viral | 22 | X | X | X (MSA needed) | X | X | X |
+| ProteinGym viral | 22 | **P** | X | X (MSA needed) | X | X | **P** — `proteingym_supervised/` (30) |
 | Antibody escape | 3 | **D** (MSA) | X | X | X | **P** | **P** |
 
 **!** on HVUE Path./Trans. = the task retains 96/5,194 and 60/4,956 homology-clean test rows;
@@ -40,8 +57,10 @@ splits = built in the k-mer's feature space and gated on k-mer degradation; inva
 | GENA-LM-bert-base-t2t | 111M | D | D | D | D | D |
 | HyenaDNA-medium-160k | 7M | D | D | D | D | D |
 | LucaVirus | 944M | X | D (4 layers) | X | X | X |
-| Evo-1-8k | 6.5B | P (LoRA) | X | X | X | X |
-| ESM-2 / ESM-1v / pLMs | — | — | — | — | — | X (ProteinGym pending) |
+| Evo-1-8k | 6.5B | P (LoRA) | X | X | X | P (LoRA, `geneb_evo/`) |
+| **DNABERT-2** | 117M | X | X | X | X | **D** (27 tasks × 3 LR × 3 seeds) |
+| **HViLM-Patho / -Tropism** | — | **D** (leaky **and** strict splits, `hvilm/`) | X | X | X | X |
+| ESM-2 / ESM-1v / pLMs | — | — | — | — | — | X |
 
 ## Splits used, and what each licenses
 

@@ -222,18 +222,22 @@ equivalence", and the tests enforce that
 Taken from [reports/TESTED_MATRIX.md](reports/TESTED_MATRIX.md); these are what a
 referee will ask about.
 
-- **GENEB CNN ladder** is marked a critical gap on the 13 sentinel tasks: the
-  frozen-probe wins there are k-mer-anchored, and a tuned CNN is the binding
-  baseline everywhere it has been run.
-- **GENEB remainder**: 87 of 100 tasks untouched.
-- **Never run**: ESM-2 / ESM-1v (pLMs), DNABERT-2 (blocked by a `config_class`
-  conflict with transformers ≥4.48), Caduceus, Evo-2, GenoJEPA; protein one-hot +
-  biochemical baselines. HViLM **has** been run — see above.
+- **GENEB remainder**: roughly 66 of 100 tasks untouched. (The "GENEB CNN ladder is
+  a critical gap" note in older docs is **stale** — 34 GENEB tasks have a 56-cell
+  ladder across all three architectures.)
+- **Never run**: ESM-2 / ESM-1v (pLMs), Caduceus, Evo-2, GenoJEPA; protein one-hot
+  + biochemical baselines. **HViLM and DNABERT-2 have both been run** — DNABERT-2
+  has GENEB full-FT coverage on 27 tasks (3 LRs, 3 seeds) and is the best gLM on 10
+  of 22 tasks; the `config_class` conflict was fixed by pinning
+  `transformers<4.48`.
 - **The Evo likelihood run is broken** (0 bases scored, all sequences skipped), so
   there is currently no Evo generative result. `reports/OPEN_RUNS.md` R6.
 - **Frozen-probe layer sweep** was done only on ViroBench family; elsewhere the
   read-out layer is `L−1`, worth 0.02–0.04 macro-F1.
-- **CNN ladder coverage** is 9 task-cells, not all of them.
+- **One single-seed cell** remains: NT:H4 / DNABERT-2 at n=1 in a table headed
+  "3 seeds both arms".
+- **CNN ladder coverage**: 34 GENEB + 4 HVUE + 5 ViroBench levels + 3 splice.
+  Missing: GUE virus_covid.
 - **Evo-1** has LoRA-only coverage on HVUE and no ViroBench runs.
 - **Test coverage** is 41 tests over the pure logic — path resolution, the
   receptive-field arithmetic, the equivalence verdict. The training and

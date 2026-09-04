@@ -2,7 +2,7 @@
 
 Ordered by what most changes the paper. Each entry names the findings it gates.
 
-**Two of the original blockers turned out to be already done** — the artifacts
+**Most of this queue turned out to be already done** — the artifacts
 existed but were gitignored and undocumented. Check `results/README.md` before
 starting anything here; this project's recurring failure mode is re-running work
 that was already complete.
@@ -31,27 +31,33 @@ most of this project's life; do not reintroduce that.
 | **R5** HViLM on strict splits | **PARTLY DONE** | `results/hvilm/` has 6 runs; only strict-Pathogenecity is missing → **R3** below |
 | matched-size control for the strict drop | **DONE** | `results/matched_subsample_control.json` — strict is below the matched-random range in 100% of draws |
 | GENEB homology-vs-size decomposition | **DONE** | `results/homology_threshold_replication.json` — per task × model, with matched-size control bands |
+| **R1** 3-seed gLM refits | **21 of 22 DONE** | `ERASABLE_EXCESS.md` n=3 on 21 rows; only NT:H4 / DNABERT-2 is n=1. Seeds 43/44 exist at the dev-selected LR for all 4 models |
+| **GENEB CNN ladder** ("critical gap" in the old TESTED_MATRIX) | **DONE** | `results/capacity_sweep/geneb__*` — **34 tasks × 56 cells × 3 architectures** |
+| **GENEB full FT** | **DONE** | 27 tasks × 4 models × 3 LR × 3 seeds = 321 summaries in `results/geneb_finetune/` |
+| **R4** viral CNN ladder | **MOSTLY DONE** | `capacity_sweep/hvue__*` (4: Host_Tropism, strict, Pathogenecity, Transmissibility) and `virobench__ALL_times__*` (all 5 levels). Only GUE virus_covid is missing |
+| DNABERT-2 coverage | **DONE** | 216 artifacts, 27 tasks; the `config_class` block was fixed by pinning `transformers<4.48` |
 
 ---
 
-## R1 — 3-seed gLM refits · gates **F1, F5** · highest priority
+## R1 — One missing seed cell · gates **F5** · small
 
-The small model margins (median +0.02, and every "significant" row in
-`ERASABLE_EXCESS.md`) rest on partial seed coverage. Without 3 seeds on both arms,
-F5's significance calls and F1's "best model vs best baseline" row stay
-provisional.
+Seed coverage is **already 3 seeds on 21 of 22 rows**. The only gap is
+**NT:H4 / DNABERT-2, currently n=1**:
 
 ```bash
-python scripts/track_a_benchmarks/geneb_finetune.py --seeds 42,43,44 --lr-sweep
+python scripts/track_a_benchmarks/geneb_finetune.py \
+  --task InstaDeepAI_nucleotide_transformer_downstream_tasks_H4 \
+  --model dnabert2 --seeds 43,44
 python scripts/track_a_benchmarks/aggregate_geneb.py       # rebuilds geneb_four_way.csv
 ```
 
-Afterwards: does every **YES** row in `ERASABLE_EXCESS.md` still clear 2·SD? Any
-that flips must be restated in `FINDINGS.md`.
+That row is already non-significant (−0.0095, 2·SD 0.0154), so it is unlikely to
+change a conclusion — but a single-seed cell in a table headed "3 seeds both arms"
+is exactly what a referee circles.
 
-Resolve while here: **GENA-LM wins 0 of 22 in `ERASABLE_EXCESS.md` but "11 of 13
-categories" elsewhere.** Different regimes and comparators — write the
-reconciliation down explicitly, or a referee reads it as an error.
+Resolve while here, and this one **does** matter: **GENA-LM wins 0 of 22 in
+`ERASABLE_EXCESS.md` but "11 of 13 categories" elsewhere.** Different regimes and
+comparators — write the reconciliation down explicitly, or it reads as an error.
 
 ---
 
@@ -96,15 +102,15 @@ the matched-size control alongside it, as was done for Host_Tropism.
 
 ## R4 — Viral CNN capacity search · gates **F6**
 
-The CNN ladder covers only 9 task-cells. The viral rows in F6 lean on a
-single-architecture CNN — exactly the mistake F3 criticises. Applying our own
-standard to our own negative result is not optional; a referee will ask.
+F6's viral rows must be measured against a *searched* CNN, not a single
+architecture — otherwise we commit the error F3 criticises.
+
+**Mostly already done** — `capacity_sweep/` has HVUE Host_Tropism (plain and
+strict), Pathogenecity, Transmissibility, and ViroBench at all five taxonomic
+levels, each a 56-cell ladder over three architectures. The one gap:
 
 ```bash
-python scripts/common/capacity_sweep.py --dataset hvue     --task Pathogenecity
-python scripts/common/capacity_sweep.py --dataset hvue     --task Host_Tropism
-python scripts/common/capacity_sweep.py --dataset gue      --task virus_covid
-python scripts/common/capacity_sweep.py --dataset virobench --level family
+python scripts/common/capacity_sweep.py --dataset gue --task virus_covid
 ```
 
 If a searched CNN raises the viral baselines, F6 strengthens. If it lowers them,
@@ -151,10 +157,14 @@ resolved.
 
 ## R7 — Optional: extend model coverage
 
-Only under reviewer pressure. Never-run per [TESTED_MATRIX.md](TESTED_MATRIX.md):
-ESM-2 / ESM-1v, Caduceus, Evo-2, GenoJEPA, protein one-hot + biochemical
-baselines. DNABERT-2 needs `transformers<4.48` (already pinned in
-`requirements.txt`).
+Only under reviewer pressure. Genuinely never run: ESM-2 / ESM-1v, Caduceus,
+Evo-2, GenoJEPA, protein one-hot + biochemical baselines.
+
+**DNABERT-2 is not a gap** — it has GENEB full-FT coverage on 27 tasks (3 LRs, 3
+seeds, 216 artifacts) and is the best gLM on 10 of 22 tasks in
+`ERASABLE_EXCESS.md`. The `config_class` conflict was resolved by pinning
+`transformers<4.48`, which `requirements.txt` already does. Older notes calling it
+"blocked" or "never run" are stale.
 
 The paper does not need these. F7's HViLM result already answers the coverage
 question that matters: the specialised viral model was tested, and it shows the

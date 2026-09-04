@@ -81,10 +81,17 @@ only entry below the floor is `generator12` at 1.891 (in-distribution) / 1.887
 | HyenaDNA-medium-160k | 7M | ✓ | ✓ | ✓ | ✓ | ✓ **C2** |
 | LucaVirus | 944M | — | ✓ (4 layers) | — | — | — |
 | Evo-1-8k | 6.5B | LoRA only | — | — | — | — |
+| DNABERT-2 | 117M | — | — | — | — | ✓ **full FT, 27 tasks × 3 LR × 3 seeds** |
 | **ESM-2 / ESM-1v (pLMs)** | — | — | — | — | — | **never run** |
-| DNABERT-2 / Caduceus / Evo-2 / GenoJEPA | — | — | — | — | — | **never run** |
+| Caduceus / Evo-2 / GenoJEPA | — | — | — | — | — | **never run** |
 
-DNABERT-2 is blocked by a `config_class` conflict with transformers 4.48.
+DNABERT-2 **was** blocked by a `config_class` conflict with transformers 4.48; pinning
+`transformers<4.48` resolved it and the model then ran. It has GENEB full-FT coverage on
+27 tasks (3 LRs, 3 seeds on the dev-selected LR, 216 artifacts in
+`results/geneb_finetune/`) and is the best gLM on 10 of the 22 tasks in
+`ERASABLE_EXCESS.md`. It is also a harness validation: our full-FT DNABERT-2 beats the
+*published* DNABERT-2 number on the identical checkpoint by **+0.0482**
+(`PRIOR_WORK_DASHA_COMPARISON.md`). Caduceus, Evo-2 and GenoJEPA remain unrun.
 
 ### 2.2 Baselines and comparators
 
@@ -293,7 +300,7 @@ DART-Eval's independent finding that ab initio models beat *all* probed DNALMs.
 12. **Full-FT subset**, 8–12 tasks × 3 models × 3 seeds, per `FULL_FT_DESIGN.md` criteria.
 
 ### Tier 3 — what reviewers will ask for, and why it is last
-13. **More models** — DNABERT-2, Caduceus, Evo-2, and especially
+13. **More models** — Caduceus, Evo-2, and especially
     [GenoJEPA](https://www.biorxiv.org/content/10.64898/2026.04.02.716255v1.full) /
     [JEPA-DNA](https://arxiv.org/pdf/2602.17162). Their claimed gains (+4.8% on splice for JEPA-DNA)
     are *smaller than our read-out-layer effect* and far smaller than the baseline-architecture

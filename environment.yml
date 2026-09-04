@@ -19,7 +19,7 @@ dependencies:
       # Install the CUDA build matching your driver; CPU wheels are fine for the
       # k-mer, CNN-ladder and homology work, and only the gLM runs need a GPU.
       - torch>=2.1
-      # DNABERT-2 is blocked on transformers>=4.48 by a config_class conflict.
+      # <4.48 is required: DNABERT-2 hits a config_class conflict above it.
       - "transformers>=4.40,<4.48"
       - peft>=0.10
       - huggingface_hub>=0.20
