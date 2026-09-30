@@ -18,7 +18,7 @@ from sklearn.preprocessing import StandardScaler
 from scipy.stats import spearmanr
 import warnings; warnings.filterwarnings("ignore")
 OUT = P.sub("proteingym_supervised")
-DMS = P.PROTEINGYM_DMS
+DMS = os.environ.get("VB_PGYM_DIR", "/data/nvidia/proteingym/DMS_ProteinGym_substitutions")
 AAS = "ACDEFGHIKLMNPQRSTVWY"
 # Kyte-Doolittle hydropathy, volume, charge, polarity -- a cheap biochemical featurisation
 KD = dict(zip(AAS, [1.8,2.5,-3.5,-3.5,2.8,-0.4,-3.2,4.5,-3.9,3.8,1.9,-3.5,-1.6,-3.5,-4.5,-0.8,-0.7,4.2,-0.9,-1.3]))

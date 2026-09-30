@@ -1,0 +1,13 @@
+{
+  "model": "gena_lm",
+  "task": "VHDB",
+  "regime": "frozen_linear_probe",
+  "representation": "masked mean over final hidden states",
+  "n_train": 8000,
+  "n_test": 3754,
+  "dim": 768,
+  "selected_C": 10.0,
+  "mcc": 0.0099,
+  "macro_f1": 0.4263,
+  "auprc": 0.1905
+}

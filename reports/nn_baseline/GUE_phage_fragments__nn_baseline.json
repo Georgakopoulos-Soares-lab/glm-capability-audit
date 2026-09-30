@@ -1,0 +1,17 @@
+{
+  "name": "GUE_phage_fragments",
+  "n_test": 4630,
+  "frac_with_nn": 0.4095,
+  "nn_lookup_fullset_majfallback": 0.6492,
+  "nn_lookup_hitrows_only": 0.8901,
+  "cnn_fullset": 0.8132,
+  "cnn_hitrows": 0.7884,
+  "hvilm_fullset": 0.7962,
+  "hvilm_hitrows": 0.7744,
+  "nt_v2_500m_fullset": 0.9197,
+  "nt_v2_500m_hitrows": 0.9184,
+  "gena_lm_fullset": 0.7079,
+  "gena_lm_hitrows": 0.667,
+  "hyenadna_fullset": 0.7838,
+  "hyenadna_hitrows": 0.7459
+}

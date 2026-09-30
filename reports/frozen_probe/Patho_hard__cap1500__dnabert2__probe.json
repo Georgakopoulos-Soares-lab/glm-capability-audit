@@ -1,0 +1,13 @@
+{
+  "model": "dnabert2",
+  "task": "Patho_hard__cap1500",
+  "regime": "frozen_linear_probe",
+  "representation": "masked mean over final hidden states",
+  "n_train": 1500,
+  "n_test": 1792,
+  "dim": 768,
+  "selected_C": 0.01,
+  "mcc": 0.5565,
+  "macro_f1": 0.7781,
+  "auprc": 0.8154
+}

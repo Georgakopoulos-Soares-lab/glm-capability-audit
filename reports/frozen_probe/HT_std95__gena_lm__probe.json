@@ -1,0 +1,13 @@
+{
+  "model": "gena_lm",
+  "task": "HT_std95",
+  "regime": "frozen_linear_probe",
+  "representation": "masked mean over final hidden states",
+  "n_train": 8000,
+  "n_test": 8000,
+  "dim": 768,
+  "selected_C": 0.001,
+  "mcc": 0.2562,
+  "macro_f1": 0.5542,
+  "auprc": 0.2397
+}

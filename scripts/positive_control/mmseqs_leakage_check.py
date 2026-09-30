@@ -9,11 +9,10 @@ Usage: python mmseqs_leakage_check.py
 """
 import os, subprocess, sys, tempfile
 import pandas as pd
-import paths as P
 
-MMSEQS = P.MMSEQS
-GUE_DIR = P.GUE_DIR
-SCRATCH = P.MMSEQS_SCRATCH
+MMSEQS = os.environ.get("VB_MMSEQS", "/scratch/10906/arisk/biojepa-env/.pixi/envs/default/bin/mmseqs")
+GUE_DIR = os.environ.get("VB_GUE_DIR", "/scratch/10906/arisk/genomic_unlearning_pc/results/gue_dir")
+SCRATCH = os.environ.get("VB_SCRATCH", "/scratch/10906/arisk/genomic_unlearning_pc/results/mmseqs_scratch")
 
 GUE_TASKS = [
     "gue_prom_core_all_official", "gue_prom_core_notata_official", "gue_prom_core_tata_official",
@@ -71,7 +70,7 @@ def main():
         results.append(cluster_overlap(tr.promoter.tolist(), te.promoter.tolist(), f"epi_{cell}_promoter"))
 
     df = pd.DataFrame(results)
-    out = os.path.join(P.REPORTS, "mmseqs_leakage_check.csv")
+    out = "/work/10906/arisk/vista/genomic-capability-unlearning/reports/mmseqs_leakage_check.csv"
     df.to_csv(out, index=False)
     print(f"\nwrote {out}")
 

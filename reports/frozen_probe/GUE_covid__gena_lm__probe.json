@@ -1,0 +1,12 @@
+{
+  "model": "gena_lm",
+  "task": "GUE_covid",
+  "regime": "frozen_linear_probe",
+  "representation": "masked mean over final hidden states",
+  "n_train": 8000,
+  "n_test": 8000,
+  "dim": 768,
+  "selected_C": 1.0,
+  "mcc": 0.4379,
+  "macro_f1": 0.5014
+}

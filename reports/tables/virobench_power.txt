@@ -1,0 +1,34 @@
+
+ALL_taxon_times   terminal stratum n=286   110 genera
+  class sizes  A 180  B 49  D3 16  E 14  C 10  D2 9  F 5  D1 3
+  8 class host, as ViroBench defines it
+      target  achieved  raw genus  calibrated MDE
+         0.0    -0.006      0.066           0.152
+         0.2     0.207      0.090           0.207
+         0.4     0.406      0.100           0.230
+         0.6     0.597      0.104           0.239
+  vertebrate host vs not (28 positive rows)
+      target  achieved  raw genus  calibrated MDE
+         0.0    -0.069      0.090           0.207
+         0.2     0.208      0.179           0.412
+         0.4     0.398      0.188           0.432
+         0.6     0.592      0.147           0.338
+  human host vs not (3 positive rows)
+    MDE undefined, the positive class is too small for the metric to be driven by anything but single rows
+
+RNA_taxon_times   terminal stratum n=125   64 genera
+  class sizes  B 64  D3 23  E 16  C 14  A 6  D1 1  F 1
+  8 class host, as ViroBench defines it
+      target  achieved  raw genus  calibrated MDE
+         0.0    -0.011      0.097           0.223
+         0.2     0.205      0.102           0.235
+         0.4     0.409      0.117           0.269
+         0.6     0.609      0.107           0.246
+  vertebrate host vs not (24 positive rows)
+      target  achieved  raw genus  calibrated MDE
+         0.0     0.072      0.198           0.455
+         0.2     0.053      0.196           0.451
+         0.4     0.406      0.182           0.419
+         0.6     0.596      0.180           0.414
+  human host vs not (1 positive rows)
+    MDE undefined, the positive class is too small for the metric to be driven by anything but single rows

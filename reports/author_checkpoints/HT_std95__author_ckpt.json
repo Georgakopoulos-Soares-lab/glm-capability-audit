@@ -1,0 +1,14 @@
+{
+  "name": "HT_std95",
+  "checkpoint": "duttaprat/HViLM-Tropism",
+  "n_test": 50817,
+  "mcc_as_shipped": 0.4901,
+  "mcc_flipped": -0.4901,
+  "label_orientation": "as-shipped",
+  "mcc": 0.4901,
+  "auprc": 0.4389,
+  "floor": 0.6185,
+  "floor_arm": "nn_lookup",
+  "excess": -0.1284,
+  "caveat": "authors' training split unauditable; treat as an upper bound"
+}

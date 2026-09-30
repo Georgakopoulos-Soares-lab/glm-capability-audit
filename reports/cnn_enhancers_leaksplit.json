@@ -1,0 +1,46 @@
+{
+ "task": "InstaDeepAI_nucleotide_transformer_downstream_tasks_enhancers",
+ "cfg": {
+  "arch": "dilated",
+  "ch": 128,
+  "blocks": 5,
+  "k": 5,
+  "dbase": 4,
+  "lr": 0.001
+ },
+ "runs": [
+  {
+   "seed": 42,
+   "dev": 0.927,
+   "best_epoch": 22,
+   "mcc_full": 0.6077,
+   "mcc_clean": 0.4095,
+   "acc_leaked": 0.97,
+   "acc_clean_pos": 0.54
+  },
+  {
+   "seed": 43,
+   "dev": 0.8816,
+   "best_epoch": 11,
+   "mcc_full": 0.5175,
+   "mcc_clean": 0.3688,
+   "acc_leaked": 0.83,
+   "acc_clean_pos": 0.51
+  },
+  {
+   "seed": 44,
+   "dev": 0.9167,
+   "best_epoch": 25,
+   "mcc_full": 0.5364,
+   "mcc_clean": 0.2902,
+   "acc_leaked": 0.93,
+   "acc_clean_pos": 0.39
+  }
+ ],
+ "mean": {
+  "mcc_full": 0.5539,
+  "mcc_clean": 0.3562,
+  "acc_leaked": 0.91,
+  "acc_clean_pos": 0.48
+ }
+}

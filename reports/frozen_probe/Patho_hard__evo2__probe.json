@@ -1,0 +1,13 @@
+{
+  "model": "evo2",
+  "task": "Patho_hard",
+  "regime": "frozen_linear_probe",
+  "representation": "mean-pooled hidden states, block 16/32 (hook)",
+  "n_train": 1500,
+  "n_test": 1500,
+  "dim": 4096,
+  "selected_C": 0.01,
+  "mcc": 0.5001,
+  "macro_f1": 0.7498,
+  "auprc": 0.8032
+}

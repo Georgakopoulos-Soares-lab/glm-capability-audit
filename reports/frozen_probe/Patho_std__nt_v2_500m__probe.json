@@ -1,0 +1,13 @@
+{
+  "model": "nt_v2_500m",
+  "task": "Patho_std",
+  "regime": "frozen_linear_probe",
+  "representation": "masked mean over final hidden states",
+  "n_train": 8000,
+  "n_test": 6651,
+  "dim": 1024,
+  "selected_C": 0.1,
+  "mcc": 0.4708,
+  "macro_f1": 0.7335,
+  "auprc": 0.7502
+}

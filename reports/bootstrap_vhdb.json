@@ -1,0 +1,58 @@
+{
+  "task": "vhdb_tropism_wf1000",
+  "n_test": 3754,
+  "n_clusters": 349,
+  "cluster_source": "column in test_full.csv",
+  "rows_per_cluster": 10.76,
+  "reps": 5000,
+  "baseline_full_test": 0.564,
+  "unit": "homology cluster",
+  "skipped_replicates": 0,
+  "results": {
+    "hvilm": {
+      "excess": 0.1651,
+      "ci": [
+        0.0305,
+        0.2627
+      ],
+      "p_le_0": 0.0042,
+      "boot_mean": 0.1411
+    },
+    "dnabert2": {
+      "excess": -0.0217,
+      "ci": [
+        -0.1118,
+        0.0322
+      ],
+      "p_le_0": 0.8516,
+      "boot_mean": -0.0389
+    },
+    "hyenadna": {
+      "excess": -0.0655,
+      "ci": [
+        -0.2772,
+        -0.0095
+      ],
+      "p_le_0": 0.9896,
+      "boot_mean": -0.1201
+    },
+    "nt_v2_500m": {
+      "excess": -0.1042,
+      "ci": [
+        -0.1929,
+        -0.0477
+      ],
+      "p_le_0": 0.9996,
+      "boot_mean": -0.1157
+    },
+    "gena_lm": {
+      "excess": -0.1086,
+      "ci": [
+        -0.2334,
+        -0.0631
+      ],
+      "p_le_0": 1.0,
+      "boot_mean": -0.1445
+    }
+  }
+}

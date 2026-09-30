@@ -1,0 +1,36 @@
+{
+  "name": "viral_vs_host",
+  "n_test": 1972,
+  "n_homolog_available": 817,
+  "bootstrap_unit": "ROW (anti-conservative)",
+  "frac_homolog_available": 0.4143,
+  "regimes": {
+    "homolog_available": {
+      "n": 817,
+      "floor": 1.0,
+      "floor_arm": "nn_lookup",
+      "baselines": {
+        "kmer": 0.9691,
+        "kmer_gbt": 0.9747,
+        "nn_lookup": 1.0
+      },
+      "models": {},
+      "nn_lookup_valid": true,
+      "bootstrap_unit": null,
+      "bootstrap_reps": null
+    },
+    "homolog_free": {
+      "n": 1155,
+      "floor": 0.9723,
+      "floor_arm": "kmer_gbt",
+      "baselines": {
+        "kmer": 0.9672,
+        "kmer_gbt": 0.9723
+      },
+      "models": {},
+      "nn_lookup_valid": false,
+      "bootstrap_unit": null,
+      "bootstrap_reps": null
+    }
+  }
+}

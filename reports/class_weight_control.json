@@ -1,0 +1,76 @@
+{
+ "HT hard_70": {
+  "hvilm": {
+   "unweighted": 0.7229,
+   "weighted": 0.6902,
+   "delta": -0.0328,
+   "lr": 3e-05,
+   "trunc": 0
+  },
+  "dnabert2": {
+   "unweighted": 0.5216,
+   "weighted": 0.4917,
+   "delta": -0.0298,
+   "lr": 1e-05,
+   "trunc": 0
+  },
+  "nt_v2_500m": {
+   "unweighted": 0.4763,
+   "weighted": 0.4655,
+   "delta": -0.0108,
+   "lr": 1e-05,
+   "trunc": 0
+  },
+  "gena_lm": {
+   "unweighted": 0.3763,
+   "weighted": 0.3886,
+   "delta": 0.0123,
+   "lr": 0.0001,
+   "trunc": 0
+  },
+  "hyenadna": {
+   "unweighted": 0.4172,
+   "weighted": 0.4445,
+   "delta": 0.0273,
+   "lr": 1e-05,
+   "trunc": 0
+  }
+ },
+ "HT std_95": {
+  "hvilm": {
+   "unweighted": 0.5596,
+   "weighted": 0.5254,
+   "delta": -0.0342,
+   "lr": 3e-05,
+   "trunc": 1
+  },
+  "dnabert2": {
+   "unweighted": 0.4208,
+   "weighted": 0.3826,
+   "delta": -0.0382,
+   "lr": 1e-05,
+   "trunc": 0
+  },
+  "nt_v2_500m": {
+   "unweighted": 0.3624,
+   "weighted": 0.3617,
+   "delta": -0.0007,
+   "lr": 1e-05,
+   "trunc": 0
+  },
+  "gena_lm": {
+   "unweighted": 0.3923,
+   "weighted": 0.3752,
+   "delta": -0.0171,
+   "lr": 0.0001,
+   "trunc": 0
+  },
+  "hyenadna": {
+   "unweighted": 0.3464,
+   "weighted": 0.3255,
+   "delta": -0.0208,
+   "lr": 1e-05,
+   "trunc": 0
+  }
+ }
+}

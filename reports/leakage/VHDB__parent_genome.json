@@ -1,0 +1,22 @@
+{
+  "name": "VHDB",
+  "n_train": 18958,
+  "n_test": 3754,
+  "exact_duplicate_frac": 0.0,
+  "revcomp_duplicate_frac": 0.0,
+  "shared_cluster_frac": 0.0,
+  "n_cluster_train": 1626,
+  "n_cluster_test": 349,
+  "shared_taxid_frac": 0.0,
+  "n_taxid_train": 1868,
+  "n_taxid_test": 372,
+  "shared_species_frac": 0.2613,
+  "n_species_train": 1399,
+  "n_species_test": 316,
+  "shared_genus_frac": 0.9084,
+  "n_genus_train": 301,
+  "n_genus_test": 143,
+  "shared_family_frac": 1.0,
+  "n_family_train": 23,
+  "n_family_test": 23
+}

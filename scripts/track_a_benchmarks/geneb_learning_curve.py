@@ -24,7 +24,7 @@ import transformers, logging
 transformers.logging.set_verbosity_error(); logging.getLogger("transformers").setLevel(logging.ERROR)
 import warnings; warnings.filterwarnings("ignore")
 from capacity_sweep import Dilated, UNet, ResNet, build, receptive_field   # shared architectures
-OUT = P.sub("learning_curve"); GENEB = P.GENEB_DIR
+OUT = P.sub("learning_curve"); GENEB = os.environ.get("VB_GENEB_DIR", "/data/nvidia/geneb_data/tasks")
 MAPI = np.full(256, 4, np.int64)
 for i,c in enumerate("ACGT"): MAPI[ord(c)]=i; MAPI[ord(c.lower())]=i
 FM = {"nt_v2_500m": ("InstaDeepAI/nucleotide-transformer-v2-500m-multi-species", 1024, 6),

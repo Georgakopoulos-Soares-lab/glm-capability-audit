@@ -1,0 +1,77 @@
+{
+  "source": "HuggingFace dataset YDXX/ViroBench",
+  "snapshot": "77461edda1bc4f3c0ea96008384a678fefe04a14",
+  "license": "cc-by-4.0",
+  "arxiv_on_card": "2605.25388",
+  "date_accessed": "2026-09-29",
+  "release_contents": [
+    "Classification/ALL/taxon/genus",
+    "Classification/ALL/taxon/times",
+    "Classification/DNA/taxon/genus",
+    "Classification/DNA/taxon/times",
+    "Classification/RNA/taxon/genus",
+    "Classification/RNA/taxon/times"
+  ],
+  "official_preprocessing_or_eval_code_present": false,
+  "note": "The release ships data only. No README, preprocessing script or evaluation code is present in the snapshot, and the arXiv identifier on the dataset card returns no record from the arXiv API. The model context-length and truncation policy used for the published results therefore cannot be reconstructed from the available release.",
+  "files": {
+    "ALL/taxon/times/train.csv": {
+      "sha256_16": "0ea550ac4ffb5ed8",
+      "rows": 46651
+    },
+    "ALL/taxon/times/val.csv": {
+      "sha256_16": "a99ec4582115abdb",
+      "rows": 5831
+    },
+    "ALL/taxon/times/test.csv": {
+      "sha256_16": "3c5e44b3254fcafa",
+      "rows": 5832
+    },
+    "ALL/taxon/genus/train.csv": {
+      "sha256_16": "ff7dc4b78356b4b7",
+      "rows": 46651
+    },
+    "ALL/taxon/genus/val.csv": {
+      "sha256_16": "9d58681f05357e74",
+      "rows": 5831
+    },
+    "ALL/taxon/genus/test.csv": {
+      "sha256_16": "3466f3db7e7b9a43",
+      "rows": 5832
+    }
+  },
+  "dates_times": {
+    "train": [
+      "1982-06-09",
+      "2017-10-21"
+    ],
+    "test": [
+      "2020-02-03",
+      "2025-07-12"
+    ]
+  },
+  "family_label_space_times": {
+    "official_families_train_union_test": 308,
+    "test_families": 238,
+    "test_families_absent_from_train": 65,
+    "test_rows_in_absent_families": 327,
+    "pct_test_rows_in_absent_families": 5.61
+  },
+  "dates_genus": {
+    "train": [
+      "1982-06-09",
+      "2025-07-12"
+    ],
+    "test": [
+      "1983-07-13",
+      "2024-10-21"
+    ]
+  },
+  "family_label_space_genus": {
+    "official_families_train_union_test": 310,
+    "test_families": 231,
+    "test_families_absent_from_train": 5,
+    "test_rows_in_absent_families": 5,
+    "pct_test_rows_in_absent_families": 0.09
+  }
+}

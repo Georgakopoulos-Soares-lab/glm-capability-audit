@@ -1,0 +1,13 @@
+{
+  "model": "nt_v2_500m",
+  "task": "HT_std95",
+  "regime": "frozen_linear_probe",
+  "representation": "masked mean over final hidden states",
+  "n_train": 8000,
+  "n_test": 8000,
+  "dim": 1024,
+  "selected_C": 0.01,
+  "mcc": 0.28,
+  "macro_f1": 0.5757,
+  "auprc": 0.2164
+}

@@ -1,0 +1,26 @@
+hvue_split,reddy_species,reddy_human_label,nucleotide_hit,translated_hit,best_translated_pident
+hard70,Blackleg ixovirus,False,False,True,65.7
+hard70,Drosophina B birnavirus,False,False,True,60.7
+hard70,Duck hepatitis B virus,False,False,True,75.0
+hard70,Equine picobirnavirus,False,False,True,44.0
+hard70,Gruiform aveparvovirus 1,False,False,True,72.7
+hard70,Heron hepatitis B virus,False,False,True,75.0
+hard70,Ostrich associated gemytondvirus 1,False,False,True,46.5
+hard70,Primate loriparvovirus 1,False,False,True,66.6
+hard70,Rabbit associated gemykroznavirus 1,False,False,True,61.7
+hard70,Rohelivirus A,False,False,True,75.0
+hard70,Torque teno equus virus 1,False,False,True,43.7
+hard70,Torque teno seal virus 4,False,False,True,47.7
+hard70,Torque teno tamarin virus,False,False,True,44.8
+std95,Blackleg ixovirus,False,False,True,62.1
+std95,Drosophina B birnavirus,False,False,True,60.7
+std95,Equine picobirnavirus,False,False,True,35.8
+std95,Gruiform aveparvovirus 1,False,False,True,72.7
+std95,Human associated gemyvongvirus 1,True,False,True,64.0
+std95,Laurel Lake laulavirus,False,False,True,47.9
+std95,Rabbit associated gemykroznavirus 1,False,False,True,60.0
+std95,Rodent chaphamaparvovirus 1,False,False,True,40.5
+std95,Rohelivirus A,False,False,True,75.0
+std95,Torque teno equus virus 1,False,False,True,39.7
+std95,Torque teno seal virus 4,False,False,True,48.8
+std95,Ungulate copiparvovirus 3,False,False,True,60.4

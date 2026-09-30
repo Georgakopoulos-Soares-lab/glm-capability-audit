@@ -1,0 +1,1186 @@
+{
+  "dataset": "hvue_v2",
+  "task": "Transmissibility/hard_capped_1000bp",
+  "metric": "mcc",
+  "n_classes": 2,
+  "seqlen": 1000,
+  "n_train": 27732,
+  "n_dev": 2178,
+  "n_test": 2497,
+  "seeds": [
+    42,
+    43
+  ],
+  "train_cap": 40000,
+  "class_weight": "balanced",
+  "ladder": [
+    {
+      "arch": "dilated",
+      "ch": 32,
+      "blocks": 3,
+      "k": 9,
+      "dbase": 2,
+      "lr": 0.001,
+      "params": 40562,
+      "params_M": 0.041,
+      "rf_bp": 57,
+      "dev": 0.6926,
+      "test": 0.5812,
+      "test_sd": null,
+      "runs": [
+        {
+          "seed": 42,
+          "dev": 0.6926,
+          "test": 0.5812,
+          "best_epoch": 10,
+          "test_aux": {
+            "mcc": 0.5812,
+            "auprc": 0.9033,
+            "auroc": 0.8836,
+            "pos_rate_pred": 0.5899
+          },
+          "predictions_path": "/home/nvidia/genomic-capability-unlearning/scratchpad/hvue_v2/preds/hvue_v2__Transmissibility__hard_capped_1000bp__cw_balanced__cnn_ceiling__s42__preds.npz"
+        }
+      ]
+    },
+    {
+      "arch": "dilated",
+      "ch": 64,
+      "blocks": 4,
+      "k": 9,
+      "dbase": 2,
+      "lr": 0.001,
+      "params": 154194,
+      "params_M": 0.154,
+      "rf_bp": 121,
+      "dev": 0.7681,
+      "test": 0.6103,
+      "test_sd": null,
+      "runs": [
+        {
+          "seed": 42,
+          "dev": 0.7681,
+          "test": 0.6103,
+          "best_epoch": 11,
+          "test_aux": {
+            "mcc": 0.6103,
+            "auprc": 0.9185,
+            "auroc": 0.8987,
+            "pos_rate_pred": 0.5875
+          },
+          "predictions_path": "/home/nvidia/genomic-capability-unlearning/scratchpad/hvue_v2/preds/hvue_v2__Transmissibility__hard_capped_1000bp__cw_balanced__cnn_ceiling__s42__preds.npz"
+        }
+      ]
+    },
+    {
+      "arch": "dilated",
+      "ch": 128,
+      "blocks": 5,
+      "k": 9,
+      "dbase": 2,
+      "lr": 0.001,
+      "params": 676562,
+      "params_M": 0.677,
+      "rf_bp": 249,
+      "dev": 0.7657,
+      "test": 0.6507,
+      "test_sd": null,
+      "runs": [
+        {
+          "seed": 42,
+          "dev": 0.7657,
+          "test": 0.6507,
+          "best_epoch": 15,
+          "test_aux": {
+            "mcc": 0.6507,
+            "auprc": 0.9278,
+            "auroc": 0.9155,
+            "pos_rate_pred": 0.5563
+          },
+          "predictions_path": "/home/nvidia/genomic-capability-unlearning/scratchpad/hvue_v2/preds/hvue_v2__Transmissibility__hard_capped_1000bp__cw_balanced__cnn_ceiling__s42__preds.npz"
+        }
+      ]
+    },
+    {
+      "arch": "dilated",
+      "ch": 256,
+      "blocks": 5,
+      "k": 9,
+      "dbase": 2,
+      "lr": 0.001,
+      "params": 2531922,
+      "params_M": 2.532,
+      "rf_bp": 249,
+      "dev": 0.764,
+      "test": 0.6407,
+      "test_sd": null,
+      "runs": [
+        {
+          "seed": 42,
+          "dev": 0.764,
+          "test": 0.6407,
+          "best_epoch": 10,
+          "test_aux": {
+            "mcc": 0.6407,
+            "auprc": 0.9174,
+            "auroc": 0.9034,
+            "pos_rate_pred": 0.5687
+          },
+          "predictions_path": "/home/nvidia/genomic-capability-unlearning/scratchpad/hvue_v2/preds/hvue_v2__Transmissibility__hard_capped_1000bp__cw_balanced__cnn_ceiling__s42__preds.npz"
+        }
+      ]
+    },
+    {
+      "arch": "dilated",
+      "ch": 448,
+      "blocks": 6,
+      "k": 9,
+      "dbase": 2,
+      "lr": 0.001,
+      "params": 9334482,
+      "params_M": 9.334,
+      "rf_bp": 505,
+      "dev": 0.771,
+      "test": 0.6524,
+      "test_sd": null,
+      "runs": [
+        {
+          "seed": 42,
+          "dev": 0.771,
+          "test": 0.6524,
+          "best_epoch": 17,
+          "test_aux": {
+            "mcc": 0.6524,
+            "auprc": 0.9221,
+            "auroc": 0.9091,
+            "pos_rate_pred": 0.537
+          },
+          "predictions_path": "/home/nvidia/genomic-capability-unlearning/scratchpad/hvue_v2/preds/hvue_v2__Transmissibility__hard_capped_1000bp__cw_balanced__cnn_ceiling__s42__preds.npz"
+        }
+      ]
+    },
+    {
+      "arch": "unet",
+      "ch": 24,
+      "blocks": 3,
+      "k": 9,
+      "dbase": 2,
+      "lr": 0.001,
+      "params": 256282,
+      "params_M": 0.256,
+      "rf_bp": null,
+      "dev": 0.3295,
+      "test": 0.3024,
+      "test_sd": null,
+      "runs": [
+        {
+          "seed": 42,
+          "dev": 0.3295,
+          "test": 0.3024,
+          "best_epoch": 6,
+          "test_aux": {
+            "mcc": 0.3024,
+            "auprc": 0.8065,
+            "auroc": 0.7762,
+            "pos_rate_pred": 0.1374
+          },
+          "predictions_path": "/home/nvidia/genomic-capability-unlearning/scratchpad/hvue_v2/preds/hvue_v2__Transmissibility__hard_capped_1000bp__cw_balanced__cnn_ceiling__s42__preds.npz"
+        }
+      ]
+    },
+    {
+      "arch": "unet",
+      "ch": 48,
+      "blocks": 3,
+      "k": 9,
+      "dbase": 2,
+      "lr": 0.001,
+      "params": 988642,
+      "params_M": 0.989,
+      "rf_bp": null,
+      "dev": 0.5649,
+      "test": 0.4989,
+      "test_sd": null,
+      "runs": [
+        {
+          "seed": 42,
+          "dev": 0.5649,
+          "test": 0.4989,
+          "best_epoch": 20,
+          "test_aux": {
+            "mcc": 0.4989,
+            "auprc": 0.8518,
+            "auroc": 0.8249,
+            "pos_rate_pred": 0.4361
+          },
+          "predictions_path": "/home/nvidia/genomic-capability-unlearning/scratchpad/hvue_v2/preds/hvue_v2__Transmissibility__hard_capped_1000bp__cw_balanced__cnn_ceiling__s42__preds.npz"
+        }
+      ]
+    },
+    {
+      "arch": "unet",
+      "ch": 112,
+      "blocks": 3,
+      "k": 9,
+      "dbase": 2,
+      "lr": 0.001,
+      "params": 5273250,
+      "params_M": 5.273,
+      "rf_bp": null,
+      "dev": 0.5792,
+      "test": 0.4365,
+      "test_sd": null,
+      "runs": [
+        {
+          "seed": 42,
+          "dev": 0.5792,
+          "test": 0.4365,
+          "best_epoch": 19,
+          "test_aux": {
+            "mcc": 0.4365,
+            "auprc": 0.8477,
+            "auroc": 0.8205,
+            "pos_rate_pred": 0.6684
+          },
+          "predictions_path": "/home/nvidia/genomic-capability-unlearning/scratchpad/hvue_v2/preds/hvue_v2__Transmissibility__hard_capped_1000bp__cw_balanced__cnn_ceiling__s42__preds.npz"
+        }
+      ]
+    },
+    {
+      "arch": "unet",
+      "ch": 64,
+      "blocks": 4,
+      "k": 9,
+      "dbase": 2,
+      "lr": 0.001,
+      "params": 7054098,
+      "params_M": 7.054,
+      "rf_bp": null,
+      "dev": 0.5674,
+      "test": 0.4415,
+      "test_sd": null,
+      "runs": [
+        {
+          "seed": 42,
+          "dev": 0.5674,
+          "test": 0.4415,
+          "best_epoch": 17,
+          "test_aux": {
+            "mcc": 0.4415,
+            "auprc": 0.8451,
+            "auroc": 0.8169,
+            "pos_rate_pred": 0.6312
+          },
+          "predictions_path": "/home/nvidia/genomic-capability-unlearning/scratchpad/hvue_v2/preds/hvue_v2__Transmissibility__hard_capped_1000bp__cw_balanced__cnn_ceiling__s42__preds.npz"
+        }
+      ]
+    },
+    {
+      "arch": "resnet",
+      "ch": 64,
+      "blocks": 3,
+      "k": 9,
+      "dbase": 1,
+      "lr": 0.001,
+      "params": 265362,
+      "params_M": 0.265,
+      "rf_bp": 57,
+      "dev": 0.7527,
+      "test": 0.6499,
+      "test_sd": null,
+      "runs": [
+        {
+          "seed": 42,
+          "dev": 0.7527,
+          "test": 0.6499,
+          "best_epoch": 21,
+          "test_aux": {
+            "mcc": 0.6499,
+            "auprc": 0.9248,
+            "auroc": 0.9125,
+            "pos_rate_pred": 0.6035
+          },
+          "predictions_path": "/home/nvidia/genomic-capability-unlearning/scratchpad/hvue_v2/preds/hvue_v2__Transmissibility__hard_capped_1000bp__cw_balanced__cnn_ceiling__s42__preds.npz"
+        }
+      ]
+    },
+    {
+      "arch": "resnet",
+      "ch": 128,
+      "blocks": 4,
+      "k": 9,
+      "dbase": 1,
+      "lr": 0.001,
+      "params": 1267922,
+      "params_M": 1.268,
+      "rf_bp": 73,
+      "dev": 0.7672,
+      "test": 0.6652,
+      "test_sd": null,
+      "runs": [
+        {
+          "seed": 42,
+          "dev": 0.7672,
+          "test": 0.6652,
+          "best_epoch": 13,
+          "test_aux": {
+            "mcc": 0.6652,
+            "auprc": 0.9292,
+            "auroc": 0.9178,
+            "pos_rate_pred": 0.5443
+          },
+          "predictions_path": "/home/nvidia/genomic-capability-unlearning/scratchpad/hvue_v2/preds/hvue_v2__Transmissibility__hard_capped_1000bp__cw_balanced__cnn_ceiling__s42__preds.npz"
+        }
+      ]
+    },
+    {
+      "arch": "resnet",
+      "ch": 256,
+      "blocks": 5,
+      "k": 9,
+      "dbase": 1,
+      "lr": 0.001,
+      "params": 6075474,
+      "params_M": 6.075,
+      "rf_bp": 89,
+      "dev": 0.7591,
+      "test": 0.6347,
+      "test_sd": null,
+      "runs": [
+        {
+          "seed": 42,
+          "dev": 0.7591,
+          "test": 0.6347,
+          "best_epoch": 10,
+          "test_aux": {
+            "mcc": 0.6347,
+            "auprc": 0.9266,
+            "auroc": 0.912,
+            "pos_rate_pred": 0.5378
+          },
+          "predictions_path": "/home/nvidia/genomic-capability-unlearning/scratchpad/hvue_v2/preds/hvue_v2__Transmissibility__hard_capped_1000bp__cw_balanced__cnn_ceiling__s42__preds.npz"
+        }
+      ]
+    },
+    {
+      "arch": "resnet",
+      "ch": 320,
+      "blocks": 5,
+      "k": 9,
+      "dbase": 1,
+      "lr": 0.001,
+      "params": 9437330,
+      "params_M": 9.437,
+      "rf_bp": 89,
+      "dev": 0.7817,
+      "test": 0.6503,
+      "test_sd": null,
+      "runs": [
+        {
+          "seed": 42,
+          "dev": 0.7817,
+          "test": 0.6503,
+          "best_epoch": 21,
+          "test_aux": {
+            "mcc": 0.6503,
+            "auprc": 0.9341,
+            "auroc": 0.9215,
+            "pos_rate_pred": 0.5795
+          },
+          "predictions_path": "/home/nvidia/genomic-capability-unlearning/scratchpad/hvue_v2/preds/hvue_v2__Transmissibility__hard_capped_1000bp__cw_balanced__cnn_ceiling__s42__preds.npz"
+        }
+      ]
+    },
+    {
+      "arch": "resnet",
+      "ch": 320,
+      "blocks": 5,
+      "k": 5,
+      "dbase": 1,
+      "lr": 0.001,
+      "params": 5320850,
+      "params_M": 5.321,
+      "rf_bp": 45,
+      "dev": 0.7639,
+      "test": 0.6276,
+      "test_sd": null,
+      "runs": [
+        {
+          "seed": 42,
+          "dev": 0.7639,
+          "test": 0.6276,
+          "best_epoch": 13,
+          "test_aux": {
+            "mcc": 0.6276,
+            "auprc": 0.9119,
+            "auroc": 0.8988,
+            "pos_rate_pred": 0.644
+          },
+          "predictions_path": "/home/nvidia/genomic-capability-unlearning/scratchpad/hvue_v2/preds/hvue_v2__Transmissibility__hard_capped_1000bp__cw_balanced__cnn_ceiling__s42__preds.npz"
+        }
+      ]
+    },
+    {
+      "arch": "resnet",
+      "ch": 320,
+      "blocks": 5,
+      "k": 5,
+      "dbase": 2,
+      "lr": 0.001,
+      "params": 5320850,
+      "params_M": 5.321,
+      "rf_bp": 253,
+      "dev": 0.7655,
+      "test": 0.6084,
+      "test_sd": null,
+      "runs": [
+        {
+          "seed": 42,
+          "dev": 0.7655,
+          "test": 0.6084,
+          "best_epoch": 10,
+          "test_aux": {
+            "mcc": 0.6084,
+            "auprc": 0.9194,
+            "auroc": 0.9009,
+            "pos_rate_pred": 0.5843
+          },
+          "predictions_path": "/home/nvidia/genomic-capability-unlearning/scratchpad/hvue_v2/preds/hvue_v2__Transmissibility__hard_capped_1000bp__cw_balanced__cnn_ceiling__s42__preds.npz"
+        }
+      ]
+    },
+    {
+      "arch": "resnet",
+      "ch": 320,
+      "blocks": 5,
+      "k": 5,
+      "dbase": 4,
+      "lr": 0.001,
+      "params": 5320850,
+      "params_M": 5.321,
+      "rf_bp": 2733,
+      "dev": 0.7489,
+      "test": 0.6358,
+      "test_sd": null,
+      "runs": [
+        {
+          "seed": 42,
+          "dev": 0.7489,
+          "test": 0.6358,
+          "best_epoch": 17,
+          "test_aux": {
+            "mcc": 0.6358,
+            "auprc": 0.9263,
+            "auroc": 0.9135,
+            "pos_rate_pred": 0.5679
+          },
+          "predictions_path": "/home/nvidia/genomic-capability-unlearning/scratchpad/hvue_v2/preds/hvue_v2__Transmissibility__hard_capped_1000bp__cw_balanced__cnn_ceiling__s42__preds.npz"
+        }
+      ]
+    },
+    {
+      "arch": "resnet",
+      "ch": 320,
+      "blocks": 5,
+      "k": 9,
+      "dbase": 2,
+      "lr": 0.001,
+      "params": 9437330,
+      "params_M": 9.437,
+      "rf_bp": 505,
+      "dev": 0.7668,
+      "test": 0.6421,
+      "test_sd": null,
+      "runs": [
+        {
+          "seed": 42,
+          "dev": 0.7668,
+          "test": 0.6421,
+          "best_epoch": 14,
+          "test_aux": {
+            "mcc": 0.6421,
+            "auprc": 0.9258,
+            "auroc": 0.9143,
+            "pos_rate_pred": 0.6111
+          },
+          "predictions_path": "/home/nvidia/genomic-capability-unlearning/scratchpad/hvue_v2/preds/hvue_v2__Transmissibility__hard_capped_1000bp__cw_balanced__cnn_ceiling__s42__preds.npz"
+        }
+      ]
+    },
+    {
+      "arch": "resnet",
+      "ch": 320,
+      "blocks": 5,
+      "k": 9,
+      "dbase": 4,
+      "lr": 0.001,
+      "params": 9437330,
+      "params_M": 9.437,
+      "rf_bp": 5465,
+      "dev": 0.7721,
+      "test": 0.6396,
+      "test_sd": null,
+      "runs": [
+        {
+          "seed": 42,
+          "dev": 0.7721,
+          "test": 0.6396,
+          "best_epoch": 7,
+          "test_aux": {
+            "mcc": 0.6396,
+            "auprc": 0.924,
+            "auroc": 0.9111,
+            "pos_rate_pred": 0.5354
+          },
+          "predictions_path": "/home/nvidia/genomic-capability-unlearning/scratchpad/hvue_v2/preds/hvue_v2__Transmissibility__hard_capped_1000bp__cw_balanced__cnn_ceiling__s42__preds.npz"
+        }
+      ]
+    },
+    {
+      "arch": "resnet",
+      "ch": 320,
+      "blocks": 5,
+      "k": 15,
+      "dbase": 1,
+      "lr": 0.001,
+      "params": 15612050,
+      "params_M": 15.612,
+      "rf_bp": 155,
+      "dev": 0.8002,
+      "test": 0.6696,
+      "test_sd": null,
+      "runs": [
+        {
+          "seed": 42,
+          "dev": 0.8002,
+          "test": 0.6696,
+          "best_epoch": 7,
+          "test_aux": {
+            "mcc": 0.6696,
+            "auprc": 0.9329,
+            "auroc": 0.9208,
+            "pos_rate_pred": 0.5639
+          },
+          "predictions_path": "/home/nvidia/genomic-capability-unlearning/scratchpad/hvue_v2/preds/hvue_v2__Transmissibility__hard_capped_1000bp__cw_balanced__cnn_ceiling__s42__preds.npz"
+        }
+      ]
+    },
+    {
+      "arch": "resnet",
+      "ch": 320,
+      "blocks": 5,
+      "k": 15,
+      "dbase": 2,
+      "lr": 0.001,
+      "params": 15612050,
+      "params_M": 15.612,
+      "rf_bp": 883,
+      "dev": 0.7864,
+      "test": 0.6451,
+      "test_sd": null,
+      "runs": [
+        {
+          "seed": 42,
+          "dev": 0.7864,
+          "test": 0.6451,
+          "best_epoch": 12,
+          "test_aux": {
+            "mcc": 0.6451,
+            "auprc": 0.9356,
+            "auroc": 0.9228,
+            "pos_rate_pred": 0.6372
+          },
+          "predictions_path": "/home/nvidia/genomic-capability-unlearning/scratchpad/hvue_v2/preds/hvue_v2__Transmissibility__hard_capped_1000bp__cw_balanced__cnn_ceiling__s42__preds.npz"
+        }
+      ]
+    },
+    {
+      "arch": "resnet",
+      "ch": 320,
+      "blocks": 5,
+      "k": 15,
+      "dbase": 4,
+      "lr": 0.001,
+      "params": 15612050,
+      "params_M": 15.612,
+      "rf_bp": 9563,
+      "dev": 0.7677,
+      "test": 0.6732,
+      "test_sd": null,
+      "runs": [
+        {
+          "seed": 42,
+          "dev": 0.7677,
+          "test": 0.6732,
+          "best_epoch": 6,
+          "test_aux": {
+            "mcc": 0.6732,
+            "auprc": 0.9318,
+            "auroc": 0.9231,
+            "pos_rate_pred": 0.5475
+          },
+          "predictions_path": "/home/nvidia/genomic-capability-unlearning/scratchpad/hvue_v2/preds/hvue_v2__Transmissibility__hard_capped_1000bp__cw_balanced__cnn_ceiling__s42__preds.npz"
+        }
+      ]
+    },
+    {
+      "arch": "dilated",
+      "ch": 448,
+      "blocks": 6,
+      "k": 5,
+      "dbase": 1,
+      "lr": 0.001,
+      "params": 5291730,
+      "params_M": 5.292,
+      "rf_bp": 25,
+      "dev": 0.7271,
+      "test": 0.6379,
+      "test_sd": null,
+      "runs": [
+        {
+          "seed": 42,
+          "dev": 0.7271,
+          "test": 0.6379,
+          "best_epoch": 26,
+          "test_aux": {
+            "mcc": 0.6379,
+            "auprc": 0.9155,
+            "auroc": 0.9033,
+            "pos_rate_pred": 0.5386
+          },
+          "predictions_path": "/home/nvidia/genomic-capability-unlearning/scratchpad/hvue_v2/preds/hvue_v2__Transmissibility__hard_capped_1000bp__cw_balanced__cnn_ceiling__s42__preds.npz"
+        }
+      ]
+    },
+    {
+      "arch": "dilated",
+      "ch": 448,
+      "blocks": 6,
+      "k": 5,
+      "dbase": 2,
+      "lr": 0.001,
+      "params": 5291730,
+      "params_M": 5.292,
+      "rf_bp": 253,
+      "dev": 0.7732,
+      "test": 0.6038,
+      "test_sd": null,
+      "runs": [
+        {
+          "seed": 42,
+          "dev": 0.7732,
+          "test": 0.6038,
+          "best_epoch": 13,
+          "test_aux": {
+            "mcc": 0.6038,
+            "auprc": 0.9057,
+            "auroc": 0.8934,
+            "pos_rate_pred": 0.5875
+          },
+          "predictions_path": "/home/nvidia/genomic-capability-unlearning/scratchpad/hvue_v2/preds/hvue_v2__Transmissibility__hard_capped_1000bp__cw_balanced__cnn_ceiling__s42__preds.npz"
+        }
+      ]
+    },
+    {
+      "arch": "dilated",
+      "ch": 448,
+      "blocks": 6,
+      "k": 5,
+      "dbase": 4,
+      "lr": 0.001,
+      "params": 5291730,
+      "params_M": 5.292,
+      "rf_bp": 5461,
+      "dev": 0.7082,
+      "test": 0.5845,
+      "test_sd": null,
+      "runs": [
+        {
+          "seed": 42,
+          "dev": 0.7082,
+          "test": 0.5845,
+          "best_epoch": 15,
+          "test_aux": {
+            "mcc": 0.5845,
+            "auprc": 0.9137,
+            "auroc": 0.8919,
+            "pos_rate_pred": 0.5547
+          },
+          "predictions_path": "/home/nvidia/genomic-capability-unlearning/scratchpad/hvue_v2/preds/hvue_v2__Transmissibility__hard_capped_1000bp__cw_balanced__cnn_ceiling__s42__preds.npz"
+        }
+      ]
+    },
+    {
+      "arch": "dilated",
+      "ch": 448,
+      "blocks": 6,
+      "k": 9,
+      "dbase": 1,
+      "lr": 0.001,
+      "params": 9334482,
+      "params_M": 9.334,
+      "rf_bp": 49,
+      "dev": 0.7629,
+      "test": 0.6701,
+      "test_sd": null,
+      "runs": [
+        {
+          "seed": 42,
+          "dev": 0.7629,
+          "test": 0.6701,
+          "best_epoch": 21,
+          "test_aux": {
+            "mcc": 0.6701,
+            "auprc": 0.9253,
+            "auroc": 0.9156,
+            "pos_rate_pred": 0.5378
+          },
+          "predictions_path": "/home/nvidia/genomic-capability-unlearning/scratchpad/hvue_v2/preds/hvue_v2__Transmissibility__hard_capped_1000bp__cw_balanced__cnn_ceiling__s42__preds.npz"
+        }
+      ]
+    },
+    {
+      "arch": "dilated",
+      "ch": 448,
+      "blocks": 6,
+      "k": 9,
+      "dbase": 4,
+      "lr": 0.001,
+      "params": 9334482,
+      "params_M": 9.334,
+      "rf_bp": 10921,
+      "dev": 0.7217,
+      "test": 0.6128,
+      "test_sd": null,
+      "runs": [
+        {
+          "seed": 42,
+          "dev": 0.7217,
+          "test": 0.6128,
+          "best_epoch": 9,
+          "test_aux": {
+            "mcc": 0.6128,
+            "auprc": 0.9112,
+            "auroc": 0.8935,
+            "pos_rate_pred": 0.5591
+          },
+          "predictions_path": "/home/nvidia/genomic-capability-unlearning/scratchpad/hvue_v2/preds/hvue_v2__Transmissibility__hard_capped_1000bp__cw_balanced__cnn_ceiling__s42__preds.npz"
+        }
+      ]
+    },
+    {
+      "arch": "dilated",
+      "ch": 448,
+      "blocks": 6,
+      "k": 15,
+      "dbase": 1,
+      "lr": 0.001,
+      "params": 15398610,
+      "params_M": 15.399,
+      "rf_bp": 85,
+      "dev": 0.7478,
+      "test": 0.6338,
+      "test_sd": null,
+      "runs": [
+        {
+          "seed": 42,
+          "dev": 0.7478,
+          "test": 0.6338,
+          "best_epoch": 22,
+          "test_aux": {
+            "mcc": 0.6338,
+            "auprc": 0.9149,
+            "auroc": 0.9041,
+            "pos_rate_pred": 0.5234
+          },
+          "predictions_path": "/home/nvidia/genomic-capability-unlearning/scratchpad/hvue_v2/preds/hvue_v2__Transmissibility__hard_capped_1000bp__cw_balanced__cnn_ceiling__s42__preds.npz"
+        }
+      ]
+    },
+    {
+      "arch": "dilated",
+      "ch": 448,
+      "blocks": 6,
+      "k": 15,
+      "dbase": 2,
+      "lr": 0.001,
+      "params": 15398610,
+      "params_M": 15.399,
+      "rf_bp": 883,
+      "dev": 0.7565,
+      "test": 0.6529,
+      "test_sd": null,
+      "runs": [
+        {
+          "seed": 42,
+          "dev": 0.7565,
+          "test": 0.6529,
+          "best_epoch": 14,
+          "test_aux": {
+            "mcc": 0.6529,
+            "auprc": 0.9322,
+            "auroc": 0.9181,
+            "pos_rate_pred": 0.5815
+          },
+          "predictions_path": "/home/nvidia/genomic-capability-unlearning/scratchpad/hvue_v2/preds/hvue_v2__Transmissibility__hard_capped_1000bp__cw_balanced__cnn_ceiling__s42__preds.npz"
+        }
+      ]
+    },
+    {
+      "arch": "dilated",
+      "ch": 448,
+      "blocks": 6,
+      "k": 15,
+      "dbase": 4,
+      "lr": 0.001,
+      "params": 15398610,
+      "params_M": 15.399,
+      "rf_bp": 19111,
+      "dev": 0.7208,
+      "test": 0.5892,
+      "test_sd": null,
+      "runs": [
+        {
+          "seed": 42,
+          "dev": 0.7208,
+          "test": 0.5892,
+          "best_epoch": 10,
+          "test_aux": {
+            "mcc": 0.5892,
+            "auprc": 0.9055,
+            "auroc": 0.8892,
+            "pos_rate_pred": 0.5026
+          },
+          "predictions_path": "/home/nvidia/genomic-capability-unlearning/scratchpad/hvue_v2/preds/hvue_v2__Transmissibility__hard_capped_1000bp__cw_balanced__cnn_ceiling__s42__preds.npz"
+        }
+      ]
+    },
+    {
+      "arch": "resnet",
+      "ch": 320,
+      "blocks": 5,
+      "k": 15,
+      "dbase": 1,
+      "lr": 0.001,
+      "params": 15612050,
+      "params_M": 15.612,
+      "rf_bp": 155,
+      "dev": 0.7966,
+      "test": 0.6732,
+      "test_sd": 0.0051,
+      "runs": [
+        {
+          "seed": 42,
+          "dev": 0.8002,
+          "test": 0.6696,
+          "best_epoch": 7,
+          "test_aux": {
+            "mcc": 0.6696,
+            "auprc": 0.9329,
+            "auroc": 0.9208,
+            "pos_rate_pred": 0.5639
+          },
+          "predictions_path": "/home/nvidia/genomic-capability-unlearning/scratchpad/hvue_v2/preds/hvue_v2__Transmissibility__hard_capped_1000bp__cw_balanced__cnn_ceiling__s42__preds.npz"
+        },
+        {
+          "seed": 43,
+          "dev": 0.7929,
+          "test": 0.6768,
+          "best_epoch": 17,
+          "test_aux": {
+            "mcc": 0.6768,
+            "auprc": 0.9364,
+            "auroc": 0.925,
+            "pos_rate_pred": 0.5635
+          },
+          "predictions_path": "/home/nvidia/genomic-capability-unlearning/scratchpad/hvue_v2/preds/hvue_v2__Transmissibility__hard_capped_1000bp__cw_balanced__cnn_ceiling__s43__preds.npz"
+        }
+      ]
+    },
+    {
+      "arch": "resnet",
+      "ch": 320,
+      "blocks": 5,
+      "k": 15,
+      "dbase": 1,
+      "lr": 0.0003,
+      "params": 15612050,
+      "params_M": 15.612,
+      "rf_bp": 155,
+      "dev": 0.7933,
+      "test": 0.6543,
+      "test_sd": 0.0066,
+      "runs": [
+        {
+          "seed": 42,
+          "dev": 0.7931,
+          "test": 0.6496,
+          "best_epoch": 7,
+          "test_aux": {
+            "mcc": 0.6496,
+            "auprc": 0.933,
+            "auroc": 0.9187,
+            "pos_rate_pred": 0.5699
+          },
+          "predictions_path": "/home/nvidia/genomic-capability-unlearning/scratchpad/hvue_v2/preds/hvue_v2__Transmissibility__hard_capped_1000bp__cw_balanced__cnn_ceiling__s42__preds.npz"
+        },
+        {
+          "seed": 43,
+          "dev": 0.7935,
+          "test": 0.659,
+          "best_epoch": 9,
+          "test_aux": {
+            "mcc": 0.659,
+            "auprc": 0.9359,
+            "auroc": 0.9246,
+            "pos_rate_pred": 0.5851
+          },
+          "predictions_path": "/home/nvidia/genomic-capability-unlearning/scratchpad/hvue_v2/preds/hvue_v2__Transmissibility__hard_capped_1000bp__cw_balanced__cnn_ceiling__s43__preds.npz"
+        }
+      ]
+    },
+    {
+      "arch": "resnet",
+      "ch": 320,
+      "blocks": 5,
+      "k": 15,
+      "dbase": 1,
+      "lr": 0.003,
+      "params": 15612050,
+      "params_M": 15.612,
+      "rf_bp": 155,
+      "dev": 0.5846,
+      "test": 0.5074,
+      "test_sd": 0.0043,
+      "runs": [
+        {
+          "seed": 42,
+          "dev": 0.5952,
+          "test": 0.5105,
+          "best_epoch": 9,
+          "test_aux": {
+            "mcc": 0.5105,
+            "auprc": 0.8773,
+            "auroc": 0.8617,
+            "pos_rate_pred": 0.4289
+          },
+          "predictions_path": "/home/nvidia/genomic-capability-unlearning/scratchpad/hvue_v2/preds/hvue_v2__Transmissibility__hard_capped_1000bp__cw_balanced__cnn_ceiling__s42__preds.npz"
+        },
+        {
+          "seed": 43,
+          "dev": 0.574,
+          "test": 0.5044,
+          "best_epoch": 16,
+          "test_aux": {
+            "mcc": 0.5044,
+            "auprc": 0.8706,
+            "auroc": 0.8589,
+            "pos_rate_pred": 0.4245
+          },
+          "predictions_path": "/home/nvidia/genomic-capability-unlearning/scratchpad/hvue_v2/preds/hvue_v2__Transmissibility__hard_capped_1000bp__cw_balanced__cnn_ceiling__s43__preds.npz"
+        }
+      ]
+    },
+    {
+      "arch": "resnet",
+      "ch": 320,
+      "blocks": 5,
+      "k": 15,
+      "dbase": 2,
+      "lr": 0.001,
+      "params": 15612050,
+      "params_M": 15.612,
+      "rf_bp": 883,
+      "dev": 0.7806,
+      "test": 0.6589,
+      "test_sd": 0.0195,
+      "runs": [
+        {
+          "seed": 42,
+          "dev": 0.7864,
+          "test": 0.6451,
+          "best_epoch": 12,
+          "test_aux": {
+            "mcc": 0.6451,
+            "auprc": 0.9356,
+            "auroc": 0.9228,
+            "pos_rate_pred": 0.6372
+          },
+          "predictions_path": "/home/nvidia/genomic-capability-unlearning/scratchpad/hvue_v2/preds/hvue_v2__Transmissibility__hard_capped_1000bp__cw_balanced__cnn_ceiling__s42__preds.npz"
+        },
+        {
+          "seed": 43,
+          "dev": 0.7748,
+          "test": 0.6727,
+          "best_epoch": 11,
+          "test_aux": {
+            "mcc": 0.6727,
+            "auprc": 0.9382,
+            "auroc": 0.9266,
+            "pos_rate_pred": 0.5907
+          },
+          "predictions_path": "/home/nvidia/genomic-capability-unlearning/scratchpad/hvue_v2/preds/hvue_v2__Transmissibility__hard_capped_1000bp__cw_balanced__cnn_ceiling__s43__preds.npz"
+        }
+      ]
+    },
+    {
+      "arch": "resnet",
+      "ch": 320,
+      "blocks": 5,
+      "k": 15,
+      "dbase": 2,
+      "lr": 0.0003,
+      "params": 15612050,
+      "params_M": 15.612,
+      "rf_bp": 883,
+      "dev": 0.802,
+      "test": 0.6752,
+      "test_sd": 0.0255,
+      "runs": [
+        {
+          "seed": 42,
+          "dev": 0.8006,
+          "test": 0.6932,
+          "best_epoch": 10,
+          "test_aux": {
+            "mcc": 0.6932,
+            "auprc": 0.9402,
+            "auroc": 0.9285,
+            "pos_rate_pred": 0.5675
+          },
+          "predictions_path": "/home/nvidia/genomic-capability-unlearning/scratchpad/hvue_v2/preds/hvue_v2__Transmissibility__hard_capped_1000bp__cw_balanced__cnn_ceiling__s42__preds.npz"
+        },
+        {
+          "seed": 43,
+          "dev": 0.8034,
+          "test": 0.6571,
+          "best_epoch": 5,
+          "test_aux": {
+            "mcc": 0.6571,
+            "auprc": 0.9373,
+            "auroc": 0.9239,
+            "pos_rate_pred": 0.6119
+          },
+          "predictions_path": "/home/nvidia/genomic-capability-unlearning/scratchpad/hvue_v2/preds/hvue_v2__Transmissibility__hard_capped_1000bp__cw_balanced__cnn_ceiling__s43__preds.npz"
+        }
+      ]
+    },
+    {
+      "arch": "resnet",
+      "ch": 320,
+      "blocks": 5,
+      "k": 15,
+      "dbase": 2,
+      "lr": 0.003,
+      "params": 15612050,
+      "params_M": 15.612,
+      "rf_bp": 883,
+      "dev": 0.5862,
+      "test": 0.4909,
+      "test_sd": 0.0039,
+      "runs": [
+        {
+          "seed": 42,
+          "dev": 0.5873,
+          "test": 0.4936,
+          "best_epoch": 13,
+          "test_aux": {
+            "mcc": 0.4936,
+            "auprc": 0.8616,
+            "auroc": 0.8521,
+            "pos_rate_pred": 0.4513
+          },
+          "predictions_path": "/home/nvidia/genomic-capability-unlearning/scratchpad/hvue_v2/preds/hvue_v2__Transmissibility__hard_capped_1000bp__cw_balanced__cnn_ceiling__s42__preds.npz"
+        },
+        {
+          "seed": 43,
+          "dev": 0.5851,
+          "test": 0.4881,
+          "best_epoch": 13,
+          "test_aux": {
+            "mcc": 0.4881,
+            "auprc": 0.8615,
+            "auroc": 0.8532,
+            "pos_rate_pred": 0.4662
+          },
+          "predictions_path": "/home/nvidia/genomic-capability-unlearning/scratchpad/hvue_v2/preds/hvue_v2__Transmissibility__hard_capped_1000bp__cw_balanced__cnn_ceiling__s43__preds.npz"
+        }
+      ]
+    },
+    {
+      "arch": "resnet",
+      "ch": 320,
+      "blocks": 5,
+      "k": 15,
+      "dbase": 2,
+      "lr": 0.0003,
+      "params": 15612050,
+      "params_M": 15.612,
+      "rf_bp": 883,
+      "dev": 0.8024,
+      "test": 0.6708,
+      "test_sd": 0.0195,
+      "runs": [
+        {
+          "seed": 42,
+          "dev": 0.8006,
+          "test": 0.6932,
+          "best_epoch": 10,
+          "test_aux": {
+            "mcc": 0.6932,
+            "auprc": 0.9402,
+            "auroc": 0.9285,
+            "pos_rate_pred": 0.5675
+          },
+          "predictions_path": "/home/nvidia/genomic-capability-unlearning/scratchpad/hvue_v2/preds/hvue_v2__Transmissibility__hard_capped_1000bp__cw_balanced__cnn_ceiling__s42__preds.npz"
+        },
+        {
+          "seed": 43,
+          "dev": 0.8034,
+          "test": 0.6571,
+          "best_epoch": 5,
+          "test_aux": {
+            "mcc": 0.6571,
+            "auprc": 0.9373,
+            "auroc": 0.9239,
+            "pos_rate_pred": 0.6119
+          },
+          "predictions_path": "/home/nvidia/genomic-capability-unlearning/scratchpad/hvue_v2/preds/hvue_v2__Transmissibility__hard_capped_1000bp__cw_balanced__cnn_ceiling__s43__preds.npz"
+        },
+        {
+          "seed": 44,
+          "dev": 0.8031,
+          "test": 0.6622,
+          "best_epoch": 8,
+          "test_aux": {
+            "mcc": 0.6622,
+            "auprc": 0.9382,
+            "auroc": 0.9254,
+            "pos_rate_pred": 0.6171
+          },
+          "predictions_path": "/home/nvidia/genomic-capability-unlearning/scratchpad/hvue_v2/preds/hvue_v2__Transmissibility__hard_capped_1000bp__cw_balanced__cnn_ceiling__s44__preds.npz"
+        }
+      ],
+      "refit_seeds": 3
+    }
+  ],
+  "dev_selected": {
+    "n_seeds": 3,
+    "test_sd": 0.0195,
+    "arch": "resnet",
+    "params_M": 15.612,
+    "lr": 0.0003,
+    "k": 15,
+    "dbase": 2,
+    "rf_bp": 883,
+    "dev": 0.8024,
+    "test": 0.6708
+  },
+  "oracle_best_test": 0.6752,
+  "incumbent": {
+    "arch": "dilated",
+    "params_M": 0.677,
+    "dev": 0.7657,
+    "test": 0.6507
+  }
+}

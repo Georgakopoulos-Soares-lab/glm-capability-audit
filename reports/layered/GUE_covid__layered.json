@@ -1,0 +1,111 @@
+{
+ "name": "GUE_covid",
+ "n_test": 9168,
+ "unit": "ROW (anti-conservative; no grouping metadata shipped)",
+ "arms": [
+  "kmer",
+  "kmer_gbt",
+  "aa_gbt",
+  "nn_lookup",
+  "cnn",
+  "transformer"
+ ],
+ "excluded_arms": {},
+ "equivalence_margin": 0.02,
+ "bin_quantiles": [
+  0.0,
+  0.25,
+  0.5,
+  0.75,
+  1.0
+ ],
+ "panelA": [
+  {
+   "level": "L0",
+   "n_rows": 9168,
+   "frac": 1.0,
+   "n_units": 9168,
+   "n_genus": null
+  },
+  {
+   "level": "L1",
+   "n_rows": 0,
+   "frac": 0.0,
+   "n_units": 0,
+   "n_genus": null
+  },
+  {
+   "level": "L2",
+   "n_rows": 0,
+   "frac": 0.0,
+   "n_units": 0,
+   "n_genus": null
+  },
+  {
+   "level": "L3",
+   "n_rows": 0,
+   "frac": 0.0,
+   "n_units": 0,
+   "n_genus": null
+  }
+ ],
+ "panelB": {
+  "L0": {
+   "n_rows": 9168,
+   "n_units": 9168,
+   "floor": 0.7193,
+   "floor_arm": "kmer_gbt",
+   "baselines": {
+    "kmer": 0.7109,
+    "kmer_gbt": 0.7193,
+    "aa_gbt": 0.682,
+    "nn_lookup": 0.5809,
+    "cnn": 0.615,
+    "transformer": 0.0247
+   },
+   "models": {
+    "hvilm": {
+     "mcc": 0.6966,
+     "excess": -0.0227,
+     "ci_lo": -0.0352,
+     "ci_hi": -0.0114,
+     "p_le_0": 1.0,
+     "verdict": "INFERIOR"
+    },
+    "gena_lm": {
+     "mcc": 0.6498,
+     "excess": -0.0696,
+     "ci_lo": -0.0857,
+     "ci_hi": -0.0568,
+     "p_le_0": 1.0,
+     "verdict": "INFERIOR"
+    },
+    "dnabert2": {
+     "mcc": 0.6276,
+     "excess": -0.0917,
+     "ci_lo": -0.1033,
+     "ci_hi": -0.0811,
+     "p_le_0": 1.0,
+     "verdict": "INFERIOR"
+    },
+    "nt_v2_500m": {
+     "mcc": 0.615,
+     "excess": -0.1043,
+     "ci_lo": -0.1258,
+     "ci_hi": -0.0828,
+     "p_le_0": 1.0,
+     "verdict": "INFERIOR"
+    },
+    "hyenadna": {
+     "mcc": 0.6064,
+     "excess": -0.1129,
+     "ci_lo": -0.1248,
+     "ci_hi": -0.1012,
+     "p_le_0": 1.0,
+     "verdict": "INFERIOR"
+    }
+   }
+  }
+ },
+ "graded": {}
+}

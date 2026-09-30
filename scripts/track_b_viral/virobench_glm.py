@@ -50,6 +50,9 @@ MODELS = {
     # assumption (their label cardinality is 1.6-5.8x ours at every level).
     "lucavirus":  ("LucaGroup/LucaVirus-default-step3.8M", "AutoModel", 2560, 4094),
     "gena_lm":    ("AIRI-Institute/gena-lm-bert-base-t2t",      "AutoModel", 768, 512),
+    # HViLM is DNABERT-2 continued-pretrained on viral genomes: identical BertConfig shape
+    # and the same empty model_type, so it takes the identical dynamic-module load path.
+    "hvilm":      ("duttaprat/HViLM-base", "DNABERT2", 768, 5),
     # nt_v2_500m's custom modeling code (modeling_esm.py) computes attention eagerly
     # (no fused/flash kernel) -- O(n^2) memory. 2048 tokens x bs=8 OOM'd a 96GB GPU
     # even with a 500M model. 1024 tokens is the practical ceiling here; gradient
@@ -61,8 +64,37 @@ MODELS = {
 class Wrap(nn.Module):
     def __init__(self, mid, how, hid, ncls, regime="full", lora_rank=16):
         super().__init__()
-        cls = {"AutoModel": AutoModel, "AutoModelForMaskedLM": AutoModelForMaskedLM}[how]
-        self.body = cls.from_pretrained(mid, trust_remote_code=True)
+        if how == "DNABERT2":
+            # DNABERT-2 and HViLM: AutoModel raises a config_class mismatch (AutoConfig returns
+            # the stock BertConfig while the remote model expects its own), and the vendored
+            # flash_attn_triton calls tl.dot(trans_b=) which triton 3.x removed. Pull both
+            # classes from the dynamic module and take the plain-PyTorch attention fallback.
+            import sys as _s
+            from transformers.dynamic_module_utils import get_class_from_dynamic_module
+            CfgCls = get_class_from_dynamic_module("configuration_bert.BertConfig", mid)
+            BodyCls = get_class_from_dynamic_module("bert_layers.BertModel", mid)
+            _s.modules[BodyCls.__module__].flash_attn_qkvpacked_func = None
+            self.body = BodyCls(CfgCls.from_pretrained(mid))
+            import transformers as _tf
+            sd = _tf.AutoModel.from_pretrained.__self__ if False else None
+            from huggingface_hub import snapshot_download
+            import torch as _t, os as _os, glob as _g
+            p = snapshot_download(mid)
+            w = (_g.glob(f"{p}/pytorch_model.bin") or _g.glob(f"{p}/model.safetensors"))
+            if w:
+                if w[0].endswith(".safetensors"):
+                    from safetensors.torch import load_file as _lf; st = _lf(w[0])
+                else:
+                    st = _t.load(w[0], map_location="cpu")
+                st = {k.replace("bert.", "", 1): v for k, v in st.items()}
+                missing, unexpected = self.body.load_state_dict(st, strict=False)
+                enc_missing = [k for k in missing if not k.startswith(("cls.", "pooler."))]
+                if enc_missing:
+                    raise RuntimeError(f"{mid}: {len(enc_missing)} encoder weights missing "
+                                       f"from checkpoint, e.g. {enc_missing[:3]}")
+        else:
+            cls = {"AutoModel": AutoModel, "AutoModelForMaskedLM": AutoModelForMaskedLM}[how]
+            self.body = cls.from_pretrained(mid, trust_remote_code=True)
         if regime != "probe":
             try:
                 self.body.gradient_checkpointing_enable()
@@ -81,7 +113,14 @@ class Wrap(nn.Module):
         kw = dict(input_ids=ids)
         if mask is not None: kw["attention_mask"] = mask
         o = self.body(**kw, output_hidden_states=True)
-        h = o.hidden_states[-1] if getattr(o, "hidden_states", None) is not None else o.last_hidden_state
+        # DNABERT-2 / HViLM's BertModel returns a plain tuple, not a ModelOutput, so
+        # `.last_hidden_state` does not exist on it. Handle both shapes.
+        if isinstance(o, (tuple, list)):
+            h = o[0]
+        elif getattr(o, "hidden_states", None) is not None:
+            h = o.hidden_states[-1]
+        else:
+            h = o.last_hidden_state
         if mask is None:
             pooled = h.mean(1)
         else:

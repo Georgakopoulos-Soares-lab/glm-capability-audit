@@ -1,0 +1,110 @@
+{
+  "name": "HVUE_HT_std_95",
+  "n_test": 50817,
+  "n_homolog_available": 39693,
+  "bootstrap_unit": "ROW (anti-conservative)",
+  "frac_homolog_available": 0.7811,
+  "regimes": {
+    "homolog_available": {
+      "n": 39693,
+      "floor": 0.6726,
+      "floor_arm": "nn_lookup",
+      "baselines": {
+        "kmer": 0.3488,
+        "kmer_gbt": 0.4011,
+        "cnn": 0.3768,
+        "nn_lookup": 0.6726
+      },
+      "models": {
+        "hvilm": {
+          "mcc": 0.5914,
+          "excess": -0.0811,
+          "ci_lo": -0.1014,
+          "ci_hi": -0.0605,
+          "p_le_0": 1.0
+        },
+        "dnabert2": {
+          "mcc": 0.471,
+          "excess": -0.2016,
+          "ci_lo": -0.2292,
+          "ci_hi": -0.1741,
+          "p_le_0": 1.0
+        },
+        "gena_lm": {
+          "mcc": 0.4348,
+          "excess": -0.2377,
+          "ci_lo": -0.2645,
+          "ci_hi": -0.2098,
+          "p_le_0": 1.0
+        },
+        "nt_v2_500m": {
+          "mcc": 0.4118,
+          "excess": -0.2608,
+          "ci_lo": -0.288,
+          "ci_hi": -0.2352,
+          "p_le_0": 1.0
+        },
+        "hyenadna": {
+          "mcc": 0.4019,
+          "excess": -0.2707,
+          "ci_lo": -0.3181,
+          "ci_hi": -0.2086,
+          "p_le_0": 1.0
+        }
+      },
+      "nn_lookup_valid": true,
+      "bootstrap_unit": "ROW (anti-conservative)",
+      "bootstrap_reps": 2000
+    },
+    "homolog_free": {
+      "n": 11124,
+      "floor": 0.1508,
+      "floor_arm": "cnn",
+      "baselines": {
+        "kmer": 0.1505,
+        "kmer_gbt": 0.0964,
+        "cnn": 0.1508
+      },
+      "models": {
+        "hvilm": {
+          "mcc": 0.3334,
+          "excess": 0.1826,
+          "ci_lo": 0.0766,
+          "ci_hi": 0.2632,
+          "p_le_0": 0.0
+        },
+        "gena_lm": {
+          "mcc": 0.1461,
+          "excess": -0.0047,
+          "ci_lo": -0.099,
+          "ci_hi": 0.0686,
+          "p_le_0": 0.6695
+        },
+        "dnabert2": {
+          "mcc": 0.101,
+          "excess": -0.0498,
+          "ci_lo": -0.1509,
+          "ci_hi": 0.0084,
+          "p_le_0": 0.9495
+        },
+        "nt_v2_500m": {
+          "mcc": 0.059,
+          "excess": -0.0918,
+          "ci_lo": -0.1668,
+          "ci_hi": -0.0485,
+          "p_le_0": 1.0
+        },
+        "hyenadna": {
+          "mcc": 0.0451,
+          "excess": -0.1057,
+          "ci_lo": -0.1702,
+          "ci_hi": -0.075,
+          "p_le_0": 1.0
+        }
+      },
+      "nn_lookup_valid": false,
+      "bootstrap_unit": "ROW (anti-conservative)",
+      "bootstrap_reps": 2000
+    }
+  }
+}

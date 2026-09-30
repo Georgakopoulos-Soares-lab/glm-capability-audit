@@ -1,0 +1,172 @@
+# What we evaluate on.  One entry per discriminative task in the paper.
+#
+# Every field here is part of the CELL DEFINITION -- change one and you are
+# measuring something else, so the value is written into output filenames.
+#
+# dir        : holds train.csv / dev.csv / test.csv with columns sequence,label
+#              (loader "geneb" instead reads text,label and carves dev itself)
+# loader     : how scripts/common/capacity_sweep.py should read it
+# train_cap  : stratified cap on TRAIN rows; MUST match the fine-tuning arm's
+#              --cap_train or the baseline and the model see different data
+# imbalanced : report MCC + AUPRC, never accuracy; class-weight the baselines
+# cluster_csv: test-row-order file with a `cluster` column = the unit of
+#              statistical dependence for the bootstrap.  Absent means the
+#              bootstrap falls back to ROWS and its interval is anti-conservative.
+# in_paper   : false = measured and reported as a negative//out-of-scope result,
+#              not part of the headline table.  Kept so the exclusion is explicit.
+
+vhdb:
+  name:        VHDB_within_family
+  dir:         ${VB_DATA}/vhdb_tropism/within_family_1000bp
+  loader:      csvdir
+  esc:         vhdb_tropism_wf1000
+  sweep_tag:   csvdir__vhdb_tropism_wf1000__cw_balanced
+  train_cap:   0
+  imbalanced:  true
+  cluster_csv: ${VB_DATA}/vhdb_tropism/within_family_1000bp/test_full.csv
+  tax_train:   ${VB_DATA}/vhdb_tropism/within_family_1000bp/train_tax.csv
+  tax_test:    ${VB_DATA}/vhdb_tropism/within_family_1000bp/test_tax.csv
+  author_ckpt: duttaprat/HViLM-Tropism
+  focus_model: hvilm
+  in_paper:    true
+  note: >
+    Built here, not published: Virus-Host DB host tropism, within-family negatives.
+    The only task shipping genuine genome clusters, so its bootstrap is the one
+    with a correct resampling unit (349 clusters / 3,754 rows).
+
+ht_hard_70:
+  name:        HVUE_HT_hard_70
+  dir:         ${VB_DATA}/hvue_v2/Host_Tropism/hard_70_1000bp
+  loader:      hvue_v2
+  task_arg:    Host_Tropism/hard_70_1000bp
+  esc:         Host_Tropism__hard_70_1000bp
+  sweep_tag:   hvue_v2__Host_Tropism__hard_70_1000bp__cw_balanced
+  train_cap:   40000
+  imbalanced:  true
+  in_paper:    true
+  author_ckpt: duttaprat/HViLM-Tropism
+  focus_model: hvilm
+
+ht_std_95:
+  name:        HVUE_HT_std_95
+  dir:         ${VB_DATA}/hvue_v2/Host_Tropism/standard_95_1000bp
+  loader:      hvue_v2
+  task_arg:    Host_Tropism/standard_95_1000bp
+  esc:         Host_Tropism__standard_95_1000bp
+  sweep_tag:   hvue_v2__Host_Tropism__standard_95_1000bp__cw_balanced
+  train_cap:   40000
+  imbalanced:  true
+  in_paper:    true
+  author_ckpt: duttaprat/HViLM-Tropism
+  focus_model: hvilm
+
+patho_hard:
+  name:        HVUE_Pathogenicity_hard
+  dir:         ${VB_DATA}/hvue_v2/Pathogenicity/hard_capped_1000bp
+  loader:      hvue_v2
+  task_arg:    Pathogenicity/hard_capped_1000bp
+  esc:         Pathogenicity__hard_capped_1000bp
+  sweep_tag:   hvue_v2__Pathogenicity__hard_capped_1000bp__cw_balanced
+  train_cap:   40000
+  imbalanced:  true
+  in_paper:    true
+  author_ckpt: duttaprat/HViLM-Patho
+  focus_model: hvilm
+
+patho_std:
+  name:        HVUE_Pathogenicity_std
+  dir:         ${VB_DATA}/hvue_v2/Pathogenicity/standard_capped_1000bp
+  loader:      hvue_v2
+  task_arg:    Pathogenicity/standard_capped_1000bp
+  esc:         Pathogenicity__standard_capped_1000bp
+  sweep_tag:   hvue_v2__Pathogenicity__standard_capped_1000bp__cw_balanced
+  train_cap:   40000
+  imbalanced:  true
+  in_paper:    true
+  author_ckpt: duttaprat/HViLM-Patho
+  focus_model: hvilm
+
+transm_hard:
+  name:        HVUE_Transmissibility_hard
+  dir:         ${VB_DATA}/hvue_v2/Transmissibility/hard_capped_1000bp
+  loader:      hvue_v2
+  task_arg:    Transmissibility/hard_capped_1000bp
+  esc:         Transmissibility__hard_capped_1000bp
+  sweep_tag:   hvue_v2__Transmissibility__hard_capped_1000bp__cw_balanced
+  train_cap:   40000
+  imbalanced:  true
+  in_paper:    true
+  author_ckpt: duttaprat/HViLM-R0
+  focus_model: hvilm
+
+transm_std:
+  name:        HVUE_Transmissibility_std
+  dir:         ${VB_DATA}/hvue_v2/Transmissibility/standard_capped_1000bp
+  loader:      hvue_v2
+  task_arg:    Transmissibility/standard_capped_1000bp
+  esc:         Transmissibility__standard_capped_1000bp
+  sweep_tag:   hvue_v2__Transmissibility__standard_capped_1000bp__cw_balanced
+  train_cap:   40000
+  imbalanced:  true
+  in_paper:    true
+  author_ckpt: duttaprat/HViLM-R0
+  focus_model: hvilm
+
+gue_phage:
+  name:        GUE_phage
+  dir:         ${VB_DATA}/gue_devcarve/leannmlindsey_GUE_phage_fragments
+  loader:      geneb
+  task_arg:    leannmlindsey_GUE_phage_fragments
+  esc:         leannmlindsey_GUE_phage_fragments
+  kmer_esc:    gue_phage_fragments     # k-mer/GBT predictions were filed under the short name
+  sweep_tag:   geneb__leannmlindsey_GUE_phage_fragments__cw_balanced
+  train_cap:   40000                   # no-op: the task has 31,487 train rows
+  imbalanced:  false
+  in_paper:    true
+  note: >
+    GC-matched classes and only ~40% homolog coverage, so its homolog-free
+    stratum is the cleanest memorisation-free measurement in the study.
+  focus_model: nt_v2_500m
+
+gue_covid:
+  name:        GUE_covid
+  dir:         ${VB_DATA}/gue_devcarve/leannmlindsey_GUE_virus_covid
+  loader:      geneb
+  task_arg:    leannmlindsey_GUE_virus_covid
+  esc:         leannmlindsey_GUE_virus_covid
+  kmer_esc:    gue_virus_covid
+  sweep_tag:   geneb__leannmlindsey_GUE_virus_covid__cw_balanced
+  train_cap:   40000
+  imbalanced:  false
+  in_paper:    true
+  focus_model: nt_v2_500m
+
+virobench:
+  name:        ViroBench_family
+  loader:      virobench
+  task_arg:    ALL_times
+  level:       family
+  seqlen:      8192
+  esc:         virobench_ALL_times
+  sweep_tag:   virobench__ALL_times__cw_balanced__family
+  train_cap:   0
+  imbalanced:  false
+  in_paper:    true
+  note: >
+    Temporally disjoint and only ~2% train/test overlap -- the one benchmark that
+    is homology-clean by construction.  Capped at 8,192 bp: the CNN ladder's
+    F.interpolate crashes on the native ~32 kb sequences.
+
+viral_vs_host:
+  name:        viral_vs_host
+  dir:         ${VB_DATA}/viral_vs_host/chunks1000
+  loader:      csvdir
+  esc:         viral_vs_host
+  train_cap:   0
+  imbalanced:  false
+  in_paper:    false
+  note: >
+    EXCLUDED from the headline table, deliberately.  k-mer GBT reaches 0.9723 on
+    the homolog-free rows and NN-lookup 1.0000 on the homolog-available rows, so
+    maximum model headroom is +0.028.  The task cannot separate models; reported
+    as a saturation result, not fine-tuned.

@@ -1,0 +1,58 @@
+{
+ "HVUE_HT_hard_70": {
+  "n": 5070,
+  "positives": 132,
+  "positive_rate": 0.026,
+  "floor": 0.0406,
+  "floor_arm": "kmer_gbt",
+  "n_genera": 142,
+  "n_positive_genera": 4,
+  "top_positive_genus": "Paundivirus",
+  "top_positive_share": 0.7576,
+  "gc_positive": 0.3433,
+  "gc_negative": 0.4721,
+  "gc_negative_sd": 0.1078,
+  "residual_homology": {
+   "nucleotide": 0.33826429980276135,
+   "translated": 0.7325443786982249,
+   "neither": 0.2668639053254438
+  },
+  "arms": {
+   "kmer": 0.0232,
+   "kmer_gbt": 0.0406,
+   "aa_gbt": 0.0273,
+   "tax_prior_recovered": 0.0,
+   "nn_lookup": -0.0117,
+   "cnn": 0.0333,
+   "transformer": 0.0283
+  }
+ },
+ "HVUE_HT_std_95": {
+  "n": 5663,
+  "positives": 191,
+  "positive_rate": 0.0337,
+  "floor": 0.2483,
+  "floor_arm": "cnn",
+  "n_genera": 123,
+  "n_positive_genera": 1,
+  "top_positive_genus": "Molluscipoxvirus",
+  "top_positive_share": 1.0,
+  "gc_positive": 0.6331,
+  "gc_negative": 0.4725,
+  "gc_negative_sd": 0.1071,
+  "residual_homology": {
+   "nucleotide": 0.3356877979869327,
+   "translated": 0.6664312202013067,
+   "neither": 0.33321561010065337
+  },
+  "arms": {
+   "kmer": 0.2172,
+   "kmer_gbt": 0.0723,
+   "aa_gbt": -0.0043,
+   "tax_prior_recovered": 0.0,
+   "nn_lookup": 0.1928,
+   "cnn": 0.2483,
+   "transformer": -0.046
+  }
+ }
+}

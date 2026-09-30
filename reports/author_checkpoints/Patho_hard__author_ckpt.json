@@ -1,0 +1,14 @@
+{
+  "name": "Patho_hard",
+  "checkpoint": "duttaprat/HViLM-Patho",
+  "n_test": 1792,
+  "mcc_as_shipped": 0.9088,
+  "mcc_flipped": -0.9088,
+  "label_orientation": "as-shipped",
+  "mcc": 0.9088,
+  "auprc": 0.9892,
+  "floor": 0.7962,
+  "floor_arm": "nn_lookup",
+  "excess": 0.1127,
+  "caveat": "authors' training split unauditable; treat as an upper bound"
+}

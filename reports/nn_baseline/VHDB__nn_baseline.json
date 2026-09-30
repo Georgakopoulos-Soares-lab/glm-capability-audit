@@ -1,0 +1,23 @@
+{
+  "name": "VHDB",
+  "n_test": 3754,
+  "frac_with_nn": 0.6803,
+  "nn_lookup_fullset_majfallback": 0.633,
+  "nn_lookup_hitrows_only": 0.6852,
+  "kmer_fullset": 0.3121,
+  "kmer_hitrows": 0.3887,
+  "cnn_fullset": 0.3922,
+  "cnn_hitrows": 0.4478,
+  "hvilm_fullset": 0.7036,
+  "hvilm_hitrows": 0.7332,
+  "dnabert2_fullset": 0.5249,
+  "dnabert2_hitrows": 0.6083,
+  "nt_v2_500m_fullset": 0.4492,
+  "nt_v2_500m_hitrows": 0.515,
+  "gena_lm_fullset": 0.4232,
+  "gena_lm_hitrows": 0.4936,
+  "hyenadna_fullset": 0.4453,
+  "hyenadna_hitrows": 0.5233,
+  "lucavirus_fullset": 0.2873,
+  "lucavirus_hitrows": 0.3242
+}

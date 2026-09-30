@@ -15,9 +15,8 @@ import torch
 from transformers import AutoTokenizer, AutoModel, AutoModelForMaskedLM
 
 from .base import BaseEmbeddingExtractor
-import paths as P
 
-os.environ.setdefault("HF_HOME", P.HF_CACHE)
+os.environ.setdefault("HF_HOME", "/scratch/10906/arisk/hf_cache")
 os.environ.setdefault("PYTHONNOUSERSITE", "1")
 
 _SPECS = {

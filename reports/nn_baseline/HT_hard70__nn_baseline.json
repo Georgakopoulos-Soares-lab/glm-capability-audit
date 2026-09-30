@@ -1,0 +1,23 @@
+{
+  "name": "HT_hard70",
+  "n_test": 51187,
+  "frac_with_nn": 0.7657,
+  "nn_lookup_fullset_majfallback": 0.6233,
+  "nn_lookup_hitrows_only": 0.6656,
+  "kmer_fullset": 0.3538,
+  "kmer_hitrows": 0.4333,
+  "kmer_cap_fullset": 0.379,
+  "kmer_cap_hitrows": 0.4577,
+  "cnn_fullset": 0.3781,
+  "cnn_hitrows": 0.4517,
+  "hvilm_fullset": 0.723,
+  "hvilm_hitrows": 0.7715,
+  "dnabert2_fullset": 0.5216,
+  "dnabert2_hitrows": 0.5909,
+  "nt_v2_500m_fullset": 0.4763,
+  "nt_v2_500m_hitrows": 0.543,
+  "gena_lm_fullset": 0.3539,
+  "gena_lm_hitrows": 0.3982,
+  "hyenadna_fullset": 0.3949,
+  "hyenadna_hitrows": 0.4469
+}

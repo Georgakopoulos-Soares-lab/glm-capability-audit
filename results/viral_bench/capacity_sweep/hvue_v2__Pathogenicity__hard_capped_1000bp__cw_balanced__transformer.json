@@ -1,0 +1,853 @@
+{
+  "dataset": "hvue_v2",
+  "task": "Pathogenicity/hard_capped_1000bp",
+  "metric": "mcc",
+  "n_classes": 2,
+  "seqlen": 1000,
+  "n_train": 20753,
+  "n_dev": 1737,
+  "n_test": 1792,
+  "seeds": [
+    42,
+    43
+  ],
+  "train_cap": 40000,
+  "class_weight": "balanced",
+  "ladder": [
+    {
+      "arch": "transformer",
+      "ch": 64,
+      "blocks": 2,
+      "k": 9,
+      "dbase": 1,
+      "lr": 0.0003,
+      "params": 624834,
+      "params_M": 0.625,
+      "rf_bp": "global",
+      "dev": 0.3945,
+      "test": 0.4157,
+      "test_sd": null,
+      "runs": [
+        {
+          "seed": 42,
+          "dev": 0.3945,
+          "test": 0.4157,
+          "best_epoch": 7,
+          "test_aux": {
+            "mcc": 0.4157,
+            "auprc": 0.7713,
+            "auroc": 0.7814,
+            "pos_rate_pred": 0.4146
+          },
+          "predictions_path": "/data/nvidia/genomic-capability-unlearning/results_viral_bench/preds_rescore/hvue_v2__Pathogenicity__hard_capped_1000bp__cw_balanced__transformer__cnn_ceiling__s42__preds.npz"
+        }
+      ]
+    },
+    {
+      "arch": "transformer",
+      "ch": 128,
+      "blocks": 2,
+      "k": 9,
+      "dbase": 1,
+      "lr": 0.0003,
+      "params": 1446274,
+      "params_M": 1.446,
+      "rf_bp": "global",
+      "dev": 0.4152,
+      "test": 0.4309,
+      "test_sd": null,
+      "runs": [
+        {
+          "seed": 42,
+          "dev": 0.4152,
+          "test": 0.4309,
+          "best_epoch": 1,
+          "test_aux": {
+            "mcc": 0.4309,
+            "auprc": 0.7646,
+            "auroc": 0.7793,
+            "pos_rate_pred": 0.5279
+          },
+          "predictions_path": "/data/nvidia/genomic-capability-unlearning/results_viral_bench/preds_rescore/hvue_v2__Pathogenicity__hard_capped_1000bp__cw_balanced__transformer__cnn_ceiling__s42__preds.npz"
+        }
+      ]
+    },
+    {
+      "arch": "transformer",
+      "ch": 128,
+      "blocks": 4,
+      "k": 9,
+      "dbase": 1,
+      "lr": 0.0003,
+      "params": 1842818,
+      "params_M": 1.843,
+      "rf_bp": "global",
+      "dev": 0.4131,
+      "test": 0.4565,
+      "test_sd": null,
+      "runs": [
+        {
+          "seed": 42,
+          "dev": 0.4131,
+          "test": 0.4565,
+          "best_epoch": 7,
+          "test_aux": {
+            "mcc": 0.4565,
+            "auprc": 0.7972,
+            "auroc": 0.8033,
+            "pos_rate_pred": 0.4436
+          },
+          "predictions_path": "/data/nvidia/genomic-capability-unlearning/results_viral_bench/preds_rescore/hvue_v2__Pathogenicity__hard_capped_1000bp__cw_balanced__transformer__cnn_ceiling__s42__preds.npz"
+        }
+      ]
+    },
+    {
+      "arch": "transformer",
+      "ch": 256,
+      "blocks": 4,
+      "k": 9,
+      "dbase": 1,
+      "lr": 0.0003,
+      "params": 5258498,
+      "params_M": 5.258,
+      "rf_bp": "global",
+      "dev": 0.4272,
+      "test": 0.4637,
+      "test_sd": null,
+      "runs": [
+        {
+          "seed": 42,
+          "dev": 0.4272,
+          "test": 0.4637,
+          "best_epoch": 6,
+          "test_aux": {
+            "mcc": 0.4637,
+            "auprc": 0.7859,
+            "auroc": 0.7923,
+            "pos_rate_pred": 0.4766
+          },
+          "predictions_path": "/data/nvidia/genomic-capability-unlearning/results_viral_bench/preds_rescore/hvue_v2__Pathogenicity__hard_capped_1000bp__cw_balanced__transformer__cnn_ceiling__s42__preds.npz"
+        }
+      ]
+    },
+    {
+      "arch": "transformer",
+      "ch": 256,
+      "blocks": 6,
+      "k": 9,
+      "dbase": 1,
+      "lr": 0.0003,
+      "params": 6838018,
+      "params_M": 6.838,
+      "rf_bp": "global",
+      "dev": 0.4008,
+      "test": 0.4123,
+      "test_sd": null,
+      "runs": [
+        {
+          "seed": 42,
+          "dev": 0.4008,
+          "test": 0.4123,
+          "best_epoch": 2,
+          "test_aux": {
+            "mcc": 0.4123,
+            "auprc": 0.7583,
+            "auroc": 0.7703,
+            "pos_rate_pred": 0.4766
+          },
+          "predictions_path": "/data/nvidia/genomic-capability-unlearning/results_viral_bench/preds_rescore/hvue_v2__Pathogenicity__hard_capped_1000bp__cw_balanced__transformer__cnn_ceiling__s42__preds.npz"
+        }
+      ]
+    },
+    {
+      "arch": "transformer",
+      "ch": 384,
+      "blocks": 6,
+      "k": 9,
+      "dbase": 1,
+      "lr": 0.0003,
+      "params": 13795970,
+      "params_M": 13.796,
+      "rf_bp": "global",
+      "dev": 0.3996,
+      "test": 0.4248,
+      "test_sd": null,
+      "runs": [
+        {
+          "seed": 42,
+          "dev": 0.3996,
+          "test": 0.4248,
+          "best_epoch": 3,
+          "test_aux": {
+            "mcc": 0.4248,
+            "auprc": 0.7511,
+            "auroc": 0.7718,
+            "pos_rate_pred": 0.3789
+          },
+          "predictions_path": "/data/nvidia/genomic-capability-unlearning/results_viral_bench/preds_rescore/hvue_v2__Pathogenicity__hard_capped_1000bp__cw_balanced__transformer__cnn_ceiling__s42__preds.npz"
+        }
+      ]
+    },
+    {
+      "arch": "transformer",
+      "ch": 256,
+      "blocks": 4,
+      "k": 4,
+      "dbase": 1,
+      "lr": 0.0003,
+      "params": 5258498,
+      "params_M": 5.258,
+      "rf_bp": "global",
+      "dev": 0.4054,
+      "test": 0.416,
+      "test_sd": null,
+      "runs": [
+        {
+          "seed": 42,
+          "dev": 0.4054,
+          "test": 0.416,
+          "best_epoch": 1,
+          "test_aux": {
+            "mcc": 0.416,
+            "auprc": 0.7283,
+            "auroc": 0.7643,
+            "pos_rate_pred": 0.5525
+          },
+          "predictions_path": "/data/nvidia/genomic-capability-unlearning/results_viral_bench/preds_rescore/hvue_v2__Pathogenicity__hard_capped_1000bp__cw_balanced__transformer__cnn_ceiling__s42__preds.npz"
+        }
+      ]
+    },
+    {
+      "arch": "transformer",
+      "ch": 256,
+      "blocks": 4,
+      "k": 8,
+      "dbase": 1,
+      "lr": 0.0003,
+      "params": 5258498,
+      "params_M": 5.258,
+      "rf_bp": "global",
+      "dev": 0.4464,
+      "test": 0.4602,
+      "test_sd": null,
+      "runs": [
+        {
+          "seed": 42,
+          "dev": 0.4464,
+          "test": 0.4602,
+          "best_epoch": 6,
+          "test_aux": {
+            "mcc": 0.4602,
+            "auprc": 0.7831,
+            "auroc": 0.7909,
+            "pos_rate_pred": 0.5033
+          },
+          "predictions_path": "/data/nvidia/genomic-capability-unlearning/results_viral_bench/preds_rescore/hvue_v2__Pathogenicity__hard_capped_1000bp__cw_balanced__transformer__cnn_ceiling__s42__preds.npz"
+        }
+      ]
+    },
+    {
+      "arch": "transformer",
+      "ch": 128,
+      "blocks": 2,
+      "k": 4,
+      "dbase": 1,
+      "lr": 0.0003,
+      "params": 1446274,
+      "params_M": 1.446,
+      "rf_bp": "global",
+      "dev": 0.4093,
+      "test": 0.4321,
+      "test_sd": null,
+      "runs": [
+        {
+          "seed": 42,
+          "dev": 0.4093,
+          "test": 0.4321,
+          "best_epoch": 1,
+          "test_aux": {
+            "mcc": 0.4321,
+            "auprc": 0.7641,
+            "auroc": 0.779,
+            "pos_rate_pred": 0.5285
+          },
+          "predictions_path": "/data/nvidia/genomic-capability-unlearning/results_viral_bench/preds_rescore/hvue_v2__Pathogenicity__hard_capped_1000bp__cw_balanced__transformer__cnn_ceiling__s42__preds.npz"
+        }
+      ]
+    },
+    {
+      "arch": "transformer",
+      "ch": 128,
+      "blocks": 2,
+      "k": 8,
+      "dbase": 1,
+      "lr": 0.0003,
+      "params": 1446274,
+      "params_M": 1.446,
+      "rf_bp": "global",
+      "dev": 0.4059,
+      "test": 0.436,
+      "test_sd": null,
+      "runs": [
+        {
+          "seed": 42,
+          "dev": 0.4059,
+          "test": 0.436,
+          "best_epoch": 1,
+          "test_aux": {
+            "mcc": 0.436,
+            "auprc": 0.7655,
+            "auroc": 0.7795,
+            "pos_rate_pred": 0.5229
+          },
+          "predictions_path": "/data/nvidia/genomic-capability-unlearning/results_viral_bench/preds_rescore/hvue_v2__Pathogenicity__hard_capped_1000bp__cw_balanced__transformer__cnn_ceiling__s42__preds.npz"
+        }
+      ]
+    },
+    {
+      "arch": "transformer",
+      "ch": 128,
+      "blocks": 4,
+      "k": 4,
+      "dbase": 1,
+      "lr": 0.0003,
+      "params": 1842818,
+      "params_M": 1.843,
+      "rf_bp": "global",
+      "dev": 0.4041,
+      "test": 0.4642,
+      "test_sd": null,
+      "runs": [
+        {
+          "seed": 42,
+          "dev": 0.4041,
+          "test": 0.4642,
+          "best_epoch": 8,
+          "test_aux": {
+            "mcc": 0.4642,
+            "auprc": 0.7933,
+            "auroc": 0.796,
+            "pos_rate_pred": 0.4487
+          },
+          "predictions_path": "/data/nvidia/genomic-capability-unlearning/results_viral_bench/preds_rescore/hvue_v2__Pathogenicity__hard_capped_1000bp__cw_balanced__transformer__cnn_ceiling__s42__preds.npz"
+        }
+      ]
+    },
+    {
+      "arch": "transformer",
+      "ch": 128,
+      "blocks": 4,
+      "k": 8,
+      "dbase": 1,
+      "lr": 0.0003,
+      "params": 1842818,
+      "params_M": 1.843,
+      "rf_bp": "global",
+      "dev": 0.4177,
+      "test": 0.4628,
+      "test_sd": null,
+      "runs": [
+        {
+          "seed": 42,
+          "dev": 0.4177,
+          "test": 0.4628,
+          "best_epoch": 11,
+          "test_aux": {
+            "mcc": 0.4628,
+            "auprc": 0.7853,
+            "auroc": 0.8023,
+            "pos_rate_pred": 0.4537
+          },
+          "predictions_path": "/data/nvidia/genomic-capability-unlearning/results_viral_bench/preds_rescore/hvue_v2__Pathogenicity__hard_capped_1000bp__cw_balanced__transformer__cnn_ceiling__s42__preds.npz"
+        }
+      ]
+    },
+    {
+      "arch": "transformer",
+      "ch": 256,
+      "blocks": 4,
+      "k": 8,
+      "dbase": 1,
+      "lr": 0.0003,
+      "params": 5258498,
+      "params_M": 5.258,
+      "rf_bp": "global",
+      "dev": 0.4279,
+      "test": 0.4596,
+      "test_sd": 0.0009,
+      "runs": [
+        {
+          "seed": 42,
+          "dev": 0.4464,
+          "test": 0.4602,
+          "best_epoch": 6,
+          "test_aux": {
+            "mcc": 0.4602,
+            "auprc": 0.7831,
+            "auroc": 0.7909,
+            "pos_rate_pred": 0.5033
+          },
+          "predictions_path": "/data/nvidia/genomic-capability-unlearning/results_viral_bench/preds_rescore/hvue_v2__Pathogenicity__hard_capped_1000bp__cw_balanced__transformer__cnn_ceiling__s42__preds.npz"
+        },
+        {
+          "seed": 43,
+          "dev": 0.4095,
+          "test": 0.4589,
+          "best_epoch": 8,
+          "test_aux": {
+            "mcc": 0.4589,
+            "auprc": 0.787,
+            "auroc": 0.802,
+            "pos_rate_pred": 0.4252
+          },
+          "predictions_path": "/data/nvidia/genomic-capability-unlearning/results_viral_bench/preds_rescore/hvue_v2__Pathogenicity__hard_capped_1000bp__cw_balanced__transformer__cnn_ceiling__s43__preds.npz"
+        }
+      ]
+    },
+    {
+      "arch": "transformer",
+      "ch": 256,
+      "blocks": 4,
+      "k": 8,
+      "dbase": 1,
+      "lr": 0.0001,
+      "params": 5258498,
+      "params_M": 5.258,
+      "rf_bp": "global",
+      "dev": 0.4266,
+      "test": 0.4788,
+      "test_sd": 0.0165,
+      "runs": [
+        {
+          "seed": 42,
+          "dev": 0.4191,
+          "test": 0.4905,
+          "best_epoch": 6,
+          "test_aux": {
+            "mcc": 0.4905,
+            "auprc": 0.7927,
+            "auroc": 0.7995,
+            "pos_rate_pred": 0.4688
+          },
+          "predictions_path": "/data/nvidia/genomic-capability-unlearning/results_viral_bench/preds_rescore/hvue_v2__Pathogenicity__hard_capped_1000bp__cw_balanced__transformer__cnn_ceiling__s42__preds.npz"
+        },
+        {
+          "seed": 43,
+          "dev": 0.4342,
+          "test": 0.4671,
+          "best_epoch": 14,
+          "test_aux": {
+            "mcc": 0.4671,
+            "auprc": 0.8033,
+            "auroc": 0.8132,
+            "pos_rate_pred": 0.4782
+          },
+          "predictions_path": "/data/nvidia/genomic-capability-unlearning/results_viral_bench/preds_rescore/hvue_v2__Pathogenicity__hard_capped_1000bp__cw_balanced__transformer__cnn_ceiling__s43__preds.npz"
+        }
+      ]
+    },
+    {
+      "arch": "transformer",
+      "ch": 256,
+      "blocks": 4,
+      "k": 8,
+      "dbase": 1,
+      "lr": 0.001,
+      "params": 5258498,
+      "params_M": 5.258,
+      "rf_bp": "global",
+      "dev": 0.2488,
+      "test": 0.256,
+      "test_sd": 0.0005,
+      "runs": [
+        {
+          "seed": 42,
+          "dev": 0.2418,
+          "test": 0.2563,
+          "best_epoch": 5,
+          "test_aux": {
+            "mcc": 0.2563,
+            "auprc": 0.6048,
+            "auroc": 0.5799,
+            "pos_rate_pred": 0.2377
+          },
+          "predictions_path": "/data/nvidia/genomic-capability-unlearning/results_viral_bench/preds_rescore/hvue_v2__Pathogenicity__hard_capped_1000bp__cw_balanced__transformer__cnn_ceiling__s42__preds.npz"
+        },
+        {
+          "seed": 43,
+          "dev": 0.2558,
+          "test": 0.2556,
+          "best_epoch": 2,
+          "test_aux": {
+            "mcc": 0.2556,
+            "auprc": 0.5928,
+            "auroc": 0.5492,
+            "pos_rate_pred": 0.1981
+          },
+          "predictions_path": "/data/nvidia/genomic-capability-unlearning/results_viral_bench/preds_rescore/hvue_v2__Pathogenicity__hard_capped_1000bp__cw_balanced__transformer__cnn_ceiling__s43__preds.npz"
+        }
+      ]
+    },
+    {
+      "arch": "transformer",
+      "ch": 256,
+      "blocks": 4,
+      "k": 9,
+      "dbase": 1,
+      "lr": 0.0003,
+      "params": 5258498,
+      "params_M": 5.258,
+      "rf_bp": "global",
+      "dev": 0.4251,
+      "test": 0.4682,
+      "test_sd": 0.0064,
+      "runs": [
+        {
+          "seed": 42,
+          "dev": 0.4272,
+          "test": 0.4637,
+          "best_epoch": 6,
+          "test_aux": {
+            "mcc": 0.4637,
+            "auprc": 0.7859,
+            "auroc": 0.7923,
+            "pos_rate_pred": 0.4766
+          },
+          "predictions_path": "/data/nvidia/genomic-capability-unlearning/results_viral_bench/preds_rescore/hvue_v2__Pathogenicity__hard_capped_1000bp__cw_balanced__transformer__cnn_ceiling__s42__preds.npz"
+        },
+        {
+          "seed": 43,
+          "dev": 0.4229,
+          "test": 0.4728,
+          "best_epoch": 14,
+          "test_aux": {
+            "mcc": 0.4728,
+            "auprc": 0.7972,
+            "auroc": 0.8076,
+            "pos_rate_pred": 0.4565
+          },
+          "predictions_path": "/data/nvidia/genomic-capability-unlearning/results_viral_bench/preds_rescore/hvue_v2__Pathogenicity__hard_capped_1000bp__cw_balanced__transformer__cnn_ceiling__s43__preds.npz"
+        }
+      ]
+    },
+    {
+      "arch": "transformer",
+      "ch": 256,
+      "blocks": 4,
+      "k": 9,
+      "dbase": 1,
+      "lr": 0.0001,
+      "params": 5258498,
+      "params_M": 5.258,
+      "rf_bp": "global",
+      "dev": 0.4315,
+      "test": 0.4743,
+      "test_sd": 0.015,
+      "runs": [
+        {
+          "seed": 42,
+          "dev": 0.4214,
+          "test": 0.4849,
+          "best_epoch": 6,
+          "test_aux": {
+            "mcc": 0.4849,
+            "auprc": 0.7938,
+            "auroc": 0.7994,
+            "pos_rate_pred": 0.4682
+          },
+          "predictions_path": "/data/nvidia/genomic-capability-unlearning/results_viral_bench/preds_rescore/hvue_v2__Pathogenicity__hard_capped_1000bp__cw_balanced__transformer__cnn_ceiling__s42__preds.npz"
+        },
+        {
+          "seed": 43,
+          "dev": 0.4415,
+          "test": 0.4637,
+          "best_epoch": 14,
+          "test_aux": {
+            "mcc": 0.4637,
+            "auprc": 0.7975,
+            "auroc": 0.8088,
+            "pos_rate_pred": 0.4777
+          },
+          "predictions_path": "/data/nvidia/genomic-capability-unlearning/results_viral_bench/preds_rescore/hvue_v2__Pathogenicity__hard_capped_1000bp__cw_balanced__transformer__cnn_ceiling__s43__preds.npz"
+        }
+      ]
+    },
+    {
+      "arch": "transformer",
+      "ch": 256,
+      "blocks": 4,
+      "k": 9,
+      "dbase": 1,
+      "lr": 0.001,
+      "params": 5258498,
+      "params_M": 5.258,
+      "rf_bp": "global",
+      "dev": 0.2257,
+      "test": 0.2632,
+      "test_sd": 0.0319,
+      "runs": [
+        {
+          "seed": 42,
+          "dev": 0.2478,
+          "test": 0.2858,
+          "best_epoch": 2,
+          "test_aux": {
+            "mcc": 0.2858,
+            "auprc": 0.643,
+            "auroc": 0.6116,
+            "pos_rate_pred": 0.4074
+          },
+          "predictions_path": "/data/nvidia/genomic-capability-unlearning/results_viral_bench/preds_rescore/hvue_v2__Pathogenicity__hard_capped_1000bp__cw_balanced__transformer__cnn_ceiling__s42__preds.npz"
+        },
+        {
+          "seed": 43,
+          "dev": 0.2036,
+          "test": 0.2407,
+          "best_epoch": 1,
+          "test_aux": {
+            "mcc": 0.2407,
+            "auprc": 0.6232,
+            "auroc": 0.6053,
+            "pos_rate_pred": 0.2729
+          },
+          "predictions_path": "/data/nvidia/genomic-capability-unlearning/results_viral_bench/preds_rescore/hvue_v2__Pathogenicity__hard_capped_1000bp__cw_balanced__transformer__cnn_ceiling__s43__preds.npz"
+        }
+      ]
+    },
+    {
+      "arch": "transformer",
+      "ch": 128,
+      "blocks": 4,
+      "k": 8,
+      "dbase": 1,
+      "lr": 0.0003,
+      "params": 1842818,
+      "params_M": 1.843,
+      "rf_bp": "global",
+      "dev": 0.4083,
+      "test": 0.4583,
+      "test_sd": 0.0064,
+      "runs": [
+        {
+          "seed": 42,
+          "dev": 0.4177,
+          "test": 0.4628,
+          "best_epoch": 11,
+          "test_aux": {
+            "mcc": 0.4628,
+            "auprc": 0.7853,
+            "auroc": 0.8023,
+            "pos_rate_pred": 0.4537
+          },
+          "predictions_path": "/data/nvidia/genomic-capability-unlearning/results_viral_bench/preds_rescore/hvue_v2__Pathogenicity__hard_capped_1000bp__cw_balanced__transformer__cnn_ceiling__s42__preds.npz"
+        },
+        {
+          "seed": 43,
+          "dev": 0.3988,
+          "test": 0.4538,
+          "best_epoch": 10,
+          "test_aux": {
+            "mcc": 0.4538,
+            "auprc": 0.7923,
+            "auroc": 0.8041,
+            "pos_rate_pred": 0.486
+          },
+          "predictions_path": "/data/nvidia/genomic-capability-unlearning/results_viral_bench/preds_rescore/hvue_v2__Pathogenicity__hard_capped_1000bp__cw_balanced__transformer__cnn_ceiling__s43__preds.npz"
+        }
+      ]
+    },
+    {
+      "arch": "transformer",
+      "ch": 128,
+      "blocks": 4,
+      "k": 8,
+      "dbase": 1,
+      "lr": 0.0001,
+      "params": 1842818,
+      "params_M": 1.843,
+      "rf_bp": "global",
+      "dev": 0.4044,
+      "test": 0.4601,
+      "test_sd": 0.0139,
+      "runs": [
+        {
+          "seed": 42,
+          "dev": 0.4021,
+          "test": 0.4699,
+          "best_epoch": 4,
+          "test_aux": {
+            "mcc": 0.4699,
+            "auprc": 0.7806,
+            "auroc": 0.7922,
+            "pos_rate_pred": 0.4972
+          },
+          "predictions_path": "/data/nvidia/genomic-capability-unlearning/results_viral_bench/preds_rescore/hvue_v2__Pathogenicity__hard_capped_1000bp__cw_balanced__transformer__cnn_ceiling__s42__preds.npz"
+        },
+        {
+          "seed": 43,
+          "dev": 0.4067,
+          "test": 0.4503,
+          "best_epoch": 5,
+          "test_aux": {
+            "mcc": 0.4503,
+            "auprc": 0.7725,
+            "auroc": 0.7935,
+            "pos_rate_pred": 0.4609
+          },
+          "predictions_path": "/data/nvidia/genomic-capability-unlearning/results_viral_bench/preds_rescore/hvue_v2__Pathogenicity__hard_capped_1000bp__cw_balanced__transformer__cnn_ceiling__s43__preds.npz"
+        }
+      ]
+    },
+    {
+      "arch": "transformer",
+      "ch": 128,
+      "blocks": 4,
+      "k": 8,
+      "dbase": 1,
+      "lr": 0.001,
+      "params": 1842818,
+      "params_M": 1.843,
+      "rf_bp": "global",
+      "dev": 0.4023,
+      "test": 0.431,
+      "test_sd": 0.0038,
+      "runs": [
+        {
+          "seed": 42,
+          "dev": 0.405,
+          "test": 0.4337,
+          "best_epoch": 8,
+          "test_aux": {
+            "mcc": 0.4337,
+            "auprc": 0.7737,
+            "auroc": 0.7819,
+            "pos_rate_pred": 0.4308
+          },
+          "predictions_path": "/data/nvidia/genomic-capability-unlearning/results_viral_bench/preds_rescore/hvue_v2__Pathogenicity__hard_capped_1000bp__cw_balanced__transformer__cnn_ceiling__s42__preds.npz"
+        },
+        {
+          "seed": 43,
+          "dev": 0.3997,
+          "test": 0.4283,
+          "best_epoch": 2,
+          "test_aux": {
+            "mcc": 0.4283,
+            "auprc": 0.7534,
+            "auroc": 0.7607,
+            "pos_rate_pred": 0.4035
+          },
+          "predictions_path": "/data/nvidia/genomic-capability-unlearning/results_viral_bench/preds_rescore/hvue_v2__Pathogenicity__hard_capped_1000bp__cw_balanced__transformer__cnn_ceiling__s43__preds.npz"
+        }
+      ]
+    },
+    {
+      "arch": "transformer",
+      "ch": 256,
+      "blocks": 4,
+      "k": 8,
+      "dbase": 1,
+      "lr": 0.0003,
+      "params": 5258498,
+      "params_M": 5.258,
+      "rf_bp": "global",
+      "dev": 0.4157,
+      "test": 0.4483,
+      "test_sd": 0.02,
+      "runs": [
+        {
+          "seed": 42,
+          "dev": 0.435,
+          "test": 0.4689,
+          "best_epoch": 8,
+          "test_aux": {
+            "mcc": 0.4689,
+            "auprc": 0.7921,
+            "auroc": 0.7982,
+            "pos_rate_pred": 0.4431
+          },
+          "predictions_path": "/data/nvidia/genomic-capability-unlearning/results_viral_bench/preds_rescore/hvue_v2__Pathogenicity__hard_capped_1000bp__cw_balanced__transformer__cnn_ceiling__s42__preds.npz"
+        },
+        {
+          "seed": 43,
+          "dev": 0.4108,
+          "test": 0.4647,
+          "best_epoch": 8,
+          "test_aux": {
+            "mcc": 0.4647,
+            "auprc": 0.7863,
+            "auroc": 0.8006,
+            "pos_rate_pred": 0.4375
+          },
+          "predictions_path": "/data/nvidia/genomic-capability-unlearning/results_viral_bench/preds_rescore/hvue_v2__Pathogenicity__hard_capped_1000bp__cw_balanced__transformer__cnn_ceiling__s43__preds.npz"
+        },
+        {
+          "seed": 44,
+          "dev": 0.4155,
+          "test": 0.4197,
+          "best_epoch": 3,
+          "test_aux": {
+            "mcc": 0.4197,
+            "auprc": 0.7482,
+            "auroc": 0.7736,
+            "pos_rate_pred": 0.4085
+          },
+          "predictions_path": "/data/nvidia/genomic-capability-unlearning/results_viral_bench/preds_rescore/hvue_v2__Pathogenicity__hard_capped_1000bp__cw_balanced__transformer__cnn_ceiling__s44__preds.npz"
+        },
+        {
+          "seed": 45,
+          "dev": 0.4027,
+          "test": 0.4432,
+          "best_epoch": 6,
+          "test_aux": {
+            "mcc": 0.4432,
+            "auprc": 0.7779,
+            "auroc": 0.7861,
+            "pos_rate_pred": 0.4414
+          },
+          "predictions_path": "/data/nvidia/genomic-capability-unlearning/results_viral_bench/preds_rescore/hvue_v2__Pathogenicity__hard_capped_1000bp__cw_balanced__transformer__cnn_ceiling__s45__preds.npz"
+        },
+        {
+          "seed": 46,
+          "dev": 0.422,
+          "test": 0.4317,
+          "best_epoch": 6,
+          "test_aux": {
+            "mcc": 0.4317,
+            "auprc": 0.7673,
+            "auroc": 0.7805,
+            "pos_rate_pred": 0.4029
+          },
+          "predictions_path": "/data/nvidia/genomic-capability-unlearning/results_viral_bench/preds_rescore/hvue_v2__Pathogenicity__hard_capped_1000bp__cw_balanced__transformer__cnn_ceiling__s46__preds.npz"
+        },
+        {
+          "seed": 47,
+          "dev": 0.4084,
+          "test": 0.4617,
+          "best_epoch": 8,
+          "test_aux": {
+            "mcc": 0.4617,
+            "auprc": 0.7812,
+            "auroc": 0.7849,
+            "pos_rate_pred": 0.4531
+          },
+          "predictions_path": "/data/nvidia/genomic-capability-unlearning/results_viral_bench/preds_rescore/hvue_v2__Pathogenicity__hard_capped_1000bp__cw_balanced__transformer__cnn_ceiling__s47__preds.npz"
+        }
+      ],
+      "refit_seeds": 6
+    }
+  ],
+  "dev_selected": {
+    "n_seeds": 6,
+    "test_sd": 0.02,
+    "arch": "transformer",
+    "params_M": 5.258,
+    "lr": 0.0003,
+    "k": 8,
+    "dbase": 1,
+    "rf_bp": "global",
+    "dev": 0.4157,
+    "test": 0.4483
+  },
+  "oracle_best_test": 0.4788,
+  "incumbent": null
+}

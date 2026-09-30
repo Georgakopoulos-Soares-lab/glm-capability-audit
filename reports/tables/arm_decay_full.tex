@@ -1,0 +1,47 @@
+\begin{table}[htbp]
+\centering
+\footnotesize
+\caption{\textbf{Every baseline threshold arm in every population.} The two supervised arms are fit on the same task as the models and fall alongside the composition arms as relationships are withheld. Bold marks the arm setting the floor. This is the full version of main text Table~1.}
+\label{tab:arm-decay-full}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{ll r rrrrrrrr}
+\toprule
+Benchmark & Regime & $n$ & CNN & transf. & $k$-mer log. & $k$-mer GBT & AA comp. & NN lookup & lineage & lineage (rec.) \\
+\midrule
+GUE covid & $L_0$ & 9,168 & 0.615 & 0.025 & 0.711 & \textbf{0.719} & 0.682 & 0.581 & -- & -- \\
+\addlinespace
+GUE phage & $L_0$ & 4,630 & \textbf{0.813} & 0.333 & 0.743 & 0.812 & 0.767 & 0.649 & -- & -- \\
+GUE phage & $L_1$ & 2,874 & 0.759 & 0.298 & 0.691 & \textbf{0.770} & 0.715 & 0.227 & -- & -- \\
+GUE phage & $L_2$ & 86 & 0.650 & 0.341 & 0.582 & \textbf{0.804} & 0.690 & 0.000 & -- & -- \\
+GUE phage & $L_3$ & 79 & 0.660 & 0.322 & 0.611 & \textbf{0.793} & 0.693 & 0.000 & -- & -- \\
+\addlinespace
+HT \textsc{hard\_70} & $L_0$ & 51,187 & 0.523 & 0.147 & 0.354 & 0.418 & 0.338 & \textbf{0.623} & -- & 0.549 \\
+HT \textsc{hard\_70} & $L_1$ & 11,994 & 0.075 & 0.063 & 0.070 & \textbf{0.092} & 0.047 & 0.000 & -- & 0.021 \\
+HT \textsc{hard\_70} & $L_2$ & 3,737 & 0.058 & 0.059 & 0.007 & 0.020 & \textbf{0.117} & 0.000 & -- & 0.007 \\
+HT \textsc{hard\_70} & $L_3$ & 3,634 & 0.059 & 0.056 & 0.000 & 0.022 & \textbf{0.096} & 0.000 & -- & 0.008 \\
+HT \textsc{hard\_70} & $L_5$ & 5,070 & 0.033 & 0.028 & 0.023 & \textbf{0.041} & 0.027 & $\minus 0.012$ & -- & 0.000 \\
+\addlinespace
+HT \textsc{std\_95} & $L_0$ & 50,817 & 0.332 & 0.073 & 0.309 & 0.344 & 0.379 & \textbf{0.619} & -- & 0.502 \\
+HT \textsc{std\_95} & $L_1$ & 11,124 & \textbf{0.151} & $\minus 0.009$ & 0.150 & 0.096 & 0.043 & 0.000 & -- & $\minus 0.012$ \\
+HT \textsc{std\_95} & $L_2$ & 3,882 & \textbf{0.191} & $\minus 0.002$ & 0.145 & 0.101 & 0.097 & 0.000 & -- & $\minus 0.012$ \\
+HT \textsc{std\_95} & $L_3$ & 3,810 & \textbf{0.192} & $\minus 0.002$ & 0.147 & 0.103 & 0.097 & 0.000 & -- & $\minus 0.013$ \\
+HT \textsc{std\_95} & $L_5$ & 5,663 & \textbf{0.248} & $\minus 0.046$ & 0.217 & 0.072 & $\minus 0.004$ & 0.193 & -- & 0.000 \\
+\addlinespace
+Patho. hard & $L_0$ & 1,792 & \textbf{0.799} & 0.448 & 0.758 & 0.792 & 0.764 & 0.796 & -- & -- \\
+\addlinespace
+Patho. std & $L_0$ & 6,651 & 0.807 & 0.509 & 0.696 & \textbf{0.809} & 0.795 & 0.805 & -- & -- \\
+\addlinespace
+Transm. hard & $L_0$ & 2,497 & 0.677 & 0.247 & 0.542 & \textbf{0.689} & 0.585 & 0.643 & -- & -- \\
+Transm. hard & $L_1$ & 55 & 0.386 & 0.213 & 0.114 & \textbf{0.412} & 0.052 & 0.000 & -- & -- \\
+\addlinespace
+Transm. std & $L_0$ & 12,728 & 0.688 & 0.452 & 0.608 & 0.688 & 0.661 & \textbf{0.693} & -- & -- \\
+\addlinespace
+VHDB & $L_0$ & 3,754 & 0.538 & 0.096 & 0.312 & 0.528 & 0.487 & 0.633 & \textbf{0.681} & -- \\
+VHDB & $L_1$ & 1,200 & $\minus 0.006$ & $\minus 0.026$ & 0.032 & $\minus 0.023$ & $\minus 0.026$ & 0.000 & \textbf{0.175} & -- \\
+VHDB & $L_2$ & 201 & $\minus 0.002$ & $\minus 0.041$ & $\minus 0.006$ & $\minus 0.014$ & 0.000 & 0.000 & \textbf{0.335} & -- \\
+VHDB & $L_3$ & 197 & $\minus 0.002$ & $\minus 0.040$ & $\minus 0.006$ & $\minus 0.015$ & 0.000 & 0.000 & \textbf{0.335} & -- \\
+VHDB & $L_4$ & 199 & 0.007 & $\minus 0.038$ & \textbf{0.027} & $\minus 0.013$ & 0.000 & 0.000 & $\minus 0.018$ & -- \\
+VHDB & $L_5$ & 74 & $\minus 0.021$ & $\minus 0.079$ & $\minus 0.081$ & \textbf{0.000} & 0.000 & 0.000 & 0.000 & -- \\
+\bottomrule
+\end{tabular}}
+\end{table}

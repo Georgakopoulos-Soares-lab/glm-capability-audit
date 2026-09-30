@@ -1,0 +1,13 @@
+{
+  "model": "gena_lm",
+  "task": "HT_hard70__cap1500",
+  "regime": "frozen_linear_probe",
+  "representation": "masked mean over final hidden states",
+  "n_train": 1500,
+  "n_test": 8000,
+  "dim": 768,
+  "selected_C": 0.001,
+  "mcc": 0.2048,
+  "macro_f1": 0.5269,
+  "auprc": 0.1704
+}

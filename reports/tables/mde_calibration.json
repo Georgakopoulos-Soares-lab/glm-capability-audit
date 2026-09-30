@@ -1,0 +1,62 @@
+{
+ "rows": [
+  {
+   "benchmark": "HVUE_HT_hard_70",
+   "n": 3737,
+   "n_units": 3737,
+   "model": "hvilm",
+   "mcc": 0.225,
+   "reported_mde": 0.133,
+   "synthetic": 0.144,
+   "synthetic_spread": [
+    0.095,
+    0.169
+   ],
+   "ratio": 0.92
+  },
+  {
+   "benchmark": "HVUE_HT_std_95",
+   "n": 3882,
+   "n_units": 3882,
+   "model": "hvilm",
+   "mcc": 0.299,
+   "reported_mde": 0.148,
+   "synthetic": 0.176,
+   "synthetic_spread": [
+    0.123,
+    0.207
+   ],
+   "ratio": 0.84
+  },
+  {
+   "benchmark": "VHDB_within_family",
+   "n": 201,
+   "n_units": 49,
+   "model": "hvilm",
+   "mcc": 0.684,
+   "reported_mde": 0.497,
+   "synthetic": 0.267,
+   "synthetic_spread": [
+    0.167,
+    0.476
+   ],
+   "ratio": 1.86
+  },
+  {
+   "benchmark": "GUE_phage",
+   "n": 86,
+   "n_units": 86,
+   "model": "nt_v2_500m",
+   "mcc": 0.821,
+   "reported_mde": 0.139,
+   "synthetic": 0.051,
+   "synthetic_spread": [
+    0.032,
+    0.075
+   ],
+   "ratio": 2.7
+  }
+ ],
+ "factor_small_strata": 2.28,
+ "factor_small_strata_max": 2.7
+}

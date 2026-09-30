@@ -1,0 +1,23 @@
+{
+  "name": "Patho_hard_v2",
+  "n_test": 1792,
+  "frac_with_nn": 0.9911,
+  "nn_lookup_fullset_majfallback": 0.7962,
+  "nn_lookup_hitrows_only": 0.8052,
+  "kmer_fullset": 0.7578,
+  "kmer_hitrows": 0.7636,
+  "kmer_cap_fullset": 0.7578,
+  "kmer_cap_hitrows": 0.7636,
+  "cnn_fullset": 0.7995,
+  "cnn_hitrows": 0.8052,
+  "hvilm_fullset": 0.8041,
+  "hvilm_hitrows": 0.8072,
+  "dnabert2_fullset": 0.7972,
+  "dnabert2_hitrows": 0.8007,
+  "nt_v2_500m_fullset": 0.766,
+  "nt_v2_500m_hitrows": 0.7698,
+  "gena_lm_fullset": 0.7807,
+  "gena_lm_hitrows": 0.782,
+  "hyenadna_fullset": 0.7674,
+  "hyenadna_hitrows": 0.7724
+}

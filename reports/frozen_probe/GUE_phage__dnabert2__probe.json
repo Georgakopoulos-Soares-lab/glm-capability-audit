@@ -1,0 +1,13 @@
+{
+  "model": "dnabert2",
+  "task": "GUE_phage",
+  "regime": "frozen_linear_probe",
+  "representation": "masked mean over final hidden states",
+  "n_train": 8000,
+  "n_test": 4630,
+  "dim": 768,
+  "selected_C": 0.1,
+  "mcc": 0.6311,
+  "macro_f1": 0.8155,
+  "auprc": 0.8952
+}

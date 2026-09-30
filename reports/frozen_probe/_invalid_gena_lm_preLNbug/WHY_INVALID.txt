@@ -1,0 +1,19 @@
+These four GENA-LM probe results are INVALID. Kept so the correction is auditable.
+
+frozen_probe_suite.py loaded GENA-LM with AutoModelForMaskedLM + trust_remote_code=True,
+which still resolved to stock post-LN BertForMaskedLM. GENA-LM's checkpoint is pre-LN:
+transformers discarded 48 pre/post_attention_ln tensors and freshly initialised 48 post-LN
+LayerNorms the checkpoint does not contain. Half the encoder was random.
+
+The failure was silent. A half-random encoder returns finite embeddings, so the probe
+reported a plausible near-zero score instead of raising.
+
+    task         invalid   corrected
+    VHDB          0.0099      0.2252
+    HT_hard70     0.0162      0.2951
+    Patho_hard    0.0506      0.5688
+    GUE_phage     0.0424      0.6246
+
+Fixed by loading modeling_bert.BertForMaskedLM via get_class_from_dynamic_module (with the
+deepspeed import stub) and by adding _no_fresh_weights, which hard-fails on any
+freshly-initialised encoder. See reports/RESULTS.md section 11.

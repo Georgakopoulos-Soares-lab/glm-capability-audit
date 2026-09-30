@@ -1,0 +1,314 @@
+{
+  "name": "HVUE_HT_hard_70",
+  "n_test": 51187,
+  "bootstrap_unit": "ROW (anti-conservative)",
+  "n_nucleotide_hit": 39193,
+  "n_translated_hit": 47400,
+  "n_hidden_translated_only": 8257,
+  "frac_of_old_homolog_free_that_is_hidden": 0.6884,
+  "unseen_lineage_frac": {},
+  "levels": {
+    "L0_all": {
+      "n": 51187,
+      "n_units": 51187,
+      "floor": 0.4183,
+      "floor_arm": "kmer_gbt",
+      "baselines": {
+        "kmer": 0.3538,
+        "kmer_gbt": 0.4183,
+        "aa_gbt": 0.3379,
+        "transformer": 0.1467
+      },
+      "models": {
+        "hvilm": {
+          "mcc": 0.723,
+          "excess": 0.3046,
+          "ci_lo": 0.2603,
+          "ci_hi": 0.3454,
+          "p_le_0": 0.0
+        },
+        "dnabert2": {
+          "mcc": 0.5216,
+          "excess": 0.1032,
+          "ci_lo": 0.0704,
+          "ci_hi": 0.1357,
+          "p_le_0": 0.0
+        },
+        "nt_v2_500m": {
+          "mcc": 0.4763,
+          "excess": 0.0579,
+          "ci_lo": 0.0344,
+          "ci_hi": 0.081,
+          "p_le_0": 0.0
+        },
+        "hyenadna": {
+          "mcc": 0.4172,
+          "excess": -0.0012,
+          "ci_lo": -0.0253,
+          "ci_hi": 0.0223,
+          "p_le_0": 0.53
+        },
+        "gena_lm": {
+          "mcc": 0.3764,
+          "excess": -0.042,
+          "ci_lo": -0.1235,
+          "ci_hi": 0.0283,
+          "p_le_0": 0.6645
+        }
+      }
+    },
+    "L1_no_nucleotide": {
+      "n": 11994,
+      "n_units": 11994,
+      "floor": 0.0919,
+      "floor_arm": "kmer_gbt",
+      "baselines": {
+        "kmer": 0.0704,
+        "kmer_gbt": 0.0919,
+        "aa_gbt": 0.0467,
+        "transformer": 0.0633
+      },
+      "models": {
+        "hvilm": {
+          "mcc": 0.2853,
+          "excess": 0.1935,
+          "ci_lo": 0.1185,
+          "ci_hi": 0.2661,
+          "p_le_0": 0.0
+        },
+        "nt_v2_500m": {
+          "mcc": 0.0956,
+          "excess": 0.0038,
+          "ci_lo": -0.035,
+          "ci_hi": 0.0441,
+          "p_le_0": 0.4485
+        },
+        "dnabert2": {
+          "mcc": 0.0951,
+          "excess": 0.0032,
+          "ci_lo": -0.0379,
+          "ci_hi": 0.0461,
+          "p_le_0": 0.4745
+        },
+        "gena_lm": {
+          "mcc": 0.0901,
+          "excess": -0.0018,
+          "ci_lo": -0.0738,
+          "ci_hi": 0.054,
+          "p_le_0": 0.4445
+        },
+        "hyenadna": {
+          "mcc": 0.0896,
+          "excess": -0.0022,
+          "ci_lo": -0.0469,
+          "ci_hi": 0.0415,
+          "p_le_0": 0.583
+        }
+      }
+    },
+    "L2_no_nucleotide_no_translated": {
+      "n": 3737,
+      "n_units": 3737,
+      "floor": 0.1169,
+      "floor_arm": "aa_gbt",
+      "baselines": {
+        "kmer": 0.0068,
+        "kmer_gbt": 0.0198,
+        "aa_gbt": 0.1169,
+        "transformer": 0.0595
+      },
+      "models": {
+        "hvilm": {
+          "mcc": 0.2252,
+          "excess": 0.1083,
+          "ci_lo": -0.0307,
+          "ci_hi": 0.2386,
+          "p_le_0": 0.0755
+        },
+        "hyenadna": {
+          "mcc": 0.0713,
+          "excess": -0.0456,
+          "ci_lo": -0.1435,
+          "ci_hi": 0.0466,
+          "p_le_0": 0.838
+        },
+        "nt_v2_500m": {
+          "mcc": 0.0667,
+          "excess": -0.0502,
+          "ci_lo": -0.1644,
+          "ci_hi": 0.0506,
+          "p_le_0": 0.8415
+        },
+        "dnabert2": {
+          "mcc": 0.0499,
+          "excess": -0.067,
+          "ci_lo": -0.1541,
+          "ci_hi": 0.0057,
+          "p_le_0": 0.963
+        },
+        "gena_lm": {
+          "mcc": 0.0411,
+          "excess": -0.0758,
+          "ci_lo": -0.1529,
+          "ci_hi": -0.0102,
+          "p_le_0": 0.9875
+        }
+      }
+    },
+    "L1_minus_L2_translated_only": {
+      "n": 8257,
+      "n_units": 8257,
+      "floor": 0.1263,
+      "floor_arm": "kmer_gbt",
+      "baselines": {
+        "kmer": 0.1025,
+        "kmer_gbt": 0.1263,
+        "aa_gbt": 0.023,
+        "transformer": 0.0646
+      },
+      "models": {
+        "hvilm": {
+          "mcc": 0.3165,
+          "excess": 0.1902,
+          "ci_lo": 0.1089,
+          "ci_hi": 0.2751,
+          "p_le_0": 0.0
+        },
+        "dnabert2": {
+          "mcc": 0.1148,
+          "excess": -0.0114,
+          "ci_lo": -0.0615,
+          "ci_hi": 0.0416,
+          "p_le_0": 0.6595
+        },
+        "gena_lm": {
+          "mcc": 0.1122,
+          "excess": -0.014,
+          "ci_lo": -0.1098,
+          "ci_hi": 0.0537,
+          "p_le_0": 0.4505
+        },
+        "nt_v2_500m": {
+          "mcc": 0.1092,
+          "excess": -0.0171,
+          "ci_lo": -0.0687,
+          "ci_hi": 0.0416,
+          "p_le_0": 0.7135
+        },
+        "hyenadna": {
+          "mcc": 0.0997,
+          "excess": -0.0266,
+          "ci_lo": -0.0799,
+          "ci_hi": 0.0292,
+          "p_le_0": 0.8345
+        }
+      }
+    },
+    "L3_no_protein_either": {
+      "n": 3634,
+      "n_units": 3634,
+      "floor": 0.0962,
+      "floor_arm": "aa_gbt",
+      "baselines": {
+        "kmer": 0.0002,
+        "kmer_gbt": 0.0221,
+        "aa_gbt": 0.0962,
+        "transformer": 0.0559
+      },
+      "models": {
+        "hvilm": {
+          "mcc": 0.2178,
+          "excess": 0.1216,
+          "ci_lo": -0.0206,
+          "ci_hi": 0.2526,
+          "p_le_0": 0.0575
+        },
+        "nt_v2_500m": {
+          "mcc": 0.0716,
+          "excess": -0.0246,
+          "ci_lo": -0.1351,
+          "ci_hi": 0.066,
+          "p_le_0": 0.715
+        },
+        "hyenadna": {
+          "mcc": 0.0582,
+          "excess": -0.0381,
+          "ci_lo": -0.1392,
+          "ci_hi": 0.0518,
+          "p_le_0": 0.8115
+        },
+        "dnabert2": {
+          "mcc": 0.0424,
+          "excess": -0.0538,
+          "ci_lo": -0.1435,
+          "ci_hi": 0.0153,
+          "p_le_0": 0.938
+        },
+        "gena_lm": {
+          "mcc": 0.0329,
+          "excess": -0.0633,
+          "ci_lo": -0.1445,
+          "ci_hi": -0.0032,
+          "p_le_0": 0.978
+        }
+      }
+    }
+  },
+  "excess_vs_translated_similarity": {
+    "no translated hit": {
+      "n": 3737,
+      "floor": 0.1169,
+      "excess": {
+        "hvilm": 0.1083,
+        "dnabert2": -0.067,
+        "nt_v2_500m": -0.0502,
+        "gena_lm": -0.0758,
+        "hyenadna": -0.0456
+      }
+    },
+    "tbits 38-76": {
+      "n": 2023,
+      "floor": 0.1389,
+      "excess": {
+        "hvilm": 0.1326,
+        "dnabert2": -0.0956,
+        "nt_v2_500m": -0.0746,
+        "gena_lm": -0.1442,
+        "hyenadna": -0.1057
+      }
+    },
+    "tbits 76-116": {
+      "n": 2095,
+      "floor": 0.0774,
+      "excess": {
+        "hvilm": 0.1728,
+        "dnabert2": -0.049,
+        "nt_v2_500m": -0.0298,
+        "gena_lm": -0.026,
+        "hyenadna": -0.0637
+      }
+    },
+    "tbits 116-176": {
+      "n": 2059,
+      "floor": 0.1853,
+      "excess": {
+        "hvilm": 0.3187,
+        "dnabert2": 0.026,
+        "nt_v2_500m": -0.0712,
+        "gena_lm": -0.0194,
+        "hyenadna": -0.0385
+      }
+    },
+    "tbits 176-503": {
+      "n": 2080,
+      "floor": 0.1737,
+      "excess": {
+        "hvilm": 0.0715,
+        "dnabert2": -0.0394,
+        "nt_v2_500m": -0.0077,
+        "gena_lm": -0.0066,
+        "hyenadna": -0.0135
+      }
+    }
+  }
+}

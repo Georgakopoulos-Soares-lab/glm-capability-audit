@@ -1,0 +1,8 @@
+{
+  "name": "HVUE_HT_hard_70",
+  "n_train": 230934,
+  "n_test": 51187,
+  "exact_duplicate_frac": 0.0,
+  "revcomp_duplicate_frac": 0.0,
+  "meta_note": "no taxonomy/accession metadata shipped with this benchmark, so parent-genome leakage CANNOT be measured -- absence of evidence only"
+}

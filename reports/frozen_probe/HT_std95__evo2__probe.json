@@ -1,0 +1,13 @@
+{
+  "model": "evo2",
+  "task": "HT_std95",
+  "regime": "frozen_linear_probe",
+  "representation": "mean-pooled hidden states, block 16/32 (hook)",
+  "n_train": 1500,
+  "n_test": 8000,
+  "dim": 4096,
+  "selected_C": 0.001,
+  "mcc": 0.2977,
+  "macro_f1": 0.6009,
+  "auprc": 0.2514
+}

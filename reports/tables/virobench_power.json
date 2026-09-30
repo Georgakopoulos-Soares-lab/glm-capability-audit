@@ -1,0 +1,161 @@
+{
+ "ALL_taxon_times": {
+  "n": 286,
+  "n_genera": 110,
+  "class_sizes": {
+   "A": 180,
+   "B": 49,
+   "D3": 16,
+   "E": 14,
+   "C": 10,
+   "D2": 9,
+   "F": 5,
+   "D1": 3
+  },
+  "framings": {
+   "8 class host, as ViroBench defines it": {
+    "positives": null,
+    "halfwidths": {
+     "0.0": {
+      "achieved": -0.006,
+      "halfwidth_row": 0.067,
+      "halfwidth_genus": 0.066,
+      "mde_calibrated": 0.152
+     },
+     "0.2": {
+      "achieved": 0.207,
+      "halfwidth_row": 0.084,
+      "halfwidth_genus": 0.09,
+      "mde_calibrated": 0.207
+     },
+     "0.4": {
+      "achieved": 0.406,
+      "halfwidth_row": 0.089,
+      "halfwidth_genus": 0.1,
+      "mde_calibrated": 0.23
+     },
+     "0.6": {
+      "achieved": 0.597,
+      "halfwidth_row": 0.083,
+      "halfwidth_genus": 0.104,
+      "mde_calibrated": 0.239
+     }
+    }
+   },
+   "vertebrate host vs not": {
+    "positives": 28,
+    "halfwidths": {
+     "0.0": {
+      "achieved": -0.069,
+      "halfwidth_row": 0.074,
+      "halfwidth_genus": 0.09,
+      "mde_calibrated": 0.207
+     },
+     "0.2": {
+      "achieved": 0.208,
+      "halfwidth_row": 0.166,
+      "halfwidth_genus": 0.179,
+      "mde_calibrated": 0.412
+     },
+     "0.4": {
+      "achieved": 0.398,
+      "halfwidth_row": 0.173,
+      "halfwidth_genus": 0.188,
+      "mde_calibrated": 0.432
+     },
+     "0.6": {
+      "achieved": 0.592,
+      "halfwidth_row": 0.163,
+      "halfwidth_genus": 0.147,
+      "mde_calibrated": 0.338
+     }
+    }
+   },
+   "human host vs not": {
+    "positives": 3,
+    "halfwidths": null,
+    "mde": "undefined",
+    "reason": "only 3 positive rows"
+   }
+  }
+ },
+ "RNA_taxon_times": {
+  "n": 125,
+  "n_genera": 64,
+  "class_sizes": {
+   "B": 64,
+   "D3": 23,
+   "E": 16,
+   "C": 14,
+   "A": 6,
+   "D1": 1,
+   "F": 1
+  },
+  "framings": {
+   "8 class host, as ViroBench defines it": {
+    "positives": null,
+    "halfwidths": {
+     "0.0": {
+      "achieved": -0.011,
+      "halfwidth_row": 0.1,
+      "halfwidth_genus": 0.097,
+      "mde_calibrated": 0.223
+     },
+     "0.2": {
+      "achieved": 0.205,
+      "halfwidth_row": 0.114,
+      "halfwidth_genus": 0.102,
+      "mde_calibrated": 0.235
+     },
+     "0.4": {
+      "achieved": 0.409,
+      "halfwidth_row": 0.123,
+      "halfwidth_genus": 0.117,
+      "mde_calibrated": 0.269
+     },
+     "0.6": {
+      "achieved": 0.609,
+      "halfwidth_row": 0.116,
+      "halfwidth_genus": 0.107,
+      "mde_calibrated": 0.246
+     }
+    }
+   },
+   "vertebrate host vs not": {
+    "positives": 24,
+    "halfwidths": {
+     "0.0": {
+      "achieved": 0.072,
+      "halfwidth_row": 0.187,
+      "halfwidth_genus": 0.198,
+      "mde_calibrated": 0.455
+     },
+     "0.2": {
+      "achieved": 0.053,
+      "halfwidth_row": 0.182,
+      "halfwidth_genus": 0.196,
+      "mde_calibrated": 0.451
+     },
+     "0.4": {
+      "achieved": 0.406,
+      "halfwidth_row": 0.199,
+      "halfwidth_genus": 0.182,
+      "mde_calibrated": 0.419
+     },
+     "0.6": {
+      "achieved": 0.596,
+      "halfwidth_row": 0.183,
+      "halfwidth_genus": 0.18,
+      "mde_calibrated": 0.414
+     }
+    }
+   },
+   "human host vs not": {
+    "positives": 1,
+    "halfwidths": null,
+    "mde": "undefined",
+    "reason": "only 1 positive rows"
+   }
+  }
+ }
+}

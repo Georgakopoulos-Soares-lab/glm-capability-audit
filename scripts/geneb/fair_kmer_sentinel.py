@@ -11,16 +11,15 @@ compare our gLMs against, not GENEB's raw reference default.
 """
 import csv, json, sys
 import numpy as np
-sys.path.insert(0, P.GENEB_HARNESS)
+sys.path.insert(0, "/scratch/10906/arisk/GENEB/harness")
 from extractors.example_kmer import ExampleKmerExtractor
 from sklearn.linear_model import LogisticRegression
 from sklearn.preprocessing import StandardScaler
 from sklearn.metrics import matthews_corrcoef, accuracy_score, f1_score
 from sklearn.model_selection import train_test_split
-import paths as P
 
-TASKS = json.load(open(P.GENEB_SPEC))["tasks"]
-DATA = P.GENEB_DIR
+TASKS = json.load(open("/scratch/10906/arisk/GENEB/benchmark/benchmark_spec.json"))["tasks"]
+DATA = "/scratch/10906/arisk/GENEB/GENEB_data"
 C_GRID = [0.001, 0.003, 0.01, 0.03, 0.1, 0.3, 1.0, 10.0]
 
 
@@ -66,7 +65,7 @@ def run_task(task_id):
 if __name__ == "__main__":
     import sys as _s
     only = set(_s.argv[1:]) or None
-    out_path = os.path.join(P.sub("geneb"), "fair_kmer_sentinel_results.json")
+    out_path = "/scratch/10906/arisk/GENEB/fair_kmer_sentinel_results.json"
     results = json.load(open(out_path)) if __import__("os").path.exists(out_path) else []
     done = {r["task"] for r in results}
     for t in TASKS:

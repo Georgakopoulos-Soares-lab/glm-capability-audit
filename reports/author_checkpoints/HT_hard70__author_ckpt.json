@@ -1,0 +1,14 @@
+{
+  "name": "HT_hard70",
+  "checkpoint": "duttaprat/HViLM-Tropism",
+  "n_test": 51187,
+  "mcc_as_shipped": 0.7129,
+  "mcc_flipped": -0.7129,
+  "label_orientation": "as-shipped",
+  "mcc": 0.7129,
+  "auprc": 0.7096,
+  "floor": 0.6233,
+  "floor_arm": "nn_lookup",
+  "excess": 0.0896,
+  "caveat": "authors' training split unauditable; treat as an upper bound"
+}

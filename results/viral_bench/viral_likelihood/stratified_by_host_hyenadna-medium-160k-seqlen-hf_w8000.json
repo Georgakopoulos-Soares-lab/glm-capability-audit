@@ -1,0 +1,38 @@
+{
+  "window": 8000,
+  "cap_family": 3,
+  "model": "LongSafari/hyenadna-medium-160k-seqlen-hf",
+  "question": "is Evo 2's viral advantage exposure (prokaryotic, IN its training corpus) or capability (eukaryotic, EXCLUDED by design)?",
+  "strata": {
+    "prokaryotic": {
+      "n": 60
+    },
+    "eukaryotic": {
+      "n": 60
+    }
+  },
+  "bits": {
+    "prokaryotic": {
+      "markov_order3": 1.9783,
+      "markov_order5": 1.9725,
+      "LongSafari/hyenadna-medium-160k-seqlen-hf": 1.9519,
+      "LongSafari/hyenadna-medium-160k-seqlen-hf_vs_markov": -0.0206
+    },
+    "eukaryotic": {
+      "markov_order3": 1.9772,
+      "markov_order5": 1.9745,
+      "LongSafari/hyenadna-medium-160k-seqlen-hf": 1.961,
+      "LongSafari/hyenadna-medium-160k-seqlen-hf_vs_markov": -0.0135
+    }
+  },
+  "advantage_prokaryotic": 0.0206,
+  "advantage_eukaryotic": 0.0135,
+  "exposure_gap": {
+    "value": 0.0071,
+    "ci": [
+      -0.0142,
+      0.0287
+    ],
+    "p_le_0": 0.2625
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "hard70": {
+    "hvue_split": "HVUE HT hard_70",
+    "reddy_test_species": 736,
+    "nucleotide_relative": 723,
+    "nucleotide_relative_pct": 98.2,
+    "nucleotide_relative_human_pos": 140,
+    "human_pos_total": 140,
+    "exact_containment": 325,
+    "exact_containment_pct": 44.2,
+    "id95_cov80": 342,
+    "id95_cov80_pct": 46.5,
+    "id70_cov50": 614,
+    "id70_cov50_pct": 83.4,
+    "translated_relative_among_nt_no_hit": 13,
+    "neither_relative": 0,
+    "neither_relative_pct": 0.0
+  },
+  "std95": {
+    "hvue_split": "HVUE HT standard_95",
+    "reddy_test_species": 736,
+    "nucleotide_relative": 724,
+    "nucleotide_relative_pct": 98.4,
+    "nucleotide_relative_human_pos": 139,
+    "human_pos_total": 140,
+    "exact_containment": 331,
+    "exact_containment_pct": 45.0,
+    "id95_cov80": 354,
+    "id95_cov80_pct": 48.1,
+    "id70_cov50": 626,
+    "id70_cov50_pct": 85.1,
+    "translated_relative_among_nt_no_hit": 12,
+    "neither_relative": 0,
+    "neither_relative_pct": 0.0
+  }
+}

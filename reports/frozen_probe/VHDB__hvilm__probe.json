@@ -1,0 +1,13 @@
+{
+  "model": "hvilm",
+  "task": "VHDB",
+  "regime": "frozen_linear_probe",
+  "representation": "masked mean over final hidden states",
+  "n_train": 8000,
+  "n_test": 3754,
+  "dim": 768,
+  "selected_C": 0.001,
+  "mcc": 0.5633,
+  "macro_f1": 0.7815,
+  "auprc": 0.7467
+}

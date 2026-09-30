@@ -1,0 +1,92 @@
+
+GUE_covid   labels: recovered   n_test=9,168
+  label has 9 classes, so there is no single positive class; concentration is reported over all rows
+  stratum                                n    pos    rate  genera+  top share      GC pos/neg
+  L0                                 9,168  9,168   --          1    100.0%
+      Betacoronavirus                9,168 positive rows
+
+GUE_phage   labels: recovered   n_test=4,630
+  stratum                                n    pos    rate  genera+  top share      GC pos/neg
+  L0                                 4,630  2,315  50.0%      892      1.2%
+      679 positive rows have no genus label and are excluded, never imputed
+  L1                                 2,874    926  32.2%      403      1.0%
+      410 positive rows have no genus label and are excluded, never imputed
+  L2                                    86     34  39.5%       17      5.9%
+      17 positive rows have no genus label and are excluded, never imputed
+  L3                                    79     34  43.0%       17      5.9%
+      17 positive rows have no genus label and are excluded, never imputed
+
+HVUE_HT_hard_70   labels: recovered   n_test=51,187
+  stratum                                n    pos    rate  genera+  top share      GC pos/neg
+  L0                                51,187  1,808   3.5%       34     20.8%
+      10 positive rows have no genus label and are excluded, never imputed
+  L1                                11,994    223   1.9%       22     45.8%
+      9 positive rows have no genus label and are excluded, never imputed
+  L2                                 3,737     80   2.1%        7     76.7%  0.363/0.438 (-0.7 sd)
+      7 positive rows have no genus label and are excluded, never imputed
+  L3                                 3,634     77   2.1%        7     76.1%  0.363/0.438 (-0.7 sd)
+      6 positive rows have no genus label and are excluded, never imputed
+  L5                                 5,070    132   2.6%        4     75.8%  0.344/0.472 (-1.2 sd)
+      Paundivirus                      100 positive rows
+      Gammainfluenzavirus               13 positive rows
+      Erythroparvovirus                 11 positive rows
+      Nupapillomavirus                   8 positive rows
+
+HVUE_HT_std_95   labels: recovered   n_test=50,817
+  stratum                                n    pos    rate  genera+  top share      GC pos/neg
+  L0                                50,817  1,846   3.6%       38     21.1%
+      4 positive rows have no genus label and are excluded, never imputed
+  L1                                11,124    282   2.5%       16     42.7%
+      3 positive rows have no genus label and are excluded, never imputed
+  L2                                 3,882     79   2.0%        6     66.2%  0.612/0.441 (+1.7 sd)
+      2 positive rows have no genus label and are excluded, never imputed
+  L3                                 3,810     79   2.1%        6     66.2%  0.612/0.440 (+1.7 sd)
+      2 positive rows have no genus label and are excluded, never imputed
+  L5                                 5,663    191   3.4%        1    100.0%  0.633/0.473 (+1.5 sd)
+      Molluscipoxvirus                 191 positive rows
+
+HVUE_Patho_hard   labels: recovered   n_test=1,792
+  stratum                                n    pos    rate  genera+  top share      GC pos/neg
+  L0                                 1,792    872  48.7%        8     36.4%
+      17 positive rows have no genus label and are excluded, never imputed
+
+HVUE_Patho_std   labels: recovered   n_test=6,651
+  stratum                                n    pos    rate  genera+  top share      GC pos/neg
+  L0                                 6,651  2,304  34.6%        9     35.3%
+      51 positive rows have no genus label and are excluded, never imputed
+
+HVUE_Transm_hard   labels: recovered   n_test=2,497
+  stratum                                n    pos    rate  genera+  top share      GC pos/neg
+  L0                                 2,497  1,327  53.1%        9     40.7%
+      43 positive rows have no genus label and are excluded, never imputed
+  L1                                    55     14  25.5%        1   100.0%*
+      * only 2 positive rows carry a genus label, too few to read a share from
+      Gammainfluenzavirus                2 positive rows
+      12 positive rows have no genus label and are excluded, never imputed
+
+HVUE_Transm_std   labels: recovered   n_test=12,728
+  stratum                                n    pos    rate  genera+  top share      GC pos/neg
+  L0                                12,728  4,529  35.6%       11     31.6%
+      248 positive rows have no genus label and are excluded, never imputed
+
+VHDB_within_family   labels: native   n_test=3,754
+  stratum                                n    pos    rate  genera+  top share      GC pos/neg
+  L0                                 3,754    718  19.1%       30     20.5%
+  L1                                 1,200    114   9.5%       19     22.8%
+  L2                                   201      8   4.0%        3    50.0%*
+      * only 8 positive rows carry a genus label, too few to read a share from
+      Varicellovirus                     4 positive rows
+      Lymphocryptovirus                  2 positive rows
+      Orthomarburgvirus                  2 positive rows
+  L3                                   197      8   4.1%        3    50.0%*
+      * only 8 positive rows carry a genus label, too few to read a share from
+      Varicellovirus                     4 positive rows
+      Lymphocryptovirus                  2 positive rows
+      Orthomarburgvirus                  2 positive rows
+  L4                                   199      6   3.0%        2    66.7%*
+      * only 6 positive rows carry a genus label, too few to read a share from
+      Varicellovirus                     4 positive rows
+      Orthomarburgvirus                  2 positive rows
+  L5                                    74      2   2.7%        1   100.0%*
+      * only 2 positive rows carry a genus label, too few to read a share from
+      Orthomarburgvirus                  2 positive rows

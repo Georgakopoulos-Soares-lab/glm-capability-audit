@@ -1,0 +1,1844 @@
+{
+  "dataset": "geneb",
+  "task": "leannmlindsey_GUE_phage_fragments",
+  "metric": "mcc",
+  "n_classes": 2,
+  "seqlen": 4000,
+  "n_train": 31487,
+  "n_dev": 5557,
+  "n_test": 4630,
+  "seeds": [
+    42,
+    43
+  ],
+  "train_cap": null,
+  "class_weight": "balanced",
+  "ladder": [
+    {
+      "arch": "dilated",
+      "ch": 32,
+      "blocks": 3,
+      "k": 9,
+      "dbase": 2,
+      "lr": 0.001,
+      "params": 40562,
+      "params_M": 0.041,
+      "rf_bp": 57,
+      "dev": 0.6919,
+      "test": 0.6973,
+      "test_sd": null,
+      "runs": [
+        {
+          "seed": 42,
+          "dev": 0.6919,
+          "test": 0.6973,
+          "best_epoch": 7,
+          "test_aux": {
+            "mcc": 0.6973,
+            "auprc": 0.9318,
+            "auroc": 0.9307,
+            "pos_rate_pred": 0.5406
+          },
+          "predictions_path": "/data/nvidia/genomic-capability-unlearning/results_viral_bench/preds_rescore/geneb__leannmlindsey_GUE_phage_fragments__cw_balanced__cnn_ceiling__s42__preds.npz"
+        }
+      ]
+    },
+    {
+      "arch": "dilated",
+      "ch": 64,
+      "blocks": 4,
+      "k": 9,
+      "dbase": 2,
+      "lr": 0.001,
+      "params": 154194,
+      "params_M": 0.154,
+      "rf_bp": 121,
+      "dev": 0.7963,
+      "test": 0.7912,
+      "test_sd": null,
+      "runs": [
+        {
+          "seed": 42,
+          "dev": 0.7963,
+          "test": 0.7912,
+          "best_epoch": 10,
+          "test_aux": {
+            "mcc": 0.7912,
+            "auprc": 0.9602,
+            "auroc": 0.9575,
+            "pos_rate_pred": 0.479
+          },
+          "predictions_path": "/data/nvidia/genomic-capability-unlearning/results_viral_bench/preds_rescore/geneb__leannmlindsey_GUE_phage_fragments__cw_balanced__cnn_ceiling__s42__preds.npz"
+        }
+      ]
+    },
+    {
+      "arch": "dilated",
+      "ch": 128,
+      "blocks": 5,
+      "k": 9,
+      "dbase": 2,
+      "lr": 0.001,
+      "params": 676562,
+      "params_M": 0.677,
+      "rf_bp": 249,
+      "dev": 0.8307,
+      "test": 0.8219,
+      "test_sd": null,
+      "runs": [
+        {
+          "seed": 42,
+          "dev": 0.8307,
+          "test": 0.8219,
+          "best_epoch": 17,
+          "test_aux": {
+            "mcc": 0.8219,
+            "auprc": 0.9725,
+            "auroc": 0.9704,
+            "pos_rate_pred": 0.4689
+          },
+          "predictions_path": "/data/nvidia/genomic-capability-unlearning/results_viral_bench/preds_rescore/geneb__leannmlindsey_GUE_phage_fragments__cw_balanced__cnn_ceiling__s42__preds.npz"
+        }
+      ]
+    },
+    {
+      "arch": "dilated",
+      "ch": 256,
+      "blocks": 5,
+      "k": 9,
+      "dbase": 2,
+      "lr": 0.001,
+      "params": 2531922,
+      "params_M": 2.532,
+      "rf_bp": 249,
+      "dev": 0.8257,
+      "test": 0.8038,
+      "test_sd": null,
+      "runs": [
+        {
+          "seed": 42,
+          "dev": 0.8257,
+          "test": 0.8038,
+          "best_epoch": 15,
+          "test_aux": {
+            "mcc": 0.8038,
+            "auprc": 0.9692,
+            "auroc": 0.9669,
+            "pos_rate_pred": 0.4644
+          },
+          "predictions_path": "/data/nvidia/genomic-capability-unlearning/results_viral_bench/preds_rescore/geneb__leannmlindsey_GUE_phage_fragments__cw_balanced__cnn_ceiling__s42__preds.npz"
+        }
+      ]
+    },
+    {
+      "arch": "dilated",
+      "ch": 448,
+      "blocks": 6,
+      "k": 9,
+      "dbase": 2,
+      "lr": 0.001,
+      "params": 9334482,
+      "params_M": 9.334,
+      "rf_bp": 505,
+      "dev": 0.8155,
+      "test": 0.823,
+      "test_sd": null,
+      "runs": [
+        {
+          "seed": 42,
+          "dev": 0.8155,
+          "test": 0.823,
+          "best_epoch": 19,
+          "test_aux": {
+            "mcc": 0.823,
+            "auprc": 0.9713,
+            "auroc": 0.9687,
+            "pos_rate_pred": 0.5065
+          },
+          "predictions_path": "/data/nvidia/genomic-capability-unlearning/results_viral_bench/preds_rescore/geneb__leannmlindsey_GUE_phage_fragments__cw_balanced__cnn_ceiling__s42__preds.npz"
+        }
+      ]
+    },
+    {
+      "arch": "unet",
+      "ch": 24,
+      "blocks": 3,
+      "k": 9,
+      "dbase": 2,
+      "lr": 0.001,
+      "params": 256282,
+      "params_M": 0.256,
+      "rf_bp": null,
+      "dev": 0.7541,
+      "test": 0.7638,
+      "test_sd": null,
+      "runs": [
+        {
+          "seed": 42,
+          "dev": 0.7541,
+          "test": 0.7638,
+          "best_epoch": 12,
+          "test_aux": {
+            "mcc": 0.7638,
+            "auprc": 0.9545,
+            "auroc": 0.9512,
+            "pos_rate_pred": 0.5244
+          },
+          "predictions_path": "/data/nvidia/genomic-capability-unlearning/results_viral_bench/preds_rescore/geneb__leannmlindsey_GUE_phage_fragments__cw_balanced__cnn_ceiling__s42__preds.npz"
+        }
+      ]
+    },
+    {
+      "arch": "unet",
+      "ch": 48,
+      "blocks": 3,
+      "k": 9,
+      "dbase": 2,
+      "lr": 0.001,
+      "params": 988642,
+      "params_M": 0.989,
+      "rf_bp": null,
+      "dev": 0.7718,
+      "test": 0.76,
+      "test_sd": null,
+      "runs": [
+        {
+          "seed": 42,
+          "dev": 0.7718,
+          "test": 0.76,
+          "best_epoch": 16,
+          "test_aux": {
+            "mcc": 0.76,
+            "auprc": 0.9467,
+            "auroc": 0.9473,
+            "pos_rate_pred": 0.4901
+          },
+          "predictions_path": "/data/nvidia/genomic-capability-unlearning/results_viral_bench/preds_rescore/geneb__leannmlindsey_GUE_phage_fragments__cw_balanced__cnn_ceiling__s42__preds.npz"
+        }
+      ]
+    },
+    {
+      "arch": "unet",
+      "ch": 112,
+      "blocks": 3,
+      "k": 9,
+      "dbase": 2,
+      "lr": 0.001,
+      "params": 5273250,
+      "params_M": 5.273,
+      "rf_bp": null,
+      "dev": 0.7552,
+      "test": 0.7555,
+      "test_sd": null,
+      "runs": [
+        {
+          "seed": 42,
+          "dev": 0.7552,
+          "test": 0.7555,
+          "best_epoch": 9,
+          "test_aux": {
+            "mcc": 0.7555,
+            "auprc": 0.9541,
+            "auroc": 0.9514,
+            "pos_rate_pred": 0.4326
+          },
+          "predictions_path": "/data/nvidia/genomic-capability-unlearning/results_viral_bench/preds_rescore/geneb__leannmlindsey_GUE_phage_fragments__cw_balanced__cnn_ceiling__s42__preds.npz"
+        }
+      ]
+    },
+    {
+      "arch": "unet",
+      "ch": 64,
+      "blocks": 4,
+      "k": 9,
+      "dbase": 2,
+      "lr": 0.001,
+      "params": 7054098,
+      "params_M": 7.054,
+      "rf_bp": null,
+      "dev": 0.7702,
+      "test": 0.7565,
+      "test_sd": null,
+      "runs": [
+        {
+          "seed": 42,
+          "dev": 0.7702,
+          "test": 0.7565,
+          "best_epoch": 7,
+          "test_aux": {
+            "mcc": 0.7565,
+            "auprc": 0.95,
+            "auroc": 0.9473,
+            "pos_rate_pred": 0.5099
+          },
+          "predictions_path": "/data/nvidia/genomic-capability-unlearning/results_viral_bench/preds_rescore/geneb__leannmlindsey_GUE_phage_fragments__cw_balanced__cnn_ceiling__s42__preds.npz"
+        }
+      ]
+    },
+    {
+      "arch": "resnet",
+      "ch": 64,
+      "blocks": 3,
+      "k": 9,
+      "dbase": 1,
+      "lr": 0.001,
+      "params": 265362,
+      "params_M": 0.265,
+      "rf_bp": 57,
+      "dev": 0.7736,
+      "test": 0.7616,
+      "test_sd": null,
+      "runs": [
+        {
+          "seed": 42,
+          "dev": 0.7736,
+          "test": 0.7616,
+          "best_epoch": 16,
+          "test_aux": {
+            "mcc": 0.7616,
+            "auprc": 0.958,
+            "auroc": 0.9542,
+            "pos_rate_pred": 0.4417
+          },
+          "predictions_path": "/data/nvidia/genomic-capability-unlearning/results_viral_bench/preds_rescore/geneb__leannmlindsey_GUE_phage_fragments__cw_balanced__cnn_ceiling__s42__preds.npz"
+        }
+      ]
+    },
+    {
+      "arch": "resnet",
+      "ch": 128,
+      "blocks": 4,
+      "k": 9,
+      "dbase": 1,
+      "lr": 0.001,
+      "params": 1267922,
+      "params_M": 1.268,
+      "rf_bp": 73,
+      "dev": 0.7337,
+      "test": 0.7346,
+      "test_sd": null,
+      "runs": [
+        {
+          "seed": 42,
+          "dev": 0.7337,
+          "test": 0.7346,
+          "best_epoch": 5,
+          "test_aux": {
+            "mcc": 0.7346,
+            "auprc": 0.9501,
+            "auroc": 0.9486,
+            "pos_rate_pred": 0.4121
+          },
+          "predictions_path": "/data/nvidia/genomic-capability-unlearning/results_viral_bench/preds_rescore/geneb__leannmlindsey_GUE_phage_fragments__cw_balanced__cnn_ceiling__s42__preds.npz"
+        }
+      ]
+    },
+    {
+      "arch": "resnet",
+      "ch": 256,
+      "blocks": 5,
+      "k": 9,
+      "dbase": 1,
+      "lr": 0.001,
+      "params": 6075474,
+      "params_M": 6.075,
+      "rf_bp": 89,
+      "dev": 0.7725,
+      "test": 0.7528,
+      "test_sd": null,
+      "runs": [
+        {
+          "seed": 42,
+          "dev": 0.7725,
+          "test": 0.7528,
+          "best_epoch": 9,
+          "test_aux": {
+            "mcc": 0.7528,
+            "auprc": 0.9515,
+            "auroc": 0.9489,
+            "pos_rate_pred": 0.5153
+          },
+          "predictions_path": "/data/nvidia/genomic-capability-unlearning/results_viral_bench/preds_rescore/geneb__leannmlindsey_GUE_phage_fragments__cw_balanced__cnn_ceiling__s42__preds.npz"
+        }
+      ]
+    },
+    {
+      "arch": "resnet",
+      "ch": 320,
+      "blocks": 5,
+      "k": 9,
+      "dbase": 1,
+      "lr": 0.001,
+      "params": 9437330,
+      "params_M": 9.437,
+      "rf_bp": 89,
+      "dev": 0.7743,
+      "test": 0.7685,
+      "test_sd": null,
+      "runs": [
+        {
+          "seed": 42,
+          "dev": 0.7743,
+          "test": 0.7685,
+          "best_epoch": 8,
+          "test_aux": {
+            "mcc": 0.7685,
+            "auprc": 0.9572,
+            "auroc": 0.9555,
+            "pos_rate_pred": 0.5052
+          },
+          "predictions_path": "/data/nvidia/genomic-capability-unlearning/results_viral_bench/preds_rescore/geneb__leannmlindsey_GUE_phage_fragments__cw_balanced__cnn_ceiling__s42__preds.npz"
+        }
+      ]
+    },
+    {
+      "arch": "dilated",
+      "ch": 128,
+      "blocks": 5,
+      "k": 5,
+      "dbase": 1,
+      "lr": 0.001,
+      "params": 406226,
+      "params_M": 0.406,
+      "rf_bp": 21,
+      "dev": 0.7837,
+      "test": 0.7929,
+      "test_sd": null,
+      "runs": [
+        {
+          "seed": 42,
+          "dev": 0.7837,
+          "test": 0.7929,
+          "best_epoch": 13,
+          "test_aux": {
+            "mcc": 0.7929,
+            "auprc": 0.9581,
+            "auroc": 0.9562,
+            "pos_rate_pred": 0.4799
+          },
+          "predictions_path": "/data/nvidia/genomic-capability-unlearning/results_viral_bench/preds_rescore/geneb__leannmlindsey_GUE_phage_fragments__cw_balanced__cnn_ceiling__s42__preds.npz"
+        }
+      ]
+    },
+    {
+      "arch": "dilated",
+      "ch": 128,
+      "blocks": 5,
+      "k": 5,
+      "dbase": 2,
+      "lr": 0.001,
+      "params": 406226,
+      "params_M": 0.406,
+      "rf_bp": 125,
+      "dev": 0.7614,
+      "test": 0.7728,
+      "test_sd": null,
+      "runs": [
+        {
+          "seed": 42,
+          "dev": 0.7614,
+          "test": 0.7728,
+          "best_epoch": 10,
+          "test_aux": {
+            "mcc": 0.7728,
+            "auprc": 0.9572,
+            "auroc": 0.9571,
+            "pos_rate_pred": 0.5443
+          },
+          "predictions_path": "/data/nvidia/genomic-capability-unlearning/results_viral_bench/preds_rescore/geneb__leannmlindsey_GUE_phage_fragments__cw_balanced__cnn_ceiling__s42__preds.npz"
+        }
+      ]
+    },
+    {
+      "arch": "dilated",
+      "ch": 128,
+      "blocks": 5,
+      "k": 5,
+      "dbase": 4,
+      "lr": 0.001,
+      "params": 406226,
+      "params_M": 0.406,
+      "rf_bp": 1365,
+      "dev": 0.8697,
+      "test": 0.865,
+      "test_sd": null,
+      "runs": [
+        {
+          "seed": 42,
+          "dev": 0.8697,
+          "test": 0.865,
+          "best_epoch": 24,
+          "test_aux": {
+            "mcc": 0.865,
+            "auprc": 0.9819,
+            "auroc": 0.9808,
+            "pos_rate_pred": 0.489
+          },
+          "predictions_path": "/data/nvidia/genomic-capability-unlearning/results_viral_bench/preds_rescore/geneb__leannmlindsey_GUE_phage_fragments__cw_balanced__cnn_ceiling__s42__preds.npz"
+        }
+      ]
+    },
+    {
+      "arch": "dilated",
+      "ch": 128,
+      "blocks": 5,
+      "k": 9,
+      "dbase": 1,
+      "lr": 0.001,
+      "params": 676562,
+      "params_M": 0.677,
+      "rf_bp": 41,
+      "dev": 0.7912,
+      "test": 0.7919,
+      "test_sd": null,
+      "runs": [
+        {
+          "seed": 42,
+          "dev": 0.7912,
+          "test": 0.7919,
+          "best_epoch": 21,
+          "test_aux": {
+            "mcc": 0.7919,
+            "auprc": 0.9648,
+            "auroc": 0.9623,
+            "pos_rate_pred": 0.5073
+          },
+          "predictions_path": "/data/nvidia/genomic-capability-unlearning/results_viral_bench/preds_rescore/geneb__leannmlindsey_GUE_phage_fragments__cw_balanced__cnn_ceiling__s42__preds.npz"
+        }
+      ]
+    },
+    {
+      "arch": "dilated",
+      "ch": 128,
+      "blocks": 5,
+      "k": 9,
+      "dbase": 4,
+      "lr": 0.001,
+      "params": 676562,
+      "params_M": 0.677,
+      "rf_bp": 2729,
+      "dev": 0.8647,
+      "test": 0.8514,
+      "test_sd": null,
+      "runs": [
+        {
+          "seed": 42,
+          "dev": 0.8647,
+          "test": 0.8514,
+          "best_epoch": 27,
+          "test_aux": {
+            "mcc": 0.8514,
+            "auprc": 0.98,
+            "auroc": 0.9798,
+            "pos_rate_pred": 0.4842
+          },
+          "predictions_path": "/data/nvidia/genomic-capability-unlearning/results_viral_bench/preds_rescore/geneb__leannmlindsey_GUE_phage_fragments__cw_balanced__cnn_ceiling__s42__preds.npz"
+        }
+      ]
+    },
+    {
+      "arch": "dilated",
+      "ch": 128,
+      "blocks": 5,
+      "k": 15,
+      "dbase": 1,
+      "lr": 0.001,
+      "params": 1082066,
+      "params_M": 1.082,
+      "rf_bp": 71,
+      "dev": 0.7854,
+      "test": 0.7614,
+      "test_sd": null,
+      "runs": [
+        {
+          "seed": 42,
+          "dev": 0.7854,
+          "test": 0.7614,
+          "best_epoch": 11,
+          "test_aux": {
+            "mcc": 0.7614,
+            "auprc": 0.9591,
+            "auroc": 0.9554,
+            "pos_rate_pred": 0.522
+          },
+          "predictions_path": "/data/nvidia/genomic-capability-unlearning/results_viral_bench/preds_rescore/geneb__leannmlindsey_GUE_phage_fragments__cw_balanced__cnn_ceiling__s42__preds.npz"
+        }
+      ]
+    },
+    {
+      "arch": "dilated",
+      "ch": 128,
+      "blocks": 5,
+      "k": 15,
+      "dbase": 2,
+      "lr": 0.001,
+      "params": 1082066,
+      "params_M": 1.082,
+      "rf_bp": 435,
+      "dev": 0.8589,
+      "test": 0.8355,
+      "test_sd": null,
+      "runs": [
+        {
+          "seed": 42,
+          "dev": 0.8589,
+          "test": 0.8355,
+          "best_epoch": 14,
+          "test_aux": {
+            "mcc": 0.8355,
+            "auprc": 0.9767,
+            "auroc": 0.9753,
+            "pos_rate_pred": 0.4823
+          },
+          "predictions_path": "/data/nvidia/genomic-capability-unlearning/results_viral_bench/preds_rescore/geneb__leannmlindsey_GUE_phage_fragments__cw_balanced__cnn_ceiling__s42__preds.npz"
+        }
+      ]
+    },
+    {
+      "arch": "dilated",
+      "ch": 128,
+      "blocks": 5,
+      "k": 15,
+      "dbase": 4,
+      "lr": 0.001,
+      "params": 1082066,
+      "params_M": 1.082,
+      "rf_bp": 4775,
+      "dev": 0.8243,
+      "test": 0.8277,
+      "test_sd": null,
+      "runs": [
+        {
+          "seed": 42,
+          "dev": 0.8243,
+          "test": 0.8277,
+          "best_epoch": 8,
+          "test_aux": {
+            "mcc": 0.8277,
+            "auprc": 0.9732,
+            "auroc": 0.9724,
+            "pos_rate_pred": 0.5058
+          },
+          "predictions_path": "/data/nvidia/genomic-capability-unlearning/results_viral_bench/preds_rescore/geneb__leannmlindsey_GUE_phage_fragments__cw_balanced__cnn_ceiling__s42__preds.npz"
+        }
+      ]
+    },
+    {
+      "arch": "dilated",
+      "ch": 128,
+      "blocks": 5,
+      "k": 21,
+      "dbase": 1,
+      "lr": 0.001,
+      "params": 1487570,
+      "params_M": 1.488,
+      "rf_bp": 101,
+      "dev": 0.7777,
+      "test": 0.7854,
+      "test_sd": null,
+      "runs": [
+        {
+          "seed": 42,
+          "dev": 0.7777,
+          "test": 0.7854,
+          "best_epoch": 12,
+          "test_aux": {
+            "mcc": 0.7854,
+            "auprc": 0.9582,
+            "auroc": 0.9556,
+            "pos_rate_pred": 0.492
+          },
+          "predictions_path": "/data/nvidia/genomic-capability-unlearning/results_viral_bench/preds_rescore/geneb__leannmlindsey_GUE_phage_fragments__cw_balanced__cnn_ceiling__s42__preds.npz"
+        }
+      ]
+    },
+    {
+      "arch": "dilated",
+      "ch": 128,
+      "blocks": 5,
+      "k": 21,
+      "dbase": 2,
+      "lr": 0.001,
+      "params": 1487570,
+      "params_M": 1.488,
+      "rf_bp": 621,
+      "dev": 0.8277,
+      "test": 0.8298,
+      "test_sd": null,
+      "runs": [
+        {
+          "seed": 42,
+          "dev": 0.8277,
+          "test": 0.8298,
+          "best_epoch": 13,
+          "test_aux": {
+            "mcc": 0.8298,
+            "auprc": 0.9749,
+            "auroc": 0.9733,
+            "pos_rate_pred": 0.5026
+          },
+          "predictions_path": "/data/nvidia/genomic-capability-unlearning/results_viral_bench/preds_rescore/geneb__leannmlindsey_GUE_phage_fragments__cw_balanced__cnn_ceiling__s42__preds.npz"
+        }
+      ]
+    },
+    {
+      "arch": "dilated",
+      "ch": 128,
+      "blocks": 5,
+      "k": 21,
+      "dbase": 4,
+      "lr": 0.001,
+      "params": 1487570,
+      "params_M": 1.488,
+      "rf_bp": 6821,
+      "dev": 0.8499,
+      "test": 0.841,
+      "test_sd": null,
+      "runs": [
+        {
+          "seed": 42,
+          "dev": 0.8499,
+          "test": 0.841,
+          "best_epoch": 11,
+          "test_aux": {
+            "mcc": 0.841,
+            "auprc": 0.9763,
+            "auroc": 0.9748,
+            "pos_rate_pred": 0.4775
+          },
+          "predictions_path": "/data/nvidia/genomic-capability-unlearning/results_viral_bench/preds_rescore/geneb__leannmlindsey_GUE_phage_fragments__cw_balanced__cnn_ceiling__s42__preds.npz"
+        }
+      ]
+    },
+    {
+      "arch": "dilated",
+      "ch": 256,
+      "blocks": 5,
+      "k": 5,
+      "dbase": 1,
+      "lr": 0.001,
+      "params": 1466962,
+      "params_M": 1.467,
+      "rf_bp": 21,
+      "dev": 0.7531,
+      "test": 0.7612,
+      "test_sd": null,
+      "runs": [
+        {
+          "seed": 42,
+          "dev": 0.7531,
+          "test": 0.7612,
+          "best_epoch": 10,
+          "test_aux": {
+            "mcc": 0.7612,
+            "auprc": 0.9527,
+            "auroc": 0.9516,
+            "pos_rate_pred": 0.5302
+          },
+          "predictions_path": "/data/nvidia/genomic-capability-unlearning/results_viral_bench/preds_rescore/geneb__leannmlindsey_GUE_phage_fragments__cw_balanced__cnn_ceiling__s42__preds.npz"
+        }
+      ]
+    },
+    {
+      "arch": "dilated",
+      "ch": 256,
+      "blocks": 5,
+      "k": 5,
+      "dbase": 2,
+      "lr": 0.001,
+      "params": 1466962,
+      "params_M": 1.467,
+      "rf_bp": 125,
+      "dev": 0.8167,
+      "test": 0.8144,
+      "test_sd": null,
+      "runs": [
+        {
+          "seed": 42,
+          "dev": 0.8167,
+          "test": 0.8144,
+          "best_epoch": 19,
+          "test_aux": {
+            "mcc": 0.8144,
+            "auprc": 0.9658,
+            "auroc": 0.9642,
+            "pos_rate_pred": 0.4922
+          },
+          "predictions_path": "/data/nvidia/genomic-capability-unlearning/results_viral_bench/preds_rescore/geneb__leannmlindsey_GUE_phage_fragments__cw_balanced__cnn_ceiling__s42__preds.npz"
+        }
+      ]
+    },
+    {
+      "arch": "dilated",
+      "ch": 256,
+      "blocks": 5,
+      "k": 5,
+      "dbase": 4,
+      "lr": 0.001,
+      "params": 1466962,
+      "params_M": 1.467,
+      "rf_bp": 1365,
+      "dev": 0.8453,
+      "test": 0.8471,
+      "test_sd": null,
+      "runs": [
+        {
+          "seed": 42,
+          "dev": 0.8453,
+          "test": 0.8471,
+          "best_epoch": 13,
+          "test_aux": {
+            "mcc": 0.8471,
+            "auprc": 0.9765,
+            "auroc": 0.9754,
+            "pos_rate_pred": 0.4996
+          },
+          "predictions_path": "/data/nvidia/genomic-capability-unlearning/results_viral_bench/preds_rescore/geneb__leannmlindsey_GUE_phage_fragments__cw_balanced__cnn_ceiling__s42__preds.npz"
+        }
+      ]
+    },
+    {
+      "arch": "dilated",
+      "ch": 256,
+      "blocks": 5,
+      "k": 9,
+      "dbase": 1,
+      "lr": 0.001,
+      "params": 2531922,
+      "params_M": 2.532,
+      "rf_bp": 41,
+      "dev": 0.7811,
+      "test": 0.7841,
+      "test_sd": null,
+      "runs": [
+        {
+          "seed": 42,
+          "dev": 0.7811,
+          "test": 0.7841,
+          "best_epoch": 10,
+          "test_aux": {
+            "mcc": 0.7841,
+            "auprc": 0.9593,
+            "auroc": 0.9571,
+            "pos_rate_pred": 0.5073
+          },
+          "predictions_path": "/data/nvidia/genomic-capability-unlearning/results_viral_bench/preds_rescore/geneb__leannmlindsey_GUE_phage_fragments__cw_balanced__cnn_ceiling__s42__preds.npz"
+        }
+      ]
+    },
+    {
+      "arch": "dilated",
+      "ch": 256,
+      "blocks": 5,
+      "k": 9,
+      "dbase": 4,
+      "lr": 0.001,
+      "params": 2531922,
+      "params_M": 2.532,
+      "rf_bp": 2729,
+      "dev": 0.8472,
+      "test": 0.8342,
+      "test_sd": null,
+      "runs": [
+        {
+          "seed": 42,
+          "dev": 0.8472,
+          "test": 0.8342,
+          "best_epoch": 13,
+          "test_aux": {
+            "mcc": 0.8342,
+            "auprc": 0.9749,
+            "auroc": 0.9737,
+            "pos_rate_pred": 0.4713
+          },
+          "predictions_path": "/data/nvidia/genomic-capability-unlearning/results_viral_bench/preds_rescore/geneb__leannmlindsey_GUE_phage_fragments__cw_balanced__cnn_ceiling__s42__preds.npz"
+        }
+      ]
+    },
+    {
+      "arch": "dilated",
+      "ch": 256,
+      "blocks": 5,
+      "k": 15,
+      "dbase": 1,
+      "lr": 0.001,
+      "params": 4129362,
+      "params_M": 4.129,
+      "rf_bp": 71,
+      "dev": 0.7838,
+      "test": 0.7692,
+      "test_sd": null,
+      "runs": [
+        {
+          "seed": 42,
+          "dev": 0.7838,
+          "test": 0.7692,
+          "best_epoch": 6,
+          "test_aux": {
+            "mcc": 0.7692,
+            "auprc": 0.9559,
+            "auroc": 0.9524,
+            "pos_rate_pred": 0.468
+          },
+          "predictions_path": "/data/nvidia/genomic-capability-unlearning/results_viral_bench/preds_rescore/geneb__leannmlindsey_GUE_phage_fragments__cw_balanced__cnn_ceiling__s42__preds.npz"
+        }
+      ]
+    },
+    {
+      "arch": "dilated",
+      "ch": 256,
+      "blocks": 5,
+      "k": 15,
+      "dbase": 2,
+      "lr": 0.001,
+      "params": 4129362,
+      "params_M": 4.129,
+      "rf_bp": 435,
+      "dev": 0.8482,
+      "test": 0.8319,
+      "test_sd": null,
+      "runs": [
+        {
+          "seed": 42,
+          "dev": 0.8482,
+          "test": 0.8319,
+          "best_epoch": 16,
+          "test_aux": {
+            "mcc": 0.8319,
+            "auprc": 0.9726,
+            "auroc": 0.9711,
+            "pos_rate_pred": 0.4857
+          },
+          "predictions_path": "/data/nvidia/genomic-capability-unlearning/results_viral_bench/preds_rescore/geneb__leannmlindsey_GUE_phage_fragments__cw_balanced__cnn_ceiling__s42__preds.npz"
+        }
+      ]
+    },
+    {
+      "arch": "dilated",
+      "ch": 256,
+      "blocks": 5,
+      "k": 15,
+      "dbase": 4,
+      "lr": 0.001,
+      "params": 4129362,
+      "params_M": 4.129,
+      "rf_bp": 4775,
+      "dev": 0.8456,
+      "test": 0.8416,
+      "test_sd": null,
+      "runs": [
+        {
+          "seed": 42,
+          "dev": 0.8456,
+          "test": 0.8416,
+          "best_epoch": 26,
+          "test_aux": {
+            "mcc": 0.8416,
+            "auprc": 0.9766,
+            "auroc": 0.9748,
+            "pos_rate_pred": 0.4814
+          },
+          "predictions_path": "/data/nvidia/genomic-capability-unlearning/results_viral_bench/preds_rescore/geneb__leannmlindsey_GUE_phage_fragments__cw_balanced__cnn_ceiling__s42__preds.npz"
+        }
+      ]
+    },
+    {
+      "arch": "dilated",
+      "ch": 256,
+      "blocks": 5,
+      "k": 21,
+      "dbase": 1,
+      "lr": 0.001,
+      "params": 5726802,
+      "params_M": 5.727,
+      "rf_bp": 101,
+      "dev": 0.7972,
+      "test": 0.7964,
+      "test_sd": null,
+      "runs": [
+        {
+          "seed": 42,
+          "dev": 0.7972,
+          "test": 0.7964,
+          "best_epoch": 10,
+          "test_aux": {
+            "mcc": 0.7964,
+            "auprc": 0.9635,
+            "auroc": 0.9605,
+            "pos_rate_pred": 0.4795
+          },
+          "predictions_path": "/data/nvidia/genomic-capability-unlearning/results_viral_bench/preds_rescore/geneb__leannmlindsey_GUE_phage_fragments__cw_balanced__cnn_ceiling__s42__preds.npz"
+        }
+      ]
+    },
+    {
+      "arch": "dilated",
+      "ch": 256,
+      "blocks": 5,
+      "k": 21,
+      "dbase": 2,
+      "lr": 0.001,
+      "params": 5726802,
+      "params_M": 5.727,
+      "rf_bp": 621,
+      "dev": 0.8452,
+      "test": 0.8287,
+      "test_sd": null,
+      "runs": [
+        {
+          "seed": 42,
+          "dev": 0.8452,
+          "test": 0.8287,
+          "best_epoch": 12,
+          "test_aux": {
+            "mcc": 0.8287,
+            "auprc": 0.973,
+            "auroc": 0.9706,
+            "pos_rate_pred": 0.481
+          },
+          "predictions_path": "/data/nvidia/genomic-capability-unlearning/results_viral_bench/preds_rescore/geneb__leannmlindsey_GUE_phage_fragments__cw_balanced__cnn_ceiling__s42__preds.npz"
+        }
+      ]
+    },
+    {
+      "arch": "dilated",
+      "ch": 256,
+      "blocks": 5,
+      "k": 21,
+      "dbase": 4,
+      "lr": 0.001,
+      "params": 5726802,
+      "params_M": 5.727,
+      "rf_bp": 6821,
+      "dev": 0.8377,
+      "test": 0.8368,
+      "test_sd": null,
+      "runs": [
+        {
+          "seed": 42,
+          "dev": 0.8377,
+          "test": 0.8368,
+          "best_epoch": 10,
+          "test_aux": {
+            "mcc": 0.8368,
+            "auprc": 0.9745,
+            "auroc": 0.9728,
+            "pos_rate_pred": 0.4918
+          },
+          "predictions_path": "/data/nvidia/genomic-capability-unlearning/results_viral_bench/preds_rescore/geneb__leannmlindsey_GUE_phage_fragments__cw_balanced__cnn_ceiling__s42__preds.npz"
+        }
+      ]
+    },
+    {
+      "arch": "dilated",
+      "ch": 448,
+      "blocks": 6,
+      "k": 5,
+      "dbase": 1,
+      "lr": 0.001,
+      "params": 5291730,
+      "params_M": 5.292,
+      "rf_bp": 25,
+      "dev": 0.7763,
+      "test": 0.7946,
+      "test_sd": null,
+      "runs": [
+        {
+          "seed": 42,
+          "dev": 0.7763,
+          "test": 0.7946,
+          "best_epoch": 18,
+          "test_aux": {
+            "mcc": 0.7946,
+            "auprc": 0.9634,
+            "auroc": 0.9621,
+            "pos_rate_pred": 0.5205
+          },
+          "predictions_path": "/data/nvidia/genomic-capability-unlearning/results_viral_bench/preds_rescore/geneb__leannmlindsey_GUE_phage_fragments__cw_balanced__cnn_ceiling__s42__preds.npz"
+        }
+      ]
+    },
+    {
+      "arch": "dilated",
+      "ch": 448,
+      "blocks": 6,
+      "k": 5,
+      "dbase": 2,
+      "lr": 0.001,
+      "params": 5291730,
+      "params_M": 5.292,
+      "rf_bp": 253,
+      "dev": 0.8188,
+      "test": 0.8268,
+      "test_sd": null,
+      "runs": [
+        {
+          "seed": 42,
+          "dev": 0.8188,
+          "test": 0.8268,
+          "best_epoch": 14,
+          "test_aux": {
+            "mcc": 0.8268,
+            "auprc": 0.9704,
+            "auroc": 0.9677,
+            "pos_rate_pred": 0.4773
+          },
+          "predictions_path": "/data/nvidia/genomic-capability-unlearning/results_viral_bench/preds_rescore/geneb__leannmlindsey_GUE_phage_fragments__cw_balanced__cnn_ceiling__s42__preds.npz"
+        }
+      ]
+    },
+    {
+      "arch": "dilated",
+      "ch": 448,
+      "blocks": 6,
+      "k": 5,
+      "dbase": 4,
+      "lr": 0.001,
+      "params": 5291730,
+      "params_M": 5.292,
+      "rf_bp": 5461,
+      "dev": 0.8447,
+      "test": 0.8464,
+      "test_sd": null,
+      "runs": [
+        {
+          "seed": 42,
+          "dev": 0.8447,
+          "test": 0.8464,
+          "best_epoch": 25,
+          "test_aux": {
+            "mcc": 0.8464,
+            "auprc": 0.9745,
+            "auroc": 0.9738,
+            "pos_rate_pred": 0.4888
+          },
+          "predictions_path": "/data/nvidia/genomic-capability-unlearning/results_viral_bench/preds_rescore/geneb__leannmlindsey_GUE_phage_fragments__cw_balanced__cnn_ceiling__s42__preds.npz"
+        }
+      ]
+    },
+    {
+      "arch": "dilated",
+      "ch": 448,
+      "blocks": 6,
+      "k": 9,
+      "dbase": 1,
+      "lr": 0.001,
+      "params": 9334482,
+      "params_M": 9.334,
+      "rf_bp": 49,
+      "dev": 0.7786,
+      "test": 0.7912,
+      "test_sd": null,
+      "runs": [
+        {
+          "seed": 42,
+          "dev": 0.7786,
+          "test": 0.7912,
+          "best_epoch": 16,
+          "test_aux": {
+            "mcc": 0.7912,
+            "auprc": 0.9611,
+            "auroc": 0.9586,
+            "pos_rate_pred": 0.4683
+          },
+          "predictions_path": "/data/nvidia/genomic-capability-unlearning/results_viral_bench/preds_rescore/geneb__leannmlindsey_GUE_phage_fragments__cw_balanced__cnn_ceiling__s42__preds.npz"
+        }
+      ]
+    },
+    {
+      "arch": "dilated",
+      "ch": 448,
+      "blocks": 6,
+      "k": 9,
+      "dbase": 4,
+      "lr": 0.001,
+      "params": 9334482,
+      "params_M": 9.334,
+      "rf_bp": 10921,
+      "dev": 0.842,
+      "test": 0.8396,
+      "test_sd": null,
+      "runs": [
+        {
+          "seed": 42,
+          "dev": 0.842,
+          "test": 0.8396,
+          "best_epoch": 23,
+          "test_aux": {
+            "mcc": 0.8396,
+            "auprc": 0.976,
+            "auroc": 0.9743,
+            "pos_rate_pred": 0.4691
+          },
+          "predictions_path": "/data/nvidia/genomic-capability-unlearning/results_viral_bench/preds_rescore/geneb__leannmlindsey_GUE_phage_fragments__cw_balanced__cnn_ceiling__s42__preds.npz"
+        }
+      ]
+    },
+    {
+      "arch": "dilated",
+      "ch": 448,
+      "blocks": 6,
+      "k": 15,
+      "dbase": 1,
+      "lr": 0.001,
+      "params": 15398610,
+      "params_M": 15.399,
+      "rf_bp": 85,
+      "dev": 0.7907,
+      "test": 0.7874,
+      "test_sd": null,
+      "runs": [
+        {
+          "seed": 42,
+          "dev": 0.7907,
+          "test": 0.7874,
+          "best_epoch": 22,
+          "test_aux": {
+            "mcc": 0.7874,
+            "auprc": 0.9613,
+            "auroc": 0.9586,
+            "pos_rate_pred": 0.4721
+          },
+          "predictions_path": "/data/nvidia/genomic-capability-unlearning/results_viral_bench/preds_rescore/geneb__leannmlindsey_GUE_phage_fragments__cw_balanced__cnn_ceiling__s42__preds.npz"
+        }
+      ]
+    },
+    {
+      "arch": "dilated",
+      "ch": 448,
+      "blocks": 6,
+      "k": 15,
+      "dbase": 2,
+      "lr": 0.001,
+      "params": 15398610,
+      "params_M": 15.399,
+      "rf_bp": 883,
+      "dev": 0.8063,
+      "test": 0.7945,
+      "test_sd": null,
+      "runs": [
+        {
+          "seed": 42,
+          "dev": 0.8063,
+          "test": 0.7945,
+          "best_epoch": 13,
+          "test_aux": {
+            "mcc": 0.7945,
+            "auprc": 0.9662,
+            "auroc": 0.9635,
+            "pos_rate_pred": 0.5251
+          },
+          "predictions_path": "/data/nvidia/genomic-capability-unlearning/results_viral_bench/preds_rescore/geneb__leannmlindsey_GUE_phage_fragments__cw_balanced__cnn_ceiling__s42__preds.npz"
+        }
+      ]
+    },
+    {
+      "arch": "dilated",
+      "ch": 448,
+      "blocks": 6,
+      "k": 15,
+      "dbase": 4,
+      "lr": 0.001,
+      "params": 15398610,
+      "params_M": 15.399,
+      "rf_bp": 19111,
+      "dev": 0.8381,
+      "test": 0.8194,
+      "test_sd": null,
+      "runs": [
+        {
+          "seed": 42,
+          "dev": 0.8381,
+          "test": 0.8194,
+          "best_epoch": 28,
+          "test_aux": {
+            "mcc": 0.8194,
+            "auprc": 0.9693,
+            "auroc": 0.9698,
+            "pos_rate_pred": 0.4851
+          },
+          "predictions_path": "/data/nvidia/genomic-capability-unlearning/results_viral_bench/preds_rescore/geneb__leannmlindsey_GUE_phage_fragments__cw_balanced__cnn_ceiling__s42__preds.npz"
+        }
+      ]
+    },
+    {
+      "arch": "dilated",
+      "ch": 448,
+      "blocks": 6,
+      "k": 21,
+      "dbase": 1,
+      "lr": 0.001,
+      "params": 21462738,
+      "params_M": 21.463,
+      "rf_bp": 121,
+      "dev": 0.7479,
+      "test": 0.748,
+      "test_sd": null,
+      "runs": [
+        {
+          "seed": 42,
+          "dev": 0.7479,
+          "test": 0.748,
+          "best_epoch": 8,
+          "test_aux": {
+            "mcc": 0.748,
+            "auprc": 0.9536,
+            "auroc": 0.9504,
+            "pos_rate_pred": 0.54
+          },
+          "predictions_path": "/data/nvidia/genomic-capability-unlearning/results_viral_bench/preds_rescore/geneb__leannmlindsey_GUE_phage_fragments__cw_balanced__cnn_ceiling__s42__preds.npz"
+        }
+      ]
+    },
+    {
+      "arch": "dilated",
+      "ch": 448,
+      "blocks": 6,
+      "k": 21,
+      "dbase": 2,
+      "lr": 0.001,
+      "params": 21462738,
+      "params_M": 21.463,
+      "rf_bp": 1261,
+      "dev": 0.8388,
+      "test": 0.8281,
+      "test_sd": null,
+      "runs": [
+        {
+          "seed": 42,
+          "dev": 0.8388,
+          "test": 0.8281,
+          "best_epoch": 15,
+          "test_aux": {
+            "mcc": 0.8281,
+            "auprc": 0.9735,
+            "auroc": 0.9708,
+            "pos_rate_pred": 0.4948
+          },
+          "predictions_path": "/data/nvidia/genomic-capability-unlearning/results_viral_bench/preds_rescore/geneb__leannmlindsey_GUE_phage_fragments__cw_balanced__cnn_ceiling__s42__preds.npz"
+        }
+      ]
+    },
+    {
+      "arch": "dilated",
+      "ch": 448,
+      "blocks": 6,
+      "k": 21,
+      "dbase": 4,
+      "lr": 0.001,
+      "params": 21462738,
+      "params_M": 21.463,
+      "rf_bp": 27301,
+      "dev": 0.8258,
+      "test": 0.8112,
+      "test_sd": null,
+      "runs": [
+        {
+          "seed": 42,
+          "dev": 0.8258,
+          "test": 0.8112,
+          "best_epoch": 9,
+          "test_aux": {
+            "mcc": 0.8112,
+            "auprc": 0.9688,
+            "auroc": 0.968,
+            "pos_rate_pred": 0.4769
+          },
+          "predictions_path": "/data/nvidia/genomic-capability-unlearning/results_viral_bench/preds_rescore/geneb__leannmlindsey_GUE_phage_fragments__cw_balanced__cnn_ceiling__s42__preds.npz"
+        }
+      ]
+    },
+    {
+      "arch": "dilated",
+      "ch": 128,
+      "blocks": 5,
+      "k": 5,
+      "dbase": 4,
+      "lr": 0.001,
+      "params": 406226,
+      "params_M": 0.406,
+      "rf_bp": 1365,
+      "dev": 0.8364,
+      "test": 0.8436,
+      "test_sd": 0.0303,
+      "runs": [
+        {
+          "seed": 42,
+          "dev": 0.8697,
+          "test": 0.865,
+          "best_epoch": 24,
+          "test_aux": {
+            "mcc": 0.865,
+            "auprc": 0.9819,
+            "auroc": 0.9808,
+            "pos_rate_pred": 0.489
+          },
+          "predictions_path": "/data/nvidia/genomic-capability-unlearning/results_viral_bench/preds_rescore/geneb__leannmlindsey_GUE_phage_fragments__cw_balanced__cnn_ceiling__s42__preds.npz"
+        },
+        {
+          "seed": 43,
+          "dev": 0.803,
+          "test": 0.8221,
+          "best_epoch": 9,
+          "test_aux": {
+            "mcc": 0.8221,
+            "auprc": 0.9746,
+            "auroc": 0.9719,
+            "pos_rate_pred": 0.5292
+          },
+          "predictions_path": "/data/nvidia/genomic-capability-unlearning/results_viral_bench/preds_rescore/geneb__leannmlindsey_GUE_phage_fragments__cw_balanced__cnn_ceiling__s43__preds.npz"
+        }
+      ]
+    },
+    {
+      "arch": "dilated",
+      "ch": 128,
+      "blocks": 5,
+      "k": 5,
+      "dbase": 4,
+      "lr": 0.0003,
+      "params": 406226,
+      "params_M": 0.406,
+      "rf_bp": 1365,
+      "dev": 0.8253,
+      "test": 0.8165,
+      "test_sd": 0.0172,
+      "runs": [
+        {
+          "seed": 42,
+          "dev": 0.8392,
+          "test": 0.8286,
+          "best_epoch": 16,
+          "test_aux": {
+            "mcc": 0.8286,
+            "auprc": 0.9746,
+            "auroc": 0.9718,
+            "pos_rate_pred": 0.4564
+          },
+          "predictions_path": "/data/nvidia/genomic-capability-unlearning/results_viral_bench/preds_rescore/geneb__leannmlindsey_GUE_phage_fragments__cw_balanced__cnn_ceiling__s42__preds.npz"
+        },
+        {
+          "seed": 43,
+          "dev": 0.8114,
+          "test": 0.8043,
+          "best_epoch": 14,
+          "test_aux": {
+            "mcc": 0.8043,
+            "auprc": 0.9676,
+            "auroc": 0.9643,
+            "pos_rate_pred": 0.5231
+          },
+          "predictions_path": "/data/nvidia/genomic-capability-unlearning/results_viral_bench/preds_rescore/geneb__leannmlindsey_GUE_phage_fragments__cw_balanced__cnn_ceiling__s43__preds.npz"
+        }
+      ]
+    },
+    {
+      "arch": "dilated",
+      "ch": 128,
+      "blocks": 5,
+      "k": 5,
+      "dbase": 4,
+      "lr": 0.003,
+      "params": 406226,
+      "params_M": 0.406,
+      "rf_bp": 1365,
+      "dev": 0.7746,
+      "test": 0.7805,
+      "test_sd": 0.0923,
+      "runs": [
+        {
+          "seed": 42,
+          "dev": 0.8337,
+          "test": 0.8458,
+          "best_epoch": 10,
+          "test_aux": {
+            "mcc": 0.8458,
+            "auprc": 0.9747,
+            "auroc": 0.9725,
+            "pos_rate_pred": 0.4946
+          },
+          "predictions_path": "/data/nvidia/genomic-capability-unlearning/results_viral_bench/preds_rescore/geneb__leannmlindsey_GUE_phage_fragments__cw_balanced__cnn_ceiling__s42__preds.npz"
+        },
+        {
+          "seed": 43,
+          "dev": 0.7154,
+          "test": 0.7152,
+          "best_epoch": 3,
+          "test_aux": {
+            "mcc": 0.7152,
+            "auprc": 0.9382,
+            "auroc": 0.9357,
+            "pos_rate_pred": 0.4853
+          },
+          "predictions_path": "/data/nvidia/genomic-capability-unlearning/results_viral_bench/preds_rescore/geneb__leannmlindsey_GUE_phage_fragments__cw_balanced__cnn_ceiling__s43__preds.npz"
+        }
+      ]
+    },
+    {
+      "arch": "dilated",
+      "ch": 128,
+      "blocks": 5,
+      "k": 9,
+      "dbase": 4,
+      "lr": 0.001,
+      "params": 676562,
+      "params_M": 0.677,
+      "rf_bp": 2729,
+      "dev": 0.8365,
+      "test": 0.8251,
+      "test_sd": 0.0372,
+      "runs": [
+        {
+          "seed": 42,
+          "dev": 0.8647,
+          "test": 0.8514,
+          "best_epoch": 27,
+          "test_aux": {
+            "mcc": 0.8514,
+            "auprc": 0.98,
+            "auroc": 0.9798,
+            "pos_rate_pred": 0.4842
+          },
+          "predictions_path": "/data/nvidia/genomic-capability-unlearning/results_viral_bench/preds_rescore/geneb__leannmlindsey_GUE_phage_fragments__cw_balanced__cnn_ceiling__s42__preds.npz"
+        },
+        {
+          "seed": 43,
+          "dev": 0.8082,
+          "test": 0.7988,
+          "best_epoch": 4,
+          "test_aux": {
+            "mcc": 0.7988,
+            "auprc": 0.966,
+            "auroc": 0.963,
+            "pos_rate_pred": 0.4594
+          },
+          "predictions_path": "/data/nvidia/genomic-capability-unlearning/results_viral_bench/preds_rescore/geneb__leannmlindsey_GUE_phage_fragments__cw_balanced__cnn_ceiling__s43__preds.npz"
+        }
+      ]
+    },
+    {
+      "arch": "dilated",
+      "ch": 128,
+      "blocks": 5,
+      "k": 9,
+      "dbase": 4,
+      "lr": 0.0003,
+      "params": 676562,
+      "params_M": 0.677,
+      "rf_bp": 2729,
+      "dev": 0.8401,
+      "test": 0.8281,
+      "test_sd": 0.0013,
+      "runs": [
+        {
+          "seed": 42,
+          "dev": 0.8446,
+          "test": 0.8272,
+          "best_epoch": 16,
+          "test_aux": {
+            "mcc": 0.8272,
+            "auprc": 0.9749,
+            "auroc": 0.9724,
+            "pos_rate_pred": 0.468
+          },
+          "predictions_path": "/data/nvidia/genomic-capability-unlearning/results_viral_bench/preds_rescore/geneb__leannmlindsey_GUE_phage_fragments__cw_balanced__cnn_ceiling__s42__preds.npz"
+        },
+        {
+          "seed": 43,
+          "dev": 0.8356,
+          "test": 0.829,
+          "best_epoch": 14,
+          "test_aux": {
+            "mcc": 0.829,
+            "auprc": 0.9735,
+            "auroc": 0.9722,
+            "pos_rate_pred": 0.4961
+          },
+          "predictions_path": "/data/nvidia/genomic-capability-unlearning/results_viral_bench/preds_rescore/geneb__leannmlindsey_GUE_phage_fragments__cw_balanced__cnn_ceiling__s43__preds.npz"
+        }
+      ]
+    },
+    {
+      "arch": "dilated",
+      "ch": 128,
+      "blocks": 5,
+      "k": 9,
+      "dbase": 4,
+      "lr": 0.003,
+      "params": 676562,
+      "params_M": 0.677,
+      "rf_bp": 2729,
+      "dev": 0.7903,
+      "test": 0.7937,
+      "test_sd": 0.0617,
+      "runs": [
+        {
+          "seed": 42,
+          "dev": 0.8496,
+          "test": 0.8373,
+          "best_epoch": 10,
+          "test_aux": {
+            "mcc": 0.8373,
+            "auprc": 0.9764,
+            "auroc": 0.9749,
+            "pos_rate_pred": 0.492
+          },
+          "predictions_path": "/data/nvidia/genomic-capability-unlearning/results_viral_bench/preds_rescore/geneb__leannmlindsey_GUE_phage_fragments__cw_balanced__cnn_ceiling__s42__preds.npz"
+        },
+        {
+          "seed": 43,
+          "dev": 0.7311,
+          "test": 0.7501,
+          "best_epoch": 8,
+          "test_aux": {
+            "mcc": 0.7501,
+            "auprc": 0.9503,
+            "auroc": 0.9488,
+            "pos_rate_pred": 0.5467
+          },
+          "predictions_path": "/data/nvidia/genomic-capability-unlearning/results_viral_bench/preds_rescore/geneb__leannmlindsey_GUE_phage_fragments__cw_balanced__cnn_ceiling__s43__preds.npz"
+        }
+      ]
+    },
+    {
+      "arch": "dilated",
+      "ch": 128,
+      "blocks": 5,
+      "k": 15,
+      "dbase": 2,
+      "lr": 0.001,
+      "params": 1082066,
+      "params_M": 1.082,
+      "rf_bp": 435,
+      "dev": 0.836,
+      "test": 0.8208,
+      "test_sd": 0.0208,
+      "runs": [
+        {
+          "seed": 42,
+          "dev": 0.8589,
+          "test": 0.8355,
+          "best_epoch": 14,
+          "test_aux": {
+            "mcc": 0.8355,
+            "auprc": 0.9767,
+            "auroc": 0.9753,
+            "pos_rate_pred": 0.4823
+          },
+          "predictions_path": "/data/nvidia/genomic-capability-unlearning/results_viral_bench/preds_rescore/geneb__leannmlindsey_GUE_phage_fragments__cw_balanced__cnn_ceiling__s42__preds.npz"
+        },
+        {
+          "seed": 43,
+          "dev": 0.8132,
+          "test": 0.8061,
+          "best_epoch": 7,
+          "test_aux": {
+            "mcc": 0.8061,
+            "auprc": 0.9647,
+            "auroc": 0.961,
+            "pos_rate_pred": 0.4933
+          },
+          "predictions_path": "/data/nvidia/genomic-capability-unlearning/results_viral_bench/preds_rescore/geneb__leannmlindsey_GUE_phage_fragments__cw_balanced__cnn_ceiling__s43__preds.npz"
+        }
+      ]
+    },
+    {
+      "arch": "dilated",
+      "ch": 128,
+      "blocks": 5,
+      "k": 15,
+      "dbase": 2,
+      "lr": 0.0003,
+      "params": 1082066,
+      "params_M": 1.082,
+      "rf_bp": 435,
+      "dev": 0.8098,
+      "test": 0.7963,
+      "test_sd": 0.0668,
+      "runs": [
+        {
+          "seed": 42,
+          "dev": 0.8673,
+          "test": 0.8435,
+          "best_epoch": 22,
+          "test_aux": {
+            "mcc": 0.8435,
+            "auprc": 0.9769,
+            "auroc": 0.975,
+            "pos_rate_pred": 0.4873
+          },
+          "predictions_path": "/data/nvidia/genomic-capability-unlearning/results_viral_bench/preds_rescore/geneb__leannmlindsey_GUE_phage_fragments__cw_balanced__cnn_ceiling__s42__preds.npz"
+        },
+        {
+          "seed": 43,
+          "dev": 0.7523,
+          "test": 0.749,
+          "best_epoch": 7,
+          "test_aux": {
+            "mcc": 0.749,
+            "auprc": 0.9642,
+            "auroc": 0.9598,
+            "pos_rate_pred": 0.5676
+          },
+          "predictions_path": "/data/nvidia/genomic-capability-unlearning/results_viral_bench/preds_rescore/geneb__leannmlindsey_GUE_phage_fragments__cw_balanced__cnn_ceiling__s43__preds.npz"
+        }
+      ]
+    },
+    {
+      "arch": "dilated",
+      "ch": 128,
+      "blocks": 5,
+      "k": 15,
+      "dbase": 2,
+      "lr": 0.003,
+      "params": 1082066,
+      "params_M": 1.082,
+      "rf_bp": 435,
+      "dev": 0.752,
+      "test": 0.749,
+      "test_sd": 0.0185,
+      "runs": [
+        {
+          "seed": 42,
+          "dev": 0.772,
+          "test": 0.762,
+          "best_epoch": 10,
+          "test_aux": {
+            "mcc": 0.762,
+            "auprc": 0.9634,
+            "auroc": 0.9614,
+            "pos_rate_pred": 0.5691
+          },
+          "predictions_path": "/data/nvidia/genomic-capability-unlearning/results_viral_bench/preds_rescore/geneb__leannmlindsey_GUE_phage_fragments__cw_balanced__cnn_ceiling__s42__preds.npz"
+        },
+        {
+          "seed": 43,
+          "dev": 0.7321,
+          "test": 0.7359,
+          "best_epoch": 4,
+          "test_aux": {
+            "mcc": 0.7359,
+            "auprc": 0.9544,
+            "auroc": 0.9519,
+            "pos_rate_pred": 0.4188
+          },
+          "predictions_path": "/data/nvidia/genomic-capability-unlearning/results_viral_bench/preds_rescore/geneb__leannmlindsey_GUE_phage_fragments__cw_balanced__cnn_ceiling__s43__preds.npz"
+        }
+      ]
+    },
+    {
+      "arch": "dilated",
+      "ch": 128,
+      "blocks": 5,
+      "k": 5,
+      "dbase": 4,
+      "lr": 0.001,
+      "params": 406226,
+      "params_M": 0.406,
+      "rf_bp": 1365,
+      "dev": 0.8089,
+      "test": 0.813,
+      "test_sd": 0.0515,
+      "runs": [
+        {
+          "seed": 42,
+          "dev": 0.8618,
+          "test": 0.8575,
+          "best_epoch": 21,
+          "test_aux": {
+            "mcc": 0.8575,
+            "auprc": 0.9804,
+            "auroc": 0.9793,
+            "pos_rate_pred": 0.4767
+          },
+          "predictions_path": "/data/nvidia/genomic-capability-unlearning/results_viral_bench/preds_rescore/geneb__leannmlindsey_GUE_phage_fragments__cw_balanced__cnn_ceiling__s42__preds.npz"
+        },
+        {
+          "seed": 43,
+          "dev": 0.8008,
+          "test": 0.8084,
+          "best_epoch": 9,
+          "test_aux": {
+            "mcc": 0.8084,
+            "auprc": 0.9729,
+            "auroc": 0.9708,
+            "pos_rate_pred": 0.5378
+          },
+          "predictions_path": "/data/nvidia/genomic-capability-unlearning/results_viral_bench/preds_rescore/geneb__leannmlindsey_GUE_phage_fragments__cw_balanced__cnn_ceiling__s43__preds.npz"
+        },
+        {
+          "seed": 44,
+          "dev": 0.7853,
+          "test": 0.7951,
+          "best_epoch": 5,
+          "test_aux": {
+            "mcc": 0.7951,
+            "auprc": 0.9655,
+            "auroc": 0.9629,
+            "pos_rate_pred": 0.5216
+          },
+          "predictions_path": "/data/nvidia/genomic-capability-unlearning/results_viral_bench/preds_rescore/geneb__leannmlindsey_GUE_phage_fragments__cw_balanced__cnn_ceiling__s44__preds.npz"
+        },
+        {
+          "seed": 45,
+          "dev": 0.72,
+          "test": 0.7227,
+          "best_epoch": 4,
+          "test_aux": {
+            "mcc": 0.7227,
+            "auprc": 0.9548,
+            "auroc": 0.9516,
+            "pos_rate_pred": 0.5808
+          },
+          "predictions_path": "/data/nvidia/genomic-capability-unlearning/results_viral_bench/preds_rescore/geneb__leannmlindsey_GUE_phage_fragments__cw_balanced__cnn_ceiling__s45__preds.npz"
+        },
+        {
+          "seed": 46,
+          "dev": 0.8233,
+          "test": 0.832,
+          "best_epoch": 11,
+          "test_aux": {
+            "mcc": 0.832,
+            "auprc": 0.9726,
+            "auroc": 0.9698,
+            "pos_rate_pred": 0.5002
+          },
+          "predictions_path": "/data/nvidia/genomic-capability-unlearning/results_viral_bench/preds_rescore/geneb__leannmlindsey_GUE_phage_fragments__cw_balanced__cnn_ceiling__s46__preds.npz"
+        },
+        {
+          "seed": 47,
+          "dev": 0.8623,
+          "test": 0.8623,
+          "best_epoch": 27,
+          "test_aux": {
+            "mcc": 0.8623,
+            "auprc": 0.9809,
+            "auroc": 0.9792,
+            "pos_rate_pred": 0.4769
+          },
+          "predictions_path": "/data/nvidia/genomic-capability-unlearning/results_viral_bench/preds_rescore/geneb__leannmlindsey_GUE_phage_fragments__cw_balanced__cnn_ceiling__s47__preds.npz"
+        }
+      ],
+      "refit_seeds": 6
+    }
+  ],
+  "dev_selected": {
+    "n_seeds": 6,
+    "test_sd": 0.0515,
+    "arch": "dilated",
+    "params_M": 0.406,
+    "lr": 0.001,
+    "k": 5,
+    "dbase": 4,
+    "rf_bp": 1365,
+    "dev": 0.8089,
+    "test": 0.813
+  },
+  "oracle_best_test": 0.865,
+  "incumbent": {
+    "arch": "dilated",
+    "params_M": 0.677,
+    "dev": 0.8307,
+    "test": 0.8219
+  }
+}

@@ -1,0 +1,102 @@
+# What we evaluate.  Genomic language models plus every baseline arm.
+#
+# `env` is load-bearing.  These models need mutually incompatible dependency
+# sets, and picking the wrong interpreter is a silent failure mode we have hit
+# repeatedly (pandas missing, transformers missing, evo2 missing).  Resolved via
+# $VB_ENV_<NAME>, so a fresh machine overrides without editing this file.
+#
+# `loader` records HOW the weights must be instantiated.  This is not cosmetic:
+#   dynamic  -- the checkpoint needs its own remote class.  `trust_remote_code`
+#               alone silently resolved GENA-LM to stock post-LN BertForMaskedLM,
+#               which discarded 48 pre-LN tensors and freshly initialised 48
+#               others.  Half the encoder was random and the frozen probe read
+#               MCC 0.01-0.05 on every task -- a plausible number, not a crash.
+#               Every loader path therefore runs under a fresh-weight guard.
+#   native_head -- the checkpoint ships its own classification head and mean
+#               pooling is NOT equivalent.  LucaVirus dev went 0.4703 -> 0.6260
+#               once its value-attention head was used.
+
+models:
+  hvilm:
+    hf_id:  duttaprat/HViLM-base
+    env:    dnabert
+    loader: dynamic            # bert_layers.BertForMaskedLM
+    max_tokens: 512
+    role:   viral-specialist
+  dnabert2:
+    hf_id:  zhihan1996/DNABERT-2-117M
+    env:    dnabert
+    loader: dynamic
+    max_tokens: 512
+    role:   general
+  nt_v2_500m:
+    hf_id:  InstaDeepAI/nucleotide-transformer-v2-500m-multi-species
+    env:    dnabert
+    loader: automlm            # config not registered for AutoModel
+    max_tokens: 1024
+    role:   general
+  gena_lm:
+    hf_id:  AIRI-Institute/gena-lm-bert-base-t2t
+    env:    dnabert
+    loader: dynamic            # modeling_bert.BertForMaskedLM -- pre-LN, see above
+    max_tokens: 512
+    needs_stubs: true          # its remote module imports deepspeed
+    role:   general
+  hyenadna:
+    hf_id:  LongSafari/hyenadna-medium-160k-seqlen-hf
+    env:    dnabert
+    loader: automodel
+    max_tokens: 8192
+    role:   general
+  lucavirus:
+    hf_id:  ${VB_LUCAVIRUS_DIR}
+    env:    dnabert
+    loader: native_head
+    max_tokens: 4096
+    role:   viral-specialist
+    tasks:  [vhdb, ht_hard_70, ht_std_95]
+    note: >
+      Restricted by design.  LucaVirus answers the SPECIFICITY question -- is the
+      viral advantage HViLM-specific or general to virus-specialised models --
+      and that is decided on host tropism and VHDB.  It is also run outside its
+      native multimodal mode, so every cell it produces is hedged; breadth cells
+      would add hedged evidence to an already-hedged claim.  HVUE host tropism
+      additionally collapses to all-negative at every lr (3.5% positive) at
+      ~19 GPU-h per lr, and is recorded as a missing cell rather than imputed.
+  evo2:
+    hf_id:  evo2_7b_base
+    env:    evo_7b
+    loader: turboquant_int4
+    role:   generative
+    stages: [probe, generative]
+    note: >
+      evo2_7b (not _base) needs FP8 transformer-engine kernels unusable on SM 8.0.
+      Full fine-tuning is protocol-incompatible, so Evo 2 enters only as
+      bits/base and a frozen probe.
+
+# Interpreter per env key; override with $VB_ENV_DNABERT etc.
+envs:
+  dnabert: ${VB_ENV_DNABERT}
+  biojepa: ${VB_ENV_BIOJEPA}
+  evo_7b:  ${VB_ENV_EVO_7B}
+  evo:     ${VB_ENV_EVO}
+  generator: ${VB_ENV_GENERATOR}
+
+# The floor is max() over these -- never a single arm, and never k-mer alone.
+baselines:
+  kmer:        {script: track_b_viral/hvue_v2_kmer.py,        env: biojepa, gpu: false}
+  kmer_gbt:    {script: track_b_viral/kmer_gbt_baseline.py,   env: biojepa, gpu: false}
+  nn_lookup:   {script: track_b_viral/nn_lookup_as_baseline.py, env: biojepa, gpu: false}
+  # Protein composition, six-frame, no ORF calling. Orthogonal to the nucleotide
+  # k-mers: synonymous divergence destroys nucleotide similarity while leaving
+  # amino-acid usage intact. It beats the nucleotide GBT on 1 of 8 tasks, so it
+  # is an arm in max(), not a general floor-raiser.
+  aa_gbt:      {script: track_b_viral/aa_composition_baseline.py, env: biojepa, gpu: false}
+  # Majority training label of the test row's genus, backing off to species then
+  # family. On VHDB this reaches 0.6809 against HViLM's 0.7036 -- the strongest
+  # single baseline in the study. Runnable ONLY where the benchmark ships a
+  # lineage label, which is 1 of 9.
+  tax_prior:   {script: track_b_viral/taxonomy_prior_baseline.py, env: biojepa, gpu: false,
+                requires: taxonomy}
+  cnn:         {script: common/capacity_sweep.py, env: dnabert, gpu: true, arch_family: cnn}
+  transformer: {script: common/capacity_sweep.py, env: dnabert, gpu: true, arch_family: transformer}

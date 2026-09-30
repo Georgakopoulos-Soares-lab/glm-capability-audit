@@ -1,0 +1,7 @@
+{
+  "name": "VHDB_hvuedisjoint",
+  "n_test": 1388,
+  "frac_with_nn": 0.6916,
+  "nn_lookup_fullset_majfallback": 0.5856,
+  "nn_lookup_hitrows_only": 0.6461
+}

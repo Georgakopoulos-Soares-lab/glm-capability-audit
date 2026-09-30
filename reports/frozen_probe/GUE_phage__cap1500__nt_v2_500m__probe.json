@@ -1,0 +1,13 @@
+{
+  "model": "nt_v2_500m",
+  "task": "GUE_phage__cap1500",
+  "regime": "frozen_linear_probe",
+  "representation": "masked mean over final hidden states",
+  "n_train": 1500,
+  "n_test": 4630,
+  "dim": 1024,
+  "selected_C": 0.1,
+  "mcc": 0.7918,
+  "macro_f1": 0.8959,
+  "auprc": 0.9591
+}

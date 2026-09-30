@@ -1,0 +1,49 @@
+benchmark                   reg  model           FM   base   excess        fragment CI                 source-aware CI                cov    rows   units
+---------------------------------------------------------------------------------------------------------------------------------------------------------
+HVUE host tropism hard_70   L0   hvilm        0.723  0.623   +0.100 [+0.054,+0.142] SUPERIOR        [-0.022,+0.224] INCONCLUSIVE   59%  51,187  22,675
+HVUE host tropism hard_70   L1   hvilm        0.285  0.092   +0.194 [+0.112,+0.264] SUPERIOR        [+0.060,+0.349] SUPERIOR       43%  11,994   7,223
+HVUE host tropism hard_70   L2   hvilm        0.225  0.117   +0.108 [-0.029,+0.232] INCONCLUSIVE    [-0.074,+0.397] INCONCLUSIVE   42%   3,737   2,362
+HVUE host tropism std_95    L0   hvilm        0.560  0.619   -0.059 [-0.079,-0.038] INFERIOR        [-0.127,+0.009] INCONCLUSIVE   59%  50,817  22,237
+HVUE host tropism std_95    L1   hvilm        0.333  0.151   +0.183 [+0.080,+0.267] SUPERIOR        [-0.128,+0.424] INCONCLUSIVE   47%  11,124   6,247
+HVUE host tropism std_95    L2   hvilm        0.299  0.191   +0.107 [-0.050,+0.244] INCONCLUSIVE    [-0.241,+0.438] INCONCLUSIVE   54%   3,882   1,949
+HVUE pathogenicity hard     L0   hvilm        0.804  0.799   +0.005 [-0.030,+0.026] INCONCLUSIVE    [-0.039,+0.026] INCONCLUSIVE   73%   1,792     749
+HVUE pathogenicity hard     L1   hvilm           16 rows, too few to score
+HVUE pathogenicity hard     L2   hvilm            2 rows, too few to score
+HVUE pathogenicity std      L0   dnabert2     0.810  0.809   +0.001 [-0.017,+0.011] EQUIVALENT      [-0.021,+0.012] INCONCLUSIVE   85%   6,651   1,849
+HVUE pathogenicity std      L1   dnabert2    -0.027  0.153   -0.181 [-0.558,+0.157] INCONCLUSIVE    [-0.625,+0.140] INCONCLUSIVE   37%      41      29
+HVUE pathogenicity std      L2   dnabert2         3 rows, too few to score
+HVUE transmissibility hard  L0   hvilm        0.664  0.689   -0.024 [-0.066,+0.006] INCONCLUSIVE    [-0.069,+0.007] INCONCLUSIVE   68%   2,497   1,198
+HVUE transmissibility hard  L1   hvilm        0.652  0.412   +0.240 [-0.151,+0.466] INCONCLUSIVE    [-0.151,+0.466] INCONCLUSIVE    0%      55      55
+HVUE transmissibility hard  L2   hvilm            3 rows, too few to score
+HVUE transmissibility std   L0   hvilm        0.693  0.693   -0.001 [-0.018,+0.011] EQUIVALENT      [-0.025,+0.013] INCONCLUSIVE   85%  12,728   3,496
+HVUE transmissibility std   L1   hvilm        0.464  0.295   +0.169 [-0.359,+0.384] INCONCLUSIVE    [-0.334,+0.381] INCONCLUSIVE   27%      41      32
+HVUE transmissibility std   L2   hvilm            3 rows, too few to score
+VHDB within family          L0   hvilm        0.704  0.681   +0.023 [-0.034,+0.071] INCONCLUSIVE    [-0.080,+0.128] INCONCLUSIVE  100%   3,754     349
+VHDB within family          L1   hvilm        0.495  0.175   +0.320 [+0.190,+0.443] SUPERIOR        [-0.056,+0.605] INCONCLUSIVE  100%   1,200     194
+VHDB within family          L2   hvilm        0.684  0.335   +0.348 [-0.045,+0.718] INCONCLUSIVE    [-0.243,+0.761] INCONCLUSIVE  100%     201      49
+GUE phage                   L0   nt_v2_500m   0.920  0.813   +0.107 [+0.047,+0.121] SUPERIOR                     -- unavailable     --   4,630      --
+GUE phage                   L1   nt_v2_500m   0.891  0.770   +0.120 [+0.048,+0.144] SUPERIOR                     -- unavailable     --   2,874      --
+GUE phage                   L2   nt_v2_500m   0.821  0.804   +0.016 [-0.129,+0.150] INCONCLUSIVE                 -- unavailable     --      86      --
+GUE virus_covid             L0   hvilm        0.697  0.719   -0.023 [-0.035,-0.012] INFERIOR                     -- unavailable     --   9,168      --
+GUE virus_covid             L1   hvilm            0 rows, too few to score
+GUE virus_covid             L2   hvilm            0 rows, too few to score
+
+  excess            observed benchmark performance, FM minus baseline envelope. This is
+                    the result. Neither interval changes it.
+  fragment CI       stability across 1 kb test fragments of the kind the benchmark ships.
+                    Answers whether the benchmark difference is stable on this task.
+  source-aware CI   stability across parent genomes, same fragment scores. Answers whether
+                    the difference would survive a different draw of source viruses.
+                    Resolved under fragments and unresolved under sources is not a
+                    contradiction; it bounds what the difference generalises over.
+  cov               fraction of fragments placed on a source genome. Unplaced fragments are
+                    singletons, so a recovered-unit interval with low cov stays somewhat
+                    anti-conservative.
+  GUE phage and GUE virus_covid ship no parent provenance and reference-based
+        recovery inadequate, 12.5% assignment for phage, so source uncertainty is not estimable
+  NN lookup scored at L0 only; L1 and L2 are defined by absence of its nucleotide hit
+  model and learning rate are both selected on DEV, never on test
+
+  symmetric-selection check, best FM minus best baseline re-maximised per replicate:
+
+  wrote reports/layered/final_regime_table.json

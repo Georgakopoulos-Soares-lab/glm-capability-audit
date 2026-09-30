@@ -21,7 +21,7 @@ logging.getLogger("transformers.tokenization_utils_base").setLevel(logging.ERROR
 transformers.logging.set_verbosity_error()
 import warnings; warnings.filterwarnings("ignore")
 
-OUT = P.sub("splice_finetune"); NT_DIR = P.NT_DIR
+OUT = P.sub("splice_finetune"); NT_DIR = os.environ.get("VB_NT_DIR", "/data/nvidia/data/ntv3")
 MODELS = {
  "nt_v2_500m": ("InstaDeepAI/nucleotide-transformer-v2-500m-multi-species", 1024),
  "gena_lm":    ("AIRI-Institute/gena-lm-bert-base-t2t", 512),

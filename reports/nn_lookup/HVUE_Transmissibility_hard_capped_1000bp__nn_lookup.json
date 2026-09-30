@@ -1,0 +1,232 @@
+{
+  "name": "HVUE_Transmissibility_hard_capped_1000bp",
+  "n_train": 27732,
+  "n_test_full": 2497,
+  "n_test_queried": 2497,
+  "test_pos_rate": 0.5314,
+  "chance": {
+    "mcc": 0.0,
+    "auroc": 0.5,
+    "majority_accuracy": 0.5314
+  },
+  "exact_duplicates": 0,
+  "revcomp_exact_duplicates": 0,
+  "threshold_free_lookup": {
+    "n_with_neighbour": 2442,
+    "frac_with_neighbour": 0.978,
+    "mcc": 0.6628,
+    "macro_f1": 0.8306,
+    "auroc": 0.8292
+  },
+  "cleaning_curve": [
+    {
+      "ident": 0.7,
+      "cov": 0.3,
+      "n_kept": 117,
+      "frac_kept": 0.0469,
+      "scores": {
+        "n_with_neighbour": 62,
+        "frac_with_neighbour": 0.0248,
+        "mcc": 0.6776,
+        "macro_f1": 0.8317,
+        "auroc": 0.8159
+      }
+    },
+    {
+      "ident": 0.7,
+      "cov": 0.5,
+      "n_kept": 247,
+      "frac_kept": 0.0989,
+      "scores": {
+        "n_with_neighbour": 192,
+        "frac_with_neighbour": 0.0769,
+        "mcc": 0.5095,
+        "macro_f1": 0.752,
+        "auroc": 0.7476
+      }
+    },
+    {
+      "ident": 0.7,
+      "cov": 0.7,
+      "n_kept": 484,
+      "frac_kept": 0.1938,
+      "scores": {
+        "n_with_neighbour": 429,
+        "frac_with_neighbour": 0.1718,
+        "mcc": 0.607,
+        "macro_f1": 0.8009,
+        "auroc": 0.7991
+      }
+    },
+    {
+      "ident": 0.7,
+      "cov": 0.8,
+      "n_kept": 588,
+      "frac_kept": 0.2355,
+      "scores": {
+        "n_with_neighbour": 533,
+        "frac_with_neighbour": 0.2135,
+        "mcc": 0.61,
+        "macro_f1": 0.8032,
+        "auroc": 0.8011
+      }
+    },
+    {
+      "ident": 0.8,
+      "cov": 0.3,
+      "n_kept": 434,
+      "frac_kept": 0.1738,
+      "scores": {
+        "n_with_neighbour": 379,
+        "frac_with_neighbour": 0.1518,
+        "mcc": 0.3491,
+        "macro_f1": 0.6718,
+        "auroc": 0.6733
+      }
+    },
+    {
+      "ident": 0.8,
+      "cov": 0.5,
+      "n_kept": 538,
+      "frac_kept": 0.2155,
+      "scores": {
+        "n_with_neighbour": 483,
+        "frac_with_neighbour": 0.1934,
+        "mcc": 0.4379,
+        "macro_f1": 0.7157,
+        "auroc": 0.7161
+      }
+    },
+    {
+      "ident": 0.8,
+      "cov": 0.7,
+      "n_kept": 771,
+      "frac_kept": 0.3088,
+      "scores": {
+        "n_with_neighbour": 716,
+        "frac_with_neighbour": 0.2867,
+        "mcc": 0.5063,
+        "macro_f1": 0.7502,
+        "auroc": 0.7492
+      }
+    },
+    {
+      "ident": 0.8,
+      "cov": 0.8,
+      "n_kept": 867,
+      "frac_kept": 0.3472,
+      "scores": {
+        "n_with_neighbour": 812,
+        "frac_with_neighbour": 0.3252,
+        "mcc": 0.5216,
+        "macro_f1": 0.759,
+        "auroc": 0.7579
+      }
+    },
+    {
+      "ident": 0.9,
+      "cov": 0.3,
+      "n_kept": 784,
+      "frac_kept": 0.314,
+      "scores": {
+        "n_with_neighbour": 729,
+        "frac_with_neighbour": 0.292,
+        "mcc": 0.3757,
+        "macro_f1": 0.6801,
+        "auroc": 0.6889
+      }
+    },
+    {
+      "ident": 0.9,
+      "cov": 0.5,
+      "n_kept": 905,
+      "frac_kept": 0.3624,
+      "scores": {
+        "n_with_neighbour": 850,
+        "frac_with_neighbour": 0.3404,
+        "mcc": 0.3994,
+        "macro_f1": 0.6965,
+        "auroc": 0.6999
+      }
+    },
+    {
+      "ident": 0.9,
+      "cov": 0.7,
+      "n_kept": 1130,
+      "frac_kept": 0.4525,
+      "scores": {
+        "n_with_neighbour": 1075,
+        "frac_with_neighbour": 0.4305,
+        "mcc": 0.4662,
+        "macro_f1": 0.7306,
+        "auroc": 0.7318
+      }
+    },
+    {
+      "ident": 0.9,
+      "cov": 0.8,
+      "n_kept": 1247,
+      "frac_kept": 0.4994,
+      "scores": {
+        "n_with_neighbour": 1192,
+        "frac_with_neighbour": 0.4774,
+        "mcc": 0.4914,
+        "macro_f1": 0.7426,
+        "auroc": 0.7432
+      }
+    },
+    {
+      "ident": 0.95,
+      "cov": 0.3,
+      "n_kept": 1113,
+      "frac_kept": 0.4457,
+      "scores": {
+        "n_with_neighbour": 1058,
+        "frac_with_neighbour": 0.4237,
+        "mcc": 0.503,
+        "macro_f1": 0.747,
+        "auroc": 0.7554
+      }
+    },
+    {
+      "ident": 0.95,
+      "cov": 0.5,
+      "n_kept": 1236,
+      "frac_kept": 0.495,
+      "scores": {
+        "n_with_neighbour": 1181,
+        "frac_with_neighbour": 0.473,
+        "mcc": 0.5116,
+        "macro_f1": 0.7533,
+        "auroc": 0.7579
+      }
+    },
+    {
+      "ident": 0.95,
+      "cov": 0.7,
+      "n_kept": 1490,
+      "frac_kept": 0.5967,
+      "scores": {
+        "n_with_neighbour": 1435,
+        "frac_with_neighbour": 0.5747,
+        "mcc": 0.5463,
+        "macro_f1": 0.7712,
+        "auroc": 0.774
+      }
+    },
+    {
+      "ident": 0.95,
+      "cov": 0.8,
+      "n_kept": 1601,
+      "frac_kept": 0.6412,
+      "scores": {
+        "n_with_neighbour": 1546,
+        "frac_with_neighbour": 0.6191,
+        "mcc": 0.5653,
+        "macro_f1": 0.7806,
+        "auroc": 0.7833
+      }
+    }
+  ],
+  "note": "NN lookup = copy the label of the single best-bitscore training hit. Reverse complements included (easy-search --search-type 3, verified)."
+}

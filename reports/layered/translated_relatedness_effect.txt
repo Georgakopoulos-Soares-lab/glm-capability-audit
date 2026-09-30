@@ -1,0 +1,22 @@
+
+HVUE_HT_hard_70   with a translated relative n=8,257   without n=3,737
+   hvilm       +0.335 vs +0.244   gap +0.090  [-0.053,+0.236]  spans zero
+   dnabert2    +0.131 vs +0.056   gap +0.075  [-0.011,+0.157]  spans zero
+   nt_v2_500m  +0.092 vs +0.077   gap +0.015  [-0.067,+0.095]  spans zero
+   gena_lm     +0.109 vs +0.051   gap +0.058  [-0.019,+0.128]  spans zero
+   hyenadna    +0.084 vs +0.061   gap +0.023  [-0.065,+0.105]  spans zero
+   kmer        +0.102 vs +0.007   gap +0.096  [+0.051,+0.139]  resolved   baseline
+
+HVUE_HT_std_95   with a translated relative n=7,242   without n=3,882
+   hvilm       +0.394 vs +0.345   gap +0.048  [-0.084,+0.196]  spans zero
+   dnabert2    +0.071 vs +0.000   gap +0.071  [+0.017,+0.124]  resolved
+   nt_v2_500m  +0.079 vs +0.064   gap +0.015  [-0.059,+0.086]  spans zero
+   gena_lm     +0.086 vs +0.229   gap -0.143  [-0.258,-0.027]  resolved
+   hyenadna    +0.067 vs +0.142   gap -0.074  [-0.167,+0.015]  spans zero
+   kmer        +0.156 vs +0.145   gap +0.011  [-0.039,+0.060]  spans zero   baseline
+
+gap positive on 8 of 10 model by benchmark cells
+  sign test p = 0.109
+
+pooled mean gap +0.018  [-0.013,+0.048]
+  spans zero, so we do not claim translated relatedness affects performance

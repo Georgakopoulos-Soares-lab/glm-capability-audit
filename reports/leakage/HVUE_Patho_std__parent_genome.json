@@ -1,0 +1,8 @@
+{
+  "name": "HVUE_Patho_std",
+  "n_train": 73070,
+  "n_test": 6651,
+  "exact_duplicate_frac": 0.0,
+  "revcomp_duplicate_frac": 0.0,
+  "meta_note": "no taxonomy/accession metadata shipped with this benchmark, so parent-genome leakage CANNOT be measured -- absence of evidence only"
+}

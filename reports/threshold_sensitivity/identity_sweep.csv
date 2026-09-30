@@ -1,0 +1,73 @@
+benchmark,min_seq_id,coverage,n_total,n_rows,pct_retained,n_positive,n_negative,glm,bootstrap_unit,unit_provenance,n_units,assign_cover,model_mcc,baseline_mcc,baseline_arm,excess,ci_low,ci_high,verdict
+HVUE host tropism hard_70,0.3,0.1,51187,11994,23.43,223,11771,hvilm,genome,recovered,7223,0.432,0.2853,0.0919,kmer_gbt,0.1935,0.0612,0.3523,SUPERIOR
+HVUE host tropism hard_70,0.4,0.1,51187,11994,23.43,223,11771,hvilm,genome,recovered,7223,0.432,0.2853,0.0919,kmer_gbt,0.1935,0.0612,0.3523,SUPERIOR
+HVUE host tropism hard_70,0.5,0.1,51187,11994,23.43,223,11771,hvilm,genome,recovered,7223,0.432,0.2853,0.0919,kmer_gbt,0.1935,0.0612,0.3523,SUPERIOR
+HVUE host tropism hard_70,0.6,0.1,51187,11994,23.43,223,11771,hvilm,genome,recovered,7223,0.432,0.2853,0.0919,kmer_gbt,0.1935,0.0612,0.3523,SUPERIOR
+HVUE host tropism hard_70,0.7,0.1,51187,12950,25.3,250,12700,hvilm,genome,recovered,7646,0.444,0.2855,0.1109,kmer_gbt,0.1746,0.0543,0.3271,SUPERIOR
+HVUE host tropism hard_70,0.8,0.1,51187,20073,39.22,750,19323,hvilm,genome,recovered,9984,0.532,0.5621,0.2845,kmer_gbt,0.2776,0.1594,0.3458,SUPERIOR
+HVUE host tropism hard_70,0.9,0.1,51187,25509,49.83,1318,24191,hvilm,genome,recovered,11356,0.586,0.6969,0.4485,cnn,0.2484,0.0862,0.3284,SUPERIOR
+HVUE host tropism hard_70,0.95,0.1,51187,28686,56.04,1499,27187,hvilm,genome,recovered,12577,0.593,0.7209,0.4921,cnn,0.2288,0.0865,0.315,SUPERIOR
+HVUE host tropism std_95,0.3,0.1,50817,11124,21.89,282,10842,hvilm,genome,recovered,6247,0.473,0.3334,0.1508,cnn,0.1826,-0.1183,0.4136,INCONCLUSIVE
+HVUE host tropism std_95,0.4,0.1,50817,11124,21.89,282,10842,hvilm,genome,recovered,6247,0.473,0.3334,0.1508,cnn,0.1826,-0.1183,0.4136,INCONCLUSIVE
+HVUE host tropism std_95,0.5,0.1,50817,11124,21.89,282,10842,hvilm,genome,recovered,6247,0.473,0.3334,0.1508,cnn,0.1826,-0.1183,0.4136,INCONCLUSIVE
+HVUE host tropism std_95,0.6,0.1,50817,11124,21.89,282,10842,hvilm,genome,recovered,6247,0.473,0.3334,0.1508,cnn,0.1826,-0.1183,0.4136,INCONCLUSIVE
+HVUE host tropism std_95,0.7,0.1,50817,11826,23.27,319,11507,hvilm,genome,recovered,6580,0.478,0.3614,0.1556,kmer,0.2058,-0.1072,0.4437,INCONCLUSIVE
+HVUE host tropism std_95,0.8,0.1,50817,18181,35.78,765,17416,hvilm,genome,recovered,9314,0.521,0.4404,0.2238,kmer,0.2166,0.0042,0.3454,SUPERIOR
+HVUE host tropism std_95,0.9,0.1,50817,23920,47.07,1239,22681,hvilm,genome,recovered,11797,0.546,0.5111,0.3672,tax_prior_recovered,0.1439,-0.049,0.2902,INCONCLUSIVE
+HVUE host tropism std_95,0.95,0.1,50817,27576,54.27,1408,26168,hvilm,genome,recovered,13411,0.553,0.5252,0.408,tax_prior_recovered,0.1172,-0.0458,0.2688,INCONCLUSIVE
+HVUE pathogenicity hard,0.3,0.1,1792,16,0.89,9,7,hvilm,genome,recovered,16,0.062,,,,,,,NOT SCORED
+HVUE pathogenicity hard,0.4,0.1,1792,16,0.89,9,7,hvilm,genome,recovered,16,0.062,,,,,,,NOT SCORED
+HVUE pathogenicity hard,0.5,0.1,1792,16,0.89,9,7,hvilm,genome,recovered,16,0.062,,,,,,,NOT SCORED
+HVUE pathogenicity hard,0.6,0.1,1792,16,0.89,9,7,hvilm,genome,recovered,16,0.062,,,,,,,NOT SCORED
+HVUE pathogenicity hard,0.7,0.1,1792,29,1.62,17,12,hvilm,genome,recovered,28,0.207,,,,,,,NOT SCORED
+HVUE pathogenicity hard,0.8,0.1,1792,222,12.39,96,126,hvilm,genome,recovered,167,0.311,0.6237,0.503,cnn,0.1206,-0.0845,0.2042,INCONCLUSIVE
+HVUE pathogenicity hard,0.9,0.1,1792,515,28.74,149,366,hvilm,genome,recovered,312,0.509,0.5401,0.5119,cnn,0.0282,-0.1171,0.0928,INCONCLUSIVE
+HVUE pathogenicity hard,0.95,0.1,1792,709,39.56,211,498,hvilm,genome,recovered,375,0.609,0.5206,0.529,kmer_gbt,-0.0083,-0.1207,0.0682,INCONCLUSIVE
+HVUE pathogenicity std,0.3,0.1,6651,41,0.62,22,19,dnabert2,genome,recovered,29,0.366,-0.0273,0.1535,kmer,-0.1808,-0.6183,0.1409,INCONCLUSIVE
+HVUE pathogenicity std,0.4,0.1,6651,41,0.62,22,19,dnabert2,genome,recovered,29,0.366,-0.0273,0.1535,kmer,-0.1808,-0.6183,0.1409,INCONCLUSIVE
+HVUE pathogenicity std,0.5,0.1,6651,41,0.62,22,19,dnabert2,genome,recovered,29,0.366,-0.0273,0.1535,kmer,-0.1808,-0.6183,0.1409,INCONCLUSIVE
+HVUE pathogenicity std,0.6,0.1,6651,41,0.62,22,19,dnabert2,genome,recovered,29,0.366,-0.0273,0.1535,kmer,-0.1808,-0.6183,0.1409,INCONCLUSIVE
+HVUE pathogenicity std,0.7,0.1,6651,63,0.95,37,26,dnabert2,genome,recovered,40,0.444,0.1192,0.1187,kmer,0.0005,-0.404,0.3257,INCONCLUSIVE
+HVUE pathogenicity std,0.8,0.1,6651,333,5.01,161,172,dnabert2,genome,recovered,272,0.228,0.5758,0.5435,cnn,0.0322,-0.0573,0.0919,INCONCLUSIVE
+HVUE pathogenicity std,0.9,0.1,6651,918,13.8,460,458,dnabert2,genome,recovered,577,0.527,0.7253,0.7139,cnn,0.0115,-0.0352,0.04,INCONCLUSIVE
+HVUE pathogenicity std,0.95,0.1,6651,2569,38.63,1013,1556,dnabert2,genome,recovered,1062,0.733,0.7887,0.785,kmer_gbt,0.0038,-0.0267,0.022,INCONCLUSIVE
+HVUE transmissibility hard,0.3,0.1,2497,55,2.2,14,41,hvilm,genome,recovered,55,0.0,0.6519,0.4116,kmer_gbt,0.2403,-0.1545,0.4709,INCONCLUSIVE
+HVUE transmissibility hard,0.4,0.1,2497,55,2.2,14,41,hvilm,genome,recovered,55,0.0,0.6519,0.4116,kmer_gbt,0.2403,-0.1545,0.4709,INCONCLUSIVE
+HVUE transmissibility hard,0.5,0.1,2497,55,2.2,14,41,hvilm,genome,recovered,55,0.0,0.6519,0.4116,kmer_gbt,0.2403,-0.1545,0.4709,INCONCLUSIVE
+HVUE transmissibility hard,0.6,0.1,2497,55,2.2,14,41,hvilm,genome,recovered,55,0.0,0.6519,0.4116,kmer_gbt,0.2403,-0.1545,0.4709,INCONCLUSIVE
+HVUE transmissibility hard,0.7,0.1,2497,69,2.76,21,48,hvilm,genome,recovered,69,0.014,0.6891,0.5218,kmer_gbt,0.1674,-0.1189,0.3548,INCONCLUSIVE
+HVUE transmissibility hard,0.8,0.1,2497,383,15.34,179,204,hvilm,genome,recovered,362,0.097,0.4007,0.4089,kmer_gbt,-0.0082,-0.1183,0.0783,INCONCLUSIVE
+HVUE transmissibility hard,0.9,0.1,2497,755,30.24,312,443,hvilm,genome,recovered,540,0.391,0.4355,0.4688,kmer_gbt,-0.0332,-0.1074,0.0337,INCONCLUSIVE
+HVUE transmissibility hard,0.95,0.1,2497,1076,43.09,426,650,hvilm,genome,recovered,652,0.538,0.5148,0.5306,kmer_gbt,-0.0158,-0.0771,0.0327,INCONCLUSIVE
+HVUE transmissibility std,0.3,0.1,12728,41,0.32,25,16,hvilm,genome,recovered,32,0.268,0.4638,0.295,cnn,0.1688,-0.3411,0.38,INCONCLUSIVE
+HVUE transmissibility std,0.4,0.1,12728,41,0.32,25,16,hvilm,genome,recovered,32,0.268,0.4638,0.295,cnn,0.1688,-0.3411,0.38,INCONCLUSIVE
+HVUE transmissibility std,0.5,0.1,12728,41,0.32,25,16,hvilm,genome,recovered,32,0.268,0.4638,0.295,cnn,0.1688,-0.3411,0.38,INCONCLUSIVE
+HVUE transmissibility std,0.6,0.1,12728,41,0.32,25,16,hvilm,genome,recovered,32,0.268,0.4638,0.295,cnn,0.1688,-0.3411,0.38,INCONCLUSIVE
+HVUE transmissibility std,0.7,0.1,12728,63,0.49,41,22,hvilm,genome,recovered,47,0.317,0.3458,0.2058,cnn,0.14,-0.2294,0.2863,INCONCLUSIVE
+HVUE transmissibility std,0.8,0.1,12728,563,4.42,351,212,hvilm,genome,recovered,420,0.29,0.5448,0.5252,cnn,0.0197,-0.1126,0.0868,INCONCLUSIVE
+HVUE transmissibility std,0.9,0.1,12728,1751,13.76,896,855,hvilm,genome,recovered,1096,0.471,0.6344,0.625,cnn,0.0094,-0.0648,0.0654,INCONCLUSIVE
+HVUE transmissibility std,0.95,0.1,12728,4541,35.68,1887,2654,hvilm,genome,recovered,1850,0.712,0.6818,0.6829,kmer_gbt,-0.0011,-0.0366,0.0265,INCONCLUSIVE
+VHDB within family,0.3,0.1,3754,1200,31.97,114,1086,hvilm,genome,shipped,194,1.0,0.4953,0.1754,tax_prior,0.3199,-0.0541,0.5959,INCONCLUSIVE
+VHDB within family,0.4,0.1,3754,1200,31.97,114,1086,hvilm,genome,shipped,194,1.0,0.4953,0.1754,tax_prior,0.3199,-0.0541,0.5959,INCONCLUSIVE
+VHDB within family,0.5,0.1,3754,1200,31.97,114,1086,hvilm,genome,shipped,194,1.0,0.4953,0.1754,tax_prior,0.3199,-0.0541,0.5959,INCONCLUSIVE
+VHDB within family,0.6,0.1,3754,1200,31.97,114,1086,hvilm,genome,shipped,194,1.0,0.4953,0.1754,tax_prior,0.3199,-0.0541,0.5959,INCONCLUSIVE
+VHDB within family,0.7,0.1,3754,1342,35.75,136,1206,hvilm,genome,shipped,208,1.0,0.4943,0.1757,tax_prior,0.3186,-0.022,0.5689,INCONCLUSIVE
+VHDB within family,0.8,0.1,3754,2668,71.07,406,2262,hvilm,genome,shipped,310,1.0,0.6156,0.5375,tax_prior,0.0781,-0.0665,0.2318,INCONCLUSIVE
+VHDB within family,0.9,0.1,3754,3194,85.08,562,2632,hvilm,genome,shipped,339,1.0,0.6645,0.6007,tax_prior,0.0638,-0.0626,0.1948,INCONCLUSIVE
+VHDB within family,0.95,0.1,3754,3410,90.84,626,2784,hvilm,genome,shipped,348,1.0,0.6816,0.6322,tax_prior,0.0494,-0.0614,0.1752,INCONCLUSIVE
+GUE phage,0.3,0.1,4630,2874,62.07,926,1948,nt_v2_500m,row,row only,2874,,0.8908,0.7705,kmer_gbt,0.1202,0.0474,0.1431,SUPERIOR
+GUE phage,0.4,0.1,4630,2874,62.07,926,1948,nt_v2_500m,row,row only,2874,,0.8908,0.7705,kmer_gbt,0.1202,0.0474,0.1431,SUPERIOR
+GUE phage,0.5,0.1,4630,2874,62.07,926,1948,nt_v2_500m,row,row only,2874,,0.8908,0.7705,kmer_gbt,0.1202,0.0474,0.1431,SUPERIOR
+GUE phage,0.6,0.1,4630,2874,62.07,926,1948,nt_v2_500m,row,row only,2874,,0.8908,0.7705,kmer_gbt,0.1202,0.0474,0.1431,SUPERIOR
+GUE phage,0.7,0.1,4630,3214,69.42,1080,2134,nt_v2_500m,row,row only,3214,,0.896,0.7741,kmer_gbt,0.1219,0.0515,0.1429,SUPERIOR
+GUE phage,0.8,0.1,4630,3863,83.43,1562,2301,nt_v2_500m,row,row only,3863,,0.9115,0.7986,kmer_gbt,0.1129,0.0473,0.1314,SUPERIOR
+GUE phage,0.9,0.1,4630,4057,87.62,1749,2308,nt_v2_500m,row,row only,4057,,0.9159,0.8065,kmer_gbt,0.1094,0.0478,0.1272,SUPERIOR
+GUE phage,0.95,0.1,4630,4155,89.74,1846,2309,nt_v2_500m,row,row only,4155,,0.9167,0.8089,kmer_gbt,0.1079,0.0461,0.1241,SUPERIOR
+GUE virus_covid,0.3,0.1,9168,0,0.0,0,0,hvilm,row,row only,0,,,,,,,,NOT SCORED
+GUE virus_covid,0.4,0.1,9168,0,0.0,0,0,hvilm,row,row only,0,,,,,,,,NOT SCORED
+GUE virus_covid,0.5,0.1,9168,0,0.0,0,0,hvilm,row,row only,0,,,,,,,,NOT SCORED
+GUE virus_covid,0.6,0.1,9168,0,0.0,0,0,hvilm,row,row only,0,,,,,,,,NOT SCORED
+GUE virus_covid,0.7,0.1,9168,0,0.0,0,0,hvilm,row,row only,0,,,,,,,,NOT SCORED
+GUE virus_covid,0.8,0.1,9168,0,0.0,0,0,hvilm,row,row only,0,,,,,,,,NOT SCORED
+GUE virus_covid,0.9,0.1,9168,0,0.0,0,0,hvilm,row,row only,0,,,,,,,,NOT SCORED
+GUE virus_covid,0.95,0.1,9168,0,0.0,0,0,hvilm,row,row only,0,,,,,,,,NOT SCORED

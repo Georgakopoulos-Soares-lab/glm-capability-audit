@@ -1,0 +1,130 @@
+{
+ "verdicts_all": {
+  "EQUIVALENT": 2,
+  "INCONCLUSIVE": 70,
+  "INFERIOR": 49,
+  "SUPERIOR": 5
+ },
+ "verdicts_clean_strata": {
+  "INCONCLUSIVE": 43,
+  "INFERIOR": 11
+ },
+ "median_ci_width": {
+  "all": 0.059,
+  "nucleotide_no_hit": 0.1663,
+  "translated_no_hit": 0.2961,
+  "protein_no_hit": 0.292,
+  "unseen_species": 0.4209,
+  "unseen_genus": 0.0859
+ },
+ "mde": {
+  "HT hard_70 | all": {
+   "n_rows": 51187,
+   "n_units": 51187,
+   "floor": 0.6233,
+   "floor_arm": "nn_lookup",
+   "leading_model": "hvilm",
+   "leading_mcc": 0.723,
+   "excess": 0.0997,
+   "verdict": "SUPERIOR",
+   "mde": 0.043,
+   "resolvable": true
+  },
+  "HT hard_70 | nucleotide_no_hit": {
+   "n_rows": 11994,
+   "n_units": 11994,
+   "floor": 0.0919,
+   "floor_arm": "kmer_gbt",
+   "leading_model": "hvilm",
+   "leading_mcc": 0.2853,
+   "excess": 0.1935,
+   "verdict": "SUPERIOR",
+   "mde": 0.0761,
+   "resolvable": true
+  },
+  "HT hard_70 | translated_no_hit": {
+   "n_rows": 3737,
+   "n_units": 3737,
+   "floor": 0.1169,
+   "floor_arm": "aa_gbt",
+   "leading_model": "hvilm",
+   "leading_mcc": 0.2252,
+   "excess": 0.1083,
+   "verdict": "INCONCLUSIVE",
+   "mde": 0.1328,
+   "resolvable": false
+  },
+  "HT std_95 | all": {
+   "n_rows": 50817,
+   "n_units": 50817,
+   "floor": 0.6185,
+   "floor_arm": "nn_lookup",
+   "leading_model": "hvilm",
+   "leading_mcc": 0.5596,
+   "excess": -0.0589,
+   "verdict": "INFERIOR",
+   "mde": 0.021,
+   "resolvable": true
+  },
+  "HT std_95 | nucleotide_no_hit": {
+   "n_rows": 11124,
+   "n_units": 11124,
+   "floor": 0.1508,
+   "floor_arm": "cnn",
+   "leading_model": "hvilm",
+   "leading_mcc": 0.3334,
+   "excess": 0.1826,
+   "verdict": "SUPERIOR",
+   "mde": 0.0903,
+   "resolvable": true
+  },
+  "HT std_95 | translated_no_hit": {
+   "n_rows": 3882,
+   "n_units": 3882,
+   "floor": 0.1913,
+   "floor_arm": "cnn",
+   "leading_model": "hvilm",
+   "leading_mcc": 0.2987,
+   "excess": 0.1074,
+   "verdict": "INCONCLUSIVE",
+   "mde": 0.1481,
+   "resolvable": false
+  },
+  "VHDB | all": {
+   "n_rows": 3754,
+   "n_units": 349,
+   "floor": 0.6809,
+   "floor_arm": "tax_prior",
+   "leading_model": "hvilm",
+   "leading_mcc": 0.7036,
+   "excess": 0.0227,
+   "verdict": "INCONCLUSIVE",
+   "mde": 0.1069,
+   "resolvable": false
+  },
+  "VHDB | nucleotide_no_hit": {
+   "n_rows": 1200,
+   "n_units": 194,
+   "floor": 0.1754,
+   "floor_arm": "tax_prior",
+   "leading_model": "hvilm",
+   "leading_mcc": 0.4953,
+   "excess": 0.3199,
+   "verdict": "INCONCLUSIVE",
+   "mde": 0.3273,
+   "resolvable": false
+  },
+  "VHDB | translated_no_hit": {
+   "n_rows": 201,
+   "n_units": 49,
+   "floor": 0.3354,
+   "floor_arm": "tax_prior",
+   "leading_model": "hvilm",
+   "leading_mcc": 0.6837,
+   "excess": 0.3482,
+   "verdict": "INCONCLUSIVE",
+   "mde": 0.4971,
+   "resolvable": false
+  }
+ }
+}

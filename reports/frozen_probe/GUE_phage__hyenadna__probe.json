@@ -1,0 +1,13 @@
+{
+  "model": "hyenadna",
+  "task": "GUE_phage",
+  "regime": "frozen_linear_probe",
+  "representation": "masked mean over final hidden states",
+  "n_train": 8000,
+  "n_test": 4630,
+  "dim": 256,
+  "selected_C": 10.0,
+  "mcc": 0.619,
+  "macro_f1": 0.8095,
+  "auprc": 0.8869
+}

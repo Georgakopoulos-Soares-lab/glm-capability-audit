@@ -78,6 +78,28 @@ HF_CACHE = os.environ.get("HF_HOME", os.path.join(ROOT, "hf_cache"))
 # project. Every other script runs without it.
 LOCK_ROOT = os.environ.get("VB_LOCK_ROOT", os.path.join(ROOT, "glm-locking"))
 
+# --- corpora added after the viral audit widened ------------------------------
+# HVUE v2 (HF duttaprat/HVUE-v2): <Task>/<config>/{train,dev,test}.csv, the
+# authors' own splits used as shipped.
+HVUE_V2_DIR = os.environ.get("HVUE_V2_DIR", os.path.join(DATA, "hvue_v2"))
+# Virus-Host DB host tropism, built here by track_b_viral/build_vhdb_tropism.py.
+# The only corpus that ships a genome `cluster` column, i.e. a correct bootstrap unit.
+VHDB_DIR = os.environ.get("VB_VHDB_DIR", os.path.join(DATA, "vhdb_tropism"))
+VHDB_TSV = os.environ.get("VB_VHDB_TSV", os.path.join(DATA, "virushostdb", "virushostdb.tsv"))
+# GUE with a dev split carved off train (the released GUE has none).
+GUE_DEVCARVE = os.environ.get("VB_GUE_DEVCARVE", os.path.join(DATA, "gue_devcarve"))
+# Viral chunks vs hg38 background, built by track_b_viral/build_viral_vs_host.py.
+VIRAL_VS_HOST = os.environ.get("VB_VIRAL_VS_HOST", os.path.join(DATA, "viral_vs_host"))
+# Local model weights that are not on the hub.
+LUCAVIRUS_DIR = os.environ.get("VB_LUCAVIRUS_DIR", os.path.join(DATA, "models", "lucavirus"))
+
+# --- viral-audit outputs ------------------------------------------------------
+# Kept separate from OUT because these are large and regenerable: per-arm
+# prediction arrays, capacity-sweep ladders, cached homology masks.
+VIRAL_OUT = os.environ.get("VB_VIRAL_OUT", os.path.join(OUT, "viral_bench"))
+PREDS = os.environ.get("VB_PREDS", os.path.join(VIRAL_OUT, "preds"))
+MULTIMODEL = os.environ.get("VB_MULTIMODEL", os.path.join(SCRATCH, "multimodel"))
+
 
 def sub(name):
     """Result subdirectory under $VB_OUT, created on demand."""

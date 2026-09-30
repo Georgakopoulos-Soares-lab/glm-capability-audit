@@ -1,0 +1,136 @@
+{
+  "name": "GUE_virus_covid",
+  "n_train": 73335,
+  "n_test_full": 9168,
+  "n_test_queried": 9168,
+  "test_pos_rate": 3.8574,
+  "chance": {
+    "mcc": 0.0,
+    "auroc": 0.5,
+    "majority_accuracy": 3.8574
+  },
+  "exact_duplicates": 1118,
+  "revcomp_exact_duplicates": 0,
+  "threshold_free_lookup": {
+    "n_with_neighbour": 8977,
+    "frac_with_neighbour": 0.9792,
+    "mcc": 0.5931,
+    "macro_f1": 0.6379,
+    "auroc": null
+  },
+  "cleaning_curve": [
+    {
+      "ident": 0.7,
+      "cov": 0.3,
+      "n_kept": 191,
+      "frac_kept": 0.0208,
+      "scores": null
+    },
+    {
+      "ident": 0.7,
+      "cov": 0.5,
+      "n_kept": 191,
+      "frac_kept": 0.0208,
+      "scores": null
+    },
+    {
+      "ident": 0.7,
+      "cov": 0.7,
+      "n_kept": 191,
+      "frac_kept": 0.0208,
+      "scores": null
+    },
+    {
+      "ident": 0.7,
+      "cov": 0.8,
+      "n_kept": 192,
+      "frac_kept": 0.0209,
+      "scores": null
+    },
+    {
+      "ident": 0.8,
+      "cov": 0.3,
+      "n_kept": 191,
+      "frac_kept": 0.0208,
+      "scores": null
+    },
+    {
+      "ident": 0.8,
+      "cov": 0.5,
+      "n_kept": 191,
+      "frac_kept": 0.0208,
+      "scores": null
+    },
+    {
+      "ident": 0.8,
+      "cov": 0.7,
+      "n_kept": 191,
+      "frac_kept": 0.0208,
+      "scores": null
+    },
+    {
+      "ident": 0.8,
+      "cov": 0.8,
+      "n_kept": 192,
+      "frac_kept": 0.0209,
+      "scores": null
+    },
+    {
+      "ident": 0.9,
+      "cov": 0.3,
+      "n_kept": 191,
+      "frac_kept": 0.0208,
+      "scores": null
+    },
+    {
+      "ident": 0.9,
+      "cov": 0.5,
+      "n_kept": 191,
+      "frac_kept": 0.0208,
+      "scores": null
+    },
+    {
+      "ident": 0.9,
+      "cov": 0.7,
+      "n_kept": 191,
+      "frac_kept": 0.0208,
+      "scores": null
+    },
+    {
+      "ident": 0.9,
+      "cov": 0.8,
+      "n_kept": 192,
+      "frac_kept": 0.0209,
+      "scores": null
+    },
+    {
+      "ident": 0.95,
+      "cov": 0.3,
+      "n_kept": 191,
+      "frac_kept": 0.0208,
+      "scores": null
+    },
+    {
+      "ident": 0.95,
+      "cov": 0.5,
+      "n_kept": 191,
+      "frac_kept": 0.0208,
+      "scores": null
+    },
+    {
+      "ident": 0.95,
+      "cov": 0.7,
+      "n_kept": 191,
+      "frac_kept": 0.0208,
+      "scores": null
+    },
+    {
+      "ident": 0.95,
+      "cov": 0.8,
+      "n_kept": 192,
+      "frac_kept": 0.0209,
+      "scores": null
+    }
+  ],
+  "note": "NN lookup = copy the label of the single best-bitscore training hit. Reverse complements included (easy-search --search-type 3, verified)."
+}

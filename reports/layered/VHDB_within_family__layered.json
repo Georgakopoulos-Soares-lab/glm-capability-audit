@@ -1,0 +1,863 @@
+{
+ "name": "VHDB_within_family",
+ "n_test": 3754,
+ "unit": "cluster",
+ "arms": [
+  "kmer",
+  "kmer_gbt",
+  "aa_gbt",
+  "tax_prior",
+  "nn_lookup",
+  "cnn",
+  "transformer"
+ ],
+ "excluded_arms": {},
+ "equivalence_margin": 0.02,
+ "bin_quantiles": [
+  0.0,
+  0.25,
+  0.5,
+  0.75,
+  1.0
+ ],
+ "panelA": [
+  {
+   "level": "L0",
+   "n_rows": 3754,
+   "frac": 1.0,
+   "n_units": 349,
+   "n_genus": 143
+  },
+  {
+   "level": "L1",
+   "n_rows": 1200,
+   "frac": 0.3197,
+   "n_units": 194,
+   "n_genus": 117
+  },
+  {
+   "level": "L2",
+   "n_rows": 201,
+   "frac": 0.0535,
+   "n_units": 49,
+   "n_genus": 36
+  },
+  {
+   "level": "L3",
+   "n_rows": 197,
+   "frac": 0.0525,
+   "n_units": 49,
+   "n_genus": 36
+  },
+  {
+   "level": "L4",
+   "n_rows": 199,
+   "frac": 0.053,
+   "n_units": 48,
+   "n_genus": 35
+  },
+  {
+   "level": "L5",
+   "n_rows": 74,
+   "frac": 0.0197,
+   "n_units": 14,
+   "n_genus": 12
+  },
+  {
+   "level": "unseen_family",
+   "n_rows": 0,
+   "frac": 0.0,
+   "n_units": 0,
+   "n_genus": null
+  }
+ ],
+ "panelB": {
+  "L0": {
+   "n_rows": 3754,
+   "n_units": 349,
+   "floor": 0.6809,
+   "floor_arm": "tax_prior",
+   "baselines": {
+    "kmer": 0.3121,
+    "kmer_gbt": 0.5284,
+    "aa_gbt": 0.4871,
+    "tax_prior": 0.6809,
+    "nn_lookup": 0.633,
+    "cnn": 0.5383,
+    "transformer": 0.0959
+   },
+   "models": {
+    "hvilm": {
+     "mcc": 0.7036,
+     "excess": 0.0227,
+     "ci_lo": -0.0825,
+     "ci_hi": 0.1312,
+     "p_le_0": 0.3609,
+     "verdict": "INCONCLUSIVE (CI spans 0 AND exceeds the +-0.02 margin; not shown to differ is NOT shown to be equivalent)"
+    },
+    "dnabert2": {
+     "mcc": 0.5249,
+     "excess": -0.156,
+     "ci_lo": -0.2513,
+     "ci_hi": -0.0802,
+     "p_le_0": 1.0,
+     "verdict": "INFERIOR"
+    },
+    "nt_v2_500m": {
+     "mcc": 0.4492,
+     "excess": -0.2317,
+     "ci_lo": -0.3379,
+     "ci_hi": -0.1433,
+     "p_le_0": 1.0,
+     "verdict": "INFERIOR"
+    },
+    "hyenadna": {
+     "mcc": 0.4453,
+     "excess": -0.2356,
+     "ci_lo": -0.4118,
+     "ci_hi": -0.1159,
+     "p_le_0": 1.0,
+     "verdict": "INFERIOR"
+    },
+    "lucavirus": {
+     "mcc": 0.431,
+     "excess": -0.2499,
+     "ci_lo": -0.3746,
+     "ci_hi": -0.1546,
+     "p_le_0": 1.0,
+     "verdict": "INFERIOR"
+    },
+    "gena_lm": {
+     "mcc": 0.4232,
+     "excess": -0.2577,
+     "ci_lo": -0.3818,
+     "ci_hi": -0.1609,
+     "p_le_0": 1.0,
+     "verdict": "INFERIOR"
+    }
+   }
+  },
+  "L1": {
+   "n_rows": 1200,
+   "n_units": 194,
+   "floor": 0.1754,
+   "floor_arm": "tax_prior",
+   "baselines": {
+    "kmer": 0.0324,
+    "kmer_gbt": -0.023,
+    "aa_gbt": -0.0265,
+    "tax_prior": 0.1754,
+    "nn_lookup": 0.0,
+    "cnn": -0.0058,
+    "transformer": -0.026
+   },
+   "models": {
+    "hvilm": {
+     "mcc": 0.4953,
+     "excess": 0.3199,
+     "ci_lo": -0.0519,
+     "ci_hi": 0.6026,
+     "p_le_0": 0.066,
+     "verdict": "INCONCLUSIVE (CI spans 0 AND exceeds the +-0.02 margin; not shown to differ is NOT shown to be equivalent)"
+    },
+    "lucavirus": {
+     "mcc": 0.0296,
+     "excess": -0.1458,
+     "ci_lo": -0.4119,
+     "ci_hi": 0.0506,
+     "p_le_0": 0.895,
+     "verdict": "INCONCLUSIVE (CI spans 0 AND exceeds the +-0.02 margin; not shown to differ is NOT shown to be equivalent)"
+    },
+    "nt_v2_500m": {
+     "mcc": 0.0266,
+     "excess": -0.1488,
+     "ci_lo": -0.4107,
+     "ci_hi": 0.0412,
+     "p_le_0": 0.9152,
+     "verdict": "INCONCLUSIVE (CI spans 0 AND exceeds the +-0.02 margin; not shown to differ is NOT shown to be equivalent)"
+    },
+    "dnabert2": {
+     "mcc": 0.0097,
+     "excess": -0.1657,
+     "ci_lo": -0.4141,
+     "ci_hi": 0.0,
+     "p_le_0": 0.975,
+     "verdict": "INCONCLUSIVE (CI spans 0 AND exceeds the +-0.02 margin; not shown to differ is NOT shown to be equivalent)"
+    },
+    "gena_lm": {
+     "mcc": 0.0042,
+     "excess": -0.1712,
+     "ci_lo": -0.4307,
+     "ci_hi": 0.0025,
+     "p_le_0": 0.9725,
+     "verdict": "INCONCLUSIVE (CI spans 0 AND exceeds the +-0.02 margin; not shown to differ is NOT shown to be equivalent)"
+    },
+    "hyenadna": {
+     "mcc": -0.0064,
+     "excess": -0.1818,
+     "ci_lo": -0.4371,
+     "ci_hi": 0.0146,
+     "p_le_0": 0.9637,
+     "verdict": "INCONCLUSIVE (CI spans 0 AND exceeds the +-0.02 margin; not shown to differ is NOT shown to be equivalent)"
+    }
+   }
+  },
+  "L2": {
+   "n_rows": 201,
+   "n_units": 49,
+   "floor": 0.3354,
+   "floor_arm": "tax_prior",
+   "baselines": {
+    "kmer": -0.0063,
+    "kmer_gbt": -0.0144,
+    "aa_gbt": 0.0,
+    "tax_prior": 0.3354,
+    "nn_lookup": 0.0,
+    "cnn": -0.002,
+    "transformer": -0.0409
+   },
+   "models": {
+    "hvilm": {
+     "mcc": 0.6837,
+     "excess": 0.3482,
+     "ci_lo": -0.2374,
+     "ci_hi": 0.7569,
+     "p_le_0": 0.299,
+     "verdict": "INCONCLUSIVE (CI spans 0 AND exceeds the +-0.02 margin; not shown to differ is NOT shown to be equivalent)"
+    },
+    "gena_lm": {
+     "mcc": 0.0455,
+     "excess": -0.2899,
+     "ci_lo": -0.841,
+     "ci_hi": 0.1745,
+     "p_le_0": 0.8615,
+     "verdict": "INCONCLUSIVE (CI spans 0 AND exceeds the +-0.02 margin; not shown to differ is NOT shown to be equivalent)"
+    },
+    "lucavirus": {
+     "mcc": 0.0232,
+     "excess": -0.3122,
+     "ci_lo": -0.8377,
+     "ci_hi": 0.107,
+     "p_le_0": 0.8975,
+     "verdict": "INCONCLUSIVE (CI spans 0 AND exceeds the +-0.02 margin; not shown to differ is NOT shown to be equivalent)"
+    },
+    "dnabert2": {
+     "mcc": -0.0088,
+     "excess": -0.3442,
+     "ci_lo": -0.8321,
+     "ci_hi": -0.0156,
+     "p_le_0": 1.0,
+     "verdict": "INFERIOR"
+    },
+    "nt_v2_500m": {
+     "mcc": -0.0098,
+     "excess": -0.3452,
+     "ci_lo": -0.8425,
+     "ci_hi": 0.0647,
+     "p_le_0": 0.9311,
+     "verdict": "INCONCLUSIVE (CI spans 0 AND exceeds the +-0.02 margin; not shown to differ is NOT shown to be equivalent)"
+    },
+    "hyenadna": {
+     "mcc": -0.0555,
+     "excess": -0.3909,
+     "ci_lo": -0.8549,
+     "ci_hi": -0.0203,
+     "p_le_0": 1.0,
+     "verdict": "INFERIOR"
+    }
+   }
+  },
+  "L3": {
+   "n_rows": 197,
+   "n_units": 49,
+   "floor": 0.3351,
+   "floor_arm": "tax_prior",
+   "baselines": {
+    "kmer": -0.0065,
+    "kmer_gbt": -0.0147,
+    "aa_gbt": 0.0,
+    "tax_prior": 0.3351,
+    "nn_lookup": 0.0,
+    "cnn": -0.002,
+    "transformer": -0.0398
+   },
+   "models": {
+    "hvilm": {
+     "mcc": 0.6834,
+     "excess": 0.3483,
+     "ci_lo": -0.2375,
+     "ci_hi": 0.7573,
+     "p_le_0": 0.299,
+     "verdict": "INCONCLUSIVE (CI spans 0 AND exceeds the +-0.02 margin; not shown to differ is NOT shown to be equivalent)"
+    },
+    "gena_lm": {
+     "mcc": 0.0447,
+     "excess": -0.2904,
+     "ci_lo": -0.8415,
+     "ci_hi": 0.1725,
+     "p_le_0": 0.8621,
+     "verdict": "INCONCLUSIVE (CI spans 0 AND exceeds the +-0.02 margin; not shown to differ is NOT shown to be equivalent)"
+    },
+    "lucavirus": {
+     "mcc": 0.0243,
+     "excess": -0.3108,
+     "ci_lo": -0.8372,
+     "ci_hi": 0.1065,
+     "p_le_0": 0.8978,
+     "verdict": "INCONCLUSIVE (CI spans 0 AND exceeds the +-0.02 margin; not shown to differ is NOT shown to be equivalent)"
+    },
+    "dnabert2": {
+     "mcc": -0.0092,
+     "excess": -0.3442,
+     "ci_lo": -0.8319,
+     "ci_hi": -0.0159,
+     "p_le_0": 1.0,
+     "verdict": "INFERIOR"
+    },
+    "nt_v2_500m": {
+     "mcc": -0.0107,
+     "excess": -0.3458,
+     "ci_lo": -0.8431,
+     "ci_hi": 0.0638,
+     "p_le_0": 0.9316,
+     "verdict": "INCONCLUSIVE (CI spans 0 AND exceeds the +-0.02 margin; not shown to differ is NOT shown to be equivalent)"
+    },
+    "hyenadna": {
+     "mcc": -0.056,
+     "excess": -0.3911,
+     "ci_lo": -0.8544,
+     "ci_hi": -0.0206,
+     "p_le_0": 1.0,
+     "verdict": "INFERIOR"
+    }
+   }
+  },
+  "L4": {
+   "n_rows": 199,
+   "n_units": 48,
+   "floor": 0.0267,
+   "floor_arm": "kmer",
+   "baselines": {
+    "kmer": 0.0267,
+    "kmer_gbt": -0.0125,
+    "aa_gbt": 0.0,
+    "tax_prior": -0.0178,
+    "nn_lookup": 0.0,
+    "cnn": 0.0067,
+    "transformer": -0.0385
+   },
+   "models": {
+    "hvilm": {
+     "mcc": 0.5936,
+     "excess": 0.5669,
+     "ci_lo": -0.0228,
+     "ci_hi": 0.8152,
+     "p_le_0": 0.3388,
+     "verdict": "INCONCLUSIVE (CI spans 0 AND exceeds the +-0.02 margin; not shown to differ is NOT shown to be equivalent)"
+    },
+    "gena_lm": {
+     "mcc": 0.0641,
+     "excess": 0.0373,
+     "ci_lo": -0.2506,
+     "ci_hi": 0.2377,
+     "p_le_0": 0.6444,
+     "verdict": "INCONCLUSIVE (CI spans 0 AND exceeds the +-0.02 margin; not shown to differ is NOT shown to be equivalent)"
+    },
+    "lucavirus": {
+     "mcc": 0.0374,
+     "excess": 0.0106,
+     "ci_lo": -0.2846,
+     "ci_hi": 0.1465,
+     "p_le_0": 0.7231,
+     "verdict": "INCONCLUSIVE (CI spans 0 AND exceeds the +-0.02 margin; not shown to differ is NOT shown to be equivalent)"
+    },
+    "nt_v2_500m": {
+     "mcc": 0.0014,
+     "excess": -0.0253,
+     "ci_lo": -0.3184,
+     "ci_hi": 0.0922,
+     "p_le_0": 0.8227,
+     "verdict": "INCONCLUSIVE (CI spans 0 AND exceeds the +-0.02 margin; not shown to differ is NOT shown to be equivalent)"
+    },
+    "dnabert2": {
+     "mcc": -0.0426,
+     "excess": -0.0693,
+     "ci_lo": -0.359,
+     "ci_hi": -0.0114,
+     "p_le_0": 1.0,
+     "verdict": "INFERIOR"
+    },
+    "hyenadna": {
+     "mcc": -0.0483,
+     "excess": -0.075,
+     "ci_lo": -0.3645,
+     "ci_hi": -0.0162,
+     "p_le_0": 1.0,
+     "verdict": "INFERIOR"
+    }
+   }
+  },
+  "L5": {
+   "n_rows": 74,
+   "n_units": 14,
+   "floor": 0.0,
+   "floor_arm": "kmer_gbt",
+   "baselines": {
+    "kmer": -0.0805,
+    "kmer_gbt": 0.0,
+    "aa_gbt": 0.0,
+    "tax_prior": 0.0,
+    "nn_lookup": 0.0,
+    "cnn": -0.0212,
+    "transformer": -0.0785
+   },
+   "models": {
+    "gena_lm": {
+     "mcc": -0.013,
+     "excess": -0.013,
+     "ci_lo": -0.0534,
+     "ci_hi": 0.0,
+     "p_le_0": 1.0,
+     "verdict": "INCONCLUSIVE (CI spans 0 AND exceeds the +-0.02 margin; not shown to differ is NOT shown to be equivalent)"
+    },
+    "hvilm": {
+     "mcc": -0.0195,
+     "excess": -0.0195,
+     "ci_lo": -0.0448,
+     "ci_hi": 0.0,
+     "p_le_0": 1.0,
+     "verdict": "INCONCLUSIVE (CI spans 0 AND exceeds the +-0.02 margin; not shown to differ is NOT shown to be equivalent)"
+    },
+    "lucavirus": {
+     "mcc": -0.0236,
+     "excess": -0.0236,
+     "ci_lo": -0.0693,
+     "ci_hi": 0.0,
+     "p_le_0": 1.0,
+     "verdict": "INCONCLUSIVE (CI spans 0 AND exceeds the +-0.02 margin; not shown to differ is NOT shown to be equivalent)"
+    },
+    "hyenadna": {
+     "mcc": -0.0447,
+     "excess": -0.0447,
+     "ci_lo": -0.1088,
+     "ci_hi": 0.0,
+     "p_le_0": 1.0,
+     "verdict": "INCONCLUSIVE (CI spans 0 AND exceeds the +-0.02 margin; not shown to differ is NOT shown to be equivalent)"
+    },
+    "nt_v2_500m": {
+     "mcc": -0.0463,
+     "excess": -0.0463,
+     "ci_lo": -0.1026,
+     "ci_hi": 0.0,
+     "p_le_0": 1.0,
+     "verdict": "INCONCLUSIVE (CI spans 0 AND exceeds the +-0.02 margin; not shown to differ is NOT shown to be equivalent)"
+    },
+    "dnabert2": {
+     "mcc": -0.0491,
+     "excess": -0.0491,
+     "ci_lo": -0.1204,
+     "ci_hi": 0.0,
+     "p_le_0": 1.0,
+     "verdict": "INCONCLUSIVE (CI spans 0 AND exceeds the +-0.02 margin; not shown to differ is NOT shown to be equivalent)"
+    }
+   }
+  }
+ },
+ "graded": {
+  "bitscore": [
+   {
+    "bin": "strict no-hit",
+    "n": 201,
+    "floor": 0.3354,
+    "excess": {
+     "hvilm": 0.3482,
+     "dnabert2": -0.3442,
+     "nt_v2_500m": -0.3452,
+     "gena_lm": -0.2899,
+     "hyenadna": -0.3909,
+     "lucavirus": -0.3122
+    }
+   },
+   {
+    "bin": "Q1 [37,100]",
+    "n": 244,
+    "floor": 0.1733,
+    "excess": {
+     "hvilm": 0.3544,
+     "dnabert2": -0.1421,
+     "nt_v2_500m": -0.1215,
+     "gena_lm": -0.1611,
+     "hyenadna": -0.1586,
+     "lucavirus": -0.1925
+    }
+   },
+   {
+    "bin": "Q2 [100,158]",
+    "n": 251,
+    "floor": 0.1802,
+    "excess": {
+     "hvilm": 0.2664,
+     "dnabert2": -0.2156,
+     "nt_v2_500m": -0.1655,
+     "gena_lm": -0.1524,
+     "hyenadna": -0.2112,
+     "lucavirus": -0.2021
+    }
+   },
+   {
+    "bin": "Q3 [158,223]",
+    "n": 251,
+    "floor": 0.1669,
+    "excess": {
+     "hvilm": 0.295,
+     "dnabert2": -0.2055,
+     "nt_v2_500m": -0.1999,
+     "gena_lm": -0.1576,
+     "hyenadna": -0.1825,
+     "lucavirus": -0.1348
+    }
+   },
+   {
+    "bin": "Q4 [223,460]",
+    "n": 253,
+    "floor": 0.1549,
+    "excess": {
+     "hvilm": 0.3582,
+     "dnabert2": -0.0742,
+     "nt_v2_500m": -0.0874,
+     "gena_lm": -0.1868,
+     "hyenadna": -0.1247,
+     "lucavirus": -0.0422
+    }
+   }
+  ],
+  "bits_per_aa": [
+   {
+    "bin": "strict no-hit",
+    "n": 201,
+    "floor": 0.3354,
+    "excess": {
+     "hvilm": 0.3482,
+     "dnabert2": -0.3442,
+     "nt_v2_500m": -0.3452,
+     "gena_lm": -0.2899,
+     "hyenadna": -0.3909,
+     "lucavirus": -0.3122
+    }
+   },
+   {
+    "bin": "Q1 [0.0646,0.201]",
+    "n": 250,
+    "floor": 0.0416,
+    "excess": {
+     "hvilm": 0.3019,
+     "dnabert2": -0.0622,
+     "nt_v2_500m": -0.029,
+     "gena_lm": 0.0183,
+     "hyenadna": -0.101,
+     "lucavirus": -0.0542
+    }
+   },
+   {
+    "bin": "Q2 [0.201,0.267]",
+    "n": 249,
+    "floor": 0.1472,
+    "excess": {
+     "hvilm": 0.3441,
+     "dnabert2": -0.171,
+     "nt_v2_500m": -0.1359,
+     "gena_lm": -0.1397,
+     "hyenadna": -0.0687,
+     "lucavirus": -0.1161
+    }
+   },
+   {
+    "bin": "Q3 [0.267,0.348]",
+    "n": 250,
+    "floor": 0.1654,
+    "excess": {
+     "hvilm": 0.3895,
+     "dnabert2": -0.1376,
+     "nt_v2_500m": -0.098,
+     "gena_lm": -0.1903,
+     "hyenadna": -0.1075,
+     "lucavirus": -0.1329
+    }
+   },
+   {
+    "bin": "Q4 [0.348,0.638]",
+    "n": 250,
+    "floor": 0.2453,
+    "excess": {
+     "hvilm": 0.2391,
+     "dnabert2": -0.1857,
+     "nt_v2_500m": -0.2301,
+     "gena_lm": -0.2487,
+     "hyenadna": -0.3059,
+     "lucavirus": -0.1644
+    }
+   }
+  ],
+  "qcov": [
+   {
+    "bin": "strict no-hit",
+    "n": 201,
+    "floor": 0.3354,
+    "excess": {
+     "hvilm": 0.3482,
+     "dnabert2": -0.3442,
+     "nt_v2_500m": -0.3452,
+     "gena_lm": -0.2899,
+     "hyenadna": -0.3909,
+     "lucavirus": -0.3122
+    }
+   },
+   {
+    "bin": "Q1 [0.315,1]",
+    "n": 139,
+    "floor": 0.2715,
+    "excess": {
+     "hvilm": 0.3474,
+     "dnabert2": -0.1581,
+     "nt_v2_500m": -0.2352,
+     "gena_lm": -0.3433,
+     "hyenadna": -0.1795,
+     "lucavirus": -0.2612
+    }
+   },
+   {
+    "bin": "Q2 [1,1]",
+    "n": 0,
+    "skipped": true
+   },
+   {
+    "bin": "Q3 [1,1]",
+    "n": 0,
+    "skipped": true
+   },
+   {
+    "bin": "Q4 [1,1]",
+    "n": 860,
+    "floor": 0.1335,
+    "excess": {
+     "hvilm": 0.3203,
+     "dnabert2": -0.1286,
+     "nt_v2_500m": -0.1028,
+     "gena_lm": -0.121,
+     "hyenadna": -0.1417,
+     "lucavirus": -0.0987
+    }
+   }
+  ],
+  "alnlen": [
+   {
+    "bin": "strict no-hit",
+    "n": 201,
+    "floor": 0.3354,
+    "excess": {
+     "hvilm": 0.3482,
+     "dnabert2": -0.3442,
+     "nt_v2_500m": -0.3452,
+     "gena_lm": -0.2899,
+     "hyenadna": -0.3909,
+     "lucavirus": -0.3122
+    }
+   },
+   {
+    "bin": "Q1 [105,444]",
+    "n": 248,
+    "floor": 0.2591,
+    "excess": {
+     "hvilm": 0.2944,
+     "dnabert2": -0.2374,
+     "nt_v2_500m": -0.2411,
+     "gena_lm": -0.2639,
+     "hyenadna": -0.2496,
+     "lucavirus": -0.2506
+    }
+   },
+   {
+    "bin": "Q2 [444,654]",
+    "n": 251,
+    "floor": 0.1125,
+    "excess": {
+     "hvilm": 0.1789,
+     "dnabert2": -0.1355,
+     "nt_v2_500m": -0.1442,
+     "gena_lm": -0.1065,
+     "hyenadna": -0.164,
+     "lucavirus": -0.1648
+    }
+   },
+   {
+    "bin": "Q3 [654,842]",
+    "n": 250,
+    "floor": 0.1576,
+    "excess": {
+     "hvilm": 0.2685,
+     "dnabert2": -0.1246,
+     "nt_v2_500m": -0.1122,
+     "gena_lm": -0.1261,
+     "hyenadna": -0.1753,
+     "lucavirus": -0.0428
+    }
+   },
+   {
+    "bin": "Q4 [842,999]",
+    "n": 250,
+    "floor": 0.0801,
+    "excess": {
+     "hvilm": 0.496,
+     "dnabert2": -0.042,
+     "nt_v2_500m": 0.0032,
+     "gena_lm": -0.0961,
+     "hyenadna": -0.0069,
+     "lucavirus": -0.0396
+    }
+   }
+  ],
+  "neglog10E": [
+   {
+    "bin": "strict no-hit",
+    "n": 201,
+    "floor": 0.3354,
+    "excess": {
+     "hvilm": 0.3482,
+     "dnabert2": -0.3442,
+     "nt_v2_500m": -0.3452,
+     "gena_lm": -0.2899,
+     "hyenadna": -0.3909,
+     "lucavirus": -0.3122
+    }
+   },
+   {
+    "bin": "Q1 [3.14,22.7]",
+    "n": 250,
+    "floor": 0.1464,
+    "excess": {
+     "hvilm": 0.3954,
+     "dnabert2": -0.1158,
+     "nt_v2_500m": -0.0956,
+     "gena_lm": -0.1162,
+     "hyenadna": -0.1357,
+     "lucavirus": -0.1692
+    }
+   },
+   {
+    "bin": "Q2 [22.7,41.6]",
+    "n": 249,
+    "floor": 0.1612,
+    "excess": {
+     "hvilm": 0.2349,
+     "dnabert2": -0.1928,
+     "nt_v2_500m": -0.1654,
+     "gena_lm": -0.1546,
+     "hyenadna": -0.1834,
+     "lucavirus": -0.1728
+    }
+   },
+   {
+    "bin": "Q3 [41.6,63.7]",
+    "n": 250,
+    "floor": 0.2155,
+    "excess": {
+     "hvilm": 0.2475,
+     "dnabert2": -0.2541,
+     "nt_v2_500m": -0.2549,
+     "gena_lm": -0.2273,
+     "hyenadna": -0.2697,
+     "lucavirus": -0.1977
+    }
+   },
+   {
+    "bin": "Q4 [63.7,145]",
+    "n": 250,
+    "floor": 0.1613,
+    "excess": {
+     "hvilm": 0.3582,
+     "dnabert2": -0.085,
+     "nt_v2_500m": -0.0839,
+     "gena_lm": -0.182,
+     "hyenadna": -0.1103,
+     "lucavirus": -0.036
+    }
+   }
+  ],
+  "bits_x_cov": [
+   {
+    "bin": "strict no-hit",
+    "n": 201,
+    "floor": 0.3354,
+    "excess": {
+     "hvilm": 0.3482,
+     "dnabert2": -0.3442,
+     "nt_v2_500m": -0.3452,
+     "gena_lm": -0.2899,
+     "hyenadna": -0.3909,
+     "lucavirus": -0.3122
+    }
+   },
+   {
+    "bin": "Q1 [13,98]",
+    "n": 247,
+    "floor": 0.2102,
+    "excess": {
+     "hvilm": 0.3179,
+     "dnabert2": -0.1824,
+     "nt_v2_500m": -0.1616,
+     "gena_lm": -0.214,
+     "hyenadna": -0.1951,
+     "lucavirus": -0.2288
+    }
+   },
+   {
+    "bin": "Q2 [98,158]",
+    "n": 249,
+    "floor": 0.125,
+    "excess": {
+     "hvilm": 0.3213,
+     "dnabert2": -0.1589,
+     "nt_v2_500m": -0.108,
+     "gena_lm": -0.0761,
+     "hyenadna": -0.1569,
+     "lucavirus": -0.1474
+    }
+   },
+   {
+    "bin": "Q3 [158,223]",
+    "n": 250,
+    "floor": 0.1667,
+    "excess": {
+     "hvilm": 0.295,
+     "dnabert2": -0.2056,
+     "nt_v2_500m": -0.2,
+     "gena_lm": -0.1577,
+     "hyenadna": -0.1827,
+     "lucavirus": -0.1348
+    }
+   },
+   {
+    "bin": "Q4 [223,460]",
+    "n": 253,
+    "floor": 0.1549,
+    "excess": {
+     "hvilm": 0.3582,
+     "dnabert2": -0.0742,
+     "nt_v2_500m": -0.0874,
+     "gena_lm": -0.1868,
+     "hyenadna": -0.1247,
+     "lucavirus": -0.0422
+    }
+   }
+  ]
+ },
+ "equivalence": {
+  "model": "hvilm",
+  "n_rows": 201,
+  "n_units": 49,
+  "margin": 0.02,
+  "ci_lo": -0.2374,
+  "ci_hi": 0.7569,
+  "verdict": "INCONCLUSIVE (CI spans 0 AND exceeds the +-0.02 margin; not shown to differ is NOT shown to be equivalent)"
+ }
+}

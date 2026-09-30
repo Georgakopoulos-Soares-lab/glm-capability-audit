@@ -1,0 +1,111 @@
+{
+  "name": "HVUE_Transm_std",
+  "n_test": 12728,
+  "unit": "ROW (anti-conservative; no grouping metadata shipped)",
+  "arms": [
+    "kmer",
+    "kmer_gbt",
+    "aa_gbt",
+    "nn_lookup",
+    "cnn",
+    "transformer"
+  ],
+  "excluded_arms": {},
+  "equivalence_margin": 0.02,
+  "bin_quantiles": [
+    0.0,
+    0.25,
+    0.5,
+    0.75,
+    1.0
+  ],
+  "panelA": [
+    {
+      "level": "all",
+      "n_rows": 12728,
+      "frac": 1.0,
+      "n_units": 12728,
+      "n_genus": null
+    },
+    {
+      "level": "nucleotide_no_hit",
+      "n_rows": 41,
+      "frac": 0.0032,
+      "n_units": 41,
+      "n_genus": null
+    },
+    {
+      "level": "translated_no_hit",
+      "n_rows": 3,
+      "frac": 0.0002,
+      "n_units": 3,
+      "n_genus": null
+    },
+    {
+      "level": "protein_no_hit",
+      "n_rows": 2,
+      "frac": 0.0002,
+      "n_units": 2,
+      "n_genus": null
+    }
+  ],
+  "panelB": {
+    "all": {
+      "n_rows": 12728,
+      "n_units": 12728,
+      "floor": 0.6934,
+      "floor_arm": "nn_lookup",
+      "baselines": {
+        "kmer": 0.6082,
+        "kmer_gbt": 0.6876,
+        "aa_gbt": 0.6608,
+        "nn_lookup": 0.6934,
+        "cnn": 0.688,
+        "transformer": 0.4518
+      },
+      "models": {
+        "hvilm": {
+          "mcc": 0.6928,
+          "excess": -0.0006,
+          "ci_lo": -0.0177,
+          "ci_hi": 0.0107,
+          "p_le_0": 0.6492,
+          "verdict": "EQUIVALENT (whole CI inside +-0.02)"
+        },
+        "dnabert2": {
+          "mcc": 0.6867,
+          "excess": -0.0067,
+          "ci_lo": -0.0225,
+          "ci_hi": 0.0037,
+          "p_le_0": 0.912,
+          "verdict": "INCONCLUSIVE (CI spans 0 AND exceeds the +-0.02 margin; not shown to differ is NOT shown to be equivalent)"
+        },
+        "hyenadna": {
+          "mcc": 0.6724,
+          "excess": -0.0209,
+          "ci_lo": -0.0391,
+          "ci_hi": -0.0094,
+          "p_le_0": 0.999,
+          "verdict": "INFERIOR"
+        },
+        "gena_lm": {
+          "mcc": 0.6662,
+          "excess": -0.0271,
+          "ci_lo": -0.0447,
+          "ci_hi": -0.0151,
+          "p_le_0": 1.0,
+          "verdict": "INFERIOR"
+        },
+        "nt_v2_500m": {
+          "mcc": 0.658,
+          "excess": -0.0353,
+          "ci_lo": -0.0521,
+          "ci_hi": -0.0242,
+          "p_le_0": 1.0,
+          "verdict": "INFERIOR"
+        }
+      }
+    }
+  },
+  "graded": {}
+}

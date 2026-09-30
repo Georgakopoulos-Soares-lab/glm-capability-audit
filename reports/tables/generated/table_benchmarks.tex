@@ -1,0 +1,21 @@
+\begingroup\footnotesize\setlength{\tabcolsep}{5pt}
+\begin{table}[htbp]\centering
+\caption{\textbf{What each benchmark retains at each regime.} \textsc{l0} is the published test set, \textsc{l1} the fragments with no detectable nucleotide relative in the benchmark's own training split, and \textsc{l2} those with no detectable six frame translated relative either. Percentages are of \textsc{l0}. \textsc{l2} is shown to indicate how much of the nucleotide divergent population still has a detectable relative, not as a population we evaluate on.}
+\label{tab:benchmarks}
+\begin{tabular}{l rrr r}
+\toprule
+Benchmark & \textsc{l0} & \textsc{l1} & \textsc{l2} & \textsc{l1} with a translated relative \\
+\midrule
+GUE phage & 4,630 & 2,874\,(62\%) & 86\,(1.9\%) & 97\% \\
+HVUE host tropism \textsc{hard\_70} & 51,187 & 11,994\,(23\%) & 3,737\,(7.3\%) & 69\% \\
+VHDB within family & 3,754 & 1,200\,(32\%) & 201\,(5.4\%) & 83\% \\
+HVUE pathogenicity \textsc{hard} & 1,792 & 16\,(1\%) & 2\,(0.1\%) & 88\% \\
+HVUE pathogenicity \textsc{std} & 6,651 & 41\,(1\%) & 3\,(0.0\%) & 93\% \\
+HVUE transmissibility \textsc{std} & 12,728 & 41\,(0\%) & 3\,(0.0\%) & 93\% \\
+GUE \textsc{virus\_covid} & 9,168 & 0 & 0 & -- \\
+HVUE transmissibility \textsc{hard} & 2,497 & 55\,(2\%) & 3\,(0.1\%) & 95\% \\
+HVUE host tropism \textsc{std\_95} & 50,817 & 11,124\,(22\%) & 3,882\,(7.6\%) & 65\% \\
+\bottomrule
+\end{tabular}
+\vspace{3pt}\par\parbox{\textwidth}{\footnotesize GUE \textsc{virus\_covid} retains no nucleotide divergent fragment, so it contributes only at \textsc{l0}. The last column is the share of the \textsc{l1} population that acquires a detectable relative once the search is translated.}
+\end{table}\endgroup

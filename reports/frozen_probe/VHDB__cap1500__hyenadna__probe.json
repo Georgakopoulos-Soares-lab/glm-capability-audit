@@ -1,0 +1,13 @@
+{
+  "model": "hyenadna",
+  "task": "VHDB__cap1500",
+  "regime": "frozen_linear_probe",
+  "representation": "masked mean over final hidden states",
+  "n_train": 1500,
+  "n_test": 3754,
+  "dim": 256,
+  "selected_C": 0.01,
+  "mcc": 0.2109,
+  "macro_f1": 0.585,
+  "auprc": 0.3584
+}

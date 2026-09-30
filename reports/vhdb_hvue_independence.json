@@ -1,0 +1,98 @@
+[
+  {
+    "query": "VHDB/test",
+    "target": "HVUE_v2/Host_Tropism/hard_70_1000bp/train",
+    "n_query": 3754,
+    "n_target": 230934,
+    "pct_with_hit": {
+      "id70_cov30": 76.43,
+      "id70_cov50": 70.86,
+      "id70_cov70": 65.98,
+      "id70_cov80": 63.85,
+      "id80_cov30": 59.8,
+      "id80_cov50": 58.66,
+      "id80_cov70": 56.71,
+      "id80_cov80": 56.26,
+      "id90_cov30": 53.17,
+      "id90_cov50": 52.93,
+      "id90_cov70": 51.97,
+      "id90_cov80": 51.76,
+      "id95_cov30": 51.33,
+      "id95_cov50": 51.31,
+      "id95_cov70": 50.51,
+      "id95_cov80": 50.29
+    }
+  },
+  {
+    "query": "VHDB/test",
+    "target": "HVUE_v2/Host_Tropism/standard_95_1000bp/train",
+    "n_query": 3754,
+    "n_target": 229488,
+    "pct_with_hit": {
+      "id70_cov30": 75.17,
+      "id70_cov50": 70.4,
+      "id70_cov70": 66.52,
+      "id70_cov80": 64.6,
+      "id80_cov30": 61.67,
+      "id80_cov50": 61.08,
+      "id80_cov70": 59.67,
+      "id80_cov80": 58.98,
+      "id90_cov30": 57.01,
+      "id90_cov50": 56.87,
+      "id90_cov70": 55.41,
+      "id90_cov80": 55.09,
+      "id95_cov30": 53.89,
+      "id95_cov50": 53.76,
+      "id95_cov70": 52.69,
+      "id95_cov80": 52.56
+    }
+  },
+  {
+    "query": "VHDB/train",
+    "target": "HVUE_v2/Host_Tropism/hard_70_1000bp/train",
+    "n_query": 18958,
+    "n_target": 230934,
+    "pct_with_hit": {
+      "id70_cov30": 74.63,
+      "id70_cov50": 70.53,
+      "id70_cov70": 66.71,
+      "id70_cov80": 64.39,
+      "id80_cov30": 62.15,
+      "id80_cov50": 61.46,
+      "id80_cov70": 60.01,
+      "id80_cov80": 58.9,
+      "id90_cov30": 54.66,
+      "id90_cov50": 54.5,
+      "id90_cov70": 53.48,
+      "id90_cov80": 52.64,
+      "id95_cov30": 51.55,
+      "id95_cov50": 51.41,
+      "id95_cov70": 50.52,
+      "id95_cov80": 49.77
+    }
+  },
+  {
+    "query": "VHDB/train",
+    "target": "HVUE_v2/Host_Tropism/standard_95_1000bp/train",
+    "n_query": 18958,
+    "n_target": 229488,
+    "pct_with_hit": {
+      "id70_cov30": 74.84,
+      "id70_cov50": 70.79,
+      "id70_cov70": 66.08,
+      "id70_cov80": 63.66,
+      "id80_cov30": 60.45,
+      "id80_cov50": 59.63,
+      "id80_cov70": 57.59,
+      "id80_cov80": 56.36,
+      "id90_cov30": 53.14,
+      "id90_cov50": 52.87,
+      "id90_cov70": 51.6,
+      "id90_cov80": 50.82,
+      "id95_cov30": 49.37,
+      "id95_cov50": 49.16,
+      "id95_cov70": 48.16,
+      "id95_cov80": 47.57
+    }
+  }
+]

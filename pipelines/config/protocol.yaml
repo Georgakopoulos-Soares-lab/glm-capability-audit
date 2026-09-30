@@ -1,0 +1,89 @@
+# HOW we evaluate.  These are the knobs the paper's protocol section describes;
+# changing one changes every number, so they live in one file rather than in
+# scattered command lines.
+
+finetune:                       # PRIMARY regime, applied identically to all models
+  seeds:      [42, 43, 44]
+  lrs:        [1e-5, 3e-5, 1e-4]
+  epochs:     8
+  epochs_gue: 16                # GUE needed 16: at 8 the best epoch was the last
+  select_on:  dev_mcc           # dev only -- test is never used for selection
+  class_weight: false
+  # NOTE the asymmetry, deliberately left visible rather than silently fixed:
+  # the baseline arms use class_weight=balanced, the fine-tuning arm uses the
+  # HuggingFace forward's unweighted cross-entropy.  On a 3.5%-positive task that
+  # handicaps the models, i.e. it biases toward this project's own thesis.  It is
+  # bounded rather than corrected: AUPRC is threshold-free and reproduces the MCC
+  # ranking exactly on both host-tropism configs.  Set `class_weight: true` to run
+  # the sensitivity check.
+
+probe:                          # SECONDARY regime
+  cap_train:  8000
+  cap_test:   8000
+  cap_evo2:   1500              # int4 7B, memory-bound
+  C_grid:     [0.001, 0.01, 0.1, 1.0, 10.0]
+  representation: masked mean over final hidden states
+
+baselines:
+  ladder_seeds:  [42, 43]       # architecture search
+  refit_seeds:   6              # the selected cell, for a usable seed SD
+  class_weight:  balanced
+  topk:          3              # architectures carried into the lr sweep
+  transformer_lrs: [3e-4, 1e-4, 1e-3]
+  transformer_kernels: [4, 8]
+
+homology:
+  # Detection floor for "is there ANY alignable training neighbour", NOT a
+  # cleaning threshold.  Deliberately permissive; nothing downstream is tuned on
+  # it.  --search-type 3 is nucleotide mode, so reverse complements are included.
+  # --cov-mode 2 is query coverage: mode 1 asks a 1 kb chunk to cover a 40 kb
+  # genome and matched 0.3% of rows.
+  min_seq_id: 0.30
+  min_cov:    0.10
+  cov_mode:   2
+  evalue:     1e-3
+  max_seqs:   20
+  search_type: 3
+  # MMseqs2's prefilter is not bit-reproducible: two runs on GUE phage returned
+  # 41.0% and 37.9% homolog coverage from identical inputs.  Masks are cached so
+  # every arm is scored on ONE pinned split.
+  cache_masks: true
+
+threshold_grid:                 # turns one arbitrary cut into a trend
+  identity: [0.70, 0.80, 0.90, 0.95]
+  coverage: [0.30, 0.50, 0.70, 0.80]
+  # Interpretation rule, fixed BEFORE the results were seen:
+  #   excess that grows or holds under tightening filtering -> the advantage is real
+  #   excess that shrinks toward zero                       -> the advantage is leakage
+
+regime:
+  # NN-lookup is a legitimate competitor where a neighbour exists and is
+  # STRUCTURALLY DISABLED where none does.  Scoring it on the full test set with
+  # a majority-class fallback made it answer on rows where label transfer is
+  # impossible: on GUE phage that is 59% of rows and it dragged the arm from
+  # 0.8901 to 0.6492 blended.  Models were then compared against 0.6492, which
+  # penalises the baseline for a structural disability and flatters the models.
+  floor_homolog_available: [nn_lookup, kmer_gbt, cnn, kmer, transformer]
+  floor_homolog_free:      [kmer_gbt, cnn, kmer, transformer]
+  bootstrap_reps:      10000
+  bootstrap_reps_large: 2000    # n_test > 40k
+  # The floor is re-maximised inside every replicate: which arm is strongest is
+  # itself random, and on homolog-free rows the argmax flips between draws.
+
+generative:
+  window:      8000
+  cap_family:  3                # ViroBench ALL/times is ~74% Orthomyxoviridae
+                                # uncapped; that made a Markov floor read 0.80
+                                # bits/base against a true 1.95 and produced a
+                                # large fake difference-in-differences.
+  markov_orders: [3, 5, 7]
+  interp_markov_K: 8            # EM-fitted backoff weights
+  compressors: [xz, bzip2, zlib]   # on 2-bit-packed DNA, not ASCII
+  # Pseudo-log-likelihood from a masked LM is NOT comparable to autoregressive
+  # bits/base.  The two are reported in separate tables, never one column.
+
+reporting:
+  primary_metric:   mcc
+  imbalanced_also:  auprc       # never accuracy on the 2-4% positive tasks
+  ci: bootstrap_95
+  tie_rule: overlapping CIs are a tie

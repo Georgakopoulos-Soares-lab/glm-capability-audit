@@ -1,0 +1,7 @@
+{
+  "name": "viral_vs_host",
+  "n_test": 1972,
+  "frac_with_nn": 0.4143,
+  "nn_lookup_fullset_majfallback": 0.3914,
+  "nn_lookup_hitrows_only": 1.0
+}

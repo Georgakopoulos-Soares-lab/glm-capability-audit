@@ -1,0 +1,13 @@
+{
+  "model": "nt_v2_500m",
+  "task": "VHDB",
+  "regime": "frozen_linear_probe",
+  "representation": "masked mean over final hidden states",
+  "n_train": 8000,
+  "n_test": 3754,
+  "dim": 1024,
+  "selected_C": 0.01,
+  "mcc": 0.243,
+  "macro_f1": 0.6055,
+  "auprc": 0.3802
+}

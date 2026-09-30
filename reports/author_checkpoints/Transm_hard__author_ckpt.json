@@ -1,0 +1,14 @@
+{
+  "name": "Transm_hard",
+  "checkpoint": "duttaprat/HViLM-R0",
+  "n_test": 2497,
+  "mcc_as_shipped": 0.7613,
+  "mcc_flipped": -0.7613,
+  "label_orientation": "as-shipped",
+  "mcc": 0.7613,
+  "auprc": 0.9568,
+  "floor": 0.6886,
+  "floor_arm": "kmer_gbt",
+  "excess": 0.0727,
+  "caveat": "authors' training split unauditable; treat as an upper bound"
+}

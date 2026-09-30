@@ -16,7 +16,7 @@ from sklearn.model_selection import train_test_split
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))) + "/viral_benchmark")
 import paths as P
 
-EPI_SRC = P.EPI_DIR
+EPI_SRC = os.environ.get("PC_EPI_SRC_DIR", "/scratch/10906/arisk/biojepa_data/gue/GUE/EPI")
 OUT_DIR = P.GUE_DIR
 SEED = 42
 CELLS = ["GM12878", "HeLa-S3", "HUVEC", "IMR90", "K562", "NHEK"]

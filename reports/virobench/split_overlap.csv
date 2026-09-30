@@ -1,0 +1,9 @@
+released_split,level,test_unique,shared_with_train,pct_test_levels_seen_in_train,pct_test_rows_with_train_seen_level
+times,taxid,5832,0,0.0,0.0
+times,species,5593,116,2.1,4.4
+times,genus,1013,510,50.3,80.0
+times,family,238,173,72.7,94.4
+genus,taxid,5832,0,0.0,0.0
+genus,species,1500,265,17.7,78.8
+genus,genus,660,542,82.1,97.9
+genus,family,231,226,97.8,99.9

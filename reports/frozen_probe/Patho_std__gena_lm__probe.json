@@ -1,0 +1,13 @@
+{
+  "model": "gena_lm",
+  "task": "Patho_std",
+  "regime": "frozen_linear_probe",
+  "representation": "masked mean over final hidden states",
+  "n_train": 8000,
+  "n_test": 6651,
+  "dim": 768,
+  "selected_C": 0.01,
+  "mcc": 0.4938,
+  "macro_f1": 0.7463,
+  "auprc": 0.7707
+}

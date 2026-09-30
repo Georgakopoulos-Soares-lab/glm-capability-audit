@@ -5,8 +5,7 @@ comparators as EXTERNAL/PUBLISHED rather than OUR RUN.
 """
 import json, glob, os, sys
 import pandas as pd
-import paths as P
-B = os.environ.get("VB_MULTIMODEL", P.sub("multimodel"))
+B = "/data/nvidia/genomic-capability-unlearning/scratchpad/multimodel"
 TASKS = ["splice_sites_all", "splice_sites_acceptors", "splice_sites_donors"]
 
 # --- our supervised baseline ladder (dev-selected) ---

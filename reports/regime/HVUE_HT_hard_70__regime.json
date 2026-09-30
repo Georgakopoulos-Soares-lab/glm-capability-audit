@@ -1,0 +1,110 @@
+{
+  "name": "HVUE_HT_hard_70",
+  "n_test": 51187,
+  "n_homolog_available": 39193,
+  "bootstrap_unit": "ROW (anti-conservative)",
+  "frac_homolog_available": 0.7657,
+  "regimes": {
+    "homolog_available": {
+      "n": 39193,
+      "floor": 0.666,
+      "floor_arm": "nn_lookup",
+      "baselines": {
+        "kmer": 0.4333,
+        "kmer_gbt": 0.5011,
+        "cnn": 0.4149,
+        "nn_lookup": 0.666
+      },
+      "models": {
+        "hvilm": {
+          "mcc": 0.7715,
+          "excess": 0.1056,
+          "ci_lo": 0.0659,
+          "ci_hi": 0.1453,
+          "p_le_0": 0.0
+        },
+        "dnabert2": {
+          "mcc": 0.5909,
+          "excess": -0.0751,
+          "ci_lo": -0.1122,
+          "ci_hi": -0.0443,
+          "p_le_0": 1.0
+        },
+        "nt_v2_500m": {
+          "mcc": 0.543,
+          "excess": -0.123,
+          "ci_lo": -0.1501,
+          "ci_hi": -0.0902,
+          "p_le_0": 1.0
+        },
+        "hyenadna": {
+          "mcc": 0.4767,
+          "excess": -0.1893,
+          "ci_lo": -0.2148,
+          "ci_hi": -0.1621,
+          "p_le_0": 1.0
+        },
+        "gena_lm": {
+          "mcc": 0.4391,
+          "excess": -0.2269,
+          "ci_lo": -0.3199,
+          "ci_hi": -0.1497,
+          "p_le_0": 1.0
+        }
+      },
+      "nn_lookup_valid": true,
+      "bootstrap_unit": "ROW (anti-conservative)",
+      "bootstrap_reps": 2000
+    },
+    "homolog_free": {
+      "n": 11994,
+      "floor": 0.0948,
+      "floor_arm": "cnn",
+      "baselines": {
+        "kmer": 0.0704,
+        "kmer_gbt": 0.0919,
+        "cnn": 0.0948
+      },
+      "models": {
+        "hvilm": {
+          "mcc": 0.2853,
+          "excess": 0.1906,
+          "ci_lo": 0.09,
+          "ci_hi": 0.2565,
+          "p_le_0": 0.0
+        },
+        "nt_v2_500m": {
+          "mcc": 0.0956,
+          "excess": 0.0009,
+          "ci_lo": -0.071,
+          "ci_hi": 0.0334,
+          "p_le_0": 0.7115
+        },
+        "dnabert2": {
+          "mcc": 0.0951,
+          "excess": 0.0003,
+          "ci_lo": -0.0762,
+          "ci_hi": 0.0355,
+          "p_le_0": 0.713
+        },
+        "gena_lm": {
+          "mcc": 0.0901,
+          "excess": -0.0047,
+          "ci_lo": -0.1084,
+          "ci_hi": 0.0443,
+          "p_le_0": 0.6475
+        },
+        "hyenadna": {
+          "mcc": 0.0896,
+          "excess": -0.0051,
+          "ci_lo": -0.0836,
+          "ci_hi": 0.0342,
+          "p_le_0": 0.78
+        }
+      },
+      "nn_lookup_valid": false,
+      "bootstrap_unit": "ROW (anti-conservative)",
+      "bootstrap_reps": 2000
+    }
+  }
+}

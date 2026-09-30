@@ -1,0 +1,42 @@
+
+ALL_taxon_genus   n_test=5,832   genus disjoint 2.1%   no nucleotide hit 4.6%   of those translated hit 89.9%
+  stratum                                n   genera   largest    top 5  classes usable
+  all test rows                      5,832      660    60.9%   74.5%              8   Alphainfluenzavirus
+  genus disjoint rows                  122      118     1.6%    7.4%              3   Faustvirus
+  no homology at all                    27       26     7.4%   22.2%              0   Orthoflavivirus
+  genus disjoint and no homology        12       12     8.3%   41.7%              0   Tethysvirus
+
+ALL_taxon_times   n_test=5,832   genus disjoint 20.0%   no nucleotide hit 38.6%   of those translated hit 79.7%
+  stratum                                n   genera   largest    top 5  classes usable
+  all test rows                      5,832    1,013     3.3%   11.8%              7   Tequatrovirus
+  genus disjoint rows                1,167      503     6.3%   16.7%              7   Paopuvirus
+  no homology at all                   457      160    16.0%   39.4%              6   Paopuvirus
+  genus disjoint and no homology       286      110    25.5%   38.8%              5   Paopuvirus
+
+DNA_taxon_genus   n_test=950   genus disjoint 6.3%   no nucleotide hit 8.5%   of those translated hit 92.6%
+  stratum                                n   genera   largest    top 5  classes usable
+  all test rows                        950      367     8.8%   18.5%              6   Begomovirus
+  genus disjoint rows                   60       60     1.7%    8.3%              1   Treiszetapapillomavirus
+  no homology at all                     6        6    16.7%   83.3%              0   Gemytripvirus
+  genus disjoint and no homology         4        4    25.0%  100.0%              0   Gemytripvirus
+
+DNA_taxon_times   n_test=950   genus disjoint 8.8%   no nucleotide hit 15.9%   of those translated hit 90.7%
+  stratum                                n   genera   largest    top 5  classes usable
+  all test rows                        950      199     5.4%   19.3%              3   Przondovirus
+  genus disjoint rows                   84       39    26.2%   51.2%              2   Qoptorquevirus
+  no homology at all                    14       10    21.4%   64.3%              0   Microvirus
+  genus disjoint and no homology         8        7    25.0%   75.0%              0   Geogavirus
+
+RNA_taxon_genus   n_test=4,835   genus disjoint 0.8%   no nucleotide hit 3.2%   of those translated hit 91.5%
+  stratum                                n   genera   largest    top 5  classes usable
+  all test rows                      4,835      263    74.4%   88.7%              7   Alphainfluenzavirus
+  genus disjoint rows                   37       36     5.4%   16.2%              1   Alphacrustrhavirus
+  no homology at all                    13       13     7.7%   38.5%              0   Orthopicobirnavirus
+  genus disjoint and no homology         4        4    25.0%  100.0%              0   Cyclophivirus
+
+RNA_taxon_times   n_test=4,835   genus disjoint 9.8%   no nucleotide hit 29.3%   of those translated hit 80.7%
+  stratum                                n   genera   largest    top 5  classes usable
+  all test rows                      4,835      494    42.2%   52.6%              8   Alphainfluenzavirus
+  genus disjoint rows                  476      230     3.6%   11.8%              4   Penicillimonavirus
+  no homology at all                   273       97    22.0%   41.0%              4   Narnavirus
+  genus disjoint and no homology       125       64     5.6%   23.2%              4   Orthodiscovirus

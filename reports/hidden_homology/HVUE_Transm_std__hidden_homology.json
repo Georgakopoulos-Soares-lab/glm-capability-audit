@@ -1,0 +1,78 @@
+{
+  "name": "HVUE_Transm_std",
+  "n_test": 12728,
+  "bootstrap_unit": "ROW (anti-conservative)",
+  "n_nucleotide_hit": 12687,
+  "n_translated_hit": 12725,
+  "n_hidden_translated_only": 38,
+  "frac_of_old_homolog_free_that_is_hidden": 0.9268,
+  "unseen_lineage_frac": {},
+  "levels": {
+    "L0_all": {
+      "n": 12728,
+      "n_units": 12728,
+      "floor": 0.688,
+      "floor_arm": "cnn",
+      "baselines": {
+        "kmer": 0.6082,
+        "kmer_gbt": 0.6876,
+        "aa_gbt": 0.6608,
+        "cnn": 0.688,
+        "transformer": 0.4518
+      },
+      "models": {
+        "hvilm": {
+          "mcc": 0.6928,
+          "excess": 0.0047,
+          "ci_lo": -0.0152,
+          "ci_hi": 0.0155,
+          "p_le_0": 0.4645
+        },
+        "dnabert2": {
+          "mcc": 0.6867,
+          "excess": -0.0013,
+          "ci_lo": -0.0195,
+          "ci_hi": 0.0082,
+          "p_le_0": 0.7745
+        },
+        "hyenadna": {
+          "mcc": 0.6724,
+          "excess": -0.0156,
+          "ci_lo": -0.0367,
+          "ci_hi": -0.004,
+          "p_le_0": 0.9955
+        },
+        "gena_lm": {
+          "mcc": 0.6662,
+          "excess": -0.0218,
+          "ci_lo": -0.0429,
+          "ci_hi": -0.0101,
+          "p_le_0": 1.0
+        },
+        "nt_v2_500m": {
+          "mcc": 0.658,
+          "excess": -0.03,
+          "ci_lo": -0.0497,
+          "ci_hi": -0.0194,
+          "p_le_0": 1.0
+        }
+      }
+    },
+    "L1_no_nucleotide": {
+      "n": 41,
+      "skipped": "too few rows or single class"
+    },
+    "L2_no_nucleotide_no_translated": {
+      "n": 3,
+      "skipped": "too few rows or single class"
+    },
+    "L1_minus_L2_translated_only": {
+      "n": 38,
+      "skipped": "too few rows or single class"
+    },
+    "L3_no_protein_either": {
+      "n": 2,
+      "skipped": "too few rows or single class"
+    }
+  }
+}

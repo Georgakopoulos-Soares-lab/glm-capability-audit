@@ -1,0 +1,13 @@
+{
+  "model": "hyenadna",
+  "task": "Patho_std",
+  "regime": "frozen_linear_probe",
+  "representation": "masked mean over final hidden states",
+  "n_train": 8000,
+  "n_test": 6651,
+  "dim": 256,
+  "selected_C": 1.0,
+  "mcc": 0.4576,
+  "macro_f1": 0.7286,
+  "auprc": 0.7488
+}

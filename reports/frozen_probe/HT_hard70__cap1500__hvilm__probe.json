@@ -1,0 +1,13 @@
+{
+  "model": "hvilm",
+  "task": "HT_hard70__cap1500",
+  "regime": "frozen_linear_probe",
+  "representation": "masked mean over final hidden states",
+  "n_train": 1500,
+  "n_test": 8000,
+  "dim": 768,
+  "selected_C": 10.0,
+  "mcc": 0.5475,
+  "macro_f1": 0.7736,
+  "auprc": 0.5841
+}

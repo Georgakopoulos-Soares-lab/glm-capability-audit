@@ -1,0 +1,647 @@
+{
+  "name": "HVUE_HT_hard_70",
+  "n_test": 51187,
+  "unit": "ROW (anti-conservative; no grouping metadata shipped)",
+  "arms": [
+    "kmer",
+    "kmer_gbt",
+    "aa_gbt",
+    "nn_lookup",
+    "cnn",
+    "transformer"
+  ],
+  "excluded_arms": {},
+  "equivalence_margin": 0.02,
+  "bin_quantiles": [
+    0.0,
+    0.25,
+    0.5,
+    0.75,
+    1.0
+  ],
+  "panelA": [
+    {
+      "level": "all",
+      "n_rows": 51187,
+      "frac": 1.0,
+      "n_units": 51187,
+      "n_genus": null
+    },
+    {
+      "level": "nucleotide_no_hit",
+      "n_rows": 11994,
+      "frac": 0.2343,
+      "n_units": 11994,
+      "n_genus": null
+    },
+    {
+      "level": "translated_no_hit",
+      "n_rows": 3737,
+      "frac": 0.073,
+      "n_units": 3737,
+      "n_genus": null
+    },
+    {
+      "level": "protein_no_hit",
+      "n_rows": 3634,
+      "frac": 0.071,
+      "n_units": 3634,
+      "n_genus": null
+    }
+  ],
+  "panelB": {
+    "all": {
+      "n_rows": 51187,
+      "n_units": 51187,
+      "floor": 0.6233,
+      "floor_arm": "nn_lookup",
+      "baselines": {
+        "kmer": 0.3538,
+        "kmer_gbt": 0.4183,
+        "aa_gbt": 0.3379,
+        "nn_lookup": 0.6233,
+        "cnn": 0.5235,
+        "transformer": 0.1467
+      },
+      "models": {
+        "hvilm": {
+          "mcc": 0.723,
+          "excess": 0.0997,
+          "ci_lo": 0.0548,
+          "ci_hi": 0.1408,
+          "p_le_0": 0.0,
+          "verdict": "SUPERIOR"
+        },
+        "dnabert2": {
+          "mcc": 0.5216,
+          "excess": -0.1017,
+          "ci_lo": -0.1349,
+          "ci_hi": -0.0684,
+          "p_le_0": 1.0,
+          "verdict": "INFERIOR"
+        },
+        "nt_v2_500m": {
+          "mcc": 0.4763,
+          "excess": -0.147,
+          "ci_lo": -0.1707,
+          "ci_hi": -0.1227,
+          "p_le_0": 1.0,
+          "verdict": "INFERIOR"
+        },
+        "hyenadna": {
+          "mcc": 0.3949,
+          "excess": -0.2283,
+          "ci_lo": -0.2773,
+          "ci_hi": -0.1895,
+          "p_le_0": 1.0,
+          "verdict": "INFERIOR"
+        },
+        "gena_lm": {
+          "mcc": 0.3539,
+          "excess": -0.2693,
+          "ci_lo": -0.3217,
+          "ci_hi": -0.2148,
+          "p_le_0": 1.0,
+          "verdict": "INFERIOR"
+        }
+      }
+    },
+    "nucleotide_no_hit": {
+      "n_rows": 11994,
+      "n_units": 11994,
+      "floor": 0.0919,
+      "floor_arm": "kmer_gbt",
+      "baselines": {
+        "kmer": 0.0704,
+        "kmer_gbt": 0.0919,
+        "aa_gbt": 0.0467,
+        "nn_lookup": 0.0,
+        "cnn": 0.075,
+        "transformer": 0.0633
+      },
+      "models": {
+        "hvilm": {
+          "mcc": 0.2853,
+          "excess": 0.1935,
+          "ci_lo": 0.1124,
+          "ci_hi": 0.2647,
+          "p_le_0": 0.0,
+          "verdict": "SUPERIOR"
+        },
+        "nt_v2_500m": {
+          "mcc": 0.0956,
+          "excess": 0.0038,
+          "ci_lo": -0.0399,
+          "ci_hi": 0.0401,
+          "p_le_0": 0.5144,
+          "verdict": "INCONCLUSIVE (CI spans 0 AND exceeds the +-0.02 margin; not shown to differ is NOT shown to be equivalent)"
+        },
+        "dnabert2": {
+          "mcc": 0.0951,
+          "excess": 0.0032,
+          "ci_lo": -0.0442,
+          "ci_hi": 0.0439,
+          "p_le_0": 0.5272,
+          "verdict": "INCONCLUSIVE (CI spans 0 AND exceeds the +-0.02 margin; not shown to differ is NOT shown to be equivalent)"
+        },
+        "gena_lm": {
+          "mcc": 0.0872,
+          "excess": -0.0047,
+          "ci_lo": -0.0609,
+          "ci_hi": 0.0374,
+          "p_le_0": 0.6232,
+          "verdict": "INCONCLUSIVE (CI spans 0 AND exceeds the +-0.02 margin; not shown to differ is NOT shown to be equivalent)"
+        },
+        "hyenadna": {
+          "mcc": 0.069,
+          "excess": -0.0229,
+          "ci_lo": -0.0754,
+          "ci_hi": 0.0221,
+          "p_le_0": 0.8584,
+          "verdict": "INCONCLUSIVE (CI spans 0 AND exceeds the +-0.02 margin; not shown to differ is NOT shown to be equivalent)"
+        }
+      }
+    },
+    "translated_no_hit": {
+      "n_rows": 3737,
+      "n_units": 3737,
+      "floor": 0.1169,
+      "floor_arm": "aa_gbt",
+      "baselines": {
+        "kmer": 0.0068,
+        "kmer_gbt": 0.0198,
+        "aa_gbt": 0.1169,
+        "nn_lookup": 0.0,
+        "cnn": 0.058,
+        "transformer": 0.0595
+      },
+      "models": {
+        "hvilm": {
+          "mcc": 0.2252,
+          "excess": 0.1083,
+          "ci_lo": -0.0307,
+          "ci_hi": 0.2348,
+          "p_le_0": 0.0718,
+          "verdict": "INCONCLUSIVE (CI spans 0 AND exceeds the +-0.02 margin; not shown to differ is NOT shown to be equivalent)"
+        },
+        "gena_lm": {
+          "mcc": 0.0707,
+          "excess": -0.0462,
+          "ci_lo": -0.1391,
+          "ci_hi": 0.0261,
+          "p_le_0": 0.9026,
+          "verdict": "INCONCLUSIVE (CI spans 0 AND exceeds the +-0.02 margin; not shown to differ is NOT shown to be equivalent)"
+        },
+        "hyenadna": {
+          "mcc": 0.0706,
+          "excess": -0.0463,
+          "ci_lo": -0.1331,
+          "ci_hi": 0.0186,
+          "p_le_0": 0.9268,
+          "verdict": "INCONCLUSIVE (CI spans 0 AND exceeds the +-0.02 margin; not shown to differ is NOT shown to be equivalent)"
+        },
+        "nt_v2_500m": {
+          "mcc": 0.0667,
+          "excess": -0.0502,
+          "ci_lo": -0.1667,
+          "ci_hi": 0.0369,
+          "p_le_0": 0.857,
+          "verdict": "INCONCLUSIVE (CI spans 0 AND exceeds the +-0.02 margin; not shown to differ is NOT shown to be equivalent)"
+        },
+        "dnabert2": {
+          "mcc": 0.0499,
+          "excess": -0.067,
+          "ci_lo": -0.1571,
+          "ci_hi": 0.0002,
+          "p_le_0": 0.9746,
+          "verdict": "INCONCLUSIVE (CI spans 0 AND exceeds the +-0.02 margin; not shown to differ is NOT shown to be equivalent)"
+        }
+      }
+    },
+    "protein_no_hit": {
+      "n_rows": 3634,
+      "n_units": 3634,
+      "floor": 0.0962,
+      "floor_arm": "aa_gbt",
+      "baselines": {
+        "kmer": 0.0002,
+        "kmer_gbt": 0.0221,
+        "aa_gbt": 0.0962,
+        "nn_lookup": 0.0,
+        "cnn": 0.0587,
+        "transformer": 0.0559
+      },
+      "models": {
+        "hvilm": {
+          "mcc": 0.2178,
+          "excess": 0.1216,
+          "ci_lo": -0.0181,
+          "ci_hi": 0.2455,
+          "p_le_0": 0.0538,
+          "verdict": "INCONCLUSIVE (CI spans 0 AND exceeds the +-0.02 margin; not shown to differ is NOT shown to be equivalent)"
+        },
+        "nt_v2_500m": {
+          "mcc": 0.0716,
+          "excess": -0.0246,
+          "ci_lo": -0.1363,
+          "ci_hi": 0.0584,
+          "p_le_0": 0.7568,
+          "verdict": "INCONCLUSIVE (CI spans 0 AND exceeds the +-0.02 margin; not shown to differ is NOT shown to be equivalent)"
+        },
+        "gena_lm": {
+          "mcc": 0.0629,
+          "excess": -0.0333,
+          "ci_lo": -0.1243,
+          "ci_hi": 0.0309,
+          "p_le_0": 0.8844,
+          "verdict": "INCONCLUSIVE (CI spans 0 AND exceeds the +-0.02 margin; not shown to differ is NOT shown to be equivalent)"
+        },
+        "hyenadna": {
+          "mcc": 0.0544,
+          "excess": -0.0418,
+          "ci_lo": -0.1288,
+          "ci_hi": 0.0192,
+          "p_le_0": 0.926,
+          "verdict": "INCONCLUSIVE (CI spans 0 AND exceeds the +-0.02 margin; not shown to differ is NOT shown to be equivalent)"
+        },
+        "dnabert2": {
+          "mcc": 0.0424,
+          "excess": -0.0538,
+          "ci_lo": -0.1428,
+          "ci_hi": 0.0097,
+          "p_le_0": 0.9554,
+          "verdict": "INCONCLUSIVE (CI spans 0 AND exceeds the +-0.02 margin; not shown to differ is NOT shown to be equivalent)"
+        }
+      }
+    }
+  },
+  "graded": {
+    "bitscore": [
+      {
+        "bin": "strict no-hit",
+        "n": 3737,
+        "floor": 0.1169,
+        "excess": {
+          "hvilm": 0.1083,
+          "dnabert2": -0.067,
+          "nt_v2_500m": -0.0502,
+          "gena_lm": -0.0462,
+          "hyenadna": -0.0463
+        }
+      },
+      {
+        "bin": "Q1 [38,76]",
+        "n": 2023,
+        "floor": 0.1389,
+        "excess": {
+          "hvilm": 0.1326,
+          "dnabert2": -0.0956,
+          "nt_v2_500m": -0.0746,
+          "gena_lm": -0.0991,
+          "hyenadna": -0.1324
+        }
+      },
+      {
+        "bin": "Q2 [76,116]",
+        "n": 2095,
+        "floor": 0.0774,
+        "excess": {
+          "hvilm": 0.1728,
+          "dnabert2": -0.049,
+          "nt_v2_500m": -0.0298,
+          "gena_lm": -0.0588,
+          "hyenadna": -0.0715
+        }
+      },
+      {
+        "bin": "Q3 [116,176]",
+        "n": 2059,
+        "floor": 0.1853,
+        "excess": {
+          "hvilm": 0.3187,
+          "dnabert2": 0.026,
+          "nt_v2_500m": -0.0712,
+          "gena_lm": -0.0633,
+          "hyenadna": -0.0752
+        }
+      },
+      {
+        "bin": "Q4 [176,503]",
+        "n": 2080,
+        "floor": 0.1737,
+        "excess": {
+          "hvilm": 0.0715,
+          "dnabert2": -0.0394,
+          "nt_v2_500m": -0.0077,
+          "gena_lm": -0.0253,
+          "hyenadna": -0.0664
+        }
+      }
+    ],
+    "bits_per_aa": [
+      {
+        "bin": "strict no-hit",
+        "n": 3737,
+        "floor": 0.1169,
+        "excess": {
+          "hvilm": 0.1083,
+          "dnabert2": -0.067,
+          "nt_v2_500m": -0.0502,
+          "gena_lm": -0.0462,
+          "hyenadna": -0.0463
+        }
+      },
+      {
+        "bin": "Q1 [0.0552,0.181]",
+        "n": 2064,
+        "floor": 0.1181,
+        "excess": {
+          "hvilm": 0.2054,
+          "dnabert2": -0.0189,
+          "nt_v2_500m": -0.0177,
+          "gena_lm": -0.0291,
+          "hyenadna": -0.0939
+        }
+      },
+      {
+        "bin": "Q2 [0.181,0.251]",
+        "n": 2063,
+        "floor": 0.0821,
+        "excess": {
+          "hvilm": 0.1228,
+          "dnabert2": -0.0335,
+          "nt_v2_500m": 0.0176,
+          "gena_lm": 0.0463,
+          "hyenadna": -0.0494
+        }
+      },
+      {
+        "bin": "Q3 [0.251,0.329]",
+        "n": 2065,
+        "floor": 0.142,
+        "excess": {
+          "hvilm": 0.2841,
+          "dnabert2": 0.0406,
+          "nt_v2_500m": -0.05,
+          "gena_lm": -0.0501,
+          "hyenadna": -0.0936
+        }
+      },
+      {
+        "bin": "Q4 [0.329,0.803]",
+        "n": 2065,
+        "floor": 0.1594,
+        "excess": {
+          "hvilm": 0.139,
+          "dnabert2": -0.0341,
+          "nt_v2_500m": -0.0298,
+          "gena_lm": -0.0757,
+          "hyenadna": -0.0275
+        }
+      }
+    ],
+    "qcov": [
+      {
+        "bin": "strict no-hit",
+        "n": 3737,
+        "floor": 0.1169,
+        "excess": {
+          "hvilm": 0.1083,
+          "dnabert2": -0.067,
+          "nt_v2_500m": -0.0502,
+          "gena_lm": -0.0462,
+          "hyenadna": -0.0463
+        }
+      },
+      {
+        "bin": "Q1 [0.153,1]",
+        "n": 1850,
+        "floor": 0.0841,
+        "excess": {
+          "hvilm": 0.2889,
+          "dnabert2": -0.0207,
+          "nt_v2_500m": -0.0762,
+          "gena_lm": -0.0558,
+          "hyenadna": -0.0573
+        }
+      },
+      {
+        "bin": "Q2 [1,1]",
+        "n": 0,
+        "skipped": true
+      },
+      {
+        "bin": "Q3 [1,1]",
+        "n": 0,
+        "skipped": true
+      },
+      {
+        "bin": "Q4 [1,1]",
+        "n": 6407,
+        "floor": 0.136,
+        "excess": {
+          "hvilm": 0.1695,
+          "dnabert2": -0.0126,
+          "nt_v2_500m": -0.0075,
+          "gena_lm": -0.0289,
+          "hyenadna": -0.0588
+        }
+      }
+    ],
+    "alnlen": [
+      {
+        "bin": "strict no-hit",
+        "n": 3737,
+        "floor": 0.1169,
+        "excess": {
+          "hvilm": 0.1083,
+          "dnabert2": -0.067,
+          "nt_v2_500m": -0.0502,
+          "gena_lm": -0.0462,
+          "hyenadna": -0.0463
+        }
+      },
+      {
+        "bin": "Q1 [51,348]",
+        "n": 2050,
+        "floor": 0.0922,
+        "excess": {
+          "hvilm": 0.2087,
+          "dnabert2": -0.0426,
+          "nt_v2_500m": -0.0883,
+          "gena_lm": -0.0741,
+          "hyenadna": -0.0727
+        }
+      },
+      {
+        "bin": "Q2 [348,534]",
+        "n": 2050,
+        "floor": 0.138,
+        "excess": {
+          "hvilm": 0.2736,
+          "dnabert2": 0.007,
+          "nt_v2_500m": 0.0142,
+          "gena_lm": -0.0571,
+          "hyenadna": -0.0381
+        }
+      },
+      {
+        "bin": "Q3 [534,753]",
+        "n": 2062,
+        "floor": 0.1065,
+        "excess": {
+          "hvilm": 0.1851,
+          "dnabert2": -0.0184,
+          "nt_v2_500m": -0.0118,
+          "gena_lm": -0.0131,
+          "hyenadna": -0.0756
+        }
+      },
+      {
+        "bin": "Q4 [753,999]",
+        "n": 2095,
+        "floor": 0.1603,
+        "excess": {
+          "hvilm": 0.115,
+          "dnabert2": -0.0125,
+          "nt_v2_500m": -0.0128,
+          "gena_lm": -0.0226,
+          "hyenadna": -0.0609
+        }
+      }
+    ],
+    "neglog10E": [
+      {
+        "bin": "strict no-hit",
+        "n": 3737,
+        "floor": 0.1169,
+        "excess": {
+          "hvilm": 0.1083,
+          "dnabert2": -0.067,
+          "nt_v2_500m": -0.0502,
+          "gena_lm": -0.0462,
+          "hyenadna": -0.0463
+        }
+      },
+      {
+        "bin": "Q1 [3,13.8]",
+        "n": 2064,
+        "floor": 0.1097,
+        "excess": {
+          "hvilm": 0.1506,
+          "dnabert2": -0.0684,
+          "nt_v2_500m": -0.0517,
+          "gena_lm": -0.0755,
+          "hyenadna": -0.1043
+        }
+      },
+      {
+        "bin": "Q2 [13.8,27]",
+        "n": 2064,
+        "floor": 0.0939,
+        "excess": {
+          "hvilm": 0.1448,
+          "dnabert2": -0.072,
+          "nt_v2_500m": -0.0291,
+          "gena_lm": -0.0733,
+          "hyenadna": -0.0876
+        }
+      },
+      {
+        "bin": "Q3 [27,47.1]",
+        "n": 2064,
+        "floor": 0.178,
+        "excess": {
+          "hvilm": 0.3412,
+          "dnabert2": 0.0381,
+          "nt_v2_500m": -0.0791,
+          "gena_lm": -0.0545,
+          "hyenadna": -0.0674
+        }
+      },
+      {
+        "bin": "Q4 [47.1,159]",
+        "n": 2065,
+        "floor": 0.1737,
+        "excess": {
+          "hvilm": 0.0766,
+          "dnabert2": -0.0368,
+          "nt_v2_500m": -0.0057,
+          "gena_lm": -0.0249,
+          "hyenadna": -0.0653
+        }
+      }
+    ],
+    "bits_x_cov": [
+      {
+        "bin": "strict no-hit",
+        "n": 3737,
+        "floor": 0.1169,
+        "excess": {
+          "hvilm": 0.1083,
+          "dnabert2": -0.067,
+          "nt_v2_500m": -0.0502,
+          "gena_lm": -0.0462,
+          "hyenadna": -0.0463
+        }
+      },
+      {
+        "bin": "Q1 [5.81,69.1]",
+        "n": 2064,
+        "floor": 0.0764,
+        "excess": {
+          "hvilm": 0.2136,
+          "dnabert2": -0.0393,
+          "nt_v2_500m": -0.0226,
+          "gena_lm": -0.0437,
+          "hyenadna": -0.06
+        }
+      },
+      {
+        "bin": "Q2 [69.1,114]",
+        "n": 2064,
+        "floor": 0.0739,
+        "excess": {
+          "hvilm": 0.156,
+          "dnabert2": -0.0408,
+          "nt_v2_500m": -0.0186,
+          "gena_lm": -0.0513,
+          "hyenadna": -0.0763
+        }
+      },
+      {
+        "bin": "Q3 [114,176]",
+        "n": 2050,
+        "floor": 0.1862,
+        "excess": {
+          "hvilm": 0.3178,
+          "dnabert2": 0.0235,
+          "nt_v2_500m": -0.0722,
+          "gena_lm": -0.0637,
+          "hyenadna": -0.0742
+        }
+      },
+      {
+        "bin": "Q4 [176,503]",
+        "n": 2079,
+        "floor": 0.1741,
+        "excess": {
+          "hvilm": 0.0712,
+          "dnabert2": -0.0395,
+          "nt_v2_500m": -0.0073,
+          "gena_lm": -0.0257,
+          "hyenadna": -0.0667
+        }
+      }
+    ]
+  },
+  "equivalence": {
+    "model": "hvilm",
+    "n_rows": 3737,
+    "n_units": 3737,
+    "margin": 0.02,
+    "ci_lo": -0.0307,
+    "ci_hi": 0.2348,
+    "verdict": "INCONCLUSIVE (CI spans 0 AND exceeds the +-0.02 margin; not shown to differ is NOT shown to be equivalent)"
+  }
+}
