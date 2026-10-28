@@ -40,18 +40,6 @@ MODELS = {
  # 768 hidden, 12 layers, vocab 4096) and has the same empty `model_type`, so it needs
  # the identical bespoke load path.
  "hvilm":      ("duttaprat/HViLM-base", 512, 5),
- # LucaVirus is the second virus-specialised gLM. Two load quirks, both handled rather than
- # worked around at the call site:
- #  1. the HF repo name contains a dot ("...step3.8M"), which breaks transformers' dynamic
- #     module path (`No module named transformers_modules.LucaGroup.LucaVirus-default-step3`).
- #     Loaded from a dot-free local copy of the same snapshot instead.
- #  2. `modeling_lucavirus.py` imports apex behind a try/except with a correct torch LayerNorm
- #     fallback, but transformers' static check_imports blocks the load. `_stubs/apex` exists
- #     with NO `normalization` submodule so the check passes and the except branch still fires.
- # AutoModel only (no *ForSequenceClassification head), so it takes the EncoderWithHead path.
- "lucavirus":  (os.environ.get("LUCAVIRUS_DIR",
-                "/data/nvidia/models/lucavirus_step38M/207da0192381a3cedcb1cf82a9850239d5fdd9d5"),
-                4096, 1),
 }
 HEAD_NAMES = ("classifier", "head", "score", "cls.")
 

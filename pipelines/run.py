@@ -59,7 +59,7 @@ def st_homology(R, tasks, models, a):
         jobs.append(Job(
             name=f"homology__{t.key}", gpu=False, stage="homology",
             produces=os.path.join(PREDS, f"hvue_v2__{t.kmer_tag}__nnlookup__s0__preds.npz"),
-            cmd=[R.python("biojepa"), "-u", f"{S}/track_b_viral/nn_lookup_as_baseline.py",
+            cmd=[R.python(), "-u", f"{S}/track_b_viral/nn_lookup_as_baseline.py",
                  "--train-csv", t.csv("train"), "--test-csv", t.csv("test"),
                  "--name", t.name, "--esc", t.kmer_tag,
                  "--threads", str(a.threads), "--predictions-dir", PREDS]))
@@ -77,7 +77,7 @@ def st_baselines(R, tasks, models, a):
             # not ship. That is a finding, not a gap -- see reports/RESULTS.md S4.
             if spec.get("requires") == "taxonomy" and not (t.tax_train and t.tax_test):
                 continue
-            cmd = [R.python(spec["env"]), "-u", f"{S}/{spec['script']}"]
+            cmd = [R.python(), "-u", f"{S}/{spec['script']}"]
             if arm == "tax_prior":
                 cmd += ["--train-tax", t.tax_train, "--test-tax", t.tax_test,
                         "--esc", t.kmer_tag, "--name", t.name]
@@ -103,7 +103,7 @@ def st_baselines(R, tasks, models, a):
         for arm in ("cnn", "transformer"):
             spec = R.baselines[arm]
             suffix = "" if arm == "cnn" else "__transformer"
-            cmd = [R.python(spec["env"]), "-u", f"{S}/{spec['script']}",
+            cmd = [R.python(), "-u", f"{S}/{spec['script']}",
                    "--dataset", t.loader, "--task", t.task_arg or t.esc,
                    "--class_weight", P["class_weight"],
                    "--arch_family", spec["arch_family"],
@@ -135,7 +135,7 @@ def st_finetune(R, tasks, models, a):
                 continue
             ep = P[t.epochs_key]
             for lr in P["lrs"]:
-                cmd = [R.python(m.env), "-u", f"{S}/track_a_benchmarks/geneb_finetune.py",
+                cmd = [R.python(), "-u", f"{S}/track_a_benchmarks/geneb_finetune.py",
                        "--source", "geneb" if t.loader == "geneb" else t.loader,
                        "--task", t.task_arg or t.esc, "--model", m.key,
                        "--lr", f"{lr:g}",
@@ -163,7 +163,7 @@ def st_hidden(R, tasks, models, a):
     for t in tasks:
         if not t.dir:
             continue
-        cmd = [R.python("biojepa"), "-u", f"{S}/track_b_viral/hidden_homology_audit.py",
+        cmd = [R.python(), "-u", f"{S}/track_b_viral/hidden_homology_audit.py",
                "--name", t.name, "--train-csv", t.csv("train"), "--test-csv", t.csv("test"),
                "--esc", t.esc, "--threads", str(a.threads), "--reps", "2000",
                "--cache", os.path.join(MASKS, f"{t.name}.npz")]
@@ -191,7 +191,7 @@ def st_layered(R, tasks, models, a):
     for t in tasks:
         if not t.dir:
             continue
-        cmd = [R.python("biojepa"), "-u", f"{S}/track_b_viral/layered_novelty_figure.py",
+        cmd = [R.python(), "-u", f"{S}/track_b_viral/layered_novelty_figure.py",
                "--name", t.name, "--test-csv", t.csv("test"), "--esc", t.esc,
                "--masks", os.path.join(MASKS, f"{t.name}.npz"),
                "--hits-npz", os.path.join(MASKS, f"{t.name}.npz"),

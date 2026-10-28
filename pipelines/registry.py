@@ -23,13 +23,7 @@ _VAR = re.compile(r"\$\{(\w+)\}")
 # Fallbacks for the variables the config interpolates. Environment wins; these
 # only stop a fresh clone from producing a literal "${VB_DATA}" in a path.
 _DEFAULTS = {
-    "VB_DATA":          os.environ.get("VB_DATA", os.path.join(REPO, "data")),
-    "VB_LUCAVIRUS_DIR": "",
-    "VB_ENV_DNABERT":   sys.executable,
-    "VB_ENV_BIOJEPA":   sys.executable,
-    "VB_ENV_EVO_7B":    sys.executable,
-    "VB_ENV_EVO":       sys.executable,
-    "VB_ENV_GENERATOR": sys.executable,
+    "VB_DATA": os.environ.get("VB_DATA", os.path.join(REPO, "data")),
 }
 
 
@@ -107,7 +101,6 @@ class Task:
 class Model:
     key: str
     hf_id: str
-    env: str
     loader: str
     role: str = ""
     max_tokens: int = 0
@@ -130,7 +123,6 @@ class Registry:
         self.protocol = _load("protocol")
         self.tasks = {k: Task(key=k, **v) for k, v in t.items()}
         self.models = {k: Model(key=k, **v) for k, v in m["models"].items()}
-        self.envs = m["envs"]
         self.baselines = m["baselines"]
         self._validate()
 
@@ -169,14 +161,21 @@ class Registry:
             out.append(self.models[k])
         return out
 
-    def python(self, env_key):
-        p = self.envs.get(env_key) or sys.executable
-        if not p or not os.path.exists(p):
+    def python(self):
+        """The interpreter every job runs under.
+
+        One environment covers the whole pipeline. It did not always: the earlier
+        split existed because Evo 2 needed a dependency set that could not coexist
+        with the rest, and picking the wrong interpreter was a silent failure that
+        killed several runs. Evo 2 is gone, so the remaining work -- pandas,
+        scikit-learn, xgboost, torch and transformers -- fits in one place.
+        """
+        p = os.environ.get("VB_PYTHON") or sys.executable
+        if not os.path.exists(p):
             raise SystemExit(
-                f"interpreter for env {env_key!r} resolves to {p!r}, which does not exist.\n"
-                f"Set $VB_ENV_{env_key.upper()} to the python that has this model's deps.\n"
-                f"Picking the wrong interpreter is a silent failure here -- several runs "
-                f"died on a missing pandas/transformers/evo2 before this check existed.")
+                f"$VB_PYTHON is {p!r}, which does not exist.\n"
+                f"Point it at the python of the environment built from environment.yml, "
+                f"or leave it unset to use the interpreter running this script.")
         return p
 
     # -- integrity -------------------------------------------------------------

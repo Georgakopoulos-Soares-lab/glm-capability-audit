@@ -1,9 +1,7 @@
 # What we evaluate.  Genomic language models plus every baseline arm.
 #
-# `env` is load-bearing.  These models need mutually incompatible dependency
-# sets, and picking the wrong interpreter is a silent failure mode we have hit
-# repeatedly (pandas missing, transformers missing).  Resolved via
-# $VB_ENV_<NAME>, so a fresh machine overrides without editing this file.
+# One environment runs everything; build it from environment.yml and point
+# $VB_PYTHON at it, or leave $VB_PYTHON unset to use the active interpreter.
 #
 # `loader` records HOW the weights must be instantiated.  This is not cosmetic:
 #   dynamic  -- the checkpoint needs its own remote class.  `trust_remote_code`
@@ -16,56 +14,46 @@
 models:
   hvilm:
     hf_id:  duttaprat/HViLM-base
-    env:    dnabert
     loader: dynamic            # bert_layers.BertForMaskedLM
     max_tokens: 512
     role:   viral-specialist
   dnabert2:
     hf_id:  zhihan1996/DNABERT-2-117M
-    env:    dnabert
     loader: dynamic
     max_tokens: 512
     role:   general
   nt_v2_500m:
     hf_id:  InstaDeepAI/nucleotide-transformer-v2-500m-multi-species
-    env:    dnabert
     loader: automlm            # config not registered for AutoModel
     max_tokens: 1024
     role:   general
   gena_lm:
     hf_id:  AIRI-Institute/gena-lm-bert-base-t2t
-    env:    dnabert
     loader: dynamic            # modeling_bert.BertForMaskedLM -- pre-LN, see above
     max_tokens: 512
     needs_stubs: true          # its remote module imports deepspeed
     role:   general
   hyenadna:
     hf_id:  LongSafari/hyenadna-medium-160k-seqlen-hf
-    env:    dnabert
     loader: automodel
     max_tokens: 8192
     role:   general
 
-# Interpreter per env key; override with $VB_ENV_DNABERT etc.
-envs:
-  dnabert: ${VB_ENV_DNABERT}
-  biojepa: ${VB_ENV_BIOJEPA}
-
 # The floor is max() over these -- never a single arm, and never k-mer alone.
 baselines:
-  kmer:        {script: track_b_viral/hvue_v2_kmer.py,        env: biojepa, gpu: false}
-  kmer_gbt:    {script: track_b_viral/kmer_gbt_baseline.py,   env: biojepa, gpu: false}
-  nn_lookup:   {script: track_b_viral/nn_lookup_as_baseline.py, env: biojepa, gpu: false}
+  kmer:        {script: track_b_viral/hvue_v2_kmer.py, gpu: false}
+  kmer_gbt:    {script: track_b_viral/kmer_gbt_baseline.py, gpu: false}
+  nn_lookup:   {script: track_b_viral/nn_lookup_as_baseline.py, gpu: false}
   # Protein composition, six-frame, no ORF calling. Orthogonal to the nucleotide
   # k-mers: synonymous divergence destroys nucleotide similarity while leaving
   # amino-acid usage intact. It beats the nucleotide GBT on 1 of 8 tasks, so it
   # is an arm in max(), not a general floor-raiser.
-  aa_gbt:      {script: track_b_viral/aa_composition_baseline.py, env: biojepa, gpu: false}
+  aa_gbt:      {script: track_b_viral/aa_composition_baseline.py, gpu: false}
   # Majority training label of the test row's genus, backing off to species then
   # family. On VHDB this reaches 0.6809 against HViLM's 0.7036 -- the strongest
   # single baseline in the study. Runnable ONLY where the benchmark ships a
   # lineage label, which is 1 of 9.
-  tax_prior:   {script: track_b_viral/taxonomy_prior_baseline.py, env: biojepa, gpu: false,
+  tax_prior:   {script: track_b_viral/taxonomy_prior_baseline.py, gpu: false,
                 requires: taxonomy}
-  cnn:         {script: common/capacity_sweep.py, env: dnabert, gpu: true, arch_family: cnn}
-  transformer: {script: common/capacity_sweep.py, env: dnabert, gpu: true, arch_family: transformer}
+  cnn:         {script: common/capacity_sweep.py, gpu: true, arch_family: cnn}
+  transformer: {script: common/capacity_sweep.py, gpu: true, arch_family: transformer}

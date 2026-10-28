@@ -1,6 +1,10 @@
-# conda env create -f environment.yml && conda activate glm-audit
+# The environment for everything in this repository.
 #
-# Includes mmseqs2, which the homology audits require and pip cannot provide.
+#   conda env create -f environment.yml
+#   conda activate glm-audit
+#
+# One environment runs the whole pipeline and the whole analysis layer. It
+# includes mmseqs2, which every homology search needs and pip cannot provide.
 name: glm-audit
 channels:
   - conda-forge
@@ -10,14 +14,17 @@ dependencies:
   - pip
   - numpy>=1.24
   - pandas>=2.0
-  - scikit-learn>=1.3
   - scipy>=1.10
-  - pyarrow>=14.0
+  - scikit-learn>=1.3
+  - xgboost>=2.0          # the gradient-boosted k-mer and amino-acid arms
+  - pyyaml>=6.0           # pipelines/config/*.yaml
+  - pyarrow>=14.0         # HVUE ships as parquet
   - pytest>=7.4
   - mmseqs2>=14
   - pip:
-      # Install the CUDA build matching your driver; CPU wheels are fine for the
-      # k-mer, CNN-ladder and homology work, and only the gLM runs need a GPU.
+      # Install the CUDA build matching your driver. CPU wheels are enough for
+      # the k-mer arms, the homology searches and all of analysis/; only
+      # fine-tuning and the capacity ladders need a GPU.
       - torch>=2.1
       # <4.48 is required: DNABERT-2 hits a config_class conflict above it.
       - "transformers>=4.40,<4.48"

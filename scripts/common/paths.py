@@ -92,7 +92,6 @@ GUE_DEVCARVE = os.environ.get("VB_GUE_DEVCARVE", os.path.join(DATA, "gue_devcarv
 # Viral chunks vs hg38 background, built by track_b_viral/build_viral_vs_host.py.
 VIRAL_VS_HOST = os.environ.get("VB_VIRAL_VS_HOST", os.path.join(DATA, "viral_vs_host"))
 # Local model weights that are not on the hub.
-LUCAVIRUS_DIR = os.environ.get("VB_LUCAVIRUS_DIR", os.path.join(DATA, "models", "lucavirus"))
 
 # --- viral-audit outputs ------------------------------------------------------
 # Kept separate from OUT because these are large and regenerable: per-arm

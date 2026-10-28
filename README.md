@@ -42,32 +42,27 @@ rebuilt by the commands below.
 
 ## 1. Environment
 
-### 1.1 Interpreters
+### 1.1 The environment
 
-The models need mutually incompatible dependency sets, so the pipeline dispatches
-each job to a named interpreter rather than assuming one environment. Create the
-ones you need and export the matching variable; `run.py` refuses to launch a job
-whose interpreter does not exist.
-
-| Variable | Needs | Used by |
-|----------|-------|---------|
-| `VB_ENV_BIOJEPA` | pandas, scikit-learn, xgboost | every CPU arm, the homology searches, all of `analysis/` |
-| `VB_ENV_DNABERT` | torch, transformers | fine-tuning, the CNN and transformer ladders |
+One environment runs everything: the pipeline and the analysis layer.
 
 ```bash
-# the CPU environment: pandas, scikit-learn, xgboost and mmseqs2
-conda env create -f environment.yml && conda activate glm-audit
-
-# or, without conda, the analysis layer alone
-pip install -r requirements.txt
-
-# add torch and transformers to run the models
-pip install -r requirements-pipeline.txt
+conda env create -f environment.yml
+conda activate glm-audit
 ```
 
-MMseqs2 is an external binary and is not installable from PyPI. `environment.yml`
-includes it; otherwise `conda install -c bioconda mmseqs2` or a release binary,
-then point `VB_MMSEQS` at it.
+It includes MMseqs2, which every homology search needs and pip cannot provide.
+Without conda, `pip install -r requirements.txt` covers the Python side; install
+MMseqs2 separately (`conda install -c bioconda mmseqs2`, or a release binary) and
+point `VB_MMSEQS` at it.
+
+Only fine-tuning and the capacity ladders need a GPU. The k-mer arms, the
+homology searches and all of `analysis/` run on CPU.
+
+`pipelines/run.py` dispatches every job to one interpreter, `$VB_PYTHON`, falling
+back to whichever python launched it. An earlier version split jobs across five
+environments because Evo 2 needed a dependency set that could not coexist with
+the rest; Evo 2 is gone and the split went with it.
 
 ### 1.2 Paths
 
@@ -77,9 +72,15 @@ $EDITOR pipelines/env.sh
 source pipelines/env.sh
 ```
 
-Nothing in this repository hard-codes a machine path. Every value resolves through
-an environment variable with a repository-relative default in
-`scripts/common/paths.py`, so a missing input fails by naming the variable to set.
+Every path resolves through an environment variable, and `scripts/common/paths.py`
+routes the shared ones through repository-relative defaults, so a missing input
+fails by naming the variable to set rather than by reading someone else's disk.
+
+Individual scripts under `scripts/` still carry absolute fallbacks from the
+cluster this work ran on, as the second argument to `os.environ.get`. They are
+defaults only and every one is overridden by the variables below, but a script
+run with nothing exported will point at a path that does not exist on your
+machine. Export the variables and this does not arise.
 
 | Variable | Holds |
 |----------|-------|
@@ -89,6 +90,7 @@ an environment variable with a repository-relative default in
 | `VB_PREDS` | per-example prediction arrays; defaults to `$VB_VIRAL_OUT/preds_rescore` |
 | `VB_REPORTS` | derived tables and JSON; defaults to `./reports` |
 | `VB_RESULTS` | the prediction tree the analysis layer reads (see §3) |
+| `VB_PYTHON` | the interpreter every job runs under; unset means the active one |
 | `VB_SCRATCH` | MMseqs2 temporary space; needs tens of GB |
 | `VB_MMSEQS` | the `mmseqs` binary |
 | `HF_HOME` | Hugging Face cache |
