@@ -35,7 +35,7 @@ TARGET = 10
 
 def selected():
     import pandas as pd
-    sys.path.insert(0, os.path.join(REPO, "paper", "figures"))
+    sys.path.insert(0, os.path.join(REPO, "analysis"))
     from sot_path import sot_csv
     d = pd.read_csv(sot_csv())
     d = d[d.regime == "L0"]

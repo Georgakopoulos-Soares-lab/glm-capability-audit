@@ -1,6 +1,6 @@
-# Stage 1: benchmark corpora -> fine-tuned models -> frozen predictions.
+# The pipeline: benchmark corpora -> fine-tuned models -> frozen predictions.
 # Needs a GPU and the corpora. Only required to regenerate the predictions
-# themselves; the manuscript rebuilds from stage 2 alone.
+# themselves; the analysis layer rebuilds every number from them alone.
 #
 #   pip install -r requirements.txt -r requirements-pipeline.txt
 #

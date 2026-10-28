@@ -1,9 +1,0 @@
-{
-  "name": "GUE_virus_covid",
-  "n_test": 9168,
-  "frac_with_nn": 0.9792,
-  "nn_lookup_fullset_majfallback": 0.5809,
-  "nn_lookup_hitrows_only": 0.5938,
-  "cnn_fullset": 0.6679,
-  "cnn_hitrows": 0.6693
-}

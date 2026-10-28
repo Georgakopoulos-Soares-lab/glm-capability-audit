@@ -1,9 +1,0 @@
-{
-  "name": "GUE_covid",
-  "n_train": 62334,
-  "n_test": 9168,
-  "exact_duplicate_frac": 0.1066,
-  "revcomp_duplicate_frac": 0.0,
-  "exact_duplicates_with_conflicting_label": 248,
-  "meta_note": "no taxonomy/accession metadata shipped with this benchmark, so parent-genome leakage CANNOT be measured -- absence of evidence only"
-}

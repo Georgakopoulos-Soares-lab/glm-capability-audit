@@ -1,281 +1,329 @@
-# glm-capability-audit
+# Viral genomic language model capability audit
 
-Code and frozen predictions for *How much viral capability do genomic language models add
-over conventional baselines?* ([`paper/main.tex`](paper/main.tex)).
+Code for measuring how much a genomic language model adds over conventional
+sequence predictors on viral phenotype tasks, at three levels of test-to-train
+relatedness.
 
-Five genomic language models against up to seven conventional predictors, nine viral
-classification tasks, three levels of train-to-test relatedness.
+Every benchmark is scored twice. Once for the foundation model, once for an
+envelope of conventional arms (k-mer logistic regression, k-mer gradient
+boosting, amino-acid composition, a CNN capacity ladder, a from-scratch
+transformer ladder, nearest-neighbour label transfer, a taxonomy prior), and the
+reported quantity is the difference. The same scoring is then repeated on
+progressively less related subsets of the test set.
 
-The work splits into two stages that share nothing but a directory of predictions.
+| Level | Test rows kept | What it asks |
+|-------|----------------|--------------|
+| **L0** | all | performance on the benchmark as published |
+| **L1** | no nucleotide match to any training row | performance where nucleotide lookup cannot work |
+| **L2** | no nucleotide and no six-frame translated match | performance where protein-level lookup cannot work either |
 
-| stage | does | needs | cost |
-|---|---|---|---|
-| **1 — pipeline** (`scripts/`, `pipelines/`) | fine-tunes the models, fits the baselines, runs the homology searches | GPU, benchmark corpora, MMseqs2 | days |
-| **2 — analysis** (`analysis/`, `paper/`) | turns the frozen predictions into every number, table and figure in the manuscript | CPU only | minutes |
+L1 and L2 are defined by the absence of an MMseqs2 hit against the supervised
+training split, so they are properties of the split, not of model pretraining.
 
-Stage 2 is what most readers want. Stage 1 is the record of how the predictions were made.
+---
+
+## Contents
+
+| Path | What it holds |
+|------|---------------|
+| `pipelines/` | the single entry point, `run.py`, plus the YAML that defines tasks, models, arms and protocol |
+| `scripts/common/` | shared path resolution, data download, the capacity ladder, the paired bootstrap |
+| `scripts/track_a_benchmarks/` | fine-tuning and the GUE / GeneB benchmark loaders |
+| `scripts/track_b_viral/` | the viral benchmarks: baseline arms, homology searches, regime splits, the level table |
+| `scripts/_not_in_manuscript/` | measured and reported as negative or out of scope; kept so the exclusion is explicit |
+| `analysis/` | everything computed from the predictions: consolidation, bootstrap intervals, fit counts |
+| `tests/` | configuration and estimator tests, runnable without any data |
+
+`results/`, `reports/` and `paper/` are not tracked. They are outputs: `results/`
+is written by the pipeline, `reports/` by the analysis layer, and both are
+rebuilt by the commands below.
 
 ---
 
 ## 1. Environment
 
-### Stage 2 only (reproduce the manuscript)
+### 1.1 Interpreters
+
+The models need mutually incompatible dependency sets, so the pipeline dispatches
+each job to a named interpreter rather than assuming one environment. Create the
+ones you need and export the matching variable; `run.py` refuses to launch a job
+whose interpreter does not exist.
+
+| Variable | Needs | Used by |
+|----------|-------|---------|
+| `VB_ENV_BIOJEPA` | pandas, scikit-learn, xgboost | every CPU arm, the homology searches, all of `analysis/` |
+| `VB_ENV_DNABERT` | torch, transformers | fine-tuning, frozen probes, the CNN and transformer ladders |
+| `VB_ENV_EVO_7B` | evo2, turboquant-bio | Evo 2 bits-per-base |
+| `VB_ENV_EVO` | evo 1 | Evo 1 likelihoods |
+| `VB_ENV_GENERATOR` | generative baselines | Markov and compressor floors |
 
 ```bash
-python -m venv .venv && . .venv/bin/activate
-pip install -r requirements.txt
-```
-
-`numpy`, `pandas`, `scipy`, `scikit-learn`, `matplotlib`, `pytest`. Python 3.10 and 3.12
-verified. `pdflatex` is needed only to compile the PDF.
-
-### Stage 1 as well (rerun the pipeline)
-
-```bash
+# the CPU environment: pandas, scikit-learn, xgboost and mmseqs2
 conda env create -f environment.yml && conda activate glm-audit
-# or, with mmseqs2 already on PATH:
-pip install -r requirements.txt -r requirements-pipeline.txt
+
+# or, without conda, the analysis layer alone
+pip install -r requirements.txt
+
+# add torch and transformers to run the models
+pip install -r requirements-pipeline.txt
 ```
 
-Adds `torch>=2.1`, `transformers>=4.40,<4.48` (DNABERT-2 breaks above 4.48), `peft`,
-`huggingface_hub`, `pyarrow`. **MMseqs2 is not installable from PyPI** — use conda-forge /
-bioconda or a release binary.
+MMseqs2 is an external binary and is not installable from PyPI. `environment.yml`
+includes it; otherwise `conda install -c bioconda mmseqs2` or a release binary,
+then point `VB_MMSEQS` at it.
 
-### Environment variables
-
-Stage 2 needs one. Stage 1 needs the rest; copy
-[`pipelines/env.example.sh`](pipelines/env.example.sh) to `pipelines/env.sh`, edit, and
-`source` it.
-
-| variable | holds | used by |
-|---|---|---|
-| `VB_RESULTS` | prediction archive: `hidden_masks/`, `preds_rescore/`, `geneb_finetune/`, `clusters/` | stage 2 |
-| `VB_REPORTS` | upstream `taxonomy_recovery/` | `make_genus_concentration.py` |
-| `VB_CORPORA` | `hvue_v2/`, `vhdb_tropism/`, `gue_devcarve/` | `make_genus_concentration.py` |
-| `VB_DATA` | parent of the benchmark corpora | stage 1 |
-| `VB_VIRAL_OUT`, `VB_PREDS` | where the pipeline writes predictions and masks | stage 1 |
-| `VB_SCRATCH` | MMseqs2 temp, needs tens of GB | stage 1 |
-| `VB_MMSEQS` | path to the `mmseqs` binary | stage 1 |
-| `VB_ENV_*` | per-model interpreters; the models need mutually incompatible deps | stage 1 |
-
-> The prediction archive is **not** in this repository and is not yet deposited. Until it is,
-> the committed tables under `reports/tables/` and `reports/finalization/` are the
-> reproducible record, and the verification in section 5 runs without the archive.
-
----
-
-## 2. The paper
-
-`paper/main.tex` includes `paper/supplementary.tex` and is built entirely by generators — one
-table is injected between marker comments, the supplement is rewritten whole.
-
-| in the paper | label | written by |
-|---|---|---|
-| Table 1, model vs best baseline | `tab:headtohead` | `make_main_tables.py`, injected into `main.tex` |
-| Figure 1, MCC difference at L0 and L1 | `fig:performance` | `make_main_figures.py:fig1` |
-| Figure 2, before and after filtering | `fig:collapse` | `make_main_figures.py:fig2` |
-| Figure 3, sequences retained per level | `fig:filters` | `make_main_figures.py:fig3` |
-| S1 model selection | `tab:selection` | `make_supplement_v2.py:s2` |
-| S2 all models and all arms | `tab:allarms` | `make_supplement_v2.py:s1` |
-| S3 bootstrap schemes at 3 and 10 fits | `tab:bootstrap` | `make_supplement_v2.py:s6` |
-| S4 sequence vs source resampling | `tab:source` | `make_supplement_v2.py:s3` |
-| S5 hidden-dependence sensitivity | `tab:hidden` | `make_supplement_v2.py:s4` |
-
-Function names do not track the printed numbers; labels do, and the text cites labels only.
-
-**Never hand-edit `paper/supplementary.tex` or the injected block** — both are overwritten on
-the next build. Change the generator. A test enforces the banner that says so.
-
-```latex
-% <<< GENERATED table_headtohead (do not edit by hand)
-...
-% >>> GENERATED table_headtohead
-```
-
-Figures are included without a file extension so LaTeX resolves the committed `.pdf`; the
-`.png` proofs beside them are gitignored.
-
----
-
-## 3. Running stage 2, rebuild the manuscript
+### 1.2 Paths
 
 ```bash
-export VB_RESULTS=/path/to/results_viral_bench
+cp pipelines/env.example.sh pipelines/env.sh    # env.sh is gitignored
+$EDITOR pipelines/env.sh
+source pipelines/env.sh
 ```
 
-| step | command | writes |
-|---|---|---|
-| intervals | `python analysis/bootstrap_corrected.py --reps 5000 --workers 16` | `reports/finalization/bootstrap_corrected.csv` |
-| symmetric check | `python analysis/seed_expansion/regen_symmetric.py` | `reports/finalization/symmetric_regenerated.csv` |
-| hidden dependence | `python scripts/track_b_viral/unassigned_clustering_sensitivity.py --partitions 20 --reps 5000` | `reports/layered/unassigned_sensitivity.json` |
-| everything downstream | `python paper/figures/build_paper.py` | tex, figures, PDF |
+Nothing in this repository hard-codes a machine path. Every value resolves through
+an environment variable with a repository-relative default in
+`scripts/common/paths.py`, so a missing input fails by naming the variable to set.
 
-`build_paper.py` runs the chain in dependency order and is the only command most people need:
+| Variable | Holds |
+|----------|-------|
+| `VB_DATA` | parent of the benchmark corpora |
+| `VB_OUT` | run outputs; defaults to `./results` |
+| `VB_VIRAL_OUT` | the large regenerable tree: ladders, predictions, masks |
+| `VB_PREDS` | per-example prediction arrays; defaults to `$VB_VIRAL_OUT/preds_rescore` |
+| `VB_REPORTS` | derived tables and JSON; defaults to `./reports` |
+| `VB_RESULTS` | the prediction tree the analysis layer reads (see §3) |
+| `VB_SCRATCH` | MMseqs2 temporary space; needs tens of GB |
+| `VB_MMSEQS` | the `mmseqs` binary |
+| `HF_HOME` | Hugging Face cache |
 
+### 1.3 Corpora
+
+```bash
+python scripts/common/download_data.py
 ```
-make_source_of_truth.py              consolidate the frozen analyses
-analysis/build_finalized_sot.py      merge intervals + per-cell provenance
-make_main_figures.py                 fig1-3, .pdf and .png
-make_main_tables.py                  Table 1
-make_supplement_v2.py                supplementary.tex, all five tables
-make_claim_ledger.py                 reports/CLAIM_LEDGER.md
--> inject -> pdflatex x3 + bibtex
-```
 
-`--no-pdf` stops before LaTeX. Two consecutive runs produce byte-identical `.tex`.
-
-Everything downstream of the finalized table reads it through `paper/figures/sot_path.py`; a
-number cannot enter the manuscript without passing through
-`reports/tables/final_source_of_truth_finalized.csv`.
-
-### Run-once recorders, deliberately outside the chain
-
-Both record something a rerun would destroy. Outputs are committed.
-
-| command | writes | why it is not in the chain |
-|---|---|---|
-| `python analysis/make_selection_artifact.py` | `reports/tables/selection_3seed.csv` | selection was pre-committed on three seeds; the selected arms were later refit ten times and their JSONs overwritten, so recomputing prints a ten-fit mean as the basis of a three-seed decision |
-| `python analysis/make_fit_counts.py` | `reports/tables/fit_counts.csv` | the per-arm fit counts Methods states in prose; `audit_consistency.py` holds the prose to this file |
+Or point the per-benchmark variables (`VB_HVUE_DIR`, `VB_GUE_DIR`, `VB_VHDB_DIR`,
+`VB_VIRO_DIR`, `VB_GENEB_DIR`) at copies you already have.
 
 ---
 
-## 4. Running stage 1, regenerate the predictions
+## 2. How a number is produced
 
-One entry point. Stages run in dependency order and each is a legal standalone target.
+```
+corpora
+   |
+   |  pipelines/run.py finetune            models, one prediction array per seed
+   |  pipelines/run.py baselines homology  conventional arms, same test rows
+   v
+$VB_PREDS/*.npz                            per-example predictions
+   |
+   |  pipelines/run.py hidden              MMseqs2 train-vs-test, nucleotide then six-frame
+   v
+hidden_masks/*.npz                         per-row hasN / hasT, which define L1 and L2
+   |
+   |  final_regime_table.py                MCC per arm, per benchmark, per level
+   |  analysis/make_source_of_truth.py     joins the levels into one table
+   |  analysis/bootstrap_corrected.py      intervals on the difference
+   v
+reports/tables/final_source_of_truth_finalized.csv
+```
+
+Predictions are written once and scored many times. No stage re-runs a model to
+produce a level: L1 and L2 are the same prediction arrays restricted to the rows
+the homology search did not match.
+
+---
+
+## 3. Reproducing each quantity
+
+The analysis layer reads one tree, named by `VB_RESULTS`, and expects three
+subdirectories inside it:
+
+```
+$VB_RESULTS/geneb_finetune/     fine-tuning summaries, one json per model x lr
+$VB_RESULTS/preds_rescore/      per-example prediction arrays, one npz per arm x seed
+$VB_RESULTS/hidden_masks/       per-row relatedness masks, one npz per benchmark
+```
+
+The pipeline writes the first two there when `VB_VIRAL_OUT` points at the same
+tree. It writes the masks to `$VB_VIRAL_OUT/regime_masks/`, so copy or link that
+directory to `hidden_masks/` before running §3.3 onwards.
+
+### 3.1 L0 for the models
+
+Full fine-tuning with an identical budget per model: three seeds across three
+learning rates, eight epochs (sixteen on GUE). Selection is on development MCC;
+the test set is never used for it.
 
 ```bash
-cp pipelines/env.example.sh pipelines/env.sh && $EDITOR pipelines/env.sh
-source pipelines/env.sh                                 # env.sh is gitignored; env.example.sh is the template
-
-python pipelines/run.py --list                          # tasks, models, arms configured
-python pipelines/run.py baselines --dry-run             # print commands, run nothing
+python pipelines/run.py finetune                                  # every model, every task
 python pipelines/run.py finetune --tasks gue_phage --models nt_v2_500m
-python pipelines/run.py homology regime --tasks paper
+python pipelines/run.py probe   --tasks vhdb                      # frozen linear probe instead
+```
+
+Writes `geneb_finetune/<task>__<model>__lr<lr>__fullft.json` and the prediction
+arrays beside it. Protocol knobs (seeds, learning rates, epochs, selection
+metric) live in `pipelines/config/protocol.yaml`.
+
+### 3.2 L0 for the baselines
+
+```bash
+python pipelines/run.py baselines     # k-mer, k-mer GBT, aa composition, taxonomy prior,
+                                      # CNN ladder, from-scratch transformer ladder
+python pipelines/run.py homology      # nearest-neighbour label transfer
+```
+
+`homology` is a separate stage because nearest-neighbour label transfer needs an
+MMseqs2 search rather than a fit. It writes one more prediction array, on the same
+test rows as every other arm, so it enters the comparator on equal terms. It is
+scored at L0 only; §3.3 says why.
+
+To run one arm on its own, bypassing the scheduler:
+
+| Arm | Script |
+|-----|--------|
+| k-mer logistic regression | `scripts/track_b_viral/hvue_v2_kmer.py` |
+| k-mer gradient boosting | `scripts/track_b_viral/kmer_gbt_baseline.py` |
+| amino-acid composition | `scripts/track_b_viral/aa_composition_baseline.py` |
+| taxonomy prior | `scripts/track_b_viral/taxonomy_prior_baseline.py` |
+| nearest-neighbour lookup | `scripts/track_b_viral/nn_lookup_as_baseline.py` |
+| CNN ladder | `scripts/common/capacity_sweep.py --arch_family cnn` |
+| transformer ladder | `scripts/common/capacity_sweep.py --arch_family transformer` |
+
+`python pipelines/run.py baselines --dry-run` prints the exact command for each,
+with the flags the protocol fixes.
+
+### 3.3 L1 and L2
+
+```bash
+python pipelines/run.py hidden        # nucleotide -> six-frame translated search
+```
+
+Writes `hasN` and `hasT` per test row. A nucleotide-only screen calls most of
+these test sets novel when translated search does not, so every L1 and L2 number
+depends on this stage having run.
+
+Scoring every arm at all three levels:
+
+```bash
+VB_RESULTS=/path/to/prediction/tree \
+  python scripts/track_b_viral/final_regime_table.py \
+    --out reports/layered/final_regime_table.json
+```
+
+One row per benchmark and level, carrying the model's MCC, each arm's MCC, the
+difference and the resampling-unit provenance. Nearest-neighbour lookup is scored
+at L0 only: L1 and L2 are defined by the absence of the hit it transfers from, so
+it is removed from the comparator set rather than scored as zero.
+
+### 3.4 Consolidation
+
+The level table, the genus composition of each stratum and the resampling-unit
+provenance are joined into one file. Everything downstream reads only that file,
+so a number cannot be reported without appearing here first.
+
+```bash
+python analysis/make_genus_concentration.py     # per-stratum genus composition
+python analysis/make_inference_provenance.py    # label coverage and resampling units
+python analysis/make_source_of_truth.py         # joins the three
+```
+
+Produces `reports/tables/final_source_of_truth.csv`, one row per benchmark and
+level. Each script fails by naming the command that produces a missing input
+rather than emitting an empty table.
+
+### 3.5 Bootstrap intervals
+
+Runs after §3.4: the model held fixed in each cell is read from the consolidated
+table, so the interval is never computed around a model reselected per replicate.
+
+```bash
+VB_RESULTS=/path/to/prediction/tree \
+  python analysis/bootstrap_corrected.py --reps 5000 --workers 16
+
+python analysis/build_finalized_sot.py          # merges the intervals in
+```
+
+Test units and training seeds are resampled together, so the interval covers the
+same quantity as the point estimate: a predictor's score is the mean MCC over its
+fits, and the comparator is re-maximised over applicable arms inside every
+replicate. Two schemes are reported per cell.
+
+| Scheme | Resamples | Asks |
+|--------|-----------|------|
+| fragment | the 1 kb test fragments | is the difference stable across fragments of this kind |
+| source | the parent genomes, carrying all their fragments | would it survive a different draw of source viruses |
+
+Both are reported; one resolving and the other not is informative, not a
+contradiction. CPU only, parallel over cells.
+
+`build_finalized_sot.py` writes
+`reports/tables/final_source_of_truth_finalized.csv`, which is the table any
+downstream reader should use. `analysis/sot_path.py` resolves which of the two a
+reader gets; set `VB_SOT` to force a specific file.
+
+---
+
+## 4. Pipeline stages
+
+`pipelines/run.py` is the only entry point. Stages run in dependency order and
+each is a legal standalone target. A stage whose output already exists is skipped
+unless `--force`, and `--force` writes under a distinct tag, so nothing is
+overwritten.
+
+```bash
+python pipelines/run.py --list                   # what is configured
+python pipelines/run.py <stage>... [--tasks ...] [--models ...] [--dry-run]
 python pipelines/run.py all --gpus 0,1,2,3
 ```
 
-| stage | does |
-|---|---|
-| `homology` | MMseqs2 train-vs-test search, giving the NN-lookup arm and the cached relatedness masks |
-| `baselines` | k-mer logistic, k-mer GBT, AA-composition GBT, CNN ladder, from-scratch transformer ladder |
+| Stage | What it does |
+|-------|--------------|
+| `homology` | MMseqs2 train-vs-test nucleotide search; produces the NN-lookup arm and the cached masks |
+| `baselines` | k-mer, k-mer GBT, amino-acid GBT, taxonomy prior, CNN ladder, from-scratch transformer ladder |
 | `finetune` | full fine-tuning, the primary regime, identical budget per model |
-| `probe` | frozen linear probe, secondary regime |
-| `generative` | bits per base and pseudo-perplexity, with their floors |
-| `hidden` | nested homology audit, nucleotide then six-frame translated |
-| `layered` | graded relatedness curve and group bootstrap |
-| `authorckpt` | the authors' released task checkpoints as a labelled contrast |
+| `probe` | frozen linear probe over mean-pooled final hidden states, the secondary regime |
+| `generative` | bits per base for autoregressive models, pseudo-perplexity for masked ones, plus Markov and compressor floors |
+| `hidden` | nested homology audit: nucleotide, then six-frame translated; writes `hasN` and `hasT` |
+| `layered` | graded relatedness curve, group bootstrap and the equivalence verdict |
+| `authorckpt` | the released task checkpoints, as a labelled secondary contrast |
 | `provenance` | duplicate, reverse-complement, conflicting-label and parent-genome audit |
-| `regime` | relatedness stratification and bootstrap intervals |
-| `grid` | identity by coverage threshold sensitivity |
-| `table` | assemble the tables from everything above |
+| `regime` | homolog-available versus homolog-free stratification with bootstrap intervals |
+| `grid` | identity x coverage threshold sensitivity, turning one cut into a trend |
+| `table` | assembles the benchmark table from everything above |
 
-**Tasks** (`pipelines/config/tasks.yaml`): `vhdb`, `ht_hard_70`, `ht_std_95`, `patho_hard`,
-`patho_std`, `transm_hard`, `transm_std`, `gue_phage`, `gue_covid`, `virobench`,
-`viral_vs_host`. `--tasks paper` selects the ones in the manuscript.
+### Tasks
 
-**Models** (`pipelines/config/models.yaml`): `hvilm`, `dnabert2`, `nt_v2_500m`, `gena_lm`,
-`hyenadna`, `lucavirus`, `evo2`.
+`vhdb`, `ht_hard_70`, `ht_std_95`, `patho_hard`, `patho_std`, `transm_hard`,
+`transm_std`, `gue_phage`, `gue_covid`, `virobench`, `viral_vs_host`.
 
-Nothing is overwritten: a stage whose output exists is skipped unless `--force`, and `--force`
-writes under a distinct tag.
+`--tasks paper` is the default and selects the ten marked `in_paper`.
+`viral_vs_host` is excluded from the headline table and kept so the exclusion is
+explicit. Definitions are in `pipelines/config/tasks.yaml`; every field there is
+part of the cell definition and is written into output filenames, so changing one
+measures something else.
 
-### Individual methods
+### Models
 
-The pipeline shells out to these; they also run standalone.
+`hvilm`, `dnabert2`, `nt_v2_500m`, `gena_lm`, `hyenadna`, `lucavirus`, `evo2`.
 
-| arm or step | script |
-|---|---|
-| k-mer logistic, k-mer GBT | `scripts/track_b_viral/hvue_v2_kmer.py`, `kmer_gbt_baseline.py` |
-| amino-acid composition GBT | `scripts/track_b_viral/aa_composition_baseline.py` |
-| CNN and transformer ladders | `scripts/common/capacity_sweep.py` |
-| nearest-neighbour lookup | `scripts/track_b_viral/nn_lookup_as_baseline.py` |
-| taxonomy prior | `scripts/track_b_viral/taxonomy_prior_baseline.py` |
-| gLM fine-tuning | `scripts/track_a_benchmarks/geneb_finetune.py` |
-| relatedness masks, L1 and L2 | `scripts/track_b_viral/hidden_homology_audit.py` |
-| source-genome recovery | `scripts/track_b_viral/assign_source_genome.py` |
-| VHDB task construction | `scripts/track_b_viral/build_vhdb_tropism.py` |
-
-`scripts/_not_in_manuscript/` holds code that was written and run but is not cited.
+Which model runs on which task and in which regime is declared in
+`pipelines/config/models.yaml`.
 
 ---
 
-## 5. Verification
-
-Neither command needs `VB_RESULTS`.
+## 5. Tests
 
 ```bash
-python -m pytest tests/                   # 87 tests
-python paper/figures/audit_consistency.py # 41 claims, plus structural checks
+pytest
 ```
 
-`audit_consistency.py` checks every number the prose stakes a claim on against the source of
-truth, holds the Methods fit counts to `reports/tables/fit_counts.csv`, verifies every table
-row against its column spec, checks that the stated supplementary range covers the tables
-that exist, and enforces the vocabulary and punctuation rules. Run it after editing prose.
-
-`tests/test_reproduction_path.py` checks the reproduction path against the git **index**, not
-the working tree, so a file that exists only on your disk fails the suite.
-
----
-
-## 6. Layout
-
-```
-analysis/            intervals, finalized table, run-once recorders
-  seed_expansion/      fit expansion, symmetric check, per-seed tables
-  internal/            robustness analyses not cited
-paper/
-  main.tex             the manuscript, includes supplementary.tex
-  supplementary.tex    GENERATED, do not edit
-  figures/             every generator, plus fig1-3 as .pdf
-pipelines/           stage-1 entry point, scheduler, task/model/protocol config
-scripts/
-  track_b_viral/       the viral audit proper
-  track_a_benchmarks/  fine-tuning and aggregation
-  common/              shared paths, capacity sweep, split audits
-  _not_in_manuscript/  run, not cited
-reports/
-  tables/              source of truth, selection record, fit counts
-  finalization/        provenance, how the final numbers were arrived at
-  layered/, regime/    per-analysis outputs
-results/             committed per-run JSON and prediction artifacts
-tests/
-```
-
----
-
-## 7. Known gaps
-
-| gap | status |
-|---|---|
-| **VHDB fit counts** | corpus no longer available, so the benchmark keeps its original counts: three fits on the model arm, six on each neural ladder, one on each gradient-boosted arm. Its source intervals are carried forward, not recomputed. |
-| **GUE covid, model arm** | the frozen run's epoch count is unrecorded, so a refit would not reproduce the selected configuration; stays at three fits. Its ladder and GBT arms are at ten. |
-| **non-selected gLMs** | not refit. They keep the three fits used for selection and enter no reported interval. |
-| **`--max-seqs 20`** | the homology search caps the prefilter below the MMseqs2 default of 300. On HT `hard_70` the cap changes 2 rows of 11,994. See `reports/finalization/maxseqs_sensitivity_status.md`. |
-| **prediction archive** | about 20 GB, not deposited yet. |
-
-Per-cell provenance is carried in the finalized table as `provenance_frag` and
-`provenance_src`: `REGENERATED` (recomputed here), `FROZEN_VERIFIED_INPUT` (carried, inputs
-verified present), `PRESENT_BUT_NOT_REPRODUCED` (carried, could not be recomputed).
-
----
-
-## 8. Where to look
-
-| question | file |
-|---|---|
-| every main-text claim and the file licensing it | [`reports/CLAIM_LEDGER.md`](reports/CLAIM_LEDGER.md) |
-| why the final numbers are what they are | [`reports/finalization/FINAL_DECISION.md`](reports/finalization/FINAL_DECISION.md) |
-| the estimator, written out | [`reports/finalization/bootstrap_estimand.md`](reports/finalization/bootstrap_estimand.md) |
-| what changed when the intervals were finalized | [`reports/finalization/sot_before_after_diff.csv`](reports/finalization/sot_before_after_diff.csv) |
-| per-arm fit counts | [`reports/tables/fit_counts.csv`](reports/tables/fit_counts.csv) |
-
-[`reports/RESULTS.md`](reports/RESULTS.md) and [`results/README.md`](results/README.md) are the
-working record from while the analysis was running. They cover work that did not reach the
-paper and use vocabulary it has since dropped; each carries a banner saying so.
+Configuration integrity, the capacity ladder's receptive-field arithmetic, the
+paired bootstrap, path resolution and the reproduction entry points. No benchmark
+data required.
 
 ---
 
 ## License
 
-See [LICENSE](LICENSE).
+MIT. See `LICENSE`.

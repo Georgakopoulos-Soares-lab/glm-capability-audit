@@ -1,7 +1,0 @@
-{
-  "n_assays": 16,
-  "frac_cons_ge_060": 1.0,
-  "median_cons_auroc": 0.7694,
-  "median_plm_auroc": 0.7434,
-  "plm_wins": 2
-}

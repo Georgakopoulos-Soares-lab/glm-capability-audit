@@ -1,10 +1,9 @@
-# Stage 2: frozen predictions -> every number in the manuscript.
+# The analysis layer: frozen predictions -> every reported number.
 # CPU only. No GPU, no MMseqs2, no benchmark corpora.
 #
 #   pip install -r requirements.txt
-#   export VB_RESULTS=/path/to/results_viral_bench
+#   export VB_RESULTS=/path/to/prediction/tree
 #   python analysis/bootstrap_corrected.py --reps 5000
-#   python paper/figures/build_paper.py
 #
 # Verified on Python 3.10 and 3.12.
 

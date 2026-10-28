@@ -1,9 +1,0 @@
-benchmark,thresholds_scored,n_at_0p30,n_min,n_max,n_fold_change,units_at_0p30,units_min,units_max,excess_min,excess_at_0p30,excess_max,excess_range,sign_changes,verdict_at_0p30,verdicts_seen,n_resolved,verdict_changes,verdict_stable
-HVUE transmissibility hard,8,55.0,55,1076,19.56,55.0,55,652,-0.0332,0.2403,0.2403,0.2735,True,INCONCLUSIVE,INCONCLUSIVE,0,False,True
-VHDB within family,8,1200.0,1200,3410,2.84,194.0,194,348,0.0494,0.3199,0.3199,0.2705,False,INCONCLUSIVE,INCONCLUSIVE,0,False,True
-HVUE pathogenicity std,8,41.0,41,2569,62.66,29.0,29,1062,-0.1808,-0.1808,0.0322,0.213,True,INCONCLUSIVE,INCONCLUSIVE,0,False,True
-HVUE transmissibility std,8,41.0,41,4541,110.76,32.0,32,1850,-0.0011,0.1688,0.1688,0.1699,True,INCONCLUSIVE,INCONCLUSIVE,0,False,True
-HVUE pathogenicity hard,3,,222,709,3.19,,167,375,-0.0083,,0.1206,0.1289,True,,INCONCLUSIVE,0,False,True
-HVUE host tropism hard_70,8,11994.0,11994,28686,2.39,7223.0,7223,12577,0.1746,0.1935,0.2776,0.103,False,SUPERIOR,SUPERIOR,8,False,True
-HVUE host tropism std_95,8,11124.0,11124,27576,2.48,6247.0,6247,13411,0.1172,0.1826,0.2166,0.0994,False,INCONCLUSIVE,INCONCLUSIVE|SUPERIOR,1,True,False
-GUE phage,8,2874.0,2874,4155,1.45,2874.0,2874,4155,0.1079,0.1202,0.1219,0.014,False,SUPERIOR,SUPERIOR,8,False,True

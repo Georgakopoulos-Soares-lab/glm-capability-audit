@@ -1,3 +1,11 @@
+# ---- generated output: not tracked, reproduced by running the pipeline ----
+# results/  per-run JSON summaries and per-example .npz prediction arrays
+# reports/  everything the analysis stage derives from them
+# paper/    the manuscript and its LaTeX generators
+/results/
+/reports/
+/paper/
+
 # ---- raw benchmark corpora and model weights: never commit ----
 # Fetch with scripts/common/download_data.py; point $VB_* at them (scripts/common/paths.py).
 /data/
@@ -10,13 +18,16 @@ hf_cache/
 *.parquet
 *.fasta
 *.fa
+*.tsv
 *.pt
 *.safetensors
 
 # ---- run scratch ----
 /scratch/
 /tmp/
+/logs/
 *.log
+pipelines/env.sh
 
 # ---- python ----
 __pycache__/
@@ -24,6 +35,7 @@ __pycache__/
 .ipynb_checkpoints/
 .venv/
 env/
+.pytest_cache
 
 # ---- editor / os / secrets ----
 .claude
@@ -32,58 +44,5 @@ env/
 node_modules/
 .env
 .env.*
-
-# NOTE: results/ is deliberately NOT ignored. The per-run JSON summaries and the
-# per-example .npz prediction arrays are the evidence behind every table in
-# reports/, they total ~1 MB, and the paired bootstrap needs the predictions.
-
-# ---- pipeline ----
-/logs/
-pipelines/env.sh
-/results/regime_masks/
-
-# ---- regenerable prediction arrays ----
-# The per-example .npz under results/viral_bench are 23 MB and are rebuilt by
-# `python pipelines/run.py baselines finetune`.  The .json summaries they reduce
-# to ARE committed -- those are what the tables cite.
-/results/viral_bench/**/*.npz
-.pytest_cache
-
-# ---- paper ----
-# PNG proofs are for on-screen checking; the PDFs are what LaTeX includes.
-paper/figures/*.png
-paper/*.aux
-paper/*.log
-paper/*.out
-paper/*.bbl
-paper/*.blg
-
-# supplementary.tex is hand maintained; the sidecar records what the
-# generator last wrote so it can refuse to clobber those edits.
-paper/supplementary.tex.sha256
-
-# ---- regenerable analysis intermediates: never commit ----
-# Raw MMseqs2 hit tables and downloaded corpora. Each is reproduced by the script
-# that made it; only the derived summary tables belong in the repo.
-# threshold_sweep_search.sh
-reports/*/hits/
-# the Reddy overlap searches
-reports/*/hits_*.tsv
-# figshare archive and extracted genomes, virobench_characterization.py restages them
-reports/reddy/raw/
-reports/reddy/*.fasta
-# replaced figures, kept only locally
-paper/figures/_superseded/
-*.tsv
-# local editing scratch
 *.bak
 *.bak2
-*.prerewrite
-*.CLOBBERED
-
-# ---- internal working notes, not part of the publication record ----
-# Handoff checklists, critiques and action lists written while the analysis was
-# running. The conclusions they led to are in reports/finalization/ and in the
-# manuscript; the notes themselves are process, not evidence.
-reports/cluster_handoff/
-reports/finalization/*.log

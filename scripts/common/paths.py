@@ -22,7 +22,8 @@ variable to set. Call `sub(name)` for a result subdirectory.
 import os
 
 # --- roots -------------------------------------------------------------------
-# REPO is the checkout itself; committed artifacts (results/, reports/) live here.
+# REPO is the checkout itself; the output trees (results/, reports/) are written
+# here by default and are not tracked.
 REPO = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 # ROOT is the working root for anything large and uncommitted.
 ROOT = os.environ.get("VB_ROOT", REPO)

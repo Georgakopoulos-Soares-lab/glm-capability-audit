@@ -4,7 +4,7 @@
 
 # --- where things live --------------------------------------------------------
 export VB_DATA=/data/nvidia                # parent of hvue_v2/ vhdb_tropism/ gue_devcarve/ ...
-export VB_OUT=$PWD/results                 # committed artifacts: json summaries + .npz predictions
+export VB_OUT=$PWD/results                 # run outputs: json summaries + .npz predictions
 export VB_VIRAL_OUT=$VB_OUT/viral_bench    # large regenerable outputs: ladders, predictions, masks
 export VB_PREDS=$VB_VIRAL_OUT/preds_rescore
 export VB_REPORTS=$PWD/reports             # regime/, frozen_probe/, trend/, the final tables
