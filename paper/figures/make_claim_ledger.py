@@ -13,7 +13,8 @@ T, R = os.path.join(REPO, "reports", "tables"), os.path.join(REPO, "reports", "l
 
 
 def main():
-    df = pd.read_csv(f"{T}/final_source_of_truth.csv")
+    from sot_path import sot_csv
+    df = pd.read_csv(sot_csv())
     pool = json.load(open(f"{T}/translated_effect_pooled.json"))
     inter = json.load(open(f"{R}/regime_interaction.json"))
     sens = json.load(open(f"{R}/unassigned_sensitivity.json"))

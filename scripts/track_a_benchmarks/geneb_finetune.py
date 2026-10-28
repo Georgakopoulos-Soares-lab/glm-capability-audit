@@ -153,7 +153,10 @@ def main():
         rd = lambda part: pd.read_csv(f"{root}/{part}.csv").rename(columns={"sequence": "text"})
         tr, dv, te = rd("train"), rd("dev"), rd("test")
         if a.cap_train and len(tr) > a.cap_train:
-            tr = tr.groupby("label", group_keys=False).apply(
+            # pandas >= 2.2 excludes the grouping column from DataFrameGroupBy.apply and
+            # 3.0 drops it outright, which silently removed `label`. Selecting the columns
+            # back restores the pre-3.0 behaviour; the sampled ROWS are unchanged.
+            tr = tr.groupby("label", group_keys=False)[list(tr.columns)].apply(
                 lambda g: g.sample(n=max(1, int(round(a.cap_train * len(g) / len(tr)))), random_state=0)
             ).reset_index(drop=True)
         tr_all = pd.concat([tr, dv], ignore_index=True)
@@ -163,7 +166,10 @@ def main():
         rd = lambda part: pd.read_csv(f"{V2}/{a.task}/{part}.csv").rename(columns={"sequence": "text"})
         tr, dv, te = rd("train"), rd("dev"), rd("test")
         if a.cap_train and len(tr) > a.cap_train:
-            tr = tr.groupby("label", group_keys=False).apply(
+            # pandas >= 2.2 excludes the grouping column from DataFrameGroupBy.apply and
+            # 3.0 drops it outright, which silently removed `label`. Selecting the columns
+            # back restores the pre-3.0 behaviour; the sampled ROWS are unchanged.
+            tr = tr.groupby("label", group_keys=False)[list(tr.columns)].apply(
                 lambda g: g.sample(n=max(1, int(round(a.cap_train * len(g) / len(tr)))), random_state=0)
             ).reset_index(drop=True)
         tr_all = pd.concat([tr, dv], ignore_index=True)

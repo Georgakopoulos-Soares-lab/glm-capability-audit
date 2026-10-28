@@ -18,7 +18,9 @@ import pytest
 
 REPO = pathlib.Path(__file__).resolve().parents[1]
 PATHS_PY = REPO / "scripts" / "common" / "paths.py"
-SHIM_DIRS = ["track_a_benchmarks", "track_b_viral", "geneb", "positive_control"]
+# Script directories that are part of the manuscript pipeline. Analyses not used
+# by the paper live under scripts/_not_in_manuscript/ and are not covered here.
+SHIM_DIRS = ["track_a_benchmarks", "track_b_viral"]
 
 
 def load_paths(env=None, name="vb_paths_under_test"):

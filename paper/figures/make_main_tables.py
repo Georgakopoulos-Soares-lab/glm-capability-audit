@@ -36,7 +36,8 @@ def require(p, by, what):
 
 
 def load():
-    return pd.read_csv(require(f"{T}/final_source_of_truth.csv",
+    from sot_path import sot_csv
+    return pd.read_csv(require(sot_csv(),
         "paper/figures/make_source_of_truth.py", "every manuscript number"))
 
 
@@ -93,23 +94,25 @@ def table2(df):
     A = L.append
     A(r"\begingroup\scriptsize\setlength{\tabcolsep}{1.9pt}")
     A(r"\begin{longtable}{ll l rr r ll r}")
-    A(r"\caption{\textbf{Model and best baseline MCC, their difference, and bootstrap "
-      r"intervals.} \textsc{l0} is the published test set, \textsc{l1} the sequences with "
-      r"no detectable nucleotide relative in training. The model and its learning rate are "
-      r"selected on the development split and held fixed. Intervals are 95 percent "
-      r"bootstrap intervals. The sequence interval resamples test sequences; the genome "
-      r"interval resamples the parent genomes they were cut from, holding the same "
-      r"scores, so the difference itself is identical under both. A genome interval is "
-      r"not estimable for the two GUE benchmarks, which ship no provenance. Verdicts are "
-      r"\textsc{sup} when the interval lies above zero, \textsc{inf} when below, "
-      r"\textsc{eqv} when wholly inside the 0.02~MCC margin, and \textsc{inc} otherwise.}")
+    # Kept short on purpose. The protocol belongs in Methods, not in a caption: an
+    # earlier version restated the source-unit scheme, the VHDB carry-forward and the
+    # VHDB fit count here, and the fit count was wrong (VHDB is not uniformly three)
+    # while Methods said something different again. Per-arm counts are in
+    # Table~\ref{tab:seedsd}; the resampling schemes are in Methods. Changed 2026-10-28.
+    A(r"\caption{\textbf{Model and best baseline MCC.} \textsc{l0} is the published test "
+      r"set, \textsc{l1} the sequences with no detectable nucleotide relative in the "
+      r"training data. The model and its learning rate are selected on the development "
+      r"split and held fixed. Intervals are 95 percent two-level bootstrap intervals, "
+      r"resampling test units and, within each method, its observed fits. Verdicts are "
+      r"\textsc{sup} when the interval lies above zero, \textsc{inf} when below, and "
+      r"\textsc{inc} when it spans zero.}")
     A(r"\label{tab:headtohead}\\")
     A(r"\toprule")
-    A(r"Benchmark & Reg. & Model & model & base. & excess & sequence 95\% CI "
-      r"& genome 95\% CI & $n$ \\")
+    A(r"Benchmark & Pop. & Model & model & base. & diff. & sequence 95\% CI "
+      r"& source 95\% CI & $n$ \\")
     A(r"\midrule\endfirsthead")
-    A(r"\toprule Benchmark & Reg. & Model & model & base. & excess & sequence 95\% CI "
-      r"& genome 95\% CI & $n$ \\ \midrule \endhead")
+    A(r"\toprule Benchmark & Pop. & Model & model & base. & diff. & sequence 95\% CI "
+      r"& source 95\% CI & $n$ \\ \midrule \endhead")
     for b in ORDER:
         sub = d[d.benchmark == b]
         if sub.empty:
@@ -130,10 +133,13 @@ def table2(df):
         A(r"\addlinespace")
     L[-1] = r"\bottomrule"
     A(r"\end{longtable}")
+    # "fewer than 100 sequences" named only one of the two reporting thresholds; the
+    # minority-class floor is the binding one on the imbalanced benchmarks.
     A(r"\vspace{-8pt}\par\noindent\footnotesize Every model and conventional predictor "
-      r"on every benchmark and population is in Supplementary Table~S2. An asterisk "
-      r"marks a population holding fewer than 100 sequences, which supports no "
-      r"summary claim.")
+      r"on every benchmark and population is reported in Supplementary "
+      r"Table~\ref{tab:allarms}. An asterisk denotes a population falling below one of "
+      r"the reporting thresholds defined in Methods, which therefore supports no summary "
+      r"claim.")
     A(r"\endgroup")
     return "\n".join(L)
 
@@ -141,7 +147,10 @@ def table2(df):
 def main():
     df = load()
     os.makedirs(f"{T}/generated", exist_ok=True)
-    for key, body in (("table_benchmarks", table1(df)), ("table_headtohead", table2(df))):
+    # table1() is retained for reference but no longer emitted: it duplicates
+    # Supplementary Table S1 and main.tex carries no marker to inject it into, so
+    # generating it produced an orphan file that could drift unnoticed.
+    for key, body in (("table_headtohead", table2(df)),):
         open(f"{T}/generated/{key}.tex", "w").write(body + "\n")
         print(f"  wrote reports/tables/generated/{key}.tex")
 

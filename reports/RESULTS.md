@@ -1,5 +1,14 @@
 # Viral capability in genomic language models: complete results
 
+> **Status: working record, superseded by the manuscript.**
+> This document predates the final analysis and keeps vocabulary the manuscript has since
+> dropped ("floor", "novelty ladder", L3-L5 strata). It also covers work that is not in the
+> paper, among it the Evo 2 generative evaluation and the splice and GENEB tracks. Where it
+> and `paper/main.tex` differ, the manuscript is correct. The current, generated record of
+> what each claim rests on is [`reports/CLAIM_LEDGER.md`](./CLAIM_LEDGER.md), and the numbers
+> themselves are in `reports/tables/final_source_of_truth_finalized.csv`.
+
+
 Every number here is reproduced by `python pipelines/run.py all`. Per-task JSON
 sits in `reports/{layered,hidden_homology,frozen_probe,leakage,author_checkpoints}/`
 and `results/viral_bench/`.

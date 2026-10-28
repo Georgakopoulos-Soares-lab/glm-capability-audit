@@ -1,0 +1,34 @@
+benchmark,regime,fold_mode,grouping_unit,n_rows,n_groups,n_folds,group_coverage,dev_selected_model,manuscript_comparator,env_cf,pos_cf,lomo_cf,drf_cf3,drf_lomo3,no_measurable_headroom,headroom_survives_lomo,test_derived_selection
+HT hard_70,L0,grouped,recovered source genome,51187,22675,5,0.5868,hvilm,nn_lookup,0.6228,0.5886,0.6228,-0.0907,0.0,True,False,no
+HT hard_70,L0,row,row,51187,51187,5,,hvilm,nn_lookup,0.6235,0.6562,0.6235,0.0868,0.0,False,False,no
+HT hard_70,L1,grouped,recovered source genome,11994,7223,5,0.4324,hvilm,kmer_gbt,0.099,0.2662,0.1039,0.1856,0.0054,False,False,no
+HT hard_70,L1,row,row,11994,11994,5,,hvilm,kmer_gbt,0.0896,0.2237,0.0933,0.1473,0.004,False,False,no
+HT hard_70,L2,grouped,recovered source genome,3737,2362,5,0.4185,hvilm,aa_gbt,0.0449,0.2442,0.0449,0.2087,0.0,False,False,no
+HT hard_70,L2,row,row,3737,3737,5,,hvilm,aa_gbt,0.1147,0.1738,0.1147,0.0668,0.0,False,False,no
+HT std_95,L0,grouped,recovered source genome,50817,22237,5,0.5928,hvilm,nn_lookup,0.6039,0.6039,0.6039,0.0,0.0,True,False,no
+HT std_95,L0,row,row,50817,50817,5,,hvilm,nn_lookup,0.6188,0.6188,0.6188,0.0,0.0,True,False,no
+HT std_95,L1,grouped,recovered source genome,11124,6247,5,0.473,hvilm,cnn,0.122,0.0884,0.122,-0.0382,0.0,True,False,no
+HT std_95,L1,row,row,11124,11124,5,,hvilm,cnn,0.1428,0.254,0.1428,0.1297,0.0,False,False,no
+HT std_95,L2,grouped,recovered source genome,3882,1949,5,0.5386,hvilm,cnn,0.1219,0.0803,0.1448,-0.0474,0.0261,True,True,no
+HT std_95,L2,row,row,3882,3882,5,,hvilm,cnn,0.1898,0.221,0.1898,0.0386,0.0,False,False,no
+Patho hard,L0,grouped,recovered source genome,1792,749,5,0.7321,hvilm,cnn,0.7594,0.7594,0.7594,0.0,0.0,True,False,no
+Patho hard,L0,row,row,1792,1792,5,,hvilm,cnn,0.7909,0.7909,0.7909,0.0,0.0,True,False,no
+Patho std,L0,grouped,recovered source genome,6651,1849,5,0.8483,dnabert2,kmer_gbt,0.7945,0.7945,0.7945,0.0,0.0,True,False,no
+Patho std,L0,row,row,6651,6651,5,,dnabert2,kmer_gbt,0.8095,0.8095,0.8095,0.0,0.0,True,False,no
+Patho std,L1,grouped,recovered source genome,41,29,5,0.3659,dnabert2,kmer,-0.0152,-0.1128,-0.1128,-0.0961,-0.0961,True,False,no
+Patho std,L1,row,row,41,41,5,,dnabert2,kmer,0.1373,0.1373,0.1373,0.0,0.0,True,False,no
+Transm hard,L0,grouped,recovered source genome,2497,1198,5,0.6784,hvilm,kmer_gbt,0.6892,0.6892,0.6892,0.0,0.0,True,False,no
+Transm hard,L0,row,row,2497,2497,5,,hvilm,kmer_gbt,0.6768,0.6768,0.6768,0.0,0.0,True,False,no
+Transm hard,L1,grouped,recovered source genome,55,55,5,0.0,hvilm,kmer_gbt,0.3129,0.6133,0.3129,0.4372,0.0,False,False,no
+Transm hard,L1,row,row,55,55,5,,hvilm,kmer_gbt,0.3185,0.6497,0.1824,0.486,-0.1998,False,False,no
+Transm std,L0,grouped,recovered source genome,12728,3496,5,0.8496,hvilm,nn_lookup,0.6725,0.6704,0.6725,-0.0062,0.0,True,False,no
+Transm std,L0,row,row,12728,12728,5,,hvilm,nn_lookup,0.6932,0.6932,0.6932,0.0,0.0,True,False,no
+Transm std,L1,grouped,recovered source genome,41,32,5,0.2683,hvilm,cnn,0.0899,0.5744,-0.0233,0.5324,-0.1243,False,False,no
+Transm std,L1,row,row,41,41,5,,hvilm,cnn,-0.0073,0.5376,0.0009,0.541,0.0082,False,False,no
+VHDB,L0,row,row,3754,3754,5,,hvilm,tax_prior,0.6815,0.708,0.6815,0.0833,0.0,False,False,no
+VHDB,L1,row,row,1200,1200,5,,hvilm,tax_prior,0.1782,0.5014,0.1782,0.3933,0.0,False,False,no
+VHDB,L2,row,row,201,201,5,,hvilm,tax_prior,0.272,0.6549,0.272,0.526,0.0,False,False,no
+GUE phage,L0,row,row,4630,4630,5,,nt_v2_500m,cnn,0.8077,0.9166,0.8254,0.5661,0.0922,False,True,no
+GUE phage,L1,row,row,2874,2874,5,,nt_v2_500m,kmer_gbt,0.7583,0.8882,0.768,0.5373,0.0401,False,True,no
+GUE phage,L2,row,row,86,86,5,,nt_v2_500m,kmer_gbt,0.6901,0.8433,0.6901,0.4942,0.0,False,False,no
+GUE covid,L0,row,row,9168,9168,5,,hvilm,kmer_gbt,0.7193,0.7193,0.7193,0.0,0.0,True,False,no

@@ -1,36 +1,36 @@
 \begingroup\scriptsize\setlength{\tabcolsep}{1.9pt}
 \begin{longtable}{ll l rr r ll r}
-\caption{\textbf{Model and best baseline MCC, their difference, and bootstrap intervals.} \textsc{l0} is the published test set, \textsc{l1} the sequences with no detectable nucleotide relative in training. The model and its learning rate are selected on the development split and held fixed. Intervals are 95 percent bootstrap intervals. The sequence interval resamples test sequences; the genome interval resamples the parent genomes they were cut from, holding the same scores, so the difference itself is identical under both. A genome interval is not estimable for the two GUE benchmarks, which ship no provenance. Verdicts are \textsc{sup} when the interval lies above zero, \textsc{inf} when below, \textsc{eqv} when wholly inside the 0.02~MCC margin, and \textsc{inc} otherwise.}
+\caption{\textbf{Model and best baseline MCC.} \textsc{l0} is the published test set, \textsc{l1} the sequences with no detectable nucleotide relative in the training data. The model and its learning rate are selected on the development split and held fixed. Intervals are 95 percent two-level bootstrap intervals, resampling test units and, within each method, its observed fits. Verdicts are \textsc{sup} when the interval lies above zero, \textsc{inf} when below, and \textsc{inc} when it spans zero.}
 \label{tab:headtohead}\\
 \toprule
-Benchmark & Reg. & Model & model & base. & excess & sequence 95\% CI & genome 95\% CI & $n$ \\
+Benchmark & Pop. & Model & model & base. & diff. & sequence 95\% CI & source 95\% CI & $n$ \\
 \midrule\endfirsthead
-\toprule Benchmark & Reg. & Model & model & base. & excess & sequence 95\% CI & genome 95\% CI & $n$ \\ \midrule \endhead
-GUE phage & \textsc{l0} & NT-v2 & 0.920 & 0.813 & +0.107 & $[+0.05, +0.12]$ \textsc{sup} & not estimable & 4,630 \\
- & \textsc{l1} & NT-v2 & 0.891 & 0.770 & +0.120 & $[+0.05, +0.14]$ \textsc{sup} & not estimable & 2,874 \\
+\toprule Benchmark & Pop. & Model & model & base. & diff. & sequence 95\% CI & source 95\% CI & $n$ \\ \midrule \endhead
+GUE phage & \textsc{l0} & NT-v2 & 0.920 & 0.812 & +0.108 & $[+0.09, +0.12]$ \textsc{sup} & not estimable & 4,630 \\
+ & \textsc{l1} & NT-v2 & 0.891 & 0.773 & +0.117 & $[+0.09, +0.14]$ \textsc{sup} & not estimable & 2,874 \\
 \addlinespace
-HVUE host tropism \textsc{hard\_70} & \textsc{l0} & HViLM & 0.723 & 0.623 & +0.100 & $[+0.05, +0.14]$ \textsc{sup} & $[-0.02, +0.22]$ \textsc{inc} & 51,187 \\
- & \textsc{l1} & HViLM & 0.285 & 0.092 & +0.194 & $[+0.11, +0.26]$ \textsc{sup} & $[+0.06, +0.35]$ \textsc{sup} & 11,994 \\
+HVUE host tropism \textsc{hard\_70} & \textsc{l0} & HViLM & 0.734 & 0.623 & +0.111 & $[+0.09, +0.13]$ \textsc{sup} & $[-0.00, +0.23]$ \textsc{inc} & 51,187 \\
+ & \textsc{l1} & HViLM & 0.278 & 0.104 & +0.174 & $[+0.12, +0.23]$ \textsc{sup} & $[+0.07, +0.30]$ \textsc{sup} & 11,994 \\
 \addlinespace
-VHDB within family & \textsc{l0} & HViLM & 0.704 & 0.681 & +0.023 & $[-0.03, +0.07]$ \textsc{inc} & $[-0.08, +0.13]$ \textsc{inc} & 3,754 \\
- & \textsc{l1} & HViLM & 0.495 & 0.175 & +0.320 & $[+0.19, +0.44]$ \textsc{sup} & $[-0.06, +0.60]$ \textsc{inc} & 1,200 \\
+VHDB within family & \textsc{l0} & HViLM & 0.704 & 0.681 & +0.023 & $[-0.02, +0.06]$ \textsc{inc} & $[-0.08, +0.13]$ \textsc{inc} & 3,754 \\
+ & \textsc{l1} & HViLM & 0.495 & 0.175 & +0.320 & $[+0.21, +0.43]$ \textsc{sup} & $[-0.06, +0.60]$ \textsc{inc} & 1,200 \\
 \addlinespace
-HVUE pathogenicity \textsc{hard} & \textsc{l0} & HViLM & 0.804 & 0.799 & +0.005 & $[-0.03, +0.03]$ \textsc{inc} & $[-0.04, +0.03]$ \textsc{inc} & 1,792 \\
+HVUE pathogenicity \textsc{hard} & \textsc{l0} & HViLM & 0.791 & 0.796 & -0.005 & $[-0.03, +0.01]$ \textsc{inc} & $[-0.04, +0.01]$ \textsc{inc} & 1,792 \\
 \addlinespace
-HVUE pathogenicity \textsc{std} & \textsc{l0} & DNABERT-2 & 0.810 & 0.809 & +0.001 & $[-0.02, +0.01]$ \textsc{eqv} & $[-0.02, +0.01]$ \textsc{inc} & 6,651 \\
- & \textsc{l1} & DNABERT-2 & -0.027 & 0.153 & -0.181 & $[-0.56, +0.16]$ \textsc{inc} & $[-0.63, +0.14]$ \textsc{inc} & 41$^{*}$ \\
+HVUE pathogenicity \textsc{std} & \textsc{l0} & DNABERT-2 & 0.804 & 0.805 & -0.000 & $[-0.02, +0.01]$ \textsc{inc} & $[-0.02, +0.01]$ \textsc{inc} & 6,651 \\
+ & \textsc{l1} & DNABERT-2 & -0.038 & 0.153 & -0.192 & $[-0.47, +0.08]$ \textsc{inc} & $[-0.45, +0.07]$ \textsc{inc} & 41$^{*}$ \\
 \addlinespace
-HVUE transmissibility \textsc{std} & \textsc{l0} & HViLM & 0.693 & 0.693 & -0.001 & $[-0.02, +0.01]$ \textsc{eqv} & $[-0.02, +0.01]$ \textsc{inc} & 12,728 \\
- & \textsc{l1} & HViLM & 0.464 & 0.295 & +0.169 & $[-0.36, +0.38]$ \textsc{inc} & $[-0.33, +0.38]$ \textsc{inc} & 41$^{*}$ \\
+HVUE transmissibility \textsc{std} & \textsc{l0} & HViLM & 0.696 & 0.693 & +0.002 & $[-0.01, +0.01]$ \textsc{inc} & $[-0.02, +0.01]$ \textsc{inc} & 12,728 \\
+ & \textsc{l1} & HViLM & 0.422 & 0.324 & +0.098 & $[-0.15, +0.21]$ \textsc{inc} & $[-0.12, +0.21]$ \textsc{inc} & 41$^{*}$ \\
 \addlinespace
-GUE \textsc{virus\_covid} & \textsc{l0} & HViLM & 0.697 & 0.719 & -0.023 & $[-0.04, -0.01]$ \textsc{inf} & not estimable & 9,168 \\
+GUE \textsc{virus\_covid} & \textsc{l0} & HViLM & 0.697 & 0.719 & -0.022 & $[-0.03, -0.01]$ \textsc{inf} & not estimable & 9,168 \\
 \addlinespace
-HVUE transmissibility \textsc{hard} & \textsc{l0} & HViLM & 0.664 & 0.689 & -0.024 & $[-0.07, +0.01]$ \textsc{inc} & $[-0.07, +0.01]$ \textsc{inc} & 2,497 \\
- & \textsc{l1} & HViLM & 0.652 & 0.412 & +0.240 & $[-0.15, +0.47]$ \textsc{inc} & $[-0.15, +0.47]$ \textsc{inc} & 55$^{*}$ \\
+HVUE transmissibility \textsc{hard} & \textsc{l0} & HViLM & 0.642 & 0.675 & -0.033 & $[-0.07, -0.01]$ \textsc{inf} & $[-0.08, -0.00]$ \textsc{inf} & 2,497 \\
+ & \textsc{l1} & HViLM & 0.601 & 0.402 & +0.199 & $[+0.00, +0.33]$ \textsc{sup} & $[-0.00, +0.33]$ \textsc{inc} & 55$^{*}$ \\
 \addlinespace
-HVUE host tropism \textsc{std\_95} & \textsc{l0} & HViLM & 0.560 & 0.619 & -0.059 & $[-0.08, -0.04]$ \textsc{inf} & $[-0.13, +0.01]$ \textsc{inc} & 50,817 \\
- & \textsc{l1} & HViLM & 0.333 & 0.151 & +0.183 & $[+0.08, +0.27]$ \textsc{sup} & $[-0.13, +0.42]$ \textsc{inc} & 11,124 \\
+HVUE host tropism \textsc{std\_95} & \textsc{l0} & HViLM & 0.546 & 0.619 & -0.072 & $[-0.09, -0.05]$ \textsc{inf} & $[-0.14, -0.00]$ \textsc{inf} & 50,817 \\
+ & \textsc{l1} & HViLM & 0.282 & 0.164 & +0.118 & $[+0.06, +0.18]$ \textsc{sup} & $[-0.16, +0.35]$ \textsc{inc} & 11,124 \\
 \bottomrule
 \end{longtable}
-\vspace{-8pt}\par\noindent\footnotesize Every model and conventional predictor on every benchmark and population is in Supplementary Table~S2. An asterisk marks a population holding fewer than 100 sequences, which supports no summary claim.
+\vspace{-8pt}\par\noindent\footnotesize Every model and conventional predictor on every benchmark and population is reported in Supplementary Table~\ref{tab:allarms}. An asterisk denotes a population falling below one of the reporting thresholds defined in Methods, which therefore supports no summary claim.
 \endgroup

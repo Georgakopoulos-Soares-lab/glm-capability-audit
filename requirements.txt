@@ -1,25 +1,17 @@
-# Runtime for the benchmark audit. Verified on Python 3.10.
+# Stage 2: frozen predictions -> every number in the manuscript.
+# CPU only. No GPU, no MMseqs2, no benchmark corpora.
 #
 #   pip install -r requirements.txt
+#   export VB_RESULTS=/path/to/results_viral_bench
+#   python analysis/bootstrap_corrected.py --reps 5000
+#   python paper/figures/build_paper.py
 #
-# One non-Python dependency is required and is NOT installable from PyPI:
-#
-#   mmseqs2   every homology audit uses `mmseqs easy-search` / `easy-cluster`.
-#             conda install -c bioconda mmseqs2   (or a release binary)
-#             then: export VB_MMSEQS=$(which mmseqs)
-#
-# Optional, only for scripts/track_b_viral/{hvue,geneb}_evo_lora.py: the
-# `glm-locking` project on $PYTHONPATH, pointed at by $VB_LOCK_ROOT. Every other
-# script runs without it.
+# Verified on Python 3.10 and 3.12.
 
 numpy>=1.24
 pandas>=2.0
-scikit-learn>=1.3
 scipy>=1.10
-torch>=2.1                # CUDA build must match your driver for the GPU runs
-transformers>=4.40,<4.48  # <4.48 required: DNABERT-2 hits a config_class conflict above it
-peft>=0.10                # LoRA adaptation regime
-huggingface_hub>=0.20     # corpus + checkpoint download
-pyarrow>=14.0             # HVUE ships as parquet
+scikit-learn>=1.3
+matplotlib>=3.7
 
 pytest>=7.4

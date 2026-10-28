@@ -42,6 +42,10 @@ def main():
     ap.add_argument("--ks", nargs="+", type=int, default=[3, 4, 5, 6])
     ap.add_argument("--train-cap", type=int, default=0)
     ap.add_argument("--predictions-dir", default="")
+    # Seed for the estimator only. The train subsample below stays at random_state=0 so
+    # every seed sees identical training rows, exactly as the fine-tuning arm holds its
+    # --cap_train subsample fixed; this isolates optimiser/validation-split noise.
+    ap.add_argument("--seed", type=int, default=0)
     ap.add_argument("--out", default="")
     a = ap.parse_args()
     OUT = P.sub("kmer_gbt"); os.makedirs(OUT, exist_ok=True)
@@ -67,7 +71,7 @@ def main():
         for nest, depth, lr in ((400, 6, 0.1), (800, 8, 0.05)):
             m = xgb.XGBClassifier(n_estimators=nest, max_depth=depth, learning_rate=lr,
                                   subsample=0.8, colsample_bytree=0.5, n_jobs=-1,
-                                  tree_method="hist", eval_metric="logloss",
+                                  tree_method="hist", eval_metric="logloss", random_state=a.seed,
                                   objective="multi:softprob" if ncls > 2 else "binary:logistic",
                                   num_class=ncls if ncls > 2 else None)
             m.fit(X["tr"], y["tr"], sample_weight=sw)
@@ -79,7 +83,7 @@ def main():
     from sklearn.ensemble import HistGradientBoostingClassifier
     for it, lf in ((400, 31), (800, 63)):
         m = HistGradientBoostingClassifier(max_iter=it, max_leaf_nodes=lf, learning_rate=0.1,
-                                           early_stopping=True, random_state=0)
+                                           early_stopping=True, random_state=a.seed)
         m.fit(X["tr"], y["tr"], sample_weight=sw)
         pv = m.predict(X["dv"]); mv = matthews_corrcoef(y["dv"], pv)
         print(f"  hgb it={it} leaves={lf}: dev mcc={mv:.4f}", flush=True)
@@ -92,7 +96,7 @@ def main():
     print(f"  SELECTED {name} (dev mcc={devm:.4f}) -> TEST {test}", flush=True)
     if a.predictions_dir:
         os.makedirs(a.predictions_dir, exist_ok=True)
-        p = (f"{a.predictions_dir}/hvue_v2__{a.task.replace('/','__')}__kmergbt__s0__preds.npz")
+        p = (f"{a.predictions_dir}/hvue_v2__{a.task.replace('/','__')}__kmergbt__s{a.seed}__preds.npz")
         np.savez_compressed(p, y_true=y["te"], y_pred=pt,
                             **({"y_prob": pp} if pp is not None else {}))
         print(f"  wrote {p}", flush=True)

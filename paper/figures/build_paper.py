@@ -11,13 +11,24 @@ REPO = os.path.dirname(os.path.dirname(HERE))
 PAPER = os.path.join(REPO, "paper")
 PY = sys.executable
 
+# The chain has two halves. make_source_of_truth.py consolidates the frozen
+# analyses into the pre-finalization table; analysis/build_finalized_sot.py then
+# merges in the two-level bootstrap intervals and the per-cell provenance, and
+# everything downstream reads that finalized table through sot_path.sot_csv().
 STEPS = [
     ("source of truth", "make_source_of_truth.py"),
+    ("finalized source of truth", "../../analysis/build_finalized_sot.py"),
     ("main figures", "make_main_figures.py"),
     ("main tables", "make_main_tables.py"),
     ("supplement", "make_supplement_v2.py"),
     ("claim ledger", "make_claim_ledger.py"),
 ]
+# analysis/make_selection_artifact.py is NOT a step here. It freezes the three-seed
+# development scores that made the pre-committed model selection, and those scores
+# can no longer be recomputed, because the selected arms were refit ten times and
+# their finetune JSONs overwritten. Its output is committed as
+# reports/tables/selection_3seed.csv and the supplement reads that file. Putting it
+# in this chain would invite a rerun that silently prints ten-fit means.
 INJECT = [("table_headtohead", "main.tex")]
 
 

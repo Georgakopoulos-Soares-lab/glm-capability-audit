@@ -20,22 +20,31 @@ from inject import inject, data_path, require, require_rows
 import argparse, collections, glob, json, os
 import numpy as np, pandas as pd
 
-PRED = "/data/nvidia/genomic-capability-unlearning/results_viral_bench/preds_rescore"
-TAX = "/data/nvidia/genomic-capability-unlearning/reports/taxonomy_recovery"
-MASK = "/data/nvidia/genomic-capability-unlearning/results_viral_bench/hidden_masks"
-NATIVE = {"VHDB_within_family": "/data/nvidia/vhdb_tropism/within_family_1000bp/test_tax.csv"}
-NATIVE_TRAIN = {"VHDB_within_family": "/data/nvidia/vhdb_tropism/within_family_1000bp/train_tax.csv"}
+# Three roots, all overridable, so this runs off the cluster it was written on.
+#   VB_RESULTS   the prediction archive: preds_rescore/, hidden_masks/, geneb_finetune/
+#   VB_REPORTS   the upstream report tree holding taxonomy_recovery/
+#   VB_CORPORA   the benchmark corpora: hvue_v2/, vhdb_tropism/, gue_devcarve/
+_RVB = os.environ.get("VB_RESULTS",
+    "/data/nvidia/genomic-capability-unlearning/results_viral_bench")
+_REP = os.environ.get("VB_REPORTS", "/data/nvidia/genomic-capability-unlearning/reports")
+_COR = os.environ.get("VB_CORPORA", "/data/nvidia")
+
+PRED = f"{_RVB}/preds_rescore"
+TAX = f"{_REP}/taxonomy_recovery"
+MASK = f"{_RVB}/hidden_masks"
+NATIVE = {"VHDB_within_family": f"{_COR}/vhdb_tropism/within_family_1000bp/test_tax.csv"}
+NATIVE_TRAIN = {"VHDB_within_family": f"{_COR}/vhdb_tropism/within_family_1000bp/train_tax.csv"}
 MASK_ALIAS = {"VHDB_within_family": "VHDB_v2", "GUE_phage": "GUE_phage_v2"}
 TESTCSV = {
-    "HVUE_HT_hard_70": "/data/nvidia/hvue_v2/Host_Tropism/hard_70_1000bp/test.csv",
-    "HVUE_HT_std_95": "/data/nvidia/hvue_v2/Host_Tropism/standard_95_1000bp/test.csv",
-    "HVUE_Transm_hard": "/data/nvidia/hvue_v2/Transmissibility/hard_capped_1000bp/test.csv",
-    "HVUE_Transm_std": "/data/nvidia/hvue_v2/Transmissibility/standard_capped_1000bp/test.csv",
-    "HVUE_Patho_hard": "/data/nvidia/hvue_v2/Pathogenicity/hard_capped_1000bp/test.csv",
-    "HVUE_Patho_std": "/data/nvidia/hvue_v2/Pathogenicity/standard_capped_1000bp/test.csv",
-    "GUE_covid": "/data/nvidia/gue_devcarve/leannmlindsey_GUE_virus_covid/test.csv",
-    "GUE_phage": "/data/nvidia/gue_devcarve/leannmlindsey_GUE_phage_fragments/test.csv",
-    "VHDB_within_family": "/data/nvidia/vhdb_tropism/within_family_1000bp/test.csv",
+    "HVUE_HT_hard_70": f"{_COR}/hvue_v2/Host_Tropism/hard_70_1000bp/test.csv",
+    "HVUE_HT_std_95": f"{_COR}/hvue_v2/Host_Tropism/standard_95_1000bp/test.csv",
+    "HVUE_Transm_hard": f"{_COR}/hvue_v2/Transmissibility/hard_capped_1000bp/test.csv",
+    "HVUE_Transm_std": f"{_COR}/hvue_v2/Transmissibility/standard_capped_1000bp/test.csv",
+    "HVUE_Patho_hard": f"{_COR}/hvue_v2/Pathogenicity/hard_capped_1000bp/test.csv",
+    "HVUE_Patho_std": f"{_COR}/hvue_v2/Pathogenicity/standard_capped_1000bp/test.csv",
+    "GUE_covid": f"{_COR}/gue_devcarve/leannmlindsey_GUE_virus_covid/test.csv",
+    "GUE_phage": f"{_COR}/gue_devcarve/leannmlindsey_GUE_phage_fragments/test.csv",
+    "VHDB_within_family": f"{_COR}/vhdb_tropism/within_family_1000bp/test.csv",
 }
 ESC = {"HVUE_HT_hard_70": "Host_Tropism__hard_70_1000bp",
        "HVUE_HT_std_95": "Host_Tropism__standard_95_1000bp",

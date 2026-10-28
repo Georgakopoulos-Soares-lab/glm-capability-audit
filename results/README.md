@@ -1,10 +1,19 @@
 # Evidence map
 
+> **Status: working record, superseded by the manuscript.**
+> This document predates the final analysis and keeps vocabulary the manuscript has since
+> dropped (the F1-F7 finding numbers). It also covers work that is not in the paper, among it
+> the splice, GENEB and ProteinGym tracks. Where it and `paper/main.tex` differ, the
+> manuscript is correct. The current, generated record of what each claim rests on is
+> [`reports/CLAIM_LEDGER.md`](../reports/CLAIM_LEDGER.md), and the numbers themselves are in
+> `reports/tables/final_source_of_truth_finalized.csv`.
+
+
 Every committed artifact, what it shows, which finding it backs, and which script
 regenerates it. **Cite from here.** If a number in `reports/` is not traceable to a
 row in this table, treat it as unverified until it is.
 
-Findings are defined in [../reports/FINDINGS.md](../reports/FINDINGS.md).
+The F-numbers below refer to a findings register that was folded into the manuscript and is no longer kept separately; read them as labels, not as links.
 
 ---
 

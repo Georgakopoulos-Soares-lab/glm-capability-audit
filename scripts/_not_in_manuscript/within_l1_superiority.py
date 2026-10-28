@@ -101,8 +101,10 @@ def verdict(lo, hi, margin=EQ_MARGIN):
         return "SUPERIOR"
     if hi < 0:
         return "INFERIOR"
-    if lo > -margin and hi < margin:
-        return "EQUIVALENT"
+    # EQUIVALENT was removed at finalization. Declaring equivalence needs a margin,
+    # and the 0.02 MCC margin had no external justification; it was also smaller than
+    # the median seed-to-seed spread of 0.027 MCC. An interval that spans zero is now
+    # INCONCLUSIVE, and its width is reported so precision is visible.
     return "INCONCLUSIVE"
 
 

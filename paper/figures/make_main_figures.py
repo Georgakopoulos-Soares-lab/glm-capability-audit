@@ -38,7 +38,8 @@ def require(p, by, what):
 
 
 def load():
-    return pd.read_csv(require(f"{T}/final_source_of_truth.csv",
+    from sot_path import sot_csv
+    return pd.read_csv(require(sot_csv(),
         "paper/figures/make_source_of_truth.py", "every manuscript number"))
 
 
@@ -114,8 +115,8 @@ def fig2(df):
     tidy(ax)
     ax.axvline(0, color=INK2, lw=0.8, zorder=1)
     for i, r in d.iterrows():
-        chg = (r.frag_verdict in ("SUPERIOR", "INFERIOR", "EQUIVALENT")
-               and r.src_verdict not in ("SUPERIOR", "INFERIOR", "EQUIVALENT"))
+        chg = (r.frag_verdict in ("SUPERIOR", "INFERIOR")
+               and r.src_verdict not in ("SUPERIOR", "INFERIOR"))
         ax.plot([r.src_lo, r.src_hi], [i, i], color=MUTED, lw=4.5, alpha=0.40,
                 zorder=2, solid_capstyle="butt")
         ax.plot([r.frag_lo, r.frag_hi], [i, i], color=BLUE if r.excess > 0 else ORANGE,
@@ -281,26 +282,40 @@ def fig3(df):
         if c not in piv:
             piv[c] = 0
     piv = piv.reindex([b for b in ORDER if b in piv.index]).fillna(0)
-    fig, ax = plt.subplots(figsize=(183 * MM, 72 * MM))
+    # Taller than wide-screen default so nine benchmarks x three bars can breathe, and
+    # the legend sits below the axes rather than over the longest bars.
+    fig, ax = plt.subplots(figsize=(183 * MM, 88 * MM))
     tidy(ax, grid="x")
     y = np.arange(len(piv))
+    FLOOR = 0.55
     for off, reg, c, lab in ((-0.26, "L0", BLUE, "published test set"),
                              (0.0, "L1", ORANGE, "no nucleotide relative"),
                              (0.26, "L2", AQUA, "no translated relative")):
         v = piv[reg].values.astype(float)
-        ax.barh(y + off, np.maximum(v, 0.55), height=0.24, color=c, zorder=3, label=lab)
+        ax.barh(y + off, np.maximum(v, FLOOR), height=0.24, color=c, zorder=3, label=lab)
         for i, x in enumerate(v):
             n0 = piv["L0"].values[i]
-            pct = "" if reg == "L0" or not n0 else f"  {100*x/n0:.0f}\%".replace("\\", "")
-            ax.text(max(x, 0.55) * 1.18, y[i] + off, f"{int(x):,}{pct}", va="center",
-                    fontsize=5.9, color=INK2)
+            if reg == "L0" or not n0:
+                txt = f"{int(x):,}"
+            else:
+                txt = f"{int(x):,}  ({100 * x / n0:.0f}%)"
+            # A zero population has no bar to sit beside, so pin its label just inside
+            # the axis instead of letting it collide with the next row's label.
+            xpos = FLOOR * 1.25 if x <= 0 else max(x, FLOOR) * 1.28
+            ax.text(xpos, y[i] + off, txt, va="center", ha="left",
+                    fontsize=5.9, color=INK2, zorder=4)
     ax.axvspan(0.5, 100, color=GRID, alpha=0.5, zorder=0)
-    ax.text(8.5, -0.55, "fewer than 100 sequences", fontsize=6, color=MUTED, va="center")
-    ax.set_xscale("log"); ax.set_xlim(0.55, 6e5)
+    # sits above the first row; the y axis is inverted so -0.55 is the top margin
+    ax.text(1.6, -0.55, "fewer than 100 sequences",
+            fontsize=6, color=MUTED, va="center", ha="left")
+    ax.set_xscale("log")
+    # headroom on the right so the longest count label clears the axis
+    ax.set_xlim(FLOOR, 6.0e5)
     ax.set_yticks(y); ax.set_yticklabels(piv.index)
-    ax.set_ylim(-0.75, len(piv) - 0.35); ax.invert_yaxis()
+    ax.set_ylim(-0.75, len(piv) - 0.25); ax.invert_yaxis()
     ax.set_xlabel("test sequences retained (log scale)")
-    ax.legend(frameon=False, loc="lower right", ncol=1)
+    ax.legend(frameon=False, ncol=3, loc="upper center",
+              bbox_to_anchor=(0.5, -0.13), handlelength=1.4, columnspacing=1.8)
     fig.tight_layout()
     save(fig, "fig3_what_filters_remove")
 

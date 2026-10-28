@@ -131,10 +131,9 @@ def verdict(d, margin=EQ_MARGIN):
         return "SUPERIOR", lo, hi
     if hi < 0:
         return "INFERIOR", lo, hi
-    if lo > -margin and hi < margin:
-        return f"EQUIVALENT (whole CI inside +-{margin})", lo, hi
-    return (f"INCONCLUSIVE (CI spans 0 AND exceeds the +-{margin} margin; "
-            f"not shown to differ is NOT shown to be equivalent)"), lo, hi
+    # EQUIVALENT removed at finalization; see final_regime_table.verdict.
+    return ("INCONCLUSIVE (CI spans 0; not shown to differ is NOT shown to be "
+            "equivalent)"), lo, hi
 
 
 def main():

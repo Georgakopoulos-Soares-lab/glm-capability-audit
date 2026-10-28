@@ -78,7 +78,7 @@ def main():
     rd = lambda part: pd.read_csv(f"{root}/{part}.csv")
     tr, dv, te = rd("train"), rd("dev"), rd("test")
     if a.train_cap and len(tr) > a.train_cap:
-        tr = tr.groupby("label", group_keys=False).apply(
+        tr = tr.groupby("label", group_keys=False)[list(tr.columns)].apply(
             lambda g: g.sample(n=max(1, int(round(a.train_cap * len(g) / len(tr)))), random_state=0)
         ).reset_index(drop=True)
     print(f"{a.task}: train={len(tr)} dev={len(dv)} test={len(te)}  "

@@ -66,6 +66,9 @@ def main():
     ap.add_argument("--esc", required=True); ap.add_argument("--name", default="")
     ap.add_argument("--train-cap", type=int, default=40000)
     ap.add_argument("--ks", nargs="+", type=int, default=[1, 2])
+    # Seed for the estimator only; the train subsample stays at random_state=0 (see
+    # kmer_gbt_baseline.py for the rationale).
+    ap.add_argument("--seed", type=int, default=0)
     ap.add_argument("--predictions-dir", default=os.environ.get(
         "VB_PREDS", os.environ.get("VB_VIRAL_OUT",
         "/data/nvidia/genomic-capability-unlearning/results_viral_bench") + "/preds_rescore"))
@@ -74,7 +77,8 @@ def main():
     rd = lambda p: pd.read_csv(p).rename(columns={"text": "sequence"}).reset_index(drop=True)
     tr, te = rd(a.train_csv), rd(a.test_csv)
     if a.train_cap and len(tr) > a.train_cap:
-        tr = tr.groupby("label", group_keys=False).apply(
+        # See geneb_finetune.py: pandas 3.0 drops the grouping column from apply().
+        tr = tr.groupby("label", group_keys=False)[list(tr.columns)].apply(
             lambda g: g.sample(n=max(1, int(round(a.train_cap * len(g) / len(tr)))),
                                random_state=0)).reset_index(drop=True)
     print(f"{a.name or a.esc}: train={len(tr):,} test={len(te):,} ks={a.ks}", flush=True)
@@ -88,12 +92,12 @@ def main():
         ncls = len(np.unique(ytr))
         m = XGBClassifier(n_estimators=600, max_depth=6, learning_rate=0.08,
                           subsample=0.8, colsample_bytree=0.8, n_jobs=16,
-                          tree_method="hist", eval_metric="mlogloss",
+                          tree_method="hist", eval_metric="mlogloss", random_state=a.seed,
                           **({"objective": "multi:softprob", "num_class": ncls}
                              if ncls > 2 else {}))
     except ImportError:
         from sklearn.ensemble import HistGradientBoostingClassifier as H
-        m = H(max_iter=400, learning_rate=0.08)
+        m = H(max_iter=400, learning_rate=0.08, random_state=a.seed)
     m.fit(Xtr, ytr)
     pred = m.predict(Xte)
     prob = m.predict_proba(Xte)
@@ -101,7 +105,7 @@ def main():
     ap_ = (average_precision_score(yte, prob[:, 1]) if prob.shape[1] == 2 else float("nan"))
     print(f"  AA-composition GBT  MCC={mcc:.4f}  AUPRC={ap_:.4f}")
 
-    p = f"{a.predictions_dir}/hvue_v2__{a.esc}__aagbt__s0__preds.npz"
+    p = f"{a.predictions_dir}/hvue_v2__{a.esc}__aagbt__s{a.seed}__preds.npz"
     np.savez_compressed(p, y_true=yte, y_pred=pred,
                         y_prob=(prob[:, 1] if prob.shape[1] == 2 else prob.max(1)))
     print(f"  wrote {p}")

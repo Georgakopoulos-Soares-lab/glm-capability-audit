@@ -80,3 +80,10 @@ paper/figures/_superseded/
 *.bak2
 *.prerewrite
 *.CLOBBERED
+
+# ---- internal working notes, not part of the publication record ----
+# Handoff checklists, critiques and action lists written while the analysis was
+# running. The conclusions they led to are in reports/finalization/ and in the
+# manuscript; the notes themselves are process, not evidence.
+reports/cluster_handoff/
+reports/finalization/*.log

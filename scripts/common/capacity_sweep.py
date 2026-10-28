@@ -214,7 +214,9 @@ def load(ds, task, level, seqcap, min_count=1):
         f = lambda part: pd.read_csv(f"{V2}/{task}/{part}.csv").rename(columns={"sequence": "sequence"})
         tr, dv, te = f("train"), f("dev"), f("test")
         if seqcap and len(tr) > seqcap:
-            tr = tr.groupby("label", group_keys=False).apply(
+            # pandas 3.0 drops the grouping column from apply(); select it back so `label`
+            # survives. Sampled rows are unchanged. See geneb_finetune.py.
+            tr = tr.groupby("label", group_keys=False)[list(tr.columns)].apply(
                 lambda g: g.sample(n=max(1, int(round(seqcap * len(g) / len(tr)))), random_state=0)
             ).reset_index(drop=True)
         return tr, dv, te, "label", "mcc"
@@ -226,7 +228,9 @@ def load(ds, task, level, seqcap, min_count=1):
         f = lambda part: pd.read_csv(f"{root}/{part}.csv")
         tr, dv, te = f("train"), f("dev"), f("test")
         if seqcap and len(tr) > seqcap:
-            tr = tr.groupby("label", group_keys=False).apply(
+            # pandas 3.0 drops the grouping column from apply(); select it back so `label`
+            # survives. Sampled rows are unchanged. See geneb_finetune.py.
+            tr = tr.groupby("label", group_keys=False)[list(tr.columns)].apply(
                 lambda g: g.sample(n=max(1, int(round(seqcap * len(g) / len(tr)))), random_state=0)
             ).reset_index(drop=True)
         return tr, dv, te, "label", "mcc"

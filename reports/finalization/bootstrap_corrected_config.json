@@ -1,0 +1,10 @@
+{
+  "reps": 5000,
+  "seed": 0,
+  "eq_margin": 0.02,
+  "vb_results": "/scratch/10906/arisk/glm-capability-audit/results_all",
+  "n_cells": 20,
+  "notes": [
+    "VHDB: unit file ABSENT (/data/nvidia/vhdb_tropism/within_family_1000bp/test_tax.csv); source interval NOT AUDITABLE"
+  ]
+}

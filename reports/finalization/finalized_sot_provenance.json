@@ -1,0 +1,19 @@
+{
+  "input_prefinalization": "/work/10906/arisk/projects/glm-capability-audit/reports/tables/final_source_of_truth.csv",
+  "input_prefinalization_sha256": "38972352242f2dd92c0269f14c1b103ca10a5fb202db66671efcc9b90dbef30e",
+  "input_bootstrap": "/work/10906/arisk/projects/glm-capability-audit/reports/finalization/bootstrap_corrected.csv",
+  "input_bootstrap_sha256": "a13ae4cc194244a107dce0000709d69aa2e912308f5418d7cb7a37c5a352a27f",
+  "output": "/work/10906/arisk/projects/glm-capability-audit/reports/tables/final_source_of_truth_finalized.csv",
+  "output_sha256": "f450700b1bc82c7f3193100cb7eebf5c751707772f5f410a2d697d9edcb3defc",
+  "n_cells": 27,
+  "n_interval_changes": 20,
+  "n_verdict_changes": 6,
+  "verdict_changes": [
+    "HT hard_70 L2: frag [-0.0287,0.2324] INCONCLUSIVE -> [0.024,0.2047] SUPERIOR",
+    "HT std_95 L0: src [-0.1265,0.0094] INCONCLUSIVE -> [-0.1398,-0.0035] INFERIOR",
+    "Patho std L0: frag [-0.0168,0.0112] EQUIVALENT -> [-0.0157,0.0063] INCONCLUSIVE",
+    "Transm hard L0: frag [-0.0659,0.0059] INCONCLUSIVE -> [-0.0651,-0.0082] INFERIOR",
+    "Transm hard L1: frag [-0.1506,0.4661] INCONCLUSIVE -> [0.0005,0.3304] SUPERIOR",
+    "Transm std L0: frag [-0.0175,0.0109] EQUIVALENT -> [-0.0121,0.0109] INCONCLUSIVE"
+  ]
+}

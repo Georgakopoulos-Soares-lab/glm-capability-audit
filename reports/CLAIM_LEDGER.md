@@ -5,25 +5,25 @@ file that licenses it, the numbers, and the wording that is permitted.
 
 ## C1. Fragment-level incremental performance at L0 is heterogeneous
 - **source** `reports/tables/final_source_of_truth.csv`
-- **numbers** excess ranges -0.059 to +0.107 MCC across nine benchmarks
+- **numbers** excess ranges -0.072 to +0.111 MCC across nine benchmarks
 - **permitted** "On published benchmark fragments, incremental gLM performance is heterogeneous, with excesses ranging from -0.059 to +0.107 MCC."
 - **FORBIDDEN** any statistical winner tally; the 3/3/3 split is a point-estimate summary only
 
 ## C2. All four adequately populated L1 subsets favour the gLM
 - **source** `reports/tables/final_source_of_truth.csv`
-- **numbers** VHDB +0.320 (n=1,200), HT hard_70 +0.194 (n=11,994), HT std_95 +0.183 (n=11,124), GUE phage +0.120 (n=2,874)
+- **numbers** VHDB +0.320 (n=1,200), HT hard_70 +0.174 (n=11,994), HT std_95 +0.118 (n=11,124), GUE phage +0.117 (n=2,874)
 - **permitted** "Across the four L1 populations retaining substantial evaluation samples, the gLM had the higher fragment-level point estimate, with excesses of +0.120 to +0.320 MCC."
 - **FORBIDDEN** "6 of 7"; three L1 populations hold only 41 to 55 fragments
 
 ## C3. HT hard_70 L1 is the one difference resolved under both estimands
 - **source** `reports/tables/final_source_of_truth.csv, reports/layered/unassigned_sensitivity.json`
-- **numbers** excess +0.194, fragment [+0.112,+0.264], source [+0.060,+0.349], coverage 43%, sensitivity SUPERIOR in 5/5 scenarios
+- **numbers** excess +0.174, fragment [+0.118,+0.226], source [+0.068,+0.302], coverage 43%, sensitivity SUPERIOR in 5/5 scenarios
 - **permitted** "HViLM exceeded the baseline envelope by 0.194 MCC on nucleotide-divergent HT hard_70 fragments. The difference resolved under both fragment resampling and recovered-source resampling and remained positive across the prespecified hidden-dependence sensitivity analyses."
 - **FORBIDDEN** any unrestricted novel-virus or general-capability claim
 
 ## C4. Several fragment-resolved differences do not resolve across sources
 - **source** `reports/tables/final_source_of_truth.csv`
-- **numbers** 6 cells change: HT hard_70 L0 (+0.100, SUPERIOR -> INCONCLUSIVE), HT std_95 L0 (-0.059, INFERIOR -> INCONCLUSIVE), HT std_95 L1 (+0.183, SUPERIOR -> INCONCLUSIVE), Patho std L0 (+0.001, EQUIVALENT -> INCONCLUSIVE), Transm std L0 (-0.001, EQUIVALENT -> INCONCLUSIVE), VHDB L1 (+0.320, SUPERIOR -> INCONCLUSIVE)
+- **numbers** 5 cells change: HT hard_70 L0 (+0.111, SUPERIOR -> INCONCLUSIVE), HT hard_70 L2 (+0.116, SUPERIOR -> INCONCLUSIVE), HT std_95 L1 (+0.118, SUPERIOR -> INCONCLUSIVE), Transm hard L1 (+0.199, SUPERIOR -> INCONCLUSIVE), VHDB L1 (+0.320, SUPERIOR -> INCONCLUSIVE)
 - **permitted** "Fragment-level benchmark performance and uncertainty across biological sources are different inferential quantities."
 - **FORBIDDEN** "prior studies are statistically invalid"; the point estimates are unchanged
 
@@ -47,7 +47,7 @@ file that licenses it, the numbers, and the wording that is permitted.
 
 ## C8. L2 is unresolved everywhere
 - **source** `reports/tables/final_source_of_truth.csv`
-- **numbers** HT hard_70 +0.108 (n=3,737), HT std_95 +0.107 (n=3,882), VHDB +0.348 (n=201), GUE phage +0.016 (n=86); every interval spans zero
+- **numbers** HT hard_70 +0.116 (n=3,737), HT std_95 +0.061 (n=3,882), VHDB +0.348 (n=201), GUE phage +0.063 (n=86); every interval spans zero
 - **permitted** "Whether the incremental gLM value observed at L1 persists once detectable translated relatives are unavailable remains unresolved."
 - **FORBIDDEN** "the advantage disappears"; "the advantage persists"; "models fail at L2"
 

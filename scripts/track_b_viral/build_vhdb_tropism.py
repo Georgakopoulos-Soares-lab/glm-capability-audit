@@ -53,9 +53,14 @@ sys.path.insert(0, HERE)
 
 MMSEQS = os.environ.get("VB_MMSEQS", "/home/nvidia/tools/mmseqs/bin/mmseqs")
 SCRATCH = os.environ.get("VB_SCRATCH", "/data/nvidia/tmp_mmseqs")
-VB = ("/data/nvidia/hf_cache/hub/datasets--YDXX--ViroBench/snapshots/"
-      "77461edda1bc4f3c0ea96008384a678fefe04a14/Classification/ALL/taxon/times")
-VHDB = "/data/nvidia/virushostdb/virushostdb.tsv"
+# Portable since 2026-10-18. Defaults are the original absolute paths, so an unchanged
+# environment reproduces byte-for-byte; VB_VIRO_SNAPSHOT / VB_VHDB_TSV relocate them.
+# The snapshot hash is pinned deliberately -- ViroBench is versioned and a different
+# snapshot yields a different task.
+VB = os.environ.get("VB_VIRO_SNAPSHOT",
+                    "/data/nvidia/hf_cache/hub/datasets--YDXX--ViroBench/snapshots/"
+                    "77461edda1bc4f3c0ea96008384a678fefe04a14/Classification/ALL/taxon/times")
+VHDB = os.environ.get("VB_VHDB_TSV", "/data/nvidia/virushostdb/virushostdb.tsv")
 
 
 def load_labels(min_per_class):

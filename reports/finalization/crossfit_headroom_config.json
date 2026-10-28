@@ -1,0 +1,7 @@
+{
+  "folds": 5,
+  "seed": 0,
+  "drf_eps": 0.02,
+  "vb_results": "/scratch/10906/arisk/glm-capability-audit/ARCHIVE/results_viral_bench",
+  "n_rows": 33
+}
