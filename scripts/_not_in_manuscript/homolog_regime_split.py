@@ -31,6 +31,9 @@ import numpy as np, pandas as pd
 from sklearn.metrics import matthews_corrcoef
 
 HERE = os.path.dirname(os.path.abspath(__file__)); sys.path.insert(0, HERE)
+# moved out of track_b_viral/ when this stopped feeding a reported
+# number; the siblings it imports still live there.
+sys.path.insert(0, os.path.join(os.path.dirname(HERE), "track_b_viral"))
 from _arm_guard import sweep_arm_ready
 from nn_lookup_probe import search_hits
 R = "/data/nvidia/genomic-capability-unlearning/results_viral_bench"

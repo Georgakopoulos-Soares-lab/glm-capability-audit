@@ -24,6 +24,9 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.metrics import matthews_corrcoef, average_precision_score, f1_score
 
 HERE = os.path.dirname(os.path.abspath(__file__)); sys.path.insert(0, HERE)
+# moved out of track_b_viral/ when this stopped feeding a reported
+# number; the siblings it imports still live there.
+sys.path.insert(0, os.path.join(os.path.dirname(HERE), "track_b_viral"))
 import paths as P
 
 HF = {  # model -> (hf id or local path, loader, max tokens)

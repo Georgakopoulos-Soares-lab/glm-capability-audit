@@ -30,7 +30,7 @@ training split, so they are properties of the split, not of model pretraining.
 | `scripts/common/` | shared path resolution, data download, the capacity ladder, the paired bootstrap |
 | `scripts/track_a_benchmarks/` | fine-tuning and the GUE / GeneB benchmark loaders |
 | `scripts/track_b_viral/` | the viral benchmarks: baseline arms, homology searches, regime splits, the level table |
-| `scripts/_not_in_manuscript/` | measured and reported as negative or out of scope; kept so the exclusion is explicit |
+| `scripts/_not_in_manuscript/` | run, but feeding no reported number; kept so the exclusion is explicit |
 | `analysis/` | everything computed from the predictions: consolidation, bootstrap intervals, fit counts |
 | `tests/` | configuration and estimator tests, runnable without any data |
 
@@ -52,10 +52,7 @@ whose interpreter does not exist.
 | Variable | Needs | Used by |
 |----------|-------|---------|
 | `VB_ENV_BIOJEPA` | pandas, scikit-learn, xgboost | every CPU arm, the homology searches, all of `analysis/` |
-| `VB_ENV_DNABERT` | torch, transformers | fine-tuning, frozen probes, the CNN and transformer ladders |
-| `VB_ENV_EVO_7B` | evo2, turboquant-bio | Evo 2 bits-per-base |
-| `VB_ENV_EVO` | evo 1 | Evo 1 likelihoods |
-| `VB_ENV_GENERATOR` | generative baselines | Markov and compressor floors |
+| `VB_ENV_DNABERT` | torch, transformers | fine-tuning, the CNN and transformer ladders |
 
 ```bash
 # the CPU environment: pandas, scikit-learn, xgboost and mmseqs2
@@ -158,7 +155,6 @@ the test set is never used for it.
 ```bash
 python pipelines/run.py finetune                                  # every model, every task
 python pipelines/run.py finetune --tasks gue_phage --models nt_v2_500m
-python pipelines/run.py probe   --tasks vhdb                      # frozen linear probe instead
 ```
 
 Writes `geneb_finetune/<task>__<model>__lr<lr>__fullft.json` and the prediction
@@ -218,14 +214,15 @@ it is removed from the comparator set rather than scored as zero.
 
 ### 3.4 Consolidation
 
-The level table, the genus composition of each stratum and the resampling-unit
-provenance are joined into one file. Everything downstream reads only that file,
+The level table, the genus composition of each stratum, the resampling-unit
+provenance and the translated-relatedness effect are joined into one file. Everything downstream reads only that file,
 so a number cannot be reported without appearing here first.
 
 ```bash
+python scripts/track_b_viral/translated_relatedness_effect.py   # L1 -> L2 effect
 python analysis/make_genus_concentration.py     # per-stratum genus composition
 python analysis/make_inference_provenance.py    # label coverage and resampling units
-python analysis/make_source_of_truth.py         # joins the three
+python analysis/make_source_of_truth.py         # joins the four
 ```
 
 Produces `reports/tables/final_source_of_truth.csv`, one row per benchmark and
@@ -279,18 +276,15 @@ python pipelines/run.py all --gpus 0,1,2,3
 
 | Stage | What it does |
 |-------|--------------|
-| `homology` | MMseqs2 train-vs-test nucleotide search; produces the NN-lookup arm and the cached masks |
-| `baselines` | k-mer, k-mer GBT, amino-acid GBT, taxonomy prior, CNN ladder, from-scratch transformer ladder |
-| `finetune` | full fine-tuning, the primary regime, identical budget per model |
-| `probe` | frozen linear probe over mean-pooled final hidden states, the secondary regime |
-| `generative` | bits per base for autoregressive models, pseudo-perplexity for masked ones, plus Markov and compressor floors |
+| `homology` | MMseqs2 train-vs-test nucleotide search; produces the nearest-neighbour lookup arm |
+| `baselines` | k-mer, k-mer GBT, amino-acid composition, taxonomy prior, CNN ladder, from-scratch transformer ladder |
+| `finetune` | full fine-tuning, identical budget per model |
 | `hidden` | nested homology audit: nucleotide, then six-frame translated; writes `hasN` and `hasT` |
-| `layered` | graded relatedness curve, group bootstrap and the equivalence verdict |
-| `authorckpt` | the released task checkpoints, as a labelled secondary contrast |
-| `provenance` | duplicate, reverse-complement, conflicting-label and parent-genome audit |
-| `regime` | homolog-available versus homolog-free stratification with bootstrap intervals |
-| `grid` | identity x coverage threshold sensitivity, turning one cut into a trend |
-| `table` | assembles the benchmark table from everything above |
+| `layered` | graded relatedness curve and group bootstrap |
+
+Every stage feeds a reported number. Analyses that were run and not reported
+live under `scripts/_not_in_manuscript/`, are not wired to a stage, and are
+invoked directly if you want them.
 
 ### Tasks
 
@@ -305,10 +299,13 @@ measures something else.
 
 ### Models
 
-`hvilm`, `dnabert2`, `nt_v2_500m`, `gena_lm`, `hyenadna`, `lucavirus`, `evo2`.
+`hvilm`, `dnabert2`, `nt_v2_500m`, `gena_lm`, `hyenadna`.
 
-Which model runs on which task and in which regime is declared in
-`pipelines/config/models.yaml`.
+Declared in `pipelines/config/models.yaml`, which also records how each
+checkpoint must be instantiated. That field is not cosmetic: resolving GENA-LM
+with `trust_remote_code` alone silently loaded a stock post-LN encoder, half of
+it randomly initialised, and the result was a plausible number rather than a
+crash.
 
 ---
 

@@ -2,7 +2,7 @@
 #
 # `env` is load-bearing.  These models need mutually incompatible dependency
 # sets, and picking the wrong interpreter is a silent failure mode we have hit
-# repeatedly (pandas missing, transformers missing, evo2 missing).  Resolved via
+# repeatedly (pandas missing, transformers missing).  Resolved via
 # $VB_ENV_<NAME>, so a fresh machine overrides without editing this file.
 #
 # `loader` records HOW the weights must be instantiated.  This is not cosmetic:
@@ -12,9 +12,6 @@
 #               others.  Half the encoder was random and the frozen probe read
 #               MCC 0.01-0.05 on every task -- a plausible number, not a crash.
 #               Every loader path therefore runs under a fresh-weight guard.
-#   native_head -- the checkpoint ships its own classification head and mean
-#               pooling is NOT equivalent.  LucaVirus dev went 0.4703 -> 0.6260
-#               once its value-attention head was used.
 
 models:
   hvilm:
@@ -48,39 +45,11 @@ models:
     loader: automodel
     max_tokens: 8192
     role:   general
-  lucavirus:
-    hf_id:  ${VB_LUCAVIRUS_DIR}
-    env:    dnabert
-    loader: native_head
-    max_tokens: 4096
-    role:   viral-specialist
-    tasks:  [vhdb, ht_hard_70, ht_std_95]
-    note: >
-      Restricted by design.  LucaVirus answers the SPECIFICITY question -- is the
-      viral advantage HViLM-specific or general to virus-specialised models --
-      and that is decided on host tropism and VHDB.  It is also run outside its
-      native multimodal mode, so every cell it produces is hedged; breadth cells
-      would add hedged evidence to an already-hedged claim.  HVUE host tropism
-      additionally collapses to all-negative at every lr (3.5% positive) at
-      ~19 GPU-h per lr, and is recorded as a missing cell rather than imputed.
-  evo2:
-    hf_id:  evo2_7b_base
-    env:    evo_7b
-    loader: turboquant_int4
-    role:   generative
-    stages: [probe, generative]
-    note: >
-      evo2_7b (not _base) needs FP8 transformer-engine kernels unusable on SM 8.0.
-      Full fine-tuning is protocol-incompatible, so Evo 2 enters only as
-      bits/base and a frozen probe.
 
 # Interpreter per env key; override with $VB_ENV_DNABERT etc.
 envs:
   dnabert: ${VB_ENV_DNABERT}
   biojepa: ${VB_ENV_BIOJEPA}
-  evo_7b:  ${VB_ENV_EVO_7B}
-  evo:     ${VB_ENV_EVO}
-  generator: ${VB_ENV_GENERATOR}
 
 # The floor is max() over these -- never a single arm, and never k-mer alone.
 baselines:

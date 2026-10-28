@@ -5,21 +5,23 @@
 
 Stages run in dependency order; each one is also a legal standalone target.
 
-    homology    MMseqs2 train-vs-test search -> NN-lookup arm + cached regime masks
-    baselines   k-mer, k-mer GBT, CNN ladder, from-scratch transformer ladder
-    finetune    full fine-tuning, the PRIMARY regime, identical budget per model
-    probe       frozen linear probe, the SECONDARY regime
-    generative  bits/base (autoregressive) and pseudo-PPL (masked), + their floors
-    regime      homolog-available / homolog-free stratification + bootstrap CIs
-    grid        identity x coverage threshold-sensitivity trend
-    table       assemble the paper tables from everything above
+    homology    MMseqs2 train-vs-test search -> the NN-lookup arm
+    baselines   k-mer, k-mer GBT, aa composition, taxonomy prior, CNN and
+                from-scratch transformer ladders
+    finetune    full fine-tuning, identical budget per model
+    hidden      nested homology audit, nucleotide then six-frame -> hasN/hasT,
+                which define L1 and L2
+    layered     graded relatedness curve and group bootstrap
+
+Every stage here feeds a reported number. Analyses that were run and not
+reported live under scripts/_not_in_manuscript/ and are not wired to a stage.
 
 Examples
 
     python pipelines/run.py --list                       # what is configured
     python pipelines/run.py baselines --dry-run          # print the commands
     python pipelines/run.py finetune --tasks gue_phage --models nt_v2_500m
-    python pipelines/run.py homology regime --tasks paper
+    python pipelines/run.py homology hidden --tasks paper
     python pipelines/run.py all --gpus 0,1,2,3
 
 Nothing is ever overwritten: a stage whose output exists is skipped unless
@@ -43,8 +45,7 @@ RESULTS = os.environ.get("VB_VIRAL_OUT", os.path.join(REPO, "results", "viral_be
 PREDS = os.environ.get("VB_PREDS", os.path.join(RESULTS, "preds_rescore"))
 MASKS = os.path.join(RESULTS, "regime_masks")
 REPORTS = os.environ.get("VB_REPORTS", os.path.join(REPO, "reports"))
-STAGES = ["homology", "baselines", "finetune", "probe", "generative",
-          "hidden", "layered", "authorckpt", "provenance", "regime", "grid", "table"]
+STAGES = ["homology", "baselines", "finetune", "hidden", "layered"]
 
 
 # --------------------------------------------------------------------------- #
@@ -151,99 +152,6 @@ def st_finetune(R, tasks, models, a):
     return jobs
 
 
-def st_probe(R, tasks, models, a):
-    P, jobs = R.protocol["probe"], []
-    for t in tasks:
-        if not t.dir:
-            continue
-        for m in models:
-            if not (m.runs_on(t.key) and m.runs_in("probe")):
-                continue
-            cap = P["cap_evo2"] if m.key == "evo2" else P["cap_train"]
-            env = {}
-            if m.needs_stubs:
-                # GENA-LM's remote module imports deepspeed; the stub satisfies the
-                # import check so the custom pre-LN class can load at all.
-                env["PYTHONPATH"] = f"{S}/track_b_viral/_stubs:" + os.environ.get("PYTHONPATH", "")
-            jobs.append(Job(
-                name=f"probe__{t.key}__{m.key}", stage="probe", need_mib=a.need_mib, env=env,
-                produces=os.path.join(REPORTS, "frozen_probe", f"{t.name}__{m.key}__probe.json"),
-                cmd=[R.python(m.env), "-u", f"{S}/track_b_viral/frozen_probe_suite.py",
-                     "--model", m.key, "--task", t.name,
-                     "--train-csv", t.csv("train"), "--test-csv", t.csv("test"),
-                     "--cap-train", str(cap), "--cap-test", str(P["cap_test"]),
-                     "--out", os.path.join(REPORTS, "frozen_probe")]))
-    return jobs
-
-
-def st_generative(R, tasks, models, a):
-    P = R.protocol["generative"]
-    out = os.path.join(RESULTS, "viral_likelihood")
-    jobs = [
-        Job(name="gen__baselines", gpu=False, stage="generative",
-            produces=os.path.join(out, f"generative_baselines_w{P['window']}_cap{P['cap_family']}.json"),
-            cmd=[R.python("biojepa"), "-u", f"{S}/track_b_viral/generative_baselines.py",
-                 "--window", str(P["window"]), "--cap_family", str(P["cap_family"])]),
-        Job(name="gen__evo2_bits", stage="generative", need_mib=a.need_mib,
-            produces=os.path.join(out, "evo2_evo2_7b_base_tier2_w%d.json" % P["window"]),
-            cmd=[R.python("evo_7b"), "-u", f"{S}/track_b_viral/evo2_bits_per_base.py",
-                 "--window", str(P["window"]), "--cap_family", str(P["cap_family"])]),
-        # Is Evo 2's viral edge exposure or capability?  Prokaryotic phage are IN
-        # its corpus; eukaryotic viruses were excluded by design.
-        Job(name="gen__evo2_exposure", stage="generative", need_mib=a.need_mib,
-            produces=os.path.join(out, f"evo2_stratified_by_host_w{P['window']}.json"),
-            cmd=[R.python("evo_7b"), "-u", f"{S}/track_b_viral/evo2_stratified_by_host.py",
-                 "--window", str(P["window"]), "--cap_family", str(P["cap_family"])]),
-        # Masked-LM pseudo-PPL.  Reported in its OWN table: a bidirectional PLL is
-        # not comparable to an autoregressive bits/base.
-        Job(name="gen__pseudo_ppl", stage="generative", need_mib=a.need_mib,
-            produces=os.path.join(RESULTS, "viral_pseudo_ppl", "pseudo_ppl.json"),
-            cmd=[R.python("dnabert"), "-u", f"{S}/track_b_viral/viral_pseudo_ppl.py",
-                 "--models", "dnabert2", "hvilm", "gena_lm", "nt_v2_500m", "--extra_pools"],
-            env={"PYTHONPATH": f"{S}/track_b_viral/_stubs:" + os.environ.get("PYTHONPATH", "")}),
-    ]
-    return jobs
-
-
-def st_regime(R, tasks, models, a):
-    P, jobs = R.protocol["regime"], []
-    for t in tasks:
-        if not t.dir:
-            continue
-        reps = P["bootstrap_reps_large"] if t.key.startswith(("ht_",)) else P["bootstrap_reps"]
-        cmd = [R.python("biojepa"), "-u", f"{S}/track_b_viral/homolog_regime_split.py",
-               "--name", t.name, "--train-csv", t.csv("train"), "--test-csv", t.csv("test"),
-               "--esc", t.esc, "--reps", str(reps), "--threads", str(a.threads),
-               "--mask-cache", os.path.join(MASKS, f"{t.name}.npz")]
-        if t.kmer_esc:
-            cmd += ["--kmer-esc", t.kmer_esc]
-        if t.cluster_csv:
-            cmd += ["--cluster-csv", t.cluster_csv]
-        jobs.append(Job(name=f"regime__{t.key}", gpu=False, stage="regime", cmd=cmd,
-                        produces=os.path.join(REPORTS, "regime", f"{t.name}__regime.json")))
-    return jobs
-
-
-def st_grid(R, tasks, models, a):
-    jobs = []
-    for t in tasks:
-        if not t.dir:
-            continue
-        cmd = [R.python("biojepa"), "-u", f"{S}/track_b_viral/threshold_trend_analysis.py",
-               "--task", t.name, "--esc", t.esc]
-        if t.cluster_csv:
-            cmd += ["--cluster-csv", t.cluster_csv]
-        jobs.append(Job(name=f"grid__{t.key}", gpu=False, stage="grid", cmd=cmd,
-                        produces=os.path.join(REPORTS, "trend", f"{t.name}__trend.json")))
-    return jobs
-
-
-def st_table(R, tasks, models, a):
-    return [Job(name="table__final", gpu=False, stage="table",
-                produces=os.path.join(REPORTS, "FINAL_VIRAL_TABLE.json"),
-                cmd=[R.python("biojepa"), "-u", f"{S}/track_b_viral/final_viral_table.py"])]
-
-
 def st_hidden(R, tasks, models, a):
     """Nested homology audit: nucleotide -> translated (six-frame) -> protein.
 
@@ -301,42 +209,8 @@ def st_layered(R, tasks, models, a):
     return jobs
 
 
-def st_authorckpt(R, tasks, models, a):
-    """The authors' released task checkpoints, as a labelled secondary contrast."""
-    jobs = []
-    for t in tasks:
-        if not (t.dir and t.author_ckpt):
-            continue
-        jobs.append(Job(
-            name=f"authorckpt__{t.key}", stage="authorckpt", need_mib=a.need_mib,
-            produces=os.path.join(REPORTS, "author_checkpoints", f"{t.key}__author_ckpt.json"),
-            cmd=[R.python("dnabert"), "-u", f"{S}/track_b_viral/author_checkpoint_contrast.py",
-                 "--checkpoint", t.author_ckpt, "--test-csv", t.csv("test"),
-                 "--name", t.key, "--esc", t.esc]))
-    return jobs
-
-
-def st_provenance(R, tasks, models, a):
-    """Duplicate / reverse-complement / conflicting-label / parent-genome audit."""
-    jobs = []
-    for t in tasks:
-        if not t.dir:
-            continue
-        cmd = [R.python("biojepa"), "-u", f"{S}/track_b_viral/parent_genome_audit.py",
-               "--train-csv", t.csv("train"), "--test-csv", t.csv("test"), "--name", t.name]
-        if t.tax_train and t.tax_test:
-            cmd += ["--train-meta", t.tax_train, "--test-meta", t.tax_test]
-        jobs.append(Job(name=f"provenance__{t.key}", gpu=False, stage="provenance", cmd=cmd,
-                        produces=os.path.join(REPORTS, "leakage",
-                                              f"{t.name}__parent_genome.json")))
-    return jobs
-
-
 BUILDERS = {"homology": st_homology, "baselines": st_baselines, "finetune": st_finetune,
-            "probe": st_probe, "generative": st_generative, "hidden": st_hidden,
-            "layered": st_layered, "authorckpt": st_authorckpt,
-            "provenance": st_provenance, "regime": st_regime,
-            "grid": st_grid, "table": st_table}
+            "hidden": st_hidden, "layered": st_layered}
 
 
 def main():
