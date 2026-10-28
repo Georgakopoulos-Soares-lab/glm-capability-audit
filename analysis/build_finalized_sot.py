@@ -4,7 +4,7 @@
 CPU only. Reads, never overwrites, the pre-finalization artifacts.
 
     reports/tables/final_source_of_truth.csv            pre-finalization, UNCHANGED
-    reports/finalization/bootstrap_corrected.csv        two-level + conditional intervals
+    reports/finalization/bootstrap.csv                  two-level + conditional intervals
         |
         v
     reports/tables/final_source_of_truth_finalized.csv  what the generators now read
@@ -44,7 +44,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 REPO = os.path.dirname(HERE)
 FINAL_DIR = os.path.join(REPO, "reports", "finalization")
 SOT = os.path.join(REPO, "reports", "tables", "final_source_of_truth.csv")
-BOOT = os.path.join(FINAL_DIR, "bootstrap_corrected.csv")
+BOOT = os.path.join(FINAL_DIR, "bootstrap.csv")
 OUT = os.path.join(REPO, "reports", "tables", "final_source_of_truth_finalized.csv")
 
 CARRY_SRC_FROZEN = {"VHDB": "PRESENT_BUT_NOT_REPRODUCED"}
@@ -135,7 +135,7 @@ def main():
         # Point estimates must come from the SAME run as the intervals. They used to be
         # carried from final_regime_table.json, which is frozen at 3 fits per method, so a
         # regeneration produced rows whose printed model minus baseline did not equal the
-        # printed excess. bootstrap_corrected.csv computes all three from the tree being
+        # printed excess. bootstrap.csv computes all three from the tree being
         # scored, so take them from there. Added 2026-10-18.
         for src_col, dst_col in (("model_mcc", "model_mcc"),
                                  ("baseline_mcc", "envelope_mcc"),

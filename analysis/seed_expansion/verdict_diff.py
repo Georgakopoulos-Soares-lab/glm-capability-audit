@@ -1,9 +1,9 @@
 """Verdict diff: 3-seed vs 10-seed, both bootstrap schemes.
 
 Deliverable (c) of the seed-expansion work order, plus the comparator-maximum
-check (e). Reads two bootstrap_corrected.csv outputs; computes nothing itself.
+check (e). Reads two bootstrap.csv outputs; computes nothing itself.
 
-In bootstrap_corrected.csv the column families are:
+In bootstrap.csv the column families are:
   frag_*  / src_*   conditional scheme (seeds held fixed)
   frag2_* / src2_*  two-level scheme (seeds resampled) -- the manuscript's primary
 

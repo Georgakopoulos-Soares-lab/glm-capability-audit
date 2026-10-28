@@ -7,7 +7,7 @@ arms, so a single-draw max is biased upward on both sides and does not cancel.
 
 Rather than re-running final_regime_table.py, which hard-fails on the absent VHDB
 unit file, this recomputes sym_* for every cell directly from the scored tree using
-the same helpers bootstrap_corrected.py uses, so the two cannot drift.
+the same helpers bootstrap.py uses, so the two cannot drift.
 
 Source units are used where a unit file exists. Where it does not, the cell is
 emitted with provenance NO_UNITS and the frozen value is left in place by the merge.
@@ -19,7 +19,7 @@ REPO = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)
 sys.path.insert(0, os.path.join(REPO, "scripts", "track_b_viral"))
 sys.path.insert(0, os.path.join(REPO, "analysis"))
 import final_regime_table as F
-from bootstrap_corrected import codes_for, seed_avg, verdict
+from bootstrap import codes_for, seed_avg, verdict
 
 REPS, SEED = 5000, 0
 OUT = os.path.join(REPO, "reports", "finalization", "symmetric_regenerated.csv")

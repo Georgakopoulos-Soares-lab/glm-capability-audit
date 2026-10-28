@@ -82,7 +82,7 @@ relatedness masks                          per-row hasN / hasT, which define L1 
    |
    |  final_regime_table.py                MCC per arm, per benchmark, per level
    |  analysis/make_source_of_truth.py     joins the levels into one table
-   |  analysis/bootstrap_corrected.py      intervals on the difference
+   |  analysis/bootstrap.py                intervals on the difference
    v
 final_source_of_truth_finalized.csv        one row per benchmark and level
 ```
@@ -160,42 +160,31 @@ difference and the resampling-unit provenance. Nearest-neighbour lookup is score
 at L0 only: L1 and L2 are defined by the absence of the hit it transfers from, so
 it is removed from the comparator set rather than scored as zero.
 
-### 3.4 Consolidation
+### 3.4 The final table
 
-Four scripts, in this order. The last one joins the other three into a single
-table, and everything after this point reads only that table.
+Six scripts, in this order. The first four join the level table with the
+supporting audits; the last two add the confidence intervals.
 
 ```bash
 python scripts/track_b_viral/translated_relatedness_effect.py
 python analysis/make_genus_concentration.py
 python analysis/make_inference_provenance.py
 python analysis/make_source_of_truth.py
-```
 
-Writes `reports/tables/final_source_of_truth.csv`, one row per benchmark and
-level. If an input is missing, the script stops and names the command that
-produces it rather than writing an empty table.
-
-### 3.5 Bootstrap intervals
-
-Run after §3.4, which fixes the model in each cell.
-
-```bash
-python analysis/bootstrap_corrected.py --reps 5000 --workers 16
+python analysis/bootstrap.py --reps 5000 --workers 16
 python analysis/build_finalized_sot.py
 ```
 
-Writes `reports/tables/final_source_of_truth_finalized.csv`. **This is the table
-to read.**
+Writes `reports/tables/final_source_of_truth_finalized.csv`, one row per
+benchmark and level. **This is the table to read.** If an input is missing, the
+script stops and names the command that produces it rather than writing an empty
+table.
 
-Each cell gets two intervals. **Fragment** resamples the 1 kb test fragments and
-asks whether the difference is stable across fragments of this kind. **Source**
-resamples the parent genomes and asks whether it would survive a different draw
-of source viruses. Both are reported, and one resolving while the other does not
-is informative rather than contradictory.
-
-Test units and training seeds are resampled together, so the interval covers the
-same quantity as the point estimate. CPU only.
+Each cell carries two intervals. **Fragment** resamples the 1 kb test fragments
+and asks whether the difference is stable across fragments of this kind.
+**Source** resamples the parent genomes and asks whether it would survive a
+different draw of source viruses. Both are reported, and one resolving while the
+other does not is informative rather than contradictory.
 
 ---
 

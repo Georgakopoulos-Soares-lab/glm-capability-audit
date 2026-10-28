@@ -65,18 +65,18 @@ def score_draws(y, mp, arms, rows, units, reps, boot_seed):
 
     This previously mirrored final_regime_table.score, which draws a SINGLE random fit
     per replicate. Methods defines a method's score as the mean MCC across its fits, and
-    bootstrap_corrected.py implements that, so the two code paths estimated different
+    bootstrap.py implements that, so the two code paths estimated different
     quantities. The gap was negligible at three fits and material at ten: on host tropism
     hard_70 L1 the single draw version gave a 0.065 MCC wider interval and, because the
     comparator is a max over arms, a single lucky arm draw also inflated the comparator.
-    The helpers are imported from bootstrap_corrected rather than reimplemented so the
+    The helpers are imported from bootstrap.py rather than reimplemented so the
     two cannot drift again. Changed 2026-10-28.
     """
     import os as _os, sys as _sys
     _an = _os.path.join(_os.path.dirname(_os.path.dirname(HERE)), "analysis")
     if _an not in _sys.path:
         _sys.path.insert(0, _an)
-    from bootstrap_corrected import codes_for, seed_avg
+    from bootstrap import codes_for, seed_avg
 
     y2 = y[rows]
     C = int(max(y2.max(), max(p[rows].max() for p in mp)) + 1)

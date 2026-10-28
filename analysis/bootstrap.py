@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-"""PRIORITY 1 — re-estimate every manuscript interval with the reported estimator.
+"""Bootstrap confidence intervals for the model-minus-comparator difference.
 
 CPU only. Writes only into reports/finalization/.
 
@@ -17,20 +17,18 @@ development selection:
 unavailable by construction; it is never encoded as zero, it is removed from the
 set the maximum is taken over. The point estimate is Delta(R_full).
 
-The defect being fixed
-----------------------
-`final_regime_table.py:161-162` draws ONE RANDOM SEED per arm inside each
-bootstrap replicate and then takes the max, whereas the point estimate averages
-seeds before the max. Maximising over noisier single-seed quantities inflates
-the envelope by Jensen, so the interval is an interval for a different
-population quantity. Measured on GUE phage L0 the offset is +0.0187 and does not
-shrink with n.
+Seed aggregation inside a replicate
+-----------------------------------
+The replicate statistic is Delta applied to the resampled rows, aggregating
+seeds exactly as the point estimate does: seeds are averaged first, and the
+maximum is taken over arms afterwards. Taking the maximum over single-seed
+quantities instead would inflate the envelope by Jensen's inequality and
+estimate a different population quantity, by +0.0187 on GUE phage L0, an offset
+that does not shrink with n.
 
-Here the replicate statistic is Delta applied to the resampled rows, with seed
-aggregation identical to the point estimate. The envelope is still re-maximised
-inside each replicate, because "max over applicable arms" is part of the
-estimator, but individual seeds never compete as separate predictors and the
-model is never reselected.
+The envelope is re-maximised inside every replicate, because "max over
+applicable arms" is part of the estimator. Individual seeds never compete as
+separate predictors, and the model is never reselected.
 
 Bootstrap schemes
 -----------------
@@ -51,7 +49,7 @@ and avoids gathering large arrays 5,000 times.
 Usage
 -----
     export VB_RESULTS=/path/to/results_viral_bench
-    python bootstrap_corrected.py [--reps 5000] [--workers 16]
+    python bootstrap.py [--reps 5000] [--workers 16]
 """
 import argparse
 import csv
@@ -286,7 +284,7 @@ def main():
             "src2_lo", "src2_hi", "src2_verdict", "n_arms", "frag_reps_used", "frag_reps_skipped",
             "src_reps_used", "src_reps_skipped", "changed_from_manuscript"]
     rows.sort(key=lambda r: (r["benchmark"], r["regime"]))
-    p = os.path.join(OUT, "bootstrap_corrected.csv")
+    p = os.path.join(OUT, "bootstrap.csv")
     with open(p, "w", newline="") as fh:
         w = csv.DictWriter(fh, fieldnames=cols)
         w.writeheader()
@@ -294,7 +292,7 @@ def main():
             w.writerow({c: r.get(c, "") for c in cols})
     json.dump({"reps": a.reps, "seed": a.seed, "eq_margin": EQ_MARGIN,
                "vb_results": F.RVB, "n_cells": len(rows), "notes": notes},
-              open(os.path.join(OUT, "bootstrap_corrected_config.json"), "w"), indent=2)
+              open(os.path.join(OUT, "bootstrap_config.json"), "w"), indent=2)
     print("\nnotes:")
     for x in notes:
         print("  " + x)

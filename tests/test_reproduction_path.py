@@ -27,7 +27,7 @@ ENTRY_POINTS = [
     "scripts/track_b_viral/final_regime_table.py",
     "scripts/track_b_viral/hidden_homology_audit.py",
     "scripts/track_b_viral/nn_lookup_as_baseline.py",
-    "analysis/bootstrap_corrected.py",
+    "analysis/bootstrap.py",
     "analysis/make_genus_concentration.py",
     "analysis/make_inference_provenance.py",
     "analysis/make_source_of_truth.py",
