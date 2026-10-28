@@ -255,6 +255,22 @@ for _t in sorted(_have - _cite):
 for _t in sorted(_cite - _have):
     fail.append(f"main text cites {_t.upper()} but the supplement has no such table")
 
+# The Supplementary information section states a range, "Tables S1 to SN". Citing a
+# table in Methods is not enough to put it inside that range, so the endpoints are
+# checked against the order the supplement actually emits. Adding a table and leaving
+# the range at the old last label is how S6 came to sit outside it. Added 2026-10-28.
+_order = _re.findall(r"\\label\{tab:([a-z]+)\}", _supp)
+_rng = _re.search(r"Supplementary Tables~\\ref\{tab:([a-z]+)\} to "
+                  r"\\ref\{tab:([a-z]+)\}", TEX)
+claim("the supplement range names a first and last table", bool(_rng),
+      "no 'Supplementary Tables X to Y' sentence found")
+if _rng and _order:
+    claim("the supplement range starts at the first table", _rng.group(1) == _order[0],
+          f"range starts at {_rng.group(1)}, supplement starts with {_order[0]}")
+    claim("the supplement range ends at the last table", _rng.group(2) == _order[-1],
+          f"range ends at {_rng.group(2)}, supplement ends with {_order[-1]} "
+          f"({len(_order)} tables)")
+
 # bibliography: a cited entry must not carry placeholder metadata
 import re as _re
 _bib = open(os.path.join(REPO, "paper", "references.bib")).read()
