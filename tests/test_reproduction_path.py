@@ -24,6 +24,7 @@ ENTRY_POINTS = [
     "analysis/bootstrap_corrected.py",
     "analysis/build_finalized_sot.py",
     "analysis/make_selection_artifact.py",
+    "analysis/make_fit_counts.py",
     "analysis/seed_expansion/regen_symmetric.py",
     "scripts/track_b_viral/unassigned_clustering_sensitivity.py",
     "paper/figures/build_paper.py",
@@ -35,6 +36,7 @@ FROZEN_INPUTS = [
     "reports/tables/final_source_of_truth.csv",
     "reports/tables/final_source_of_truth_finalized.csv",
     "reports/tables/selection_3seed.csv",
+    "reports/tables/fit_counts.csv",
     "reports/finalization/bootstrap_corrected.csv",
     "reports/finalization/bootstrap_3seed.csv",
     "reports/finalization/symmetric_regenerated.csv",
@@ -77,6 +79,22 @@ def test_manuscript_figures_are_committed():
             f"{stem} pins .png, which .gitignore excludes from the repository")
         p = f"paper/{stem}.pdf" if not stem.endswith(".pdf") else f"paper/{stem}"
         assert p in t, f"{p} is included by main.tex but is not committed"
+
+
+def test_supplement_has_five_tables_and_the_text_agrees():
+    """The per-arm fit-count table was cut. Nothing may cite it, and the range
+    sentence in Supplementary information must end at the last table that exists."""
+    supp = (REPO / "paper" / "supplementary.tex").read_text()
+    tex = (REPO / "paper" / "main.tex").read_text()
+    labels = re.findall(r"\\label\{tab:([a-z]+)\}", supp)
+    assert labels == ["selection", "allarms", "bootstrap", "source", "hidden"], labels
+    assert "seedsd" not in supp and "seedsd" not in tex, "the cut table is cited again"
+    cited = set(re.findall(r"\\ref\{tab:([a-z]+)\}", tex)) & set(labels)
+    assert cited == set(labels), f"uncited supplementary tables: {set(labels) - cited}"
+    rng = re.search(r"Supplementary Tables~\\ref\{tab:([a-z]+)\} to "
+                    r"\\ref\{tab:([a-z]+)\}", tex)
+    assert rng, "no 'Supplementary Tables X to Y' sentence"
+    assert (rng.group(1), rng.group(2)) == (labels[0], labels[-1])
 
 
 def test_supplement_is_generated_not_handwritten():

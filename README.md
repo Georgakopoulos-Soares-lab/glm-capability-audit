@@ -137,10 +137,12 @@ python paper/figures/build_paper.py          # --no-pdf to stop before LaTeX
 the generated table into `main.tex` between its marker comments and rewrites
 `paper/supplementary.tex` in full.
 
-One script is deliberately **not** in that chain. `analysis/make_selection_artifact.py` froze
-the three-seed development scores that made the model selection, and its output is committed
-at `reports/tables/selection_3seed.csv`. Re-running it is only meaningful on a tree that still
-holds the original three-seed finetune JSONs; it refuses to write a mixed-fit-count table.
+Two scripts are deliberately **not** in that chain, because both record something the chain
+would otherwise overwrite. `analysis/make_selection_artifact.py` froze the three-seed
+development scores that made the model selection; re-running it is only meaningful on a tree
+that still holds the original three-seed finetune JSONs, and it refuses to write a
+mixed-fit-count table. `analysis/make_fit_counts.py` records how many fits each arm actually
+has. Both outputs are committed under `reports/tables/`.
 
 ### 4. Check it
 
@@ -149,9 +151,11 @@ python -m pytest tests/                   # 82 tests
 python paper/figures/audit_consistency.py # prose and tables against the data
 ```
 
-`audit_consistency.py` re-checks 37 asserted claims against the source of truth, verifies
-every table row against its column spec, enforces the vocabulary and punctuation rules, and
-fails on any drift. Run it after editing prose. Neither command needs `VB_RESULTS`.
+`audit_consistency.py` re-checks 41 asserted claims against the source of truth, holds the
+Methods fit counts to `reports/tables/fit_counts.csv`, verifies every table row against its
+column spec, checks that the stated supplementary range covers the tables that exist, and
+enforces the vocabulary and punctuation rules. Run it after editing prose. Neither command
+needs `VB_RESULTS`.
 
 ---
 
@@ -223,9 +227,11 @@ threshold we have no external basis to set.
 ## Fit counts and known gaps
 
 Seven of the nine benchmarks carry ten fits on the selected model and on every stochastic
-conventional arm. Two do not, and the manuscript says so in Methods; **Supplementary Table S6
-gives the count and the spread for every arm on every population**, so a deterministic arm
-(one fit, zero spread) can be told from an arm measured at ten and from an arm that is short.
+conventional arm. Two do not, and the manuscript states both exceptions in Methods. The counts
+are not a supplementary table; they are recorded per arm and population in
+[`reports/tables/fit_counts.csv`](reports/tables/fit_counts.csv), written by
+`analysis/make_fit_counts.py`, and `audit_consistency.py` holds the Methods prose to that file
+so the two cannot drift.
 
 | gap | status |
 |---|---|
@@ -255,7 +261,7 @@ table carries `provenance_frag` and `provenance_src`:
 | why the final numbers are what they are | [`reports/finalization/FINAL_DECISION.md`](reports/finalization/FINAL_DECISION.md) |
 | the estimator, written out | [`reports/finalization/bootstrap_estimand.md`](reports/finalization/bootstrap_estimand.md) |
 | what changed when the intervals were finalized | [`reports/finalization/sot_before_after_diff.csv`](reports/finalization/sot_before_after_diff.csv) |
-| per-arm fit counts and spread | Supplementary Table S6, or `make_supplement_v2.py:s7` |
+| per-arm fit counts | [`reports/tables/fit_counts.csv`](reports/tables/fit_counts.csv) |
 
 Two longer documents, [`reports/RESULTS.md`](reports/RESULTS.md) and
 [`results/README.md`](results/README.md), are the working record from while the analysis was

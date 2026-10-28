@@ -20,7 +20,10 @@
 %   FIT COUNTS. Methods asserted ten fits on every arm of every benchmark. Two
 %      benchmarks are short (VHDB throughout, the model arm on GUE covid) and
 %      the four non-selected foundation models were never refit. Methods now
-%      states this and Supplementary Table S6 gives every per-arm count.
+%      states both exceptions in prose. The supplement stays at five tables; a
+%      per-arm table was drafted and cut. The counts live in
+%      reports/tables/fit_counts.csv and audit_consistency.py holds the Methods
+%      sentences to that file, so the prose cannot drift from the data again.
 % grep for TODO-SEED before submission.
 % ===================================================================
 
@@ -105,7 +108,7 @@ Each model is fine-tuned from its pretrained base using a uniform protocol, with
 \paragraph{Training repetitions.}
 Following selection, the selected model and every stochastic conventional arm were refit ten times with independent seeds on every benchmark and every population, and each method's reported score is the mean MCC across its fits. This covers the two neural baseline arms, namely the convolutional and transformer ladders, and the two stochastic conventional arms, namely the $k$-mer GBT and the amino acid composition GBT. The $k$-mer logistic arm, nearest neighbour lookup and the taxonomy prior are deterministic given the split and carry one fit each by construction. The four foundation models not selected on a given benchmark were not refit. They retain the three fits used for selection, enter no reported interval, and are reported only in Supplementary Table~\ref{tab:allarms}.
 
-Two benchmarks fall short of ten fits and we report them as they stand. The VHDB corpus is no longer available to us, so that benchmark retains the fits obtained in its original run throughout, namely three on the model arm, six on each neural ladder and one on each gradient boosted arm. On GUE \textsc{covid} the model arm retains three fits, because the number of epochs used in its original run is not recorded and a refit would not reproduce the selected configuration; its conventional arms carry ten. Every other arm on every other benchmark carries ten. Fit counts and the spread across fits are given per method and population in Supplementary Table~\ref{tab:seedsd}. VHDB is also the benchmark carrying the one advantage that survives holding the comparator set fixed, so the weakest-evidenced positive result in the study is the one measured over the fewest fits, and we return to this in the Limitations.
+Two benchmarks fall short of ten fits and we report them as they stand. The VHDB corpus is no longer available to us, so that benchmark retains the fits obtained in its original run throughout, namely three on the model arm, six on each neural ladder and one on each gradient boosted arm. On GUE \textsc{covid} the model arm retains three fits, because the number of epochs used in its original run is not recorded and a refit would not reproduce the selected configuration; its conventional arms carry ten. Every other arm on every other benchmark carries ten. VHDB is also the benchmark carrying the one advantage that survives holding the comparator set fixed, so the weakest-evidenced positive result in the study is the one measured over the fewest fits, and we return to this in the Limitations.
 
 \paragraph{Symmetric selection check.}
 As a robustness check we also report a symmetric variant in which the best model and the best conventional predictor are both reselected within each bootstrap replicate. It agrees with the primary analysis on 18 of 20 cells and resolves two further cells, transmissibility \textsc{hard} and VHDB at \textsc{l1}, in the model's favour, so the conclusions reported here are conservative with respect to it. Because reselecting over five models within each replicate both biases the maximum upward and absorbs variance that the pre-committed analysis retains, we do not treat its narrower intervals as evidence of a more secure result.
@@ -294,7 +297,7 @@ The thresholds at which we stop interpreting a filtered population are reporting
 
 \section*{Supplementary information}
 
-Supplementary Tables~\ref{tab:selection} to \ref{tab:seedsd} accompany this manuscript.
+Supplementary Tables~\ref{tab:selection} to \ref{tab:hidden} accompany this manuscript.
 
 \paragraph{Data and code availability.} The pipeline, per-task outputs, search protocols, and a claim ledger mapping each main-text claim to its source file are available in the \href{https://github.com/Georgakopoulos-Soares-lab/glm-capability-audit}{project repository}.
 

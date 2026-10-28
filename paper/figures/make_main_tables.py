@@ -98,7 +98,9 @@ def table2(df):
     # earlier version restated the source-unit scheme, the VHDB carry-forward and the
     # VHDB fit count here, and the fit count was wrong (VHDB is not uniformly three)
     # while Methods said something different again. Per-arm counts are in
-    # Table~\ref{tab:seedsd}; the resampling schemes are in Methods. Changed 2026-10-28.
+    # Methods, which states them in prose and is checked against
+    # reports/tables/fit_counts.csv. The resampling schemes are in Methods too.
+    # Changed 2026-10-28.
     A(r"\caption{\textbf{Model and best baseline MCC.} \textsc{l0} is the published test "
       r"set, \textsc{l1} the sequences with no detectable nucleotide relative in the "
       r"training data. The model and its learning rate are selected on the development "

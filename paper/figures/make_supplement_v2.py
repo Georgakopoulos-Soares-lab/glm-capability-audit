@@ -1,12 +1,11 @@
 #!/usr/bin/env python
-"""Writes paper/supplementary.tex in full. Six tables, emitted in citation order.
+"""Writes paper/supplementary.tex in full. Five tables, emitted in citation order.
 
     S1  tab:selection  model selection, from the frozen three-seed artifact   s2()
     S2  tab:allarms    every model and every conventional arm, per population s1()
     S3  tab:bootstrap  primary vs conditional scheme, at three and ten fits   s6()
     S4  tab:source     sequence-level and source-level resampling             s3()
     S5  tab:hidden     dependence among unassigned windows                    s4()
-    S6  tab:seedsd     fits per method and the spread across them             s7()
 
 The function names are historical and do not track the printed numbers; the labels
 do, and the main text cites labels only, so this order can change without touching
@@ -122,8 +121,8 @@ def s1():
          r"MCC averaged over each method's fits on the population named. Most stochastic "
          r"arms carry ten fits; the $k$-mer logistic arm, nearest neighbour lookup and the "
          r"taxonomy prior are deterministic and carry one. VHDB and the model arm on GUE "
-         r"\textsc{covid} are the exceptions, and every arm's fit count is given in "
-         r"Table~\ref{tab:seedsd}. Tax and Tax$^{r}$ are the same arm, the second on genus "
+         r"\textsc{covid} are the exceptions, and Methods gives the counts for both. "
+         r"Tax and Tax$^{r}$ are the same arm, the second on genus "
          r"labels recovered by alignment. A dash means the arm is not defined for that "
          r"cell; nearest neighbour lookup is undefined at \textsc{l1} and \textsc{l2} by "
          r"construction.}"
@@ -371,104 +370,6 @@ def s6():
 
 
 
-def s7():
-    """Per method fit counts and seed spread, so a deterministic arm, an arm measured
-    at ten fits and an arm retaining three can be told apart. Computed live from the
-    tree being scored."""
-    rows = []
-    for name, mask, esc, atags, _ in F.CELLS:
-        z = np.load(f"{F.MASKS}/{mask}.npz"); n = len(z["hasN"])
-        lv = {"L0": np.ones(n, bool), "L1": ~z["hasN"], "L2": (~z["hasN"]) & (~z["hasT"])}
-        arms = F.arm_preds(atags or [esc], n)
-        y0, series = None, {}
-        for m in F.MODELS:
-            y, ps, _ = F.model_preds(esc, m, n)
-            if ps:
-                series[m] = ps; y0 = y
-        if y0 is None:
-            continue
-        sel = SELECTED.get(SHORT.get(name, name))
-        for a, ps in arms.items():
-            series[a] = ps
-        for lab, k in lv.items():
-            if k.sum() < 20 or len(np.unique(y0[k])) < 2:
-                continue
-            for c, ps in series.items():
-                if c in F.REGIME_UNAVAILABLE and lab != "L0":
-                    continue
-                if c in F.MODELS and c != sel:
-                    continue          # non-selected models enter no reported interval
-                v = [MCC(y0[k], p[k]) for p in ps]
-                rows.append(dict(bench=SHORT.get(name, name), lv=lab,
-                                 meth=MODEL.get(c, ARMN.get(c, c)), nfit=len(v),
-                                 mean=float(np.mean(v)),
-                                 sd=(float(np.std(v, ddof=1)) if len(v) > 1 else 0.0),
-                                 lo=float(min(v)), hi=float(max(v))))
-    df = pd.DataFrame(rows)
-
-    # Same rounding rule as s1: the selected model's mean is taken from the source of
-    # truth so this table, Table~\ref{tab:allarms} and Table~\ref{tab:headtohead} cannot
-    # print one number three ways. The sd, min and max stay live, since the source of
-    # truth does not carry them.
-    from sot_path import sot_csv
-    _sot = pd.read_csv(sot_csv())
-    for _, _r in _sot.iterrows():
-        if pd.isna(_r.model_mcc):
-            continue
-        _hit = df.index[(df.bench == _r.benchmark) & (df.lv == _r.regime)
-                        & (df.meth == MODEL.get(_r.model, _r.model))]
-        if len(_hit):
-            df.loc[_hit[0], "mean"] = float(_r.model_mcc)
-
-    # The shortfall sentence is derived, never asserted. An arm that is stochastic but
-    # carries fewer than TARGET fits is named here so the caption cannot drift from the
-    # table beneath it, which is how the "ten fits everywhere" claim survived as long as
-    # it did. Added 2026-10-28.
-    TARGET = 10
-    det = {ARMN["kmer"], ARMN["nn_lookup"], ARMN["tax_prior"], ARMN["tax_prior_recovered"]}
-    short = {}
-    for _, r in df[(df.nfit < TARGET) & (~df.meth.isin(det))].iterrows():
-        short.setdefault(r.bench, {})[r.meth] = int(r.nfit)
-    if not short:
-        SHORTFALL_SENTENCE = (f"Every stochastic arm carries {TARGET} fits.")
-    else:
-        bits = []
-        for b, d in short.items():
-            if len(set(d.values())) == 1:
-                bits.append(f"on {PRETTY[b]} every stochastic arm listed carries "
-                            f"{next(iter(d.values()))}")
-            else:
-                bits.append(f"on {PRETTY[b]} " + ", ".join(
-                    f"{m} carries {n}" for m, n in sorted(d.items(), key=lambda kv: -kv[1])))
-        SHORTFALL_SENTENCE = (
-            f"Stochastic arms carry {TARGET} fits except where this table shows otherwise, "
-            + "; ".join(bits) + ". These shortfalls are explained in Methods.")
-
-    L = [r"\begingroup\tiny\setlength{\tabcolsep}{3pt}",
-         r"\begin{longtable}{ll l r rrrr}",
-         r"\caption{\textbf{Fits per method and the spread across them.} For the "
-         r"development selected model and every conventional arm, on each population. "
-         r"\emph{fits} is the number of independent training runs averaged into that "
-         r"method's score, \emph{sd} their standard deviation. A deterministic arm has one "
-         r"fit and zero spread by construction. The four foundation models not selected on "
-         r"a benchmark enter no reported interval and are omitted. " + SHORTFALL_SENTENCE + "}"
-         r"\label{tab:seedsd}\\", r"\toprule",
-         r"Benchmark & Pop. & Method & fits & mean & sd & min & max \\",
-         r"\midrule\endfirsthead",
-         r"\toprule Benchmark & Pop. & Method & fits & mean & sd & min & max \\ \midrule \endhead"]
-    for b in ORDER:
-        sub = df[df.bench == b]
-        if sub.empty:
-            continue
-        first = True
-        for _, r in sub.iterrows():
-            L.append(f"{PRETTY[b] if first else ''} & \\textsc{{{r.lv.lower()}}} & {r.meth} & "
-                     f"{r.nfit} & {r['mean']:.3f} & {r.sd:.3f} & {r.lo:.3f} & {r.hi:.3f} \\\\")
-            first = False
-        L.append(r"\addlinespace")
-    L += [r"\bottomrule", r"\end{longtable}\endgroup"]
-    return "\n".join(L)
-
 def main():
     parts = ["% Generated by paper/figures/make_supplement_v2.py. Do not edit by hand.",
              "% Edits made here are lost on the next build. Change the generator instead.",
@@ -477,10 +378,12 @@ def main():
              r"\renewcommand{\thetable}{S\arabic{table}}",
              r"\section*{Supplementary tables}", ""]
     # Order follows first citation in the main text. The benchmark-characteristics table,
-    # the translated-relative association test and the unseen-genus subset were all cut
-    # from the paper and their generators deleted on 2026-10-28; the underlying artifacts
-    # remain under reports/ and reports/layered/.
-    for fn in (s2, s1, s6, s3, s4, s7):
+    # the translated-relative association test, the unseen-genus subset and the per-arm
+    # fit-count table were all cut from the paper and their generators deleted on
+    # 2026-10-28. The underlying artifacts remain under reports/ and reports/layered/;
+    # the fit counts in particular are in reports/tables/fit_counts.csv, which
+    # audit_consistency.py checks the Methods prose against.
+    for fn in (s2, s1, s6, s3, s4):
         parts.append(fn()); parts.append("")
     out = os.path.join(REPO, "paper", "supplementary.tex")
     open(out, "w").write("\n".join(parts) + "\n")

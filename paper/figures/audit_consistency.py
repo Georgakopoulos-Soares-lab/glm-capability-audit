@@ -294,44 +294,46 @@ if "TODO citation needed" in _tex:
 # ---------------------------------------------------------------------------
 # Fit counts. Methods once asserted ten fits on every arm of every benchmark and
 # nothing in the pipeline contradicted it, so the claim survived two rounds of
-# review. The counts are now derived from the tree and checked against the
-# supplement, so prose and data cannot drift apart again. Added 2026-10-28.
+# review. The counts are no longer reported in the paper, so the prose is checked
+# against reports/tables/fit_counts.csv instead, written by
+# analysis/make_fit_counts.py from the prediction archive. Added 2026-10-28.
 # ---------------------------------------------------------------------------
-_supp_txt = open(os.path.join(REPO, "paper", "supplementary.tex")).read()
-_fit_tbl = _supp_txt.split(r"\label{tab:seedsd}")[-1] if "tab:seedsd" in _supp_txt else ""
-_counts = {}
-for _ln in _fit_tbl.splitlines():
-    _c = [x.strip() for x in _ln.split("&")]
-    if len(_c) == 8 and _c[3].isdigit():
-        _counts.setdefault(_c[2], set()).add(int(_c[3]))
-claim("the supplement carries a per-arm fit count table", bool(_counts),
-      "no tab:seedsd rows parsed; Methods cites it")
-
-# an arm the Methods paragraph calls deterministic must never show more than one fit
-for _det in (r"$k$-mer", "NN", "Tax", "Tax$^{r}$"):
-    if _det in _counts:
-        claim(f"{_det} is deterministic", _counts[_det] == {1},
-              f"shows fit counts {sorted(_counts[_det])}")
-
-# Methods must name every benchmark that falls short of ten, and no others
-_short_benches = set()
-_cur = None
-for _ln in _fit_tbl.splitlines():
-    _c = [x.strip() for x in _ln.split("&")]
-    if len(_c) == 8 and _c[3].isdigit():
-        if _c[0]:
-            _cur = _c[0]
-        if int(_c[3]) < 10 and _c[2] not in (r"$k$-mer", "NN", "Tax", "Tax$^{r}$"):
-            _short_benches.add(_cur)
+TARGET_FITS = 10
+_fc = pd.read_csv(os.path.join(T, "fit_counts.csv"))
 _METHODS = TEX[TEX.index(r"\section{Methods}"):TEX.index(r"\section{Results}")]
-for _b in sorted(_short_benches):
-    _name = "VHDB" if "VHDB" in _b else ("GUE \\textsc{covid}" if "covid" in _b else _b)
-    claim(f"Methods names the short-fit benchmark {_name}", _name in _METHODS,
-          f"{_name} has arms below ten fits and Methods does not say so")
+_PRETTY_B = {"VHDB": "VHDB", "GUE covid": r"GUE \textsc{covid}"}
+
+claim("the fit-count record is present and covers every benchmark",
+      len(_fc) and _fc.benchmark.nunique() == 9,
+      f"fit_counts.csv covers {_fc.benchmark.nunique()} benchmarks over {len(_fc)} rows")
+
+# an arm Methods calls deterministic must never carry more than one fit
+_det = _fc[_fc.deterministic]
+claim("deterministic arms carry exactly one fit", set(_det.n_fits) <= {1},
+      f"deterministic arms show {sorted(set(_det.n_fits))}")
+
+# Methods must name every benchmark holding a stochastic arm below the target,
+# and must not claim the target everywhere
+_shortfall = _fc[(~_fc.deterministic) & (_fc.n_fits < TARGET_FITS)]
+for _b in sorted(_shortfall.benchmark.unique()):
+    claim(f"Methods names the short-fit benchmark {_b}",
+          _PRETTY_B.get(_b, _b) in _METHODS,
+          f"{_b} has a stochastic arm below {TARGET_FITS} fits and Methods does not say so")
 claim("Methods does not claim ten fits everywhere",
       "refit ten times with independent seeds, on every benchmark and every population"
       not in _METHODS,
       "the blanket ten-fit sentence is back")
+
+# every per-arm count Methods states in prose must match the record
+for _b, _arm, _n, _phrase in [
+        ("VHDB", "hvilm", 3, "three on the model arm"),
+        ("VHDB", "cnn", 6, "six on each neural ladder"),
+        ("VHDB", "kmer_gbt", 1, "one on each gradient boosted arm"),
+        ("GUE covid", "hvilm", 3, "the model arm retains three fits")]:
+    _row = _fc[(_fc.benchmark == _b) & (_fc.arm == _arm)]
+    claim(f"Methods states {_b} {_arm} correctly",
+          (not _row.empty) and set(_row.n_fits) == {_n} and _phrase in _METHODS,
+          f"prose says {_phrase!r}, record says {sorted(set(_row.n_fits))}")
 
 
 # ---------------------------------------------------------------------------

@@ -1,0 +1,139 @@
+benchmark,regime,arm,n_fits,deterministic,is_model
+HT hard_70,L0,hvilm,10,False,True
+HT hard_70,L0,kmer,1,True,False
+HT hard_70,L0,kmer_gbt,10,False,False
+HT hard_70,L0,aa_gbt,10,False,False
+HT hard_70,L0,cnn,10,False,False
+HT hard_70,L0,transformer,10,False,False
+HT hard_70,L0,nn_lookup,1,True,False
+HT hard_70,L0,tax_prior_recovered,1,True,False
+HT hard_70,L1,hvilm,10,False,True
+HT hard_70,L1,kmer,1,True,False
+HT hard_70,L1,kmer_gbt,10,False,False
+HT hard_70,L1,aa_gbt,10,False,False
+HT hard_70,L1,cnn,10,False,False
+HT hard_70,L1,transformer,10,False,False
+HT hard_70,L1,tax_prior_recovered,1,True,False
+HT hard_70,L2,hvilm,10,False,True
+HT hard_70,L2,kmer,1,True,False
+HT hard_70,L2,kmer_gbt,10,False,False
+HT hard_70,L2,aa_gbt,10,False,False
+HT hard_70,L2,cnn,10,False,False
+HT hard_70,L2,transformer,10,False,False
+HT hard_70,L2,tax_prior_recovered,1,True,False
+HT std_95,L0,hvilm,10,False,True
+HT std_95,L0,kmer,1,True,False
+HT std_95,L0,kmer_gbt,10,False,False
+HT std_95,L0,aa_gbt,10,False,False
+HT std_95,L0,cnn,10,False,False
+HT std_95,L0,transformer,10,False,False
+HT std_95,L0,nn_lookup,1,True,False
+HT std_95,L0,tax_prior_recovered,1,True,False
+HT std_95,L1,hvilm,10,False,True
+HT std_95,L1,kmer,1,True,False
+HT std_95,L1,kmer_gbt,10,False,False
+HT std_95,L1,aa_gbt,10,False,False
+HT std_95,L1,cnn,10,False,False
+HT std_95,L1,transformer,10,False,False
+HT std_95,L1,tax_prior_recovered,1,True,False
+HT std_95,L2,hvilm,10,False,True
+HT std_95,L2,kmer,1,True,False
+HT std_95,L2,kmer_gbt,10,False,False
+HT std_95,L2,aa_gbt,10,False,False
+HT std_95,L2,cnn,10,False,False
+HT std_95,L2,transformer,10,False,False
+HT std_95,L2,tax_prior_recovered,1,True,False
+Patho hard,L0,hvilm,10,False,True
+Patho hard,L0,kmer,1,True,False
+Patho hard,L0,kmer_gbt,10,False,False
+Patho hard,L0,aa_gbt,10,False,False
+Patho hard,L0,cnn,10,False,False
+Patho hard,L0,transformer,10,False,False
+Patho hard,L0,nn_lookup,1,True,False
+Patho std,L0,dnabert2,10,False,True
+Patho std,L0,kmer,1,True,False
+Patho std,L0,kmer_gbt,10,False,False
+Patho std,L0,aa_gbt,10,False,False
+Patho std,L0,cnn,10,False,False
+Patho std,L0,transformer,10,False,False
+Patho std,L0,nn_lookup,1,True,False
+Patho std,L1,dnabert2,10,False,True
+Patho std,L1,kmer,1,True,False
+Patho std,L1,kmer_gbt,10,False,False
+Patho std,L1,aa_gbt,10,False,False
+Patho std,L1,cnn,10,False,False
+Patho std,L1,transformer,10,False,False
+Transm hard,L0,hvilm,10,False,True
+Transm hard,L0,kmer,1,True,False
+Transm hard,L0,kmer_gbt,10,False,False
+Transm hard,L0,aa_gbt,10,False,False
+Transm hard,L0,cnn,10,False,False
+Transm hard,L0,transformer,10,False,False
+Transm hard,L0,nn_lookup,1,True,False
+Transm hard,L1,hvilm,10,False,True
+Transm hard,L1,kmer,1,True,False
+Transm hard,L1,kmer_gbt,10,False,False
+Transm hard,L1,aa_gbt,10,False,False
+Transm hard,L1,cnn,10,False,False
+Transm hard,L1,transformer,10,False,False
+Transm std,L0,hvilm,10,False,True
+Transm std,L0,kmer,1,True,False
+Transm std,L0,kmer_gbt,10,False,False
+Transm std,L0,aa_gbt,10,False,False
+Transm std,L0,cnn,10,False,False
+Transm std,L0,transformer,10,False,False
+Transm std,L0,nn_lookup,1,True,False
+Transm std,L1,hvilm,10,False,True
+Transm std,L1,kmer,1,True,False
+Transm std,L1,kmer_gbt,10,False,False
+Transm std,L1,aa_gbt,10,False,False
+Transm std,L1,cnn,10,False,False
+Transm std,L1,transformer,10,False,False
+VHDB,L0,hvilm,3,False,True
+VHDB,L0,kmer,1,True,False
+VHDB,L0,kmer_gbt,1,False,False
+VHDB,L0,aa_gbt,1,False,False
+VHDB,L0,cnn,6,False,False
+VHDB,L0,transformer,6,False,False
+VHDB,L0,nn_lookup,1,True,False
+VHDB,L0,tax_prior,1,True,False
+VHDB,L1,hvilm,3,False,True
+VHDB,L1,kmer,1,True,False
+VHDB,L1,kmer_gbt,1,False,False
+VHDB,L1,aa_gbt,1,False,False
+VHDB,L1,cnn,6,False,False
+VHDB,L1,transformer,6,False,False
+VHDB,L1,tax_prior,1,True,False
+VHDB,L2,hvilm,3,False,True
+VHDB,L2,kmer,1,True,False
+VHDB,L2,kmer_gbt,1,False,False
+VHDB,L2,aa_gbt,1,False,False
+VHDB,L2,cnn,6,False,False
+VHDB,L2,transformer,6,False,False
+VHDB,L2,tax_prior,1,True,False
+GUE phage,L0,nt_v2_500m,10,False,True
+GUE phage,L0,kmer,1,True,False
+GUE phage,L0,kmer_gbt,10,False,False
+GUE phage,L0,aa_gbt,10,False,False
+GUE phage,L0,cnn,10,False,False
+GUE phage,L0,transformer,10,False,False
+GUE phage,L0,nn_lookup,1,True,False
+GUE phage,L1,nt_v2_500m,10,False,True
+GUE phage,L1,kmer,1,True,False
+GUE phage,L1,kmer_gbt,10,False,False
+GUE phage,L1,aa_gbt,10,False,False
+GUE phage,L1,cnn,10,False,False
+GUE phage,L1,transformer,10,False,False
+GUE phage,L2,nt_v2_500m,10,False,True
+GUE phage,L2,kmer,1,True,False
+GUE phage,L2,kmer_gbt,10,False,False
+GUE phage,L2,aa_gbt,10,False,False
+GUE phage,L2,cnn,10,False,False
+GUE phage,L2,transformer,10,False,False
+GUE covid,L0,hvilm,3,False,True
+GUE covid,L0,kmer,1,True,False
+GUE covid,L0,kmer_gbt,10,False,False
+GUE covid,L0,aa_gbt,10,False,False
+GUE covid,L0,cnn,10,False,False
+GUE covid,L0,transformer,10,False,False
+GUE covid,L0,nn_lookup,1,True,False
