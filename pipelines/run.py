@@ -43,7 +43,10 @@ S = os.path.join(REPO, "scripts")
 # the scripts globbed another, and a baseline arm read as simply absent.
 RESULTS = os.environ.get("VB_VIRAL_OUT", os.path.join(REPO, "results", "viral_bench"))
 PREDS = os.environ.get("VB_PREDS", os.path.join(RESULTS, "preds_rescore"))
-MASKS = os.path.join(RESULTS, "regime_masks")
+# hidden_masks/, not regime_masks/: the analysis layer reads the masks from
+# $VB_RESULTS/hidden_masks, and the two names disagreeing meant a reproducer
+# had to copy the directory across before anything downstream would score.
+MASKS = os.path.join(RESULTS, "hidden_masks")
 REPORTS = os.environ.get("VB_REPORTS", os.path.join(REPO, "reports"))
 STAGES = ["homology", "baselines", "finetune", "hidden", "layered"]
 

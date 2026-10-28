@@ -42,67 +42,27 @@ rebuilt by the commands below.
 
 ## 1. Environment
 
-### 1.1 The environment
-
-One environment runs everything: the pipeline and the analysis layer.
+One environment runs everything, the pipeline and the analysis layer alike.
 
 ```bash
 conda env create -f environment.yml
 conda activate glm-audit
-```
 
-It includes MMseqs2, which every homology search needs and pip cannot provide.
-Without conda, `pip install -r requirements.txt` covers the Python side; install
-MMseqs2 separately (`conda install -c bioconda mmseqs2`, or a release binary) and
-point `VB_MMSEQS` at it.
-
-Only fine-tuning and the capacity ladders need a GPU. The k-mer arms, the
-homology searches and all of `analysis/` run on CPU.
-
-`pipelines/run.py` dispatches every job to one interpreter, `$VB_PYTHON`, falling
-back to whichever python launched it. An earlier version split jobs across five
-environments because Evo 2 needed a dependency set that could not coexist with
-the rest; Evo 2 is gone and the split went with it.
-
-### 1.2 Paths
-
-```bash
-cp pipelines/env.example.sh pipelines/env.sh    # env.sh is gitignored
-$EDITOR pipelines/env.sh
+cp pipelines/env.example.sh pipelines/env.sh     # edit it, then
 source pipelines/env.sh
+
+python scripts/common/download_data.py           # the benchmark corpora
 ```
 
-Every path resolves through an environment variable, and `scripts/common/paths.py`
-routes the shared ones through repository-relative defaults, so a missing input
-fails by naming the variable to set rather than by reading someone else's disk.
+`pipelines/env.example.sh` is commented and names every path the pipeline needs.
+Set them there; `env.sh` is gitignored.
 
-Individual scripts under `scripts/` still carry absolute fallbacks from the
-cluster this work ran on, as the second argument to `os.environ.get`. They are
-defaults only and every one is overridden by the variables below, but a script
-run with nothing exported will point at a path that does not exist on your
-machine. Export the variables and this does not arise.
+The conda environment includes MMseqs2, which every homology search needs and pip
+cannot provide. Without conda, `pip install -r requirements.txt` covers the Python
+side, and MMseqs2 is installed separately.
 
-| Variable | Holds |
-|----------|-------|
-| `VB_DATA` | parent of the benchmark corpora |
-| `VB_OUT` | run outputs; defaults to `./results` |
-| `VB_VIRAL_OUT` | the large regenerable tree: ladders, predictions, masks |
-| `VB_PREDS` | per-example prediction arrays; defaults to `$VB_VIRAL_OUT/preds_rescore` |
-| `VB_REPORTS` | derived tables and JSON; defaults to `./reports` |
-| `VB_RESULTS` | the prediction tree the analysis layer reads (see §3) |
-| `VB_PYTHON` | the interpreter every job runs under; unset means the active one |
-| `VB_SCRATCH` | MMseqs2 temporary space; needs tens of GB |
-| `VB_MMSEQS` | the `mmseqs` binary |
-| `HF_HOME` | Hugging Face cache |
-
-### 1.3 Corpora
-
-```bash
-python scripts/common/download_data.py
-```
-
-Or point the per-benchmark variables (`VB_HVUE_DIR`, `VB_GUE_DIR`, `VB_VHDB_DIR`,
-`VB_VIRO_DIR`, `VB_GENEB_DIR`) at copies you already have.
+Only fine-tuning and the capacity ladders need a GPU. The k-mer arms, the homology
+searches and all of `analysis/` run on CPU.
 
 ---
 
@@ -114,17 +74,17 @@ corpora
    |  pipelines/run.py finetune            models, one prediction array per seed
    |  pipelines/run.py baselines homology  conventional arms, same test rows
    v
-$VB_PREDS/*.npz                            per-example predictions
+predictions                                one .npz per arm, per seed
    |
    |  pipelines/run.py hidden              MMseqs2 train-vs-test, nucleotide then six-frame
    v
-hidden_masks/*.npz                         per-row hasN / hasT, which define L1 and L2
+relatedness masks                          per-row hasN / hasT, which define L1 and L2
    |
    |  final_regime_table.py                MCC per arm, per benchmark, per level
    |  analysis/make_source_of_truth.py     joins the levels into one table
    |  analysis/bootstrap_corrected.py      intervals on the difference
    v
-reports/tables/final_source_of_truth_finalized.csv
+final_source_of_truth_finalized.csv        one row per benchmark and level
 ```
 
 Predictions are written once and scored many times. No stage re-runs a model to
@@ -134,19 +94,6 @@ the homology search did not match.
 ---
 
 ## 3. Reproducing each quantity
-
-The analysis layer reads one tree, named by `VB_RESULTS`, and expects three
-subdirectories inside it:
-
-```
-$VB_RESULTS/geneb_finetune/     fine-tuning summaries, one json per model x lr
-$VB_RESULTS/preds_rescore/      per-example prediction arrays, one npz per arm x seed
-$VB_RESULTS/hidden_masks/       per-row relatedness masks, one npz per benchmark
-```
-
-The pipeline writes the first two there when `VB_VIRAL_OUT` points at the same
-tree. It writes the masks to `$VB_VIRAL_OUT/regime_masks/`, so copy or link that
-directory to `hidden_masks/` before running §3.3 onwards.
 
 ### 3.1 L0 for the models
 
@@ -204,8 +151,7 @@ depends on this stage having run.
 Scoring every arm at all three levels:
 
 ```bash
-VB_RESULTS=/path/to/prediction/tree \
-  python scripts/track_b_viral/final_regime_table.py \
+python scripts/track_b_viral/final_regime_table.py \
     --out reports/layered/final_regime_table.json
 ```
 
@@ -216,50 +162,40 @@ it is removed from the comparator set rather than scored as zero.
 
 ### 3.4 Consolidation
 
-The level table, the genus composition of each stratum, the resampling-unit
-provenance and the translated-relatedness effect are joined into one file. Everything downstream reads only that file,
-so a number cannot be reported without appearing here first.
+Four scripts, in this order. The last one joins the other three into a single
+table, and everything after this point reads only that table.
 
 ```bash
-python scripts/track_b_viral/translated_relatedness_effect.py   # L1 -> L2 effect
-python analysis/make_genus_concentration.py     # per-stratum genus composition
-python analysis/make_inference_provenance.py    # label coverage and resampling units
-python analysis/make_source_of_truth.py         # joins the four
+python scripts/track_b_viral/translated_relatedness_effect.py
+python analysis/make_genus_concentration.py
+python analysis/make_inference_provenance.py
+python analysis/make_source_of_truth.py
 ```
 
-Produces `reports/tables/final_source_of_truth.csv`, one row per benchmark and
-level. Each script fails by naming the command that produces a missing input
-rather than emitting an empty table.
+Writes `reports/tables/final_source_of_truth.csv`, one row per benchmark and
+level. If an input is missing, the script stops and names the command that
+produces it rather than writing an empty table.
 
 ### 3.5 Bootstrap intervals
 
-Runs after §3.4: the model held fixed in each cell is read from the consolidated
-table, so the interval is never computed around a model reselected per replicate.
+Run after §3.4, which fixes the model in each cell.
 
 ```bash
-VB_RESULTS=/path/to/prediction/tree \
-  python analysis/bootstrap_corrected.py --reps 5000 --workers 16
-
-python analysis/build_finalized_sot.py          # merges the intervals in
+python analysis/bootstrap_corrected.py --reps 5000 --workers 16
+python analysis/build_finalized_sot.py
 ```
 
+Writes `reports/tables/final_source_of_truth_finalized.csv`. **This is the table
+to read.**
+
+Each cell gets two intervals. **Fragment** resamples the 1 kb test fragments and
+asks whether the difference is stable across fragments of this kind. **Source**
+resamples the parent genomes and asks whether it would survive a different draw
+of source viruses. Both are reported, and one resolving while the other does not
+is informative rather than contradictory.
+
 Test units and training seeds are resampled together, so the interval covers the
-same quantity as the point estimate: a predictor's score is the mean MCC over its
-fits, and the comparator is re-maximised over applicable arms inside every
-replicate. Two schemes are reported per cell.
-
-| Scheme | Resamples | Asks |
-|--------|-----------|------|
-| fragment | the 1 kb test fragments | is the difference stable across fragments of this kind |
-| source | the parent genomes, carrying all their fragments | would it survive a different draw of source viruses |
-
-Both are reported; one resolving and the other not is informative, not a
-contradiction. CPU only, parallel over cells.
-
-`build_finalized_sot.py` writes
-`reports/tables/final_source_of_truth_finalized.csv`, which is the table any
-downstream reader should use. `analysis/sot_path.py` resolves which of the two a
-reader gets; set `VB_SOT` to force a specific file.
+same quantity as the point estimate. CPU only.
 
 ---
 
