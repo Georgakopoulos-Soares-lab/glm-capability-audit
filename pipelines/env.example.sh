@@ -5,6 +5,10 @@
 
 # --- where things live --------------------------------------------------------
 export VB_DATA=$PWD/data                   # parent of hvue_v2/ vhdb_tropism/ gue_devcarve/ ...
+# The two GUE benchmarks ship train.csv/test.csv with no dev split, so they load
+# through the same reader as GENEB and resolve under $VB_GENEB_DIR, not $VB_DATA.
+# GENEB itself is not a benchmark in this study; only the reader is shared.
+export VB_GENEB_DIR=$VB_DATA/gue_devcarve
 export VB_OUT=$PWD/results                 # run outputs: json summaries + .npz predictions
 export VB_VIRAL_OUT=$VB_OUT/viral_bench    # large regenerable outputs: ladders, predictions, masks
 export VB_PREDS=$VB_VIRAL_OUT/preds_rescore
