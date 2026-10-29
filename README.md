@@ -4,8 +4,8 @@ Code for measuring how much a genomic language model adds over conventional
 sequence predictors on viral phenotype tasks, at three levels of test-to-train
 relatedness.
 
-Every benchmark is scored twice. Once for the foundation model, once for an
-envelope of conventional arms (k-mer logistic regression, k-mer gradient
+Every benchmark is scored for every foundation model and for a
+set of conventional arms (k-mer logistic regression, k-mer gradient
 boosting, amino-acid composition, a CNN capacity ladder, a from-scratch
 transformer ladder, nearest-neighbour label transfer, a taxonomy prior), and the
 reported quantity is the difference. The same scoring is then repeated on
@@ -28,21 +28,17 @@ training split, so they are properties of the split, not of model pretraining.
 |------|---------------|
 | `pipelines/` | the single entry point, `run.py`, plus the YAML that defines tasks, models, arms and protocol |
 | `scripts/common/` | shared path resolution, data download, the capacity ladder, the paired bootstrap |
-| `scripts/track_a_benchmarks/` | fine-tuning and the GUE / GeneB benchmark loaders |
+| `scripts/track_a_benchmarks/` | fine-tuning and the GUE benchmark loaders |
 | `scripts/track_b_viral/` | the viral benchmarks: baseline arms, homology searches, regime splits, the level table |
 | `scripts/_not_in_manuscript/` | run, but feeding no reported number; kept so the exclusion is explicit |
 | `analysis/` | everything computed from the predictions: consolidation, bootstrap intervals, fit counts |
 | `tests/` | configuration and estimator tests, runnable without any data |
 
-`results/`, `reports/` and `paper/` are not tracked. They are outputs: `results/`
-is written by the pipeline, `reports/` by the analysis layer, and both are
-rebuilt by the commands below.
+ `results/` is written by the pipeline, `reports/` by the analysis layer.
 
 ---
 
 ## 1. Environment
-
-One environment runs everything, the pipeline and the analysis layer alike.
 
 ```bash
 conda env create -f environment.yml
@@ -55,7 +51,7 @@ python scripts/common/download_data.py           # the benchmark corpora
 ```
 
 `pipelines/env.example.sh` is commented and names every path the pipeline needs.
-Set them there; `env.sh` is gitignored.
+Set them there.
 
 The conda environment includes MMseqs2, which every homology search needs and pip
 cannot provide. Without conda, `pip install -r requirements.txt` covers the Python
@@ -97,18 +93,13 @@ the homology search did not match.
 
 ### 3.1 L0 for the models
 
-Full fine-tuning with an identical budget per model: three seeds across three
-learning rates, eight epochs (sixteen on GUE). Selection is on development MCC;
-the test set is never used for it.
-
 ```bash
 python pipelines/run.py finetune                                  # every model, every task
 python pipelines/run.py finetune --tasks gue_phage --models nt_v2_500m
 ```
 
 Writes `geneb_finetune/<task>__<model>__lr<lr>__fullft.json` and the prediction
-arrays beside it. Protocol knobs (seeds, learning rates, epochs, selection
-metric) live in `pipelines/config/protocol.yaml`.
+arrays beside it.
 
 ### 3.2 L0 for the baselines
 
@@ -119,9 +110,7 @@ python pipelines/run.py homology      # nearest-neighbour label transfer
 ```
 
 `homology` is a separate stage because nearest-neighbour label transfer needs an
-MMseqs2 search rather than a fit. It writes one more prediction array, on the same
-test rows as every other arm, so it enters the comparator on equal terms. It is
-scored at L0 only; §3.3 says why.
+MMseqs2 search rather than a fit.
 
 To run one arm on its own, bypassing the scheduler:
 
@@ -134,9 +123,6 @@ To run one arm on its own, bypassing the scheduler:
 | nearest-neighbour lookup | `scripts/track_b_viral/nn_lookup_as_baseline.py` |
 | CNN ladder | `scripts/common/capacity_sweep.py --arch_family cnn` |
 | transformer ladder | `scripts/common/capacity_sweep.py --arch_family transformer` |
-
-`python pipelines/run.py baselines --dry-run` prints the exact command for each,
-with the flags the protocol fixes.
 
 ### 3.3 L1 and L2
 
@@ -157,13 +143,12 @@ python scripts/track_b_viral/final_regime_table.py \
 
 One row per benchmark and level, carrying the model's MCC, each arm's MCC, the
 difference and the resampling-unit provenance. Nearest-neighbour lookup is scored
-at L0 only: L1 and L2 are defined by the absence of the hit it transfers from, so
-it is removed from the comparator set rather than scored as zero.
+at L0 only: L1 and L2 are defined by the absence of the hit it transfers from.
 
 ### 3.4 The final table
 
 Six scripts, in this order. The first four join the level table with the
-supporting audits; the last two add the confidence intervals.
+supporting audits and the last two add the confidence intervals.
 
 ```bash
 python scripts/track_b_viral/translated_relatedness_effect.py
@@ -190,14 +175,11 @@ other does not is informative rather than contradictory.
 
 ## 4. Pipeline stages
 
-`pipelines/run.py` is the only entry point. Stages run in dependency order and
-each is a legal standalone target. A stage whose output already exists is skipped
-unless `--force`, and `--force` writes under a distinct tag, so nothing is
-overwritten.
+`pipelines/run.py` is the only entry point.
 
 ```bash
 python pipelines/run.py --list                   # what is configured
-python pipelines/run.py <stage>... [--tasks ...] [--models ...] [--dry-run]
+python pipelines/run.py <stage>... [--tasks ...] [--models ...]
 python pipelines/run.py all --gpus 0,1,2,3
 ```
 
@@ -208,10 +190,6 @@ python pipelines/run.py all --gpus 0,1,2,3
 | `finetune` | full fine-tuning, identical budget per model |
 | `hidden` | nested homology audit: nucleotide, then six-frame translated; writes `hasN` and `hasT` |
 | `layered` | graded relatedness curve and group bootstrap |
-
-Every stage feeds a reported number. Analyses that were run and not reported
-live under `scripts/_not_in_manuscript/`, are not wired to a stage, and are
-invoked directly if you want them.
 
 ### Tasks
 
@@ -233,18 +211,6 @@ checkpoint must be instantiated. That field is not cosmetic: resolving GENA-LM
 with `trust_remote_code` alone silently loaded a stock post-LN encoder, half of
 it randomly initialised, and the result was a plausible number rather than a
 crash.
-
----
-
-## 5. Tests
-
-```bash
-pytest
-```
-
-Configuration integrity, the capacity ladder's receptive-field arithmetic, the
-paired bootstrap, path resolution and the reproduction entry points. No benchmark
-data required.
 
 ---
 
