@@ -44,10 +44,10 @@ training split, so they are properties of the split, not of model pretraining.
 conda env create -f environment.yml
 conda activate glm-audit
 
-cp pipelines/env.example.sh pipelines/env.sh     # edit it, then
+cp pipelines/env.example.sh pipelines/env.sh     
 source pipelines/env.sh
 
-python scripts/common/download_data.py           # the benchmark corpora
+python scripts/common/download_data.py           
 ```
 
 `pipelines/env.example.sh` is commented and names every path the pipeline needs.
@@ -211,8 +211,6 @@ checkpoint must be instantiated. That field is not cosmetic: resolving GENA-LM
 with `trust_remote_code` alone silently loaded a stock post-LN encoder, half of
 it randomly initialised, and the result was a plausible number rather than a
 crash.
-
----
 
 ## License
 
